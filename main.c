@@ -5,10 +5,64 @@
 #include "stdlib.h"
 
 
+
+int display_image(screen *state,int x,int y,int image)
+{
+const char images[][20] = {"./assets/player.xpm", "./assets/floor.xpm"};
+	void *img;
+int width;
+int height;
+img = mlx_xpm_file_to_image(state->mlx, (char *)images[image], &width, &height);
+if(image == 0)
+{
+mlx_put_image_to_window(state->mlx, state->win,img,state->player_x,state->player_y);
+free(img);
+return (0);
+}
+
+mlx_put_image_to_window(state->mlx, state->win,img,x,y);
+return (0);
+}
+
+int move_image(int keycode,void *state)
+{
+	display_image(state,0,0,0);
+
+	return(0);
+}
+
+int display_backgroud(screen *state)
+{
+int j;
+int i;
+j = 0;
+i = 0;
+while(j < 1080)
+{
+		while(i < 1900)
+		{
+			display_image(state,i,j,1);
+			i += 89;
+		}
+		i = 0;
+		j += 55;
+}
+return (0);
+}
+
 int close_win(int keycode, screen *state)
 {
-printf("you have not  pressed %d \n",keycode);
-if(keycode == 257)
+int x;
+
+if(keycode > 0)
+{
+	state->player_x+= 2;
+	x = state->player_x;
+	display_backgroud(state);
+	display_image(state,x,0,0);
+
+}
+		if(keycode == 257)
 {
 	printf("session destroyed");
 	mlx_destroy_window(state->mlx,state->win);
@@ -19,40 +73,21 @@ return(0);
 }
 
 
-
-
-int display_image(screen *state,int x,int y,int image)
-{
-const char images[][20] = {"./assets/player.xpm", "./assets/floor.xpm"};
-	void *img;
-int width;
-int height;
-img = mlx_xpm_file_to_image(state->mlx, (char *)images[image], &width, &height);
-mlx_put_image_to_window(state->mlx, state->win,img,x,y);
-return (0);
-}
-
 int main(void)
 {
 screen state;
-int i = 0;
-int j = 0;
-const int width = 1900;
-const int height = 1080;
+
+const int width = 500;
+const int height = 500;
 
 	state.mlx = mlx_init();
 	state.win = mlx_new_window(state.mlx,width,height,"help"); 
-while(j < 1080)
-{
-		while(i < 1900)
-		{
-			display_image(&state,i,j, i % 2);
-			i += 89;
-		}
-		i = 0;
-		j += 55;
-}
-
+	state.player_x = 0;
+	state.player_y = 0;
+	display_backgroud(&state);
+	display_image(&state,0,0,0);
 	mlx_key_hook(state.win,close_win,&state);
+	mlx_loop_hook(state.mlx,close_win,&state);
 	mlx_loop(state.mlx);
+// 1 4 17 moving direction;
 }
