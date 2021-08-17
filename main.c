@@ -1,10 +1,9 @@
 #include "libft/libft.h"
+#include "get_next_line.h"
 #include "minilibx/mlx.h"
 #include "stdio.h"
 #include "solong.h"
 #include "stdlib.h"
-
-
 
 int display_image(screen *state,int x,int y,int image)
 {
@@ -72,22 +71,41 @@ if(keycode > 0)
 return(0);
 }
 
+t_list  mapcreator(fd)
+{
+
+char *string;
+t_list lst;
+get_next_line(fd,&string);
+lst = *ft_lstnew(string);
+
+ft_strlen("help");
+  
+return (lst);
+}
+
+
 
 int main(void)
 {
-screen state;
+int  fd;
+char *line;
+t_list lst;
+fd = open("./map.ber",O_RDONLY);
+get_next_line(fd,&line);
+ lst = *ft_lstnew(line);
+printf("%s",line);
+//const int width = 500;
+//const int height = 500;
 
-const int width = 500;
-const int height = 500;
-
-	state.mlx = mlx_init();
-	state.win = mlx_new_window(state.mlx,width,height,"help"); 
-	state.player_x = 0;
-	state.player_y = 0;
-	display_backgroud(&state);
-	display_image(&state,0,0,0);
-	mlx_key_hook(state.win,close_win,&state);
-	mlx_loop_hook(state.mlx,close_win,&state);
-	mlx_loop(state.mlx);
+//	state.mlx = mlx_init();
+//	state.win = mlx_new_window(state.mlx,width,height,"help"); 
+//	state.player_x = 0;
+//	state.player_y = 0;
+//	display_backgroud(&state);
+//	display_image(&state,0,0,0);
+//	mlx_key_hook(state.win,close_win,&state);
+//	mlx_loop_hook(state.mlx,close_win,&state);
+//	mlx_loop(state.mlx);
 // 1 4 17 moving direction;
 }

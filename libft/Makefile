@@ -18,7 +18,7 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(BONUS_OBJS)
 	$(AR) -rcs $(NAME) $?
 
 clean:
