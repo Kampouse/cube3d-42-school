@@ -25,4 +25,10 @@ dlist	*node_init(void *content);
 void	ft_lst_add_frontd(dlist **currlist, dlist *newnode);
 void	ft_lstiterd(dlist *currlist, void (*f) (void *));
 void	ft_lst_add_backd(dlist **currlist, dlist *node);
+
+int ft_all(char *string,char comp);
+int ft_between(char *string, char comp);
+
+int verif_len(dlist stuff);
+int verif_wall(dlist stuff);
 #endif 

@@ -12,7 +12,7 @@ const char images[][20] = {"./assets/player.xpm", "./assets/floor.xpm"};
 int width;
 int height;
 img = mlx_xpm_file_to_image(state->mlx, (char *)images[image], &width, &height);
-if(image == 0)
+if (image == 0)
 {
 mlx_put_image_to_window(state->mlx, state->win,img,state->player_x,state->player_y);
 free(img);
@@ -74,29 +74,31 @@ void print_content(void *content)
 {
 	printf("%s \n",(char *)content);
 }
-void mapcreator(fd)
+dlist *mapcreator(fd)
 {
 dlist *list;
-int len;
 list =  NULL;
+
 char *str;
-	get_next_line(fd,&str);
-	len = ft_strlen(str);
+get_next_line(fd,&str);
 ft_lst_add_backd(&list,node_init(str));
 while(get_next_line(fd, &str))
 		ft_lst_add_backd(&list,node_init(str));
 
- list = ft_lst_firstnode(list);
+list = ft_lst_firstnode(list);
  ft_lstiterd(list,print_content);
-
+return(list);
 }
 
 int main(void)
 {
+dlist map;
 int  fd;
 fd = open("./map.ber",O_RDONLY);
- mapcreator(fd);
-
+map = *mapcreator(fd);
+printf("%s",(char *)map.content);
+verif_len(map);
+verif_wall(map);
 //printf("%s",(char *)map.content);
 
 //const int width = 500;
