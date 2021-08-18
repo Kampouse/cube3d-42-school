@@ -70,31 +70,35 @@ if(keycode > 0)
 
 return(0);
 }
-
-t_list  mapcreator(fd)
+void print_content(void *content)
 {
-
-char *string;
-t_list lst;
-get_next_line(fd,&string);
-lst = *ft_lstnew(string);
-
-ft_strlen("help");
-  
-return (lst);
+	printf("%s \n",(char *)content);
 }
+void mapcreator(fd)
+{
+dlist *list;
+int len;
+list =  NULL;
+char *str;
+	get_next_line(fd,&str);
+	len = ft_strlen(str);
+ft_lst_add_backd(&list,node_init(str));
+while(get_next_line(fd, &str))
+		ft_lst_add_backd(&list,node_init(str));
 
+ list = ft_lst_firstnode(list);
+ ft_lstiterd(list,print_content);
 
+}
 
 int main(void)
 {
 int  fd;
-char *line;
-t_list lst;
 fd = open("./map.ber",O_RDONLY);
-get_next_line(fd,&line);
- lst = *ft_lstnew(line);
-printf("%s",line);
+ mapcreator(fd);
+
+//printf("%s",(char *)map.content);
+
 //const int width = 500;
 //const int height = 500;
 

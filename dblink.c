@@ -27,7 +27,7 @@ dlist	*node_init(void *content)
 	}
 }
 
-void	ft_lstiter(dlist *currlist, void (*f) (void *))
+void	ft_lstiterd(dlist *currlist, void (*f) (void *))
 {
 	if (!f)
 		return ;
@@ -54,6 +54,7 @@ void	ft_lst_add_backd(dlist **currlist, dlist *node)
 			*currlist = node;
 	}
 }
+/*
 int main(void)
 {
 dlist *lst;
@@ -66,5 +67,4 @@ lst = NULL;
 lst = ft_lst_lastnode(lst);
 printf("%s",(char *)lst->content);
 }
-
-
+*/
