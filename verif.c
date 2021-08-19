@@ -41,7 +41,7 @@ int verif_wall(dlist map) {
   return (0);
 }
 
-int verif_player(dlist map) {
+int verif_param(dlist map, char param) {
 
   dlist *temp;
   int counter;
@@ -49,11 +49,15 @@ int verif_player(dlist map) {
   counter = 0;
   temp = &map;
   while (temp->next) {
-    counter += ft_char_count((char *)temp->content, 'P');
+    counter += ft_char_count((char *)temp->content, param);
     temp = ft_lst_nextnode(temp);
   }
-  if (counter != 1)
-    printf("realy bad");
+  if (counter == 1 && param == 'P') {
+    printf("good");
+    return (0);
+  }
+  if (counter >= 1 && param != 'P')
+    printf("amazing");
 
   return (0);
 }

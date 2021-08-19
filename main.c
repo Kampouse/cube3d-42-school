@@ -85,7 +85,9 @@ int main(void) {
   map = *mapcreator(fd);
   printf("%s", (char *)map.content);
   verif_len(map);
-  verif_player(map);
+  verif_param(map, 'P');
+  verif_param(map, 'E');
+  verif_param(map, 'C');
 
   // printf("%s",(char *)map.content);
 
