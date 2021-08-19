@@ -31,4 +31,6 @@ int ft_between(char *string, char comp);
 
 int verif_len(dlist stuff);
 int verif_wall(dlist stuff);
+int ft_char_count(char *str, int cmp);
+int verif_player(dlist map);
 #endif 
