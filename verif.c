@@ -52,12 +52,37 @@ int verif_param(dlist map, char param) {
     counter += ft_char_count((char *)temp->content, param);
     temp = ft_lst_nextnode(temp);
   }
-  if (counter == 1 && param == 'P') {
+  if (counter != 1 && param == 'P') {
     printf("good");
     return (0);
   }
-  if (counter >= 1 && param != 'P')
-    printf("amazing");
+  if (counter < 1 && param != 'P')
+    printf("wrong");
 
+  return (0);
+}
+
+int legalchars(char *str) {
+  int inc;
+  inc = 0;
+  const char *comparator = "PE01C";
+
+  while (str[inc]) {
+    if (!ft_strchr(comparator, str[inc])) {
+      printf("(%c)bad char", str[inc]);
+    }
+    inc++;
+  }
+  return (0);
+}
+
+int verif_map_content(dlist map) {
+  dlist *temp;
+  temp = &map;
+  while (temp->next) {
+    if (legalchars((char *)temp->content) != 0)
+      printf("you dumb shipt");
+    temp = temp->next;
+  }
   return (0);
 }

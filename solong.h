@@ -33,4 +33,5 @@ int verif_len(dlist stuff);
 int verif_wall(dlist stuff);
 int ft_char_count(char *str, int cmp);
 int verif_param(dlist map,char param);
+int verif_map_content(dlist map);
 #endif 

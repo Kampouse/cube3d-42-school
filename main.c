@@ -85,10 +85,11 @@ int main(void) {
   map = *mapcreator(fd);
   printf("%s", (char *)map.content);
   verif_len(map);
+  verif_wall(map);
   verif_param(map, 'P');
   verif_param(map, 'E');
   verif_param(map, 'C');
-
+  verif_map_content(map);
   // printf("%s",(char *)map.content);
 
   // const int width = 500;
