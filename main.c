@@ -63,6 +63,7 @@ int close_win(int keycode, screen *state) {
   return (0);
 }
 void print_content(void *content) { printf("%s \n", (char *)content); }
+
 dlist *mapcreator(fd) {
   dlist *list;
   list = NULL;
@@ -74,23 +75,33 @@ dlist *mapcreator(fd) {
     ft_lst_add_backd(&list, node_init(str));
 
   list = ft_lst_firstnode(list);
-  ft_lstiterd(list, print_content);
   return (list);
 }
-
-int main(void) {
-  dlist map;
-  int fd;
-  fd = open("./map.ber", O_RDONLY);
-  map = *mapcreator(fd);
-  printf("%s", (char *)map.content);
+int verif(dlist map) {
   verif_len(map);
   verif_wall(map);
   verif_param(map, 'P');
   verif_param(map, 'E');
   verif_param(map, 'C');
   verif_map_content(map);
-  // printf("%s",(char *)map.content);
+  return (0);
+}
+
+int main(void) {
+  dlist map;
+  dlist *temp;
+  int fd;
+  fd = open("./map.ber", O_RDONLY);
+  map = *mapcreator(fd);
+  temp = &map;
+  ft_lstiterd(temp, free);
+  ft_cleardlist(&temp, free);
+  // ft_clearnode(&*temp, free);
+  // printf("%s", (char *)&temp->content);
+  // ft_clearnode(temp, free);
+  // printf("%s", (char *)temp->content);
+  // might not clear
+  // printf("%s", (char *)map.content);
 
   // const int width = 500;
   // const int height = 500;

@@ -34,4 +34,8 @@ int verif_wall(dlist stuff);
 int ft_char_count(char *str, int cmp);
 int verif_param(dlist map,char param);
 int verif_map_content(dlist map);
+
+void ft_cleardlist(dlist **currlist, void (*del)(void *));
+void ft_clearnode(dlist *currlist, void (*del)(void *));;
+
 #endif 
