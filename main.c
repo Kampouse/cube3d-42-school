@@ -86,7 +86,7 @@ int verif(dlist map) {
   flag += verif_param(map, 'E');
   flag += verif_param(map, 'C');
   flag += verif_map_content(map);
-  return (0);
+  return (flag);
 }
 
 int main(void) {
@@ -99,9 +99,9 @@ int main(void) {
   if (verif(map)) {
     ft_lstiterd(temp, free);
     ft_cleardlist(&temp, free);
-    printf("we encountered an error");
+    printf("error as occured");
   }
-  // printf("%s", (char *)&temp->content);
+  // printf("%s", (char *)temp->content);
   // ft_clearnode(temp, free);
   // printf("%s", (char *)temp->content);
   // might not clear
