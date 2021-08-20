@@ -73,17 +73,19 @@ dlist *mapcreator(fd) {
   ft_lst_add_backd(&list, node_init(str));
   while (get_next_line(fd, &str))
     ft_lst_add_backd(&list, node_init(str));
-
   list = ft_lst_firstnode(list);
   return (list);
 }
 int verif(dlist map) {
-  verif_len(map);
-  verif_wall(map);
-  verif_param(map, 'P');
-  verif_param(map, 'E');
-  verif_param(map, 'C');
-  verif_map_content(map);
+  int flag;
+  flag = 0;
+  // should i do an error for each?
+  flag += verif_len(map);
+  flag += verif_wall(map);
+  flag += verif_param(map, 'P');
+  flag += verif_param(map, 'E');
+  flag += verif_param(map, 'C');
+  flag += verif_map_content(map);
   return (0);
 }
 
@@ -94,9 +96,11 @@ int main(void) {
   fd = open("./map.ber", O_RDONLY);
   map = *mapcreator(fd);
   temp = &map;
-  ft_lstiterd(temp, free);
-  ft_cleardlist(&temp, free);
-  // ft_clearnode(&*temp, free);
+  if (verif(map)) {
+    ft_lstiterd(temp, free);
+    ft_cleardlist(&temp, free);
+    printf("we encountered an error");
+  }
   // printf("%s", (char *)&temp->content);
   // ft_clearnode(temp, free);
   // printf("%s", (char *)temp->content);
