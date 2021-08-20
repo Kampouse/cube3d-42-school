@@ -79,5 +79,7 @@ int verif_map_content(dlist map) {
       return (1);
     temp = temp->next;
   }
+  if (legalchars((char *)temp->content) != 0)
+    return (1);
   return (0);
 }

@@ -14,6 +14,9 @@ typedef struct  dlist
 	void *content;
  	struct dlist *prev;
  	struct dlist *next;
+	int	 *pos_x;
+	int	 *pos_y;
+	char	 type;
 }					dlist;	
 
 dlist	*ft_lst_lastnode(dlist *currlist);

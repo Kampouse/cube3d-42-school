@@ -11,6 +11,9 @@ dlist *node_init(void *content) {
   link->content = content;
   link->prev = NULL;
   link->next = NULL;
+  link->pos_x = 0;
+  link->pos_y = 0;
+  link->type = '0';
   return (link);
 }
 

@@ -101,7 +101,7 @@ int main(void) {
     ft_cleardlist(&temp, free);
     printf("error as occured");
   }
-  // printf("%s", (char *)temp->content);
+  printf("%c", temp->type);
   // ft_clearnode(temp, free);
   // printf("%s", (char *)temp->content);
   // might not clear
