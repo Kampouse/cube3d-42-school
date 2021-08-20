@@ -14,8 +14,8 @@ typedef struct  dlist
 	void *content;
  	struct dlist *prev;
  	struct dlist *next;
-	int	 *pos_x;
-	int	 *pos_y;
+	int	 pos_x;
+	int	 pos_y;
 	char	 type;
 }					dlist;	
 
@@ -40,5 +40,5 @@ int verif_map_content(dlist map);
 
 void ft_cleardlist(dlist **currlist, void (*del)(void *));
 void ft_clearnode(dlist *currlist, void (*del)(void *));;
-
+dlist *tile_row(dlist *map,int x,int y);
 #endif 
