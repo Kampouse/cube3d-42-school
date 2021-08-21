@@ -92,6 +92,7 @@ int verif(dlist map) {
 int main(void) {
 
   dlist map;
+  screen state;
   dlist *temp;
   int fd;
 
@@ -104,24 +105,23 @@ int main(void) {
     printf("error as occured");
   }
   temp = tile_all(&map);
-  while (temp->next) {
-    // printf("(%d)", temp->pos_x);
-    printf("(%c,%d,%d)", temp->type, temp->pos_x, temp->pos_y);
-    temp = temp->next;
-  }
   // ft_clearnode(temp, free);
 
-  // const int width = 500;
-  // const int height = 500;
+  const int width = 500;
+  const int height = 500;
 
-  //	state.mlx = mlx_init();
-  //	state.win = mlx_new_window(state.mlx,width,height,"help");
-  //	state.player_x = 0;
-  //	state.player_y = 0;
-  //	display_backgroud(&state);
-  //	display_image(&state,0,0,0);
-  //	mlx_key_hook(state.win,close_win,&state);
-  //	mlx_loop_hook(state.mlx,close_win,&state);
-  //	mlx_loop(state.mlx);
+  state.mlx = mlx_init();
+  state.win = mlx_new_window(state.mlx, width, height, "help");
+  state.player_x = 0;
+  state.player_y = 0;
+  while (temp->next) {
+    display_image(&state, temp->pos_x, temp->pos_y, 1);
+
+    temp = temp->next;
+  }
+
+  mlx_key_hook(state.win, close_win, &state);
+  mlx_loop_hook(state.mlx, close_win, &state);
+  mlx_loop(state.mlx);
   // 1 4 17 moving direction;
 }

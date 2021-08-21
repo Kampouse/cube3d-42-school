@@ -26,7 +26,8 @@ dlist *tile_row(dlist *map, int y) {
   iterator = (char *)map->content;
 
   while (iterator[inc]) {
-    ft_lst_add_backd(&tiles, node_tiles(iterator[inc], x += 5, y));
+    ft_lst_add_backd(&tiles, node_tiles(iterator[inc], x, y));
+    x += 50;
     inc++;
   }
   return tiles;
@@ -39,7 +40,7 @@ dlist *tile_all(dlist *map) {
   y = 0;
   while (map->next) {
     ft_lst_add_backd(&mapList, tile_row(map, y));
-    y++;
+    y += 50;
     map = map->next;
   }
   ft_lst_add_backd(&mapList, tile_row(map, y));
