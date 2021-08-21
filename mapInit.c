@@ -7,13 +7,15 @@ dlist *node_tiles(char content, int x, int y) {
   link = (dlist *)malloc(sizeof(*link));
   if (!link)
     return (NULL);
-  link->content = &content;
+  link->type = content;
+  link->pos_x = x;
+  link->pos_y = y;
   link->prev = NULL;
   link->next = NULL;
   link->content = NULL;
   return (link);
 }
-int tile_row(dlist *map) {
+dlist *tile_row(dlist *map, int x, int y) {
   char *iterator;
   dlist *tiles;
   int inc;
@@ -21,10 +23,21 @@ int tile_row(dlist *map) {
   inc = 0;
   tiles = NULL;
   iterator = (char *)map->content;
+
   while (iterator[inc]) {
-    // init nde and add them to the back...
-    printf("(%c)", iterator[inc]);
+    ft_lst_add_backd(&tiles, node_tiles(iterator[inc], x++, y++));
     inc++;
   }
-  return 0;
+  return tiles;
+}
+
+dlist *tile_all(dlist *map, int x, int y) {
+  dlist *mapList;
+  mapList = NULL;
+  while (map->next) {
+    ft_lst_add_backd(&mapList, tile_row(map, x, y));
+    map = map->next;
+  }
+  ft_lst_add_backd(&mapList, tile_row(map, x, y));
+  return (mapList);
 }

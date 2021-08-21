@@ -62,7 +62,7 @@ int close_win(int keycode, screen *state) {
 
   return (0);
 }
-void print_content(void *content) { printf("%s \n", (char *)content); }
+void print_content(char content) { printf("%c \n", content); }
 
 dlist *mapcreator(fd) {
   dlist *list;
@@ -90,9 +90,11 @@ int verif(dlist map) {
 }
 
 int main(void) {
+
   dlist map;
   dlist *temp;
   int fd;
+
   fd = open("./map.ber", O_RDONLY);
   map = *mapcreator(fd);
   temp = &map;
@@ -101,11 +103,13 @@ int main(void) {
     ft_cleardlist(&temp, free);
     printf("error as occured");
   }
-  printf("%c", temp->type);
+  temp = tile_all(&map, 0, 0);
+  while (temp->next) {
+    // printf("(%d)", temp->pos_x);
+    printf("%c", temp->type);
+    temp = temp->next;
+  }
   // ft_clearnode(temp, free);
-  // printf("%s", (char *)temp->content);
-  // might not clear
-  // printf("%s", (char *)map.content);
 
   // const int width = 500;
   // const int height = 500;
