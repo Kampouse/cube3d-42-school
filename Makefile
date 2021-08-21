@@ -2,7 +2,7 @@ NAME = solong
 
 FLAGS = -Wall -Wextra -Werror -framework OpenGL -framework AppKit 
 SRCS = main.c get_next_line.c get_next_line_utils.c dblink.c dblink_utils.c verif.c \
-	   util.c
+	   util.c mapInit.c
 OBJS = ${SRCS:.c=.o}
 CC = gcc 
 all: ${NAME}

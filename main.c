@@ -103,10 +103,10 @@ int main(void) {
     ft_cleardlist(&temp, free);
     printf("error as occured");
   }
-  temp = tile_all(&map, 0, 0);
+  temp = tile_all(&map);
   while (temp->next) {
     // printf("(%d)", temp->pos_x);
-    printf("%c", temp->type);
+    printf("(%c,%d,%d)", temp->type, temp->pos_x, temp->pos_y);
     temp = temp->next;
   }
   // ft_clearnode(temp, free);

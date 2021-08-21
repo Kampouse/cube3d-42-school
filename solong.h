@@ -40,7 +40,7 @@ int verif_map_content(dlist map);
 
 void ft_cleardlist(dlist **currlist, void (*del)(void *));
 void ft_clearnode(dlist *currlist, void (*del)(void *));;
-dlist *tile_row(dlist *map,int x,int y);
-dlist *tile_all(dlist *map,int x,int y);
+dlist *tile_row(dlist *map,int y);
+dlist *tile_all(dlist *map);
 
 #endif 
