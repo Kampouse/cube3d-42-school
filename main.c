@@ -18,30 +18,16 @@ int display_image(screen *state, int x, int y, int image) {
   return (0);
 }
 
-int display_backgroud(screen *state) {
-  int j;
-  int i;
-  j = 0;
-  i = 0;
-  while (j < 1080) {
-    while (i < 1900) {
-      //  display_image(state, i, j, 1);
-      i += 89;
-    }
-    i = 0;
-    j += 55;
-  }
-  return (0);
-}
-
-int close_win(int keycode, screen *state) {
+int close_win(int keycode, screen *state, dlist tempb) {
   int x;
 
   if (keycode > 0) {
-    state->player_x += 2;
     x = state->player_x;
-    // display_backgroud(state);
-    // display_image(state, x, 0, 0);
+    printf("what%d", state->player_x);
+    state->player_x += 2;
+
+    //  display_backgroud(state);
+    display_image(state, state->player_x, state->player_y, 0);
   }
   if (keycode == 257) {
     printf("session destroyed");
@@ -52,7 +38,6 @@ int close_win(int keycode, screen *state) {
   return (0);
 }
 void print_content(char content) { printf("%c \n", content); }
-
 dlist *mapcreator(fd) {
   dlist *list;
   list = NULL;
@@ -77,18 +62,33 @@ int verif(dlist map) {
   flag += verif_map_content(map);
   return (flag);
 }
-int image_type(char type) {
-  if (type == 'P')
-    return (0);
-  else if (type == '1')
-    return (1);
-  return (0);
+void image_type(screen *state, dlist *img) {
+
+  if (img->type == 'P') {
+    display_image(state, img->pos_x, img->pos_y, 1);
+  } else if (img->type == '1')
+    display_image(state, img->pos_x, img->pos_y, 1);
 }
+dlist *player_node(dlist *map) {
+  map = ft_lst_firstnode(map);
+  while (map->next) {
+
+    if (map->type == 'P') {
+      return (map);
+    }
+    map = map->next;
+  }
+  if (map->type == 'P')
+    return (map);
+  return (map);
+}
+
 int main(void) {
 
   dlist map;
   screen state;
   dlist *temp;
+  dlist *tempb;
   int fd;
 
   fd = open("./map.ber", O_RDONLY);
@@ -100,20 +100,26 @@ int main(void) {
     printf("error as occured");
   }
   temp = tile_all(&map);
+  tempb = player_node(temp);
+  printf("(type = %d %d)", tempb->pos_x, tempb->pos_y);
   // ft_clearnode(temp, free);
-
+  state.player_x = tempb->pos_x;
+  state.player_y = tempb->pos_y;
   const int width = 1000;
   const int height = 1000;
-
   state.mlx = mlx_init();
   state.win = mlx_new_window(state.mlx, width, height, "help");
+
   while (temp->next) {
-    display_image(&state, temp->pos_x, temp->pos_y, image_type(temp->type));
+
+    image_type(&state, temp);
     temp = temp->next;
   }
+  display_image(&state, state.player_x, state.player_y, 0);
+  image_type(&state, temp);
 
   mlx_key_hook(state.win, close_win, &state);
-  // mlx_loop_hook(state.mlx, close_win, &state);
+  mlx_loop_hook(state.mlx, close_win, &state);
   mlx_loop(state.mlx);
   // 1 4 17 moving direction;
 }
