@@ -1,109 +1,86 @@
+#include "../solong.h"
 #include "stdio.h"
 #include "stdlib.h"
 
-typedef struct  dlist 
-{
-	void *content;
- 	struct dlist *prev;
- 	struct dlist *next;
-}					dlist;	
+dlist *node_init(void *content) {
+  dlist *link;
 
-dlist	*ft_lstnode(void *content)
-{
-	dlist	 *link;
-
-	link = (dlist *)malloc(sizeof(*link));
-	if (!link)
-		return (NULL);
-	link->content = content;
-	link->prev = NULL;
-	link->next = NULL;
-	return (link);
+  link = (dlist *)malloc(sizeof(*link));
+  if (!link)
+    return (NULL);
+  link->content = content;
+  link->prev = NULL;
+  link->next = NULL;
+  link->pos_x = 0;
+  link->pos_y = 0;
+  link->type = '0';
+  return (link);
 }
 
-dlist	*ft_lst_lastnode(dlist *currlist)
-{
-	while (currlist)
-	{
-		if (!currlist->next)
-			return (currlist);
-		currlist = currlist->next;
-	}
-	return (currlist);
-}
- 
-dlist	*ft_lst_firstnode(dlist *currlist)
-{
-	while (currlist)
-	{
-		if (!currlist->prev)
-			return (currlist);
-		currlist = currlist->prev;
-	}
-	return (currlist);
-}
-dlist	*ft_lst_prevnode(dlist *currlist)
-{
-
-		currlist = currlist->prev;
-	return (currlist);
-}
-dlist	*ft_lst_nextnode(dlist *currlist)
-{
-		currlist = currlist->next;
-	return (currlist);
+void ft_lst_add_frontd(dlist **currlist, dlist *newnode) {
+  if (currlist) {
+    if (*currlist) {
+      newnode->next = *currlist;
+    }
+    *currlist = newnode;
+  }
 }
 
- void	ft_lst_add_frontd(dlist **currlist, dlist *newnode)
-{
-	if (currlist)
-	{
-		if (*currlist)
-		{
-			newnode->next = *currlist;
-		}
-		*currlist = newnode;
-	}
+void ft_lstiterd(dlist *currlist, void (*f)(void *)) {
+  if (!f)
+    return;
+  while (currlist) {
+    (*f)(currlist->content);
+    currlist = currlist->next;
+  }
 }
 
-void	ft_lstiter(dlist *currlist, void (*f) (void *))
-{
-	if (!f)
-		return ;
-	while (currlist)
-	{
-		 (*f)(currlist->content);
-		currlist = currlist->next;
-	}
-}
-void	ft_lst_add_backd(dlist **currlist, dlist *new)
-{
-	dlist	*last;
+void ft_lst_add_backd(dlist **currlist, dlist *node) {
+  dlist *last;
 
-	if (currlist)
-	{
-		if (*currlist)
-		{
-			last = ft_lst_lastnode(*currlist);
-			last->next = new;
-			new->prev = last;
-		}
-		else
-			*currlist = new;
-	}
+  if (currlist) {
+    if (*currlist) {
+      last = ft_lst_lastnode(*currlist);
+      last->next = node;
+      node->prev = last;
+    } else
+      *currlist = node;
+  }
 }
-/**
+
+void ft_clearnode(dlist *currlist, void (*del)(void *)) {
+  if (currlist) {
+    //   printf("%s", (char *)currlist->content);
+    //(*del)(currlist->content);
+    free(currlist);
+  }
+}
+
+void ft_cleardlist(dlist **currlist, void (*del)(void *)) {
+  dlist *iter;
+
+  if (!del || !currlist || !*currlist) {
+    return;
+  }
+  // am not sure if it clear all of the list;
+  while (currlist && *currlist) {
+    iter = (*currlist)->next;
+    *currlist = iter;
+    ft_clearnode(*currlist, del);
+  }
+}
+
+/*
 int main(void)
 {
 dlist *lst;
 lst = NULL;
 
- ft_lst_add_backd(&lst,ft_lstnode("stuff"));
- ft_lst_add_backd(&lst,ft_lstnode("hello"));
- ft_lst_add_backd(&lst,ft_lstnode("please"));
- ft_lst_add_backd(&lst,ft_lstnode("help me"));
+ ft_lst_add_backd(&lst,node_init("stuff"));
+ ft_lst_add_backd(&lst,node_init("hello"));
+ ft_lst_add_backd(&lst,node_init("please"));
+ ft_lst_add_backd(&lst,node_init("help me"));
 lst = ft_lst_lastnode(lst);
-lst = ft_lst_nextnode(lst);
-//printf("%s",(char *)lst->content);
+printf("%s",(char *)lst->content);
 }
 */

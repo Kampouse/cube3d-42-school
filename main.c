@@ -1,9 +1,9 @@
-#include "get_next_line.h"
-#include "libft/libft.h"
-#include "minilibx/mlx.h"
 #include "solong.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include "utils/get_next_line.h"
+#include "utils/libft/libft.h"
+#include "utils/minilibx/mlx.h"
 
 int display_image(screen *state, int x, int y, int image) {
   const char images[][20] = {"./assets/player.xpm", "./assets/floor.xpm"};
@@ -91,7 +91,11 @@ int main(void) {
   dlist *tempb;
   int fd;
 
-  fd = open("./map.ber", O_RDONLY);
+  fd = open("./assets/map.ber", O_RDONLY);
+  if (fd < 0) {
+    printf("map could not be initiated");
+    exit(-1);
+  }
   map = *mapcreator(fd);
   temp = &map;
   if (verif(map)) {

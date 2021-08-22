@@ -1,16 +1,16 @@
 NAME = solong
-
+ 
 FLAGS = -Wall -Wextra -Werror -framework OpenGL -framework AppKit 
-SRCS = main.c get_next_line.c get_next_line_utils.c dblink.c dblink_utils.c verif.c \
-	   util.c mapInit.c
+SRCS = main.c utils/get_next_line.c utils/get_next_line_utils.c  dblink/dblink_utils.c utils/verif.c \
+	   utils/util.c dblink/dblink.c mapInit.c
 OBJS = ${SRCS:.c=.o}
 CC = gcc 
 all: ${NAME}
 
 ${NAME}:${OBJS} 
-		@$(MAKE) -C ./libft
-		@$(MAKE) -C ./minilibx
-		@${CC} ${OBJS} ${FLAGS} ./libft/libft.a ./minilibx/libmlx.a -o ${NAME}
+		@$(MAKE) -C ./utils/libft
+		@$(MAKE) -C ./utils/minilibx
+		@${CC} ${OBJS} ${FLAGS} ./utils/libft/libft.a ./utils/minilibx/libmlx.a -o ${NAME}
 
 clean:
 	    @${RM} ${OBJS}	
@@ -22,8 +22,8 @@ run: all
 
 fclean: clean
 	@${RM} ${NAME}
-	@$(MAKE) -C minilibx fclean
-	@$(MAKE) -C libft fclean
+	@$(MAKE) -C ./utils/minilibx fclean
+	@$(MAKE) -C ./utils/libft fclean
 re: fclean all
 	
 .PHONY: clean fclean re all
