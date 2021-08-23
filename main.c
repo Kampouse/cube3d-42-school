@@ -12,7 +12,6 @@ int display_image(screen *state, int x, int y, int image) {
   int height;
   img =
       mlx_xpm_file_to_image(state->mlx, (char *)images[image], &width, &height);
-  //
   mlx_put_image_to_window(state->mlx, state->win, img, x, y);
   free(img);
   return (0);
@@ -27,6 +26,7 @@ int close_win(int keycode, screen *state, dlist tempb) {
     state->player_x += 2;
 
     //  display_backgroud(state);
+    //
     display_image(state, state->player_x, state->player_y, 0);
   }
   if (keycode == 257) {
@@ -115,15 +115,16 @@ int main(void) {
   state.win = mlx_new_window(state.mlx, width, height, "help");
 
   while (temp->next) {
-
     image_type(&state, temp);
     temp = temp->next;
   }
-  display_image(&state, state.player_x, state.player_y, 0);
   image_type(&state, temp);
-
+  display_image(&state, state.player_x, state.player_y, 0);
+  mlx_do_sync(state.mlx);
+  //
   mlx_key_hook(state.win, close_win, &state);
-  mlx_loop_hook(state.mlx, close_win, &state);
+  mlx_hook(state.win, 2, (1L << 0), close_win, &state);
+  // mlx_loop_hook(state.mlx, close_win, &state);
   mlx_loop(state.mlx);
   // 1 4 17 moving direction;
 }
