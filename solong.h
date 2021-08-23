@@ -1,14 +1,6 @@
 #ifndef  SOLONG_H
 #define  SOLONG_H
 
-typedef struct  screen 
-{
-	void			*mlx;
-	void			*win;
-	int				player_x;
-	int				player_y;
-}					screen;	
-
 typedef struct  dlist 
 {
 	void *content;
@@ -18,6 +10,16 @@ typedef struct  dlist
 	int	 pos_y;
 	char	 type;
 }					dlist;	
+
+
+typedef struct  screen 
+{
+	void			*mlx;
+	void			*win;
+	int				player_x;
+	int				player_y;
+	dlist			*player;
+}					screen;	
 
 dlist	*ft_lst_lastnode(dlist *currlist);
 dlist	*ft_lst_firstnode(dlist *currlist);
