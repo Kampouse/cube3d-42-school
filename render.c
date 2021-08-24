@@ -21,6 +21,7 @@ int render_image(screen *state, int x, int y, int image) {
 int render_player(screen *state, void *player) {
   int len;
   len = 50;
+
   render_background(state, state->player);
   render_image(state, state->player_x + len, state->player_y, 0);
   return (0);
@@ -35,7 +36,7 @@ void image_type(screen *state, dlist *img) {
 }
 
 void render_imageStore(screen *state) {
-  const char images[][20] = {"./assets/player.xpm", "./assets/floor.xpm"};
+  const char images[][20] = {"./assets/player.xpm", "./assets/floor.xpm", "\0"};
   int inc;
   inc = 0;
   state->tiles = malloc(sizeof(void **) * 3);
@@ -45,6 +46,7 @@ void render_imageStore(screen *state) {
   // screen or malloced
   int width;
   int height;
+  state->tiles[2] = 0;
   state->tiles[3] = 0;
   while (*images[inc]) {
     state->tiles[inc] =

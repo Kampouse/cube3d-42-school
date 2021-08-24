@@ -102,5 +102,4 @@ int main(void) {
   mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
   mlx_loop_hook(state.mlx, render_player, &state);
   mlx_loop(state.mlx);
-  // 1 4 17 moving direction;
 }
