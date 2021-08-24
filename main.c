@@ -89,13 +89,15 @@ int main(void) {
   // ft_clearnode(temp, free);
   state.player_x = state.player->pos_x;
   state.player_y = state.player->pos_y;
+
   const int width = 690;
   const int height = 190;
+
   state.mlx = mlx_init();
   state.win = mlx_new_window(state.mlx, width, height, "help");
-  // render_player(&state, tiles);
+  state.tiles = NULL;
+  render_imageStore(&state);
   render_background(&state, &map);
-  // render_some(&state, 0, 0, tiles);
   mlx_key_hook(state.win, render_cycle, &state);
   mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
   mlx_loop_hook(state.mlx, render_player, &state);

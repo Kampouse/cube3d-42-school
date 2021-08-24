@@ -48,5 +48,5 @@ void ft_clearnode(dlist *currlist, void (*del)(void *));;
 dlist *tile_row(dlist *map,int y);
 void image_type(screen *state, dlist *img);
 dlist *tile_all(dlist *map);
-int render_some(screen *state, int x, int y, void **elem);
+int render_some(screen *state, int x, int y,int type);
 #endif 
