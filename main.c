@@ -4,43 +4,7 @@
 #include "utils/get_next_line.h"
 #include "utils/libft/libft.h"
 #include "utils/minilibx/mlx.h"
-void render_background(screen *state, dlist *map);
-int render_image(screen *state, int x, int y, int image) {
-  const char images[][20] = {"./assets/player.xpm", "./assets/floor.xpm"};
-  void *img;
-  int width;
-  int height;
-  img =
-      mlx_xpm_file_to_image(state->mlx, (char *)images[image], &width, &height);
-  mlx_put_image_to_window(state->mlx, state->win, img, x, y);
-  // have to store that image somewhere othewise it will lead to leaks...
-  // free(img);
-  return (0);
-}
-int render_player(screen *state, dlist *map) {
-  int len;
-  len = 50;
-  render_image(state, state->player_x, state->player_y, 0);
-  render_background(state, state->player);
-  render_image(state, state->player_x + len, state->player_y, 0);
-  return (0);
-}
 
-void image_type(screen *state, dlist *img) {
-
-  if (img->type == 'P') {
-    render_image(state, img->pos_x, img->pos_y, 1);
-  } else if (img->type == '1')
-    render_image(state, img->pos_x, img->pos_y, 1);
-}
-
-void render_background(screen *state, dlist *map) {
-  while (map->next) {
-    image_type(state, map);
-    map = map->next;
-  }
-  image_type(state, map);
-}
 int render_cycle(int keycode, screen *state) {
   int x;
   x = state->player_x;
@@ -104,7 +68,6 @@ int main(void) {
   dlist map;
   screen state;
   dlist *temp;
-  dlist *tempb;
   int fd;
 
   fd = open("./assets/map.ber", O_RDONLY);
@@ -113,25 +76,26 @@ int main(void) {
     exit(-1);
   }
   map = *mapcreator(fd);
-  temp = &map;
   if (verif(map)) {
-    ft_lstiterd(temp, free);
+    ft_lstiterd(&map, free);
     ft_cleardlist(&temp, free);
     printf("error as occured");
   }
-  temp = tile_all(&map);
-  tempb = player_node(temp);
-  printf("(type = %d %d)", tempb->pos_x, tempb->pos_y);
+  map = *tile_all(&map);
+  state.player = player_node(&map);
+  // printf("(type = %d %d)", tempb->pos_x, tempb->pos_y);
+  //
+  // tiles = render_imageStore(&state);
   // ft_clearnode(temp, free);
-  state.player_x = tempb->pos_x;
-  state.player_y = tempb->pos_y;
-  state.player = tempb;
+  state.player_x = state.player->pos_x;
+  state.player_y = state.player->pos_y;
   const int width = 690;
   const int height = 190;
   state.mlx = mlx_init();
   state.win = mlx_new_window(state.mlx, width, height, "help");
-  render_background(&state, temp);
-  // render_image(&state, state.player_x, state.player_y, 0);
+  // render_player(&state, tiles);
+  render_background(&state, &map);
+  // render_some(&state, 0, 0, tiles);
   mlx_key_hook(state.win, render_cycle, &state);
   mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
   mlx_loop_hook(state.mlx, render_player, &state);

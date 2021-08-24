@@ -18,6 +18,7 @@ typedef struct  screen
 	void			*win;
 	int				player_x;
 	int				player_y;
+	void			**tiles;
 	dlist			*player;
 }					screen;	
 
@@ -39,10 +40,13 @@ int verif_wall(dlist stuff);
 int ft_char_count(char *str, int cmp);
 int verif_param(dlist map,char param);
 int verif_map_content(dlist map);
-
+void render_imageStore(screen *state);
+int render_player(screen *state, void *player);
+void render_background(screen *state, dlist *map);
 void ft_cleardlist(dlist **currlist, void (*del)(void *));
 void ft_clearnode(dlist *currlist, void (*del)(void *));;
 dlist *tile_row(dlist *map,int y);
+void image_type(screen *state, dlist *img);
 dlist *tile_all(dlist *map);
-
+int render_some(screen *state, int x, int y, void **elem);
 #endif 
