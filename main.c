@@ -6,14 +6,10 @@
 #include "utils/minilibx/mlx.h"
 
 int render_cycle(int keycode, screen *state) {
-  int x;
-  x = state->player_x;
   if (keycode > 0) {
-    printf("%c", state->player->type);
 
     //    render_background(state, state->player);
     // render_image(state, state->player_x, state->player_y, 0);
-    state->player_x += 2;
   }
   if (keycode == 257) {
     printf("session destroyed");
@@ -24,18 +20,7 @@ int render_cycle(int keycode, screen *state) {
   return (0);
 }
 void print_content(char content) { printf("%c \n", content); }
-dlist *mapcreator(fd) {
-  dlist *list;
-  list = NULL;
 
-  char *str;
-  get_next_line(fd, &str);
-  ft_lst_add_backd(&list, node_init(str));
-  while (get_next_line(fd, &str))
-    ft_lst_add_backd(&list, node_init(str));
-  list = ft_lst_firstnode(list);
-  return (list);
-}
 int verif(dlist map) {
   int flag;
   flag = 0;
@@ -65,7 +50,6 @@ dlist *player_node(dlist *map) {
 
 int main(void) {
 
-  dlist map;
   screen state;
   dlist *temp;
   int fd;
@@ -75,31 +59,19 @@ int main(void) {
     printf("map could not be initiated");
     exit(-1);
   }
-  map = *mapcreator(fd);
-  if (verif(map)) {
-    ft_lstiterd(&map, free);
-    ft_cleardlist(&temp, free);
-    printf("error as occured");
-  }
-  map = *tile_all(&map);
-  state.player = player_node(&map);
-  // printf("(type = %d %d)", tempb->pos_x, tempb->pos_y);
-  //
-  // tiles = render_imageStore(&state);
-  // ft_clearnode(temp, free);
-  state.player_x = state.player->pos_x;
-  state.player_y = state.player->pos_y;
+
+  temp = mapcreator(fd);
+  map_init(&state, temp);
 
   const int width = 690;
   const int height = 190;
 
   state.mlx = mlx_init();
+  map_tiles(&state);
+  render_tiles(&state);
   state.win = mlx_new_window(state.mlx, width, height, "help");
-  state.tiles = NULL;
-  render_imageStore(&state);
-  render_background(&state, &map);
+  mlx_put_image_to_window(state.mlx, state.win, state.tiles[1], 0, 0);
   mlx_key_hook(state.win, render_cycle, &state);
   mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
-  mlx_loop_hook(state.mlx, render_player, &state);
   mlx_loop(state.mlx);
 }

@@ -28,3 +28,14 @@ dlist *ft_lst_nextnode(dlist *currlist) {
   currlist = currlist->next;
   return (currlist);
 }
+
+int ft_lst_lenght(dlist *currlist) {
+  int len;
+  len = 0;
+  while (currlist) {
+    currlist = currlist->next;
+    len++;
+  }
+
+  return (len);
+}

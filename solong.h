@@ -16,8 +16,7 @@ typedef struct  screen
 {
 	void			*mlx;
 	void			*win;
-	int				player_x;
-	int				player_y;
+	char			**map;
 	void			**tiles;
 	dlist			*player;
 }					screen;	
@@ -46,7 +45,14 @@ void render_background(screen *state, dlist *map);
 void ft_cleardlist(dlist **currlist, void (*del)(void *));
 void ft_clearnode(dlist *currlist, void (*del)(void *));;
 dlist *tile_row(dlist *map,int y);
-void image_type(screen *state, dlist *img);
+void image_type(screen *state);
 dlist *tile_all(dlist *map);
 int render_some(screen *state, int x, int y,int type);
+int get_next_line(int fd, char **str);
+dlist *mapcreator(int fd);
+int ft_lst_lenght(dlist *currlist);
+int render_image(screen *state, int x, int y, int image);
+void render_tiles(screen *state);
+ void map_init(screen *state,dlist *map);
+ void map_tiles(screen *state);
 #endif 
