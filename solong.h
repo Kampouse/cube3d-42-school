@@ -44,10 +44,11 @@ int ft_char_count(char *str, int cmp);
 int verif_param(dlist map,char param);
 int verif_map_content(dlist map);
 void render_imageStore(screen *state);
-int render_player(screen *state, void *player);
 void render_background(screen *state, dlist *map);
+
+void player_finder(screen *state, int x_axis, int y_axis);
 void ft_cleardlist(dlist **currlist, void (*del)(void *));
-void ft_clearnode(dlist *currlist, void (*del)(void *));;
+void ft_clearnode(dlist *currlist, void (*del)(void *));
 dlist *tile_row(dlist *map,int y);
 void image_type(screen *state);
 dlist *tile_all(dlist *map);
@@ -56,7 +57,8 @@ int get_next_line(int fd, char **str);
 dlist *mapcreator(int fd);
 int ft_lst_lenght(dlist *currlist);
 int render_image(screen *state, int x, int y, int image);
-void render_tiles(screen *state,int x_axis,int y_axis);
+int render_tiles(screen *state,int x_axis,int y_axis);
+int render_player(screen *state);
  void map_init(screen *state,dlist *map);
  void map_tiles(screen *state);
 #endif 

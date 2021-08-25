@@ -6,10 +6,12 @@
 #include "utils/minilibx/mlx.h"
 
 int render_cycle(int keycode, screen *state) {
+
   if (keycode > 0) {
 
-    //    render_background(state, state->player);
-    // render_image(state, state->player_x, state->player_y, 0);
+    render_tiles(state, 0, 0);
+    render_player(state);
+    state->x_pos += 50;
   }
   if (keycode == 257) {
     printf("session destroyed");
@@ -68,10 +70,15 @@ int main(void) {
 
   state.mlx = mlx_init();
   map_tiles(&state);
+
   state.win = mlx_new_window(state.mlx, width, height, "help");
   mlx_put_image_to_window(state.mlx, state.win, state.tiles[1], 0, 0);
+  player_finder(&state, 0, 0);
   render_tiles(&state, 0, 0);
+
   mlx_key_hook(state.win, render_cycle, &state);
-  mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
+
+  mlx_loop_hook(state.mlx, render_player, &state);
   mlx_loop(state.mlx);
+  // mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
 }

@@ -39,19 +39,24 @@ void player_finder(screen *state, int x_axis, int y_axis) {
     vert++;
   }
 }
+int render_player(screen *state) {
 
-void render_tiles(screen *state, int x_axis, int y_axis) {
-  char **ray;
+  //  player_finder(state, 0, 0);
+  render_tiles(state, 0, 0);
+  render_image(state, state->x_pos, state->y_pos, 0);
+  return (0);
+}
+int render_tiles(screen *state, int x_axis, int y_axis) {
   int inc, cin;
 
   inc = 0;
   cin = 0;
-  ray = state->map;
-  while (ray[inc]) {
+  while (state->map[inc]) {
     cin = 0;
     x_axis = 0;
-    while (ray[inc][cin]) {
-      render_image(state, x_axis, y_axis, type_render(state, ray[inc][cin]));
+    while (state->map[inc][cin]) {
+      render_image(state, x_axis, y_axis,
+                   type_render(state, state->map[inc][cin]));
 
       x_axis += 50;
       cin++;
@@ -59,6 +64,6 @@ void render_tiles(screen *state, int x_axis, int y_axis) {
     y_axis += 50;
     inc++;
   }
-  player_finder(state, 0, 0);
-  render_image(state, state->x_pos, state->y_pos, 0);
+  // render_image(state, state->x_pos, state->y_pos, 0);
+  return (0);
 }
