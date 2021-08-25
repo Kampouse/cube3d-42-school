@@ -5,13 +5,18 @@
 #include "utils/libft/libft.h"
 #include "utils/minilibx/mlx.h"
 
+void print_content(screen *state, int keycode) {
+  if (state->map[state->locationY][state->locationX += 1] != '1') {
+    printf("you can walk ");
+  }
+}
+
 int render_cycle(int keycode, screen *state) {
 
   if (keycode > 0) {
-
     render_tiles(state, 0, 0);
     render_player(state);
-    state->x_pos += 50;
+    print_content(state, keycode);
   }
   if (keycode == 257) {
     printf("session destroyed");
@@ -21,7 +26,6 @@ int render_cycle(int keycode, screen *state) {
 
   return (0);
 }
-void print_content(char content) { printf("%c \n", content); }
 
 int verif(dlist map) {
   int flag;
