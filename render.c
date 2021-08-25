@@ -9,16 +9,35 @@ int render_image(screen *state, int x, int y, int image) {
   return (0);
 }
 
-int type_render(screen *state, char type, int pos_x, int pos_y) {
+int type_render(screen *state, char type) {
 
   if (type == '1') {
     return (1);
   }
-  if (type == 'P') {
-    state->x_pos = pos_x;
-    state->y_pos = pos_y;
-  }
+
   return (1);
+}
+void player_finder(screen *state, int x_axis, int y_axis) {
+  int vert, horz;
+
+  vert = 0;
+  horz = vert;
+  while (state->map[vert]) {
+    horz = 0;
+    x_axis = 0;
+    while (state->map[vert][horz]) {
+      x_axis += 50;
+      if (state->map[vert][horz] == 'P') {
+        state->locationX = horz;
+        state->locationY = vert;
+        state->x_pos = x_axis;
+        state->y_pos = y_axis;
+      }
+      horz++;
+    }
+    y_axis += 50;
+    vert++;
+  }
 }
 
 void render_tiles(screen *state, int x_axis, int y_axis) {
@@ -32,8 +51,7 @@ void render_tiles(screen *state, int x_axis, int y_axis) {
     cin = 0;
     x_axis = 0;
     while (ray[inc][cin]) {
-      render_image(state, x_axis, y_axis,
-                   type_render(state, ray[inc][cin], x_axis, y_axis));
+      render_image(state, x_axis, y_axis, type_render(state, ray[inc][cin]));
 
       x_axis += 50;
       cin++;
@@ -41,6 +59,6 @@ void render_tiles(screen *state, int x_axis, int y_axis) {
     y_axis += 50;
     inc++;
   }
-
+  player_finder(state, 0, 0);
   render_image(state, state->x_pos, state->y_pos, 0);
 }
