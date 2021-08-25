@@ -68,9 +68,9 @@ int main(void) {
 
   state.mlx = mlx_init();
   map_tiles(&state);
-  render_tiles(&state);
   state.win = mlx_new_window(state.mlx, width, height, "help");
   mlx_put_image_to_window(state.mlx, state.win, state.tiles[1], 0, 0);
+  render_tiles(&state, 0, 0);
   mlx_key_hook(state.win, render_cycle, &state);
   mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
   mlx_loop(state.mlx);

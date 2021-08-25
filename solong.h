@@ -52,7 +52,7 @@ int get_next_line(int fd, char **str);
 dlist *mapcreator(int fd);
 int ft_lst_lenght(dlist *currlist);
 int render_image(screen *state, int x, int y, int image);
-void render_tiles(screen *state);
+void render_tiles(screen *state,int x_axis,int y_axis);
  void map_init(screen *state,dlist *map);
  void map_tiles(screen *state);
 #endif 

@@ -9,7 +9,15 @@ int render_image(screen *state, int x, int y, int image) {
   return (0);
 }
 
-void render_tiles(screen *state) {
+int type_render(char type) {
+
+  if (type == '1') {
+    return (0);
+  }
+  return (0);
+}
+
+void render_tiles(screen *state, int x_axis, int y_axis) {
   char **ray;
   int inc, cin;
   inc = 0;
@@ -17,12 +25,13 @@ void render_tiles(screen *state) {
   ray = state->map;
   while (ray[inc]) {
     cin = 0;
+    x_axis = 0;
     while (ray[inc][cin]) {
-      printf("%c", ray[inc][cin]);
+      render_image(state, x_axis, y_axis, type_render(ray[inc][cin]));
+      x_axis += 50;
       cin++;
     }
-
-    printf("\n");
+    y_axis += 50;
     inc++;
   }
 }
