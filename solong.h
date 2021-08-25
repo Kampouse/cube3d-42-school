@@ -18,6 +18,8 @@ typedef struct  screen
 	void			*win;
 	char			**map;
 	void			**tiles;
+	int				x_pos;
+	int				y_pos;
 	dlist			*player;
 }					screen;	
 
