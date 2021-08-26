@@ -10,17 +10,15 @@ void play_horz(screen *state, int keycode)
     if (keycode == 0 &&
         state->map[state->locationY][state->locationX - 1] != '1') 
 	{
+      state->moveX-=70;
       state->locationX -= 1;
-      state->x_pos -= 69;
-
 	  render_player(state);
-	  printf("help");
     }  
     if (keycode == 17 &&
         state->map[state->locationY][state->locationX + 1] != '1') 
 	{
+      state->moveX+=70;
       state->locationX += 1;
-      state->x_pos+= 69;
 	  render_player(state);
     }
 }

@@ -39,9 +39,23 @@ void player_finder(screen *state, int x_axis, int y_axis) {
     vert++;
   }
 }
-int render_player(screen *state) {
+void rend_dec(screen *state)
+{
+	  if(state->moveX > 0)
+	{
+		state->x_pos += 1;
+		state->moveX-=1;
+	}
+	  if(state->moveX < 0)
+	{
+	//	render_player(state);
+		state->moveX +=1;
+		state->x_pos -= 1;
+	}
 
-  //  player_finder(state, 0, 0);
+}
+int render_player(screen *state) {
+	rend_dec(state);
   render_tiles(state, 0, 0);
   render_image(state, state->x_pos, state->y_pos, 0);
   return (0);

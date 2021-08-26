@@ -18,7 +18,7 @@ dlist *mapcreator(int fd) {
 void map_init(screen *state, dlist *map) {
   int len;
   len = ft_lst_lenght(map);
-  state->map = malloc(sizeof(char *) * len + 1);
+  state->map = malloc(sizeof(char *) * len);
   state->map[len] = 0;
   len = 0;
   while (map) {
@@ -29,12 +29,13 @@ void map_init(screen *state, dlist *map) {
 }
 
 void map_tiles(screen *state) {
-  const char images[][30] = {"./assets/player.xpm", "./assets/floor.xpm"};
+  const char images[][21] = {"./assets/player.xpm", "./assets/floor.xpm"};
   int inc;
   int val;
   val =0;
 	inc = 0;
-  state->tiles = malloc(sizeof(void *) * 3);
+  state->tiles = malloc(sizeof(void *));
+  //right len??
   // this will either would nead to either to set in the global state of the
   // screen or malloced
   int width;
