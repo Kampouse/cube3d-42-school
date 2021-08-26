@@ -5,7 +5,19 @@
 #include "utils/libft/libft.h"
 #include "utils/minilibx/mlx.h"
 
-
+void freeray(screen *ray)
+{
+	int inc;
+	inc = 0;
+while(ray->map[inc])
+	{
+	free(ray->map[inc]);
+	inc++;
+	}
+	mlx_destroy_image(ray->mlx,ray->tiles[0]);
+	mlx_destroy_image(ray->mlx,ray->tiles[1]);
+	free(ray->tiles);
+}
 
 int render_cycle(int keycode, screen *state) {
 
@@ -19,6 +31,7 @@ int render_cycle(int keycode, screen *state) {
   if (keycode == 257) {
     printf("session destroyed");
     mlx_destroy_window(state->mlx, state->win);
+	freeray(state);
     exit(0);
   }
 
@@ -66,15 +79,14 @@ int main(void) {
 
   temp = mapcreator(fd);
   map_init(&state, temp);
-
+  //sleep(1);
   const int width = 800;
   const int height = 800;
-
   state.mlx = mlx_init();
-  map_tiles(&state);
 
   state.win = mlx_new_window(state.mlx, width, height, "help");
-  mlx_put_image_to_window(state.mlx, state.win, state.tiles[1], 0, 0);
+  //mlx_put_image_to_window(state.mlx, state.win, state.tiles[1], 0, 0);
+  map_tiles(&state);
   player_finder(&state, 0, 0);
 //  render_tiles(&state, 0, 0);
 

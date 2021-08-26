@@ -61,7 +61,7 @@ int render_tiles(screen *state,int x_axis,int y_axis);
 int render_player(screen *state);
  void map_init(screen *state,dlist *map);
  void map_tiles(screen *state);
-
+void ft_cleardlist(dlist **currlist, void (*del)(void *));
 void play_vert(screen *state, int keycode);
 void play_horz(screen *state, int keycode);
 #endif 
