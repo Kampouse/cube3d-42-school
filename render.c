@@ -58,10 +58,10 @@ int render_tiles(screen *state, int x_axis, int y_axis) {
       render_image(state, x_axis, y_axis,
                    type_render(state, state->map[inc][cin]));
 
-      x_axis += 50;
+      x_axis += 89;
       cin++;
     }
-    y_axis += 50;
+    y_axis += 56;
     inc++;
   }
   // render_image(state, state->x_pos, state->y_pos, 0);

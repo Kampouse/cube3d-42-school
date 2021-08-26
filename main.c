@@ -5,18 +5,16 @@
 #include "utils/libft/libft.h"
 #include "utils/minilibx/mlx.h"
 
-void print_content(screen *state, int keycode) {
-  if (state->map[state->locationY][state->locationX += 1] != '1') {
-    printf("you can walk ");
-  }
-}
+
 
 int render_cycle(int keycode, screen *state) {
 
-  if (keycode > 0) {
-    render_tiles(state, 0, 0);
-    render_player(state);
-    print_content(state, keycode);
+  if (keycode >= 0) {
+  //  render_tiles(state, 0, 0);
+   // render_player(state);
+	//play_horz(state,keycode);
+	play_vert(state,keycode);
+	play_horz(state,keycode);
   }
   if (keycode == 257) {
     printf("session destroyed");
@@ -69,8 +67,8 @@ int main(void) {
   temp = mapcreator(fd);
   map_init(&state, temp);
 
-  const int width = 690;
-  const int height = 190;
+  const int width = 800;
+  const int height = 800;
 
   state.mlx = mlx_init();
   map_tiles(&state);
@@ -78,11 +76,11 @@ int main(void) {
   state.win = mlx_new_window(state.mlx, width, height, "help");
   mlx_put_image_to_window(state.mlx, state.win, state.tiles[1], 0, 0);
   player_finder(&state, 0, 0);
-  render_tiles(&state, 0, 0);
+//  render_tiles(&state, 0, 0);
 
-  mlx_key_hook(state.win, render_cycle, &state);
 
   mlx_loop_hook(state.mlx, render_player, &state);
+  mlx_key_hook(state.win, render_cycle, &state);
   mlx_loop(state.mlx);
   // mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
 }
