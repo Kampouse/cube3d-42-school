@@ -22,6 +22,8 @@ typedef struct  screen
 	int	locationY;
 	int				x_pos;
 	int				y_pos;
+	int				moveX;
+	int				moveY;
 	dlist			*player;
 }					screen;	
 
