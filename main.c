@@ -90,7 +90,7 @@ int main(void)
   map_tiles(&state);
   player_finder(&state, 0, 0);
   mlx_loop_hook(state.mlx, render_player, &state);
-  mlx_key_hook(state.win, render_cycle, &state);
+  //mlx_key_hook(state.win, render_cycle, &state);
   mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
   mlx_loop(state.mlx);
 }
