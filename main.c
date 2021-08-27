@@ -81,8 +81,8 @@ int main(void)
   }
   temp = mapcreator(fd);
   map_init(&state, temp);
-  const int width = 800;
-  const int height = 800;
+  const int width = 1200;
+  const int height = 1200;
   state.mlx = mlx_init();
   state.win = mlx_new_window(state.mlx, width, height, "help");
   state.moveY = 0;
