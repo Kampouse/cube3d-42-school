@@ -12,7 +12,6 @@ void play_horz(screen *state, int keycode)
 	{
       state->moveX-=88;
       state->locationX -= 1;
-	  printf("(%d)",state->locationX);
 	  render_player(state);
     }  
     if (keycode == 17 &&
@@ -20,7 +19,6 @@ void play_horz(screen *state, int keycode)
 	{
       state->moveX+=88;
       state->locationX += 1;
-	  printf("(%d)",state->locationX);
 	  render_player(state);
     }
 }
@@ -31,14 +29,14 @@ void play_vert(screen *state, int keycode)
         state->map[state->locationY - 1][state->locationX] != '1') 
 	{
       state->locationY -=1 ;
-      state->y_pos-= 89;
+      state->moveY-=60;
 	  render_player(state);
     }  
 	if (keycode == 4 &&
         state->map[state->locationY + 1][state->locationX] != '1') 
 	{
       state->locationY += 1;
-      state->y_pos+= 89;
+      state->moveY+= 60;
 	  render_player(state);
     }
 }
