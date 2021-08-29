@@ -14,6 +14,10 @@ int type_render(screen *state, char type)
 {
   if (type == '1')
     return (1);
+ if (type == 'C')
+	 return(5);
+ if (type == 'E')
+	 return(4);
 return (1);
 }
 void player_finder(screen *state, int x_axis, int y_axis) 
@@ -38,7 +42,7 @@ void player_finder(screen *state, int x_axis, int y_axis)
       }
       horz++;
     }
-    y_axis += 56;
+    y_axis += 20;
     vert++;
   }
 }

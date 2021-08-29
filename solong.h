@@ -24,6 +24,8 @@ typedef struct  screen
 	int				y_pos;
 	int				moveX;
 	int				moveY;
+	int				moveCount;
+	int				collected;
 	dlist			*player;
 }					screen;	
 
@@ -66,4 +68,5 @@ int render_player(screen *state);
 void ft_cleardlist(dlist **currlist, void (*del)(void *));
 void play_vert(screen *state, int keycode);
 void play_horz(screen *state, int keycode);
+void play_contact(screen *state);
 #endif 

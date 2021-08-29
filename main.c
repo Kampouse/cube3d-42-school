@@ -8,19 +8,19 @@
 void freeray(screen *ray)
 {
 	int inc;
-	inc = 0;
 
-while(ray->map[inc])
-	{
+	inc = -1;
+while(ray->map[++inc])
 	free(ray->map[inc]);
-	inc++;
-	}
-	mlx_destroy_image(ray->mlx,ray->tiles[0]);
-	mlx_destroy_image(ray->mlx,ray->tiles[1]);
+inc = -1;
+while(ray->tiles[++inc])
+	mlx_destroy_image(ray->mlx,ray->tiles[inc]);
 }
 
 int render_cycle(int keycode, screen *state) 
 {
+
+play_contact(state);
   if (keycode >= 0) 
 	{
 	play_vert(state,keycode);
@@ -52,17 +52,8 @@ int verif(dlist map)
 dlist *player_node(dlist *map) 
 {
   map = ft_lst_firstnode(map);
-  while (map->next) 
-	{
-
-    if (map->type == 'P') 
-		{
-      return (map);
-    }
+  while (map && map->type != 'P') 
     map = map->next;
-  }
-  if (map->type == 'P')
-    return (map);
   return (map);
 }
 
@@ -81,16 +72,15 @@ int main(void)
   }
   temp = mapcreator(fd);
   map_init(&state, temp);
-  const int width = 1200;
-  const int height = 1200;
   state.mlx = mlx_init();
-  state.win = mlx_new_window(state.mlx, width, height, "help");
+  state.win = mlx_new_window(state.mlx, 1200, 1200, "help");
   state.moveY = 0;
   state.moveX = 0;
+  state.collected = 0;
+  state.moveCount = 0;
   map_tiles(&state);
   player_finder(&state, 0, 0);
   mlx_loop_hook(state.mlx, render_player, &state);
-  //mlx_key_hook(state.win, render_cycle, &state);
   mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
   mlx_loop(state.mlx);
 }
