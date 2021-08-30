@@ -78,6 +78,7 @@ int main(void)
   state.moveX = 0;
   state.collected = 0;
   state.moveCount = 0;
+  state.image_state = 4;
   map_tiles(&state);
   player_finder(&state, 0, 0);
   mlx_loop_hook(state.mlx, render_player, &state);

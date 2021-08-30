@@ -19,16 +19,40 @@ if (state->map[state->locationY][state->locationX] == 'E' && state->collected ==
 			printf("won");
 	}
 }
-
+void play_right(screen *state, int keycode)
+{
+	if(keycode == 17)
+	{
+	if(state->image_state >= 8 && state->image_state  < 13)
+			state->image_state++;
+	else
+			state->image_state = 10;
+	}
+}
+void play_left(screen *state, int keycode)
+{
+	if(keycode == 0)
+	{
+	if(state->image_state > 4 && state->image_state < 8)
+			state->image_state++;
+	else
+		state->image_state = 5;
+	}
+}
 void play_horz(screen *state, int keycode)
   {
-    if (keycode == 0 &&
-        state->map[state->locationY][state->locationX - 1] != '1') 
+	 play_left(state,keycode);
+	 play_right(state,keycode);
+    if (keycode == 0) 
 	{
-      state->moveX-=88;
-      state->locationX -= 1;
+
+	if( state->map[state->locationY][state->locationX - 1] != '1') 
+		{
+		state->moveX-=88;
+		 state->locationX -= 1;
 	  state->moveCount++;
-	  render_player(state);
+		}
+	  rend_dec(state);
 	  ft_putnbr_fd(state->moveCount,1);
     }  
     if (keycode == 17 &&

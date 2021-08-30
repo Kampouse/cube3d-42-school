@@ -1,4 +1,5 @@
 #ifndef  SOLONG_H
+
 #define  SOLONG_H
 
 typedef struct  dlist 
@@ -26,6 +27,7 @@ typedef struct  screen
 	int				moveY;
 	int				moveCount;
 	int				collected;
+	int				image_state;
 	dlist			*player;
 }					screen;	
 
@@ -69,4 +71,6 @@ void ft_cleardlist(dlist **currlist, void (*del)(void *));
 void play_vert(screen *state, int keycode);
 void play_horz(screen *state, int keycode);
 void play_contact(screen *state);
+int rend_dec(screen *state);
+int render_walk(screen *state);
 #endif 
