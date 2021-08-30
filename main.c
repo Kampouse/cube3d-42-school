@@ -8,13 +8,19 @@
 void freeray(screen *ray)
 {
 	int inc;
-
-	inc = -1;
-while(ray->map[++inc])
+	inc = 0;
+while(ray->map[inc])
+	{
 	free(ray->map[inc]);
-inc = -1;
-while(ray->tiles[++inc])
+	inc++;
+	}
+	free(ray->map[inc]);
+inc = 0;
+while(ray->tiles[inc])
+	{
 	mlx_destroy_image(ray->mlx,ray->tiles[inc]);
+	inc++;
+	}
 }
 
 int render_cycle(int keycode, screen *state) 
@@ -29,8 +35,8 @@ play_contact(state);
   if (keycode == 257) 
 {
     printf("session destroyed");
-    mlx_destroy_window(state->mlx, state->win);
 	freeray(state);
+    mlx_destroy_window(state->mlx, state->win);
     exit(0);
   }
   return (0);
@@ -71,6 +77,7 @@ int main(void)
     exit(-1);
   }
   temp = mapcreator(fd);
+  verif(*temp);
   map_init(&state, temp);
   state.mlx = mlx_init();
   state.win = mlx_new_window(state.mlx, 1200, 1200, "help");

@@ -21,7 +21,7 @@ void map_init(screen *state, dlist *map)
   int len;
   len = ft_lst_lenght(map);
   state->map = malloc(sizeof(char *) * len);
-  state->map[len] = 0;
+  
   len = 0;
   while (map) 
 	{
@@ -33,7 +33,8 @@ void map_init(screen *state, dlist *map)
 
 void map_tiles(screen *state) 
 {
-  const char images[14][35] = { "./assets/floor.xpm",
+  const char images[14][35] = { 
+		"./assets/floor.xpm",
 		"./assets/back.xpm","./assets/door.xpm", "./assets/doll3.xpm",
 		"./assets/player/walk1_0.xpm", "./assets/player/walk1_1.xpm",
 		"./assets/player/walk1_2.xpm", "./assets/player/walk1_3.xpm",
