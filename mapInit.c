@@ -29,6 +29,7 @@ void map_init(screen *state, dlist *map)
     len++;
     map = map->next;
 	}
+	state->map[len] = 0;
 }
 
 void map_tiles(screen *state) 
@@ -50,10 +51,9 @@ void map_tiles(screen *state)
   state->tiles = malloc(sizeof(void *) * 15);
   while (*images[++inc]) 
 	{
-
     state->tiles[inc] = mlx_xpm_file_to_image(state->mlx, (void *)images[inc], &width, &height);
 	dog = &width;
 	}
-	  state->tiles[inc] = 0;
+	state->tiles[inc] = 0;
 }
 
