@@ -6,7 +6,7 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 10:26:02 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/08/17 16:32:13 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/08/31 13:02:16 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_strdup(const char *str)
 		return (NULL);
 	len = ft_strlen(str);
 	i = 0;
-	output = malloc(sizeof(char) * len + 1);
+	output = malloc(sizeof(char) * len);
 	if (!output)
 		return (NULL);
 	while (i != len)

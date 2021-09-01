@@ -8,8 +8,6 @@ dlist *mapcreator(int fd) {
   dlist *list;
   list = NULL;
   char *str;
-  get_next_line(fd, &str);
-  ft_lst_add_backd(&list, node_init(str));
   while (get_next_line(fd, &str))
     ft_lst_add_backd(&list, node_init(str));
   list = ft_lst_firstnode(list);
@@ -20,8 +18,7 @@ void map_init(screen *state, dlist *map)
 {
   int len;
   len = ft_lst_lenght(map);
-  state->map = malloc(sizeof(char *) * len);
-  
+  state->map = malloc(sizeof(char *) * len + 1);
   len = 0;
   while (map) 
 	{
@@ -29,6 +26,8 @@ void map_init(screen *state, dlist *map)
     len++;
     map = map->next;
 	}
+	state->screenwidth = ft_strlen(state->map[0]) * 89;
+	 state->screeheight  =  ((len) * 56);
 	state->map[len] = 0;
 }
 
@@ -49,6 +48,8 @@ void map_tiles(screen *state)
 
 	inc = -1;
   state->tiles = malloc(sizeof(void *) * 15);
+
+  printf("%p tiles \n",state->tiles);
   while (*images[++inc]) 
 	{
     state->tiles[inc] = mlx_xpm_file_to_image(state->mlx, (void *)images[inc], &width, &height);

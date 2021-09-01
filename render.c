@@ -33,17 +33,18 @@ void player_finder(screen *state, int x_axis, int y_axis)
     x_axis = 0;
     while (state->map[vert][horz]) 
 		{
-      x_axis += 42 ;
+      x_axis += 39;
       if (state->map[vert][horz] == 'P') 
-			{
+	  {
+				y_axis = (vert  * horz) * 56;
         state->locationX = horz;
         state->locationY = vert;
         state->x_pos = x_axis;
-        state->y_pos = y_axis;
+        state->y_pos = y_axis - 20;
+		return; 
       }
       horz++;
     }
-    y_axis += 20;
     vert++;
   }
 }

@@ -36,6 +36,7 @@ play_contact(state);
     mlx_destroy_window(state->mlx, state->win);
 	freeray(state);
     exit(0);
+
   }
   return (0);
 }
@@ -75,11 +76,16 @@ int main(void)
     exit(-1);
   }
   temp = mapcreator(fd);
-  verif(*temp);
+if(verif(*temp) > 0)
+	{
+	printf("error");
+	exit(0);
+	}
   map_init(&state, temp);
+  close(fd);
   state.player = temp;
   state.mlx = mlx_init();
-  state.win = mlx_new_window(state.mlx, 1200, 1200, "help");
+  state.win = mlx_new_window(state.mlx, state.screenwidth, state.screeheight, "help");
   state.moveY = 0;
   state.moveX = 0;
   state.collected = 0;

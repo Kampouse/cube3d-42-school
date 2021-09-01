@@ -72,7 +72,7 @@ void play_vert(screen *state, int keycode)
         state->map[state->locationY - 1][state->locationX] != '1') 
 	{
       state->locationY -=1 ;
-      state->moveY-=60;
+      state->moveY-=56;
 	  state->moveCount++;
 	  render_player(state);
 	  ft_putnbr_fd(state->moveCount,1);
@@ -81,7 +81,7 @@ void play_vert(screen *state, int keycode)
         state->map[state->locationY + 1][state->locationX] != '1') 
 	{
       state->locationY += 1;
-      state->moveY+= 60;
+      state->moveY+= 56;
 	  state->moveCount++;
 	  render_player(state);
 	  ft_putnbr_fd(state->moveCount,0);

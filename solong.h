@@ -28,6 +28,8 @@ typedef struct  screen
 	int				moveCount;
 	int				collected;
 	int				image_state;
+	int				screenwidth;
+	int				screeheight;
 	dlist			*player;
 }					screen;	
 
