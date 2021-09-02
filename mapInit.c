@@ -44,17 +44,11 @@ void map_tiles(screen *state)
 		"./assets/player/walk1_3rp.xpm",  
 		"./assets/player/walk1_4rp.xpm"};
   int inc,width,height;
-  int *dog;
 
 	inc = -1;
   state->tiles = malloc(sizeof(void *) * 15);
-
-  printf("%p tiles \n",state->tiles);
   while (*images[++inc]) 
-	{
     state->tiles[inc] = mlx_xpm_file_to_image(state->mlx, (void *)images[inc], &width, &height);
-	dog = &width;
-	}
 	state->tiles[inc] = 0;
 }
 

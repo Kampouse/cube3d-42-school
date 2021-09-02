@@ -21,7 +21,7 @@ if (state->map[state->locationY][state->locationX] == 'E' && state->collected ==
 }
 void play_right(screen *state, int keycode)
 {
-	if(keycode == 17)
+	if(keycode == RIGHT)
 	{
 	if(state->image_state >= 8 && state->image_state  < 13)
 			state->image_state++;
@@ -31,7 +31,7 @@ void play_right(screen *state, int keycode)
 }
 void play_left(screen *state, int keycode)
 {
-	if(keycode == 0)
+	if(keycode == LEFT)
 	{
 	if(state->image_state > 4 && state->image_state < 8)
 			state->image_state++;
@@ -43,7 +43,7 @@ void play_horz(screen *state, int keycode)
   {
 	 play_left(state,keycode);
 	 play_right(state,keycode);
-    if (keycode == 0) 
+    if (keycode == LEFT) 
 	{
 
 	if( state->map[state->locationY][state->locationX - 1] != '1') 
@@ -55,7 +55,7 @@ void play_horz(screen *state, int keycode)
 	  rend_dec(state);
 	  ft_putnbr_fd(state->moveCount,1);
     }  
-    if (keycode == 17 &&
+    if (keycode == RIGHT &&
         state->map[state->locationY][state->locationX + 1] != '1') 
 	{
       state->moveX+=88;
@@ -68,7 +68,7 @@ void play_horz(screen *state, int keycode)
 
 void play_vert(screen *state, int keycode)
   {
-    if (keycode == 1 &&
+    if (keycode == UP &&
         state->map[state->locationY - 1][state->locationX] != '1') 
 	{
       state->locationY -=1 ;
@@ -77,7 +77,7 @@ void play_vert(screen *state, int keycode)
 	  render_player(state);
 	  ft_putnbr_fd(state->moveCount,1);
     }  
-	if (keycode == 4 &&
+	if (keycode == DOWN &&
         state->map[state->locationY + 1][state->locationX] != '1') 
 	{
       state->locationY += 1;

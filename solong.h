@@ -2,6 +2,14 @@
 
 #define  SOLONG_H
 
+#define LEFT 0
+#define RIGHT 2
+#define DOWN 1
+#define UP 13
+#define ESC 53
+
+
+
 typedef struct  dlist 
 {
 	void *content;
@@ -75,4 +83,6 @@ void play_horz(screen *state, int keycode);
 void play_contact(screen *state);
 int rend_dec(screen *state);
 int render_walk(screen *state);
+void main_init(screen *state ,dlist *temp);
+int verif(dlist map);
 #endif 

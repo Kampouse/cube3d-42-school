@@ -81,8 +81,8 @@ int verif_map_content(dlist map) {
   }
   if (legalchars((char *)temp->content) != 0)
 	{
-printf("missing a element");
-    return (1);
+		printf("missing a element");
+		return (1);
 	}
   return (0);
 }

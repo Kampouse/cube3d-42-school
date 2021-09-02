@@ -50,7 +50,6 @@ void ft_lst_add_backd(dlist **currlist, dlist *node) {
 
 void ft_clearnode(dlist *currlist, void (*del)(void *)) {
   if (currlist) {
-    //   printf("%s", (char *)currlist->content);
     (*del)(currlist->content);
     free(currlist);
   }

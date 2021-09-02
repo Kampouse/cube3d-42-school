@@ -1,6 +1,7 @@
 #include "libft/libft.h"
 #include "stdio.h"
-int ft_between(char *string, char comp) {
+int ft_between(char *string, char comp) 
+{
   int len;
 
   if (string[0] != comp)
@@ -11,35 +12,30 @@ int ft_between(char *string, char comp) {
   return 0;
 }
 
-int ft_all(char *string, char comp) {
+int ft_all(char *string, char comp) 
+{
   int inc;
 
   inc = 0;
-  while (string[inc]) {
+  while (string[inc]) 
+	{
     if (string[inc] != comp)
       return (-1);
     inc++;
   }
   return (0);
 }
-int ft_char_count(char *str, char cmp) {
+int ft_char_count(char *str, char cmp) 
+{
   int inc;
   int count;
   count = 0;
   inc = 0;
-  while (str[inc]) {
-    if (str[inc] == cmp) {
-      printf("(%c %c)", cmp, str[inc]);
+  while (str[inc]) 
+	{
+    if (str[inc] == cmp)
       count++;
-    }
     inc++;
   }
   return (count);
 }
-
-// int main()
-//{
-// char *str = "aaafaaa";
-// ft_between(str,'h');
-// ft_all(str,'a');
-//}

@@ -5,36 +5,37 @@
 #include "utils/libft/libft.h"
 #include "utils/minilibx/mlx.h"
 
+void free_list(dlist  *head) {
+  if (head != NULL) {
+    dlist *next = head->next;
+	free(head->content);
+    free(head);
+    free_list(next);
+  }
+}
 void freeray(screen *ray)
 {
 	int inc;
-
-	ft_cleardlist(&ray->player,free);
-	free(ray->map);
-inc = 0;
-while(ray->tiles[inc])
-	{
+	free_list(ft_lst_firstnode(ray->player));
+	inc = -1;
+while(ray->tiles[++inc])
 	mlx_destroy_image(ray->mlx,ray->tiles[inc]);
-	printf("destroyed %d",inc);
-	inc++;
-	}
-	free(ray->tiles);
+free(ray->tiles);
 }
 
 int render_cycle(int keycode, screen *state) 
 {
-
-play_contact(state);
-  if (keycode >= 0) 
+	play_contact(state);
+	if (keycode >= 0) 
 	{
 	play_vert(state,keycode);
 	play_horz(state,keycode);
   }
-  if (keycode == 257) 
-{
-    printf("session destroyed");
-    mlx_destroy_window(state->mlx, state->win);
-	freeray(state);
+	if (keycode == ESC)
+	{
+		printf("session destroyed");
+		mlx_destroy_window(state->mlx, state->win);
+		freeray(state);
     exit(0);
 
   }
@@ -64,7 +65,6 @@ dlist *player_node(dlist *map)
 
 int main(void) 
 {
-
   screen state;
   dlist *temp;
   int fd;
@@ -76,23 +76,13 @@ int main(void)
     exit(-1);
   }
   temp = mapcreator(fd);
-if(verif(*temp) > 0)
+  main_init(&state,temp);
+  if(verif(*temp) > 0)
 	{
-	printf("error");
-	exit(0);
+		free_list(temp);
+		perror("your map is wrong");
+	  exit(0);
 	}
-  map_init(&state, temp);
-  close(fd);
-  state.player = temp;
-  state.mlx = mlx_init();
-  state.win = mlx_new_window(state.mlx, state.screenwidth, state.screeheight, "help");
-  state.moveY = 0;
-  state.moveX = 0;
-  state.collected = 0;
-  state.moveCount = 0;
-  state.image_state = 4;
-  map_tiles(&state);
-  player_finder(&state, 0, 0);
   mlx_loop_hook(state.mlx, render_player, &state);
   mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
   mlx_loop(state.mlx);
