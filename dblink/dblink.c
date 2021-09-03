@@ -2,22 +2,19 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-dlist *node_init(void *content) {
-  dlist *link;
+t_dlist *node_init(void *content) {
+  t_dlist *link;
 
-  link = (dlist *)malloc(sizeof(*link));
+  link = (t_dlist *)malloc(sizeof(*link));
   if (!link)
     return (NULL);
   link->content = content;
   link->prev = NULL;
   link->next = NULL;
-  link->pos_x = 0;
-  link->pos_y = 0;
-  link->type = '0';
   return (link);
 }
 
-void ft_lst_add_frontd(dlist **currlist, dlist *newnode) {
+void ft_lst_add_frontd(t_dlist **currlist, t_dlist *newnode) {
   if (currlist) {
     if (*currlist) {
       newnode->next = *currlist;
@@ -26,7 +23,7 @@ void ft_lst_add_frontd(dlist **currlist, dlist *newnode) {
   }
 }
 
-void ft_lstiterd(dlist *currlist, void (*f)(void *)) {
+void ft_lstiterd(t_dlist *currlist, void (*f)(void *)) {
   if (!f)
     return;
   while (currlist) {
@@ -35,8 +32,8 @@ void ft_lstiterd(dlist *currlist, void (*f)(void *)) {
   }
 }
 
-void ft_lst_add_backd(dlist **currlist, dlist *node) {
-  dlist *last;
+void ft_lst_add_backd(t_dlist **currlist, t_dlist *node) {
+  t_dlist *last;
 
   if (currlist) {
     if (*currlist) {
@@ -48,15 +45,15 @@ void ft_lst_add_backd(dlist **currlist, dlist *node) {
   }
 }
 
-void ft_clearnode(dlist *currlist, void (*del)(void *)) {
+void ft_clearnode(t_dlist *currlist, void (*del)(void *)) {
   if (currlist) {
     (*del)(currlist->content);
     free(currlist);
   }
 }
 
-void ft_cleardlist(dlist **currlist, void (*del)(void *)) {
-  dlist *iter;
+void ft_cleart_dlist(t_dlist **currlist, void (*del)(void *)) {
+  t_dlist *iter;
 
   if (!del || !currlist || !*currlist) {
     return;
@@ -72,7 +69,7 @@ void ft_cleardlist(dlist **currlist, void (*del)(void *)) {
 /*
 int main(void)
 {
-dlist *lst;
+t_dlist *lst;
 lst = NULL;
 
  ft_lst_add_backd(&lst,node_init("stuff"));

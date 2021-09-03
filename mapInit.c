@@ -4,19 +4,28 @@
 #include "utils/libft/libft.h"
 #include "utils/minilibx/mlx.h"
 
-dlist	*mapcreator(int fd)
+int	assert(int value, char *str)
 {
-	dlist	*list;
+	if (value != 0)
+		ft_putstr_fd(str, 1);
+	return (value);
+}
+
+t_dlist	*mapcreator(int fd)
+{
+	t_dlist	*list;
 	char	*str;
 
 	list = NULL;
+	if (read(fd, &str, 0) < 0)
+		return (NULL);
 	while (get_next_line(fd, &str))
 		ft_lst_add_backd(&list, node_init(str));
 	list = ft_lst_firstnode(list);
 	return (list);
 }
 
-void	map_init(screen *state, dlist *map)
+void	map_init(t_screen *state, t_dlist *map)
 {
 	int	len;
 
@@ -34,7 +43,7 @@ void	map_init(screen *state, dlist *map)
 	state->map[len] = 0;
 }
 
-void	map_tiles(screen *state)
+void	map_tiles(t_screen *state)
 {
 	const char	images[14][35] = {
 		"./assets/floor.xpm",

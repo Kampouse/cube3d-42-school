@@ -6,13 +6,13 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 14:56:30 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/06/08 08:51:21 by jean-phil        ###   ########.fr       */
+/*   Updated: 2021/09/03 17:55:29 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha (int str)
+int	ft_isalpha(int str)
 
 {
 	return ((str >= 'A' && str <= 'Z') || (str >= 'a' && str <= 'z'));

@@ -6,12 +6,13 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 22:19:11 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/06/12 20:54:26 by jean-phil        ###   ########.fr       */
+/*   Updated: 2021/09/03 17:57:12 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"  
 #include "stdlib.h"  
+
 void	*ft_memchr(const void *src, int value, size_t num)
 {
 	unsigned char	*str;

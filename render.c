@@ -1,42 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
+/*   Updated: 2021/09/03 17:38:27 by jemartel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 #include "stdio.h"
 #include "utils/libft/libft.h"
 #include "utils/minilibx/mlx.h"
 
-int	render_walk(screen *state);
-
-int	render_image(screen *state, int x, int y, int image)
+int	render_image(t_screen *state, int x, int y, int image)
 {
 	mlx_put_image_to_window(state->mlx, state->win, state->tiles[image], x, y);
 	return (0);
 }
 
-int	rend_dec(screen *state)
+int	rend_dec(t_screen *state)
 {
-	  if (state->moveX > 0)
+	  if (state->move_x > 0)
 	{
-		state->moveX -= 10;
+		state->move_x -= 10;
 		state->x_pos += 10;
 	}
-	if (state->moveX < 0)
+	if (state->move_x < 0)
 	{
-		state->moveX += 10;
+		state->move_x += 10;
 		state->x_pos -= 10;
 	}
-	if (state->moveY > 0)
+	if (state->move_y > 0)
 	{
-		state->moveY -= 10;
+		state->move_y -= 10;
 		state->y_pos += 10;
 	}
-	if (state->moveY < 0)
+	if (state->move_y < 0)
 	{
-		state->moveY += 10;
+		state->move_y += 10;
 		state->y_pos -= 10;
 	}
 	return (render_walk(state));
 }
 
-int	render_player(screen *state)
+int	render_player(t_screen *state)
 {
 	rend_dec(state);
 	render_tiles(state, 0, 0);
@@ -44,18 +54,18 @@ int	render_player(screen *state)
 	return (0);
 }
 
-int	render_walk(screen *state)
+int	render_walk(t_screen *state)
 {
 	static int	image_state;
 
-	if (state->moveX != 0)
+	if (state->move_x != 0)
 		image_state++;
 	if (image_state == 9)
 		image_state = 6;
 	return (image_state);
 }
 
-int	render_tiles(screen *state, int x_axis, int y_axis)
+int	render_tiles(t_screen *state, int x_axis, int y_axis)
 {
 	int	inc;
 	int	cin;

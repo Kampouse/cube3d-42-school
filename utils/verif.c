@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   verif.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/03 17:38:48 by jemartel          #+#    #+#             */
+/*   Updated: 2021/09/03 17:39:06 by jemartel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../solong.h"
 #include "libft/libft.h"
 #include "stdio.h"
 
-int	verif_len(dlist map)
+int	verif_len(t_dlist map)
 {
-	dlist	*temp;
+	t_dlist	*temp;
 	int		len;
 
 	temp = NULL;
@@ -22,9 +34,9 @@ int	verif_len(dlist map)
 	return (0);
 }
 
-int	verif_wall(dlist map)
+int	verif_wall(t_dlist map)
 {
-	dlist	*temp;
+	t_dlist	*temp;
 
 	temp = &map;
 	if (ft_all((char *)temp->content, '1'))
@@ -41,10 +53,10 @@ int	verif_wall(dlist map)
 	return (0);
 }
 
-int	verif_param(dlist map, char param)
+int	verif_param(t_dlist map, char param)
 {
-	  dlist	*temp;
-	  int	counter;
+	  t_dlist	*temp;
+	  int		counter;
 
 	counter = 0;
 	temp = &map;
@@ -75,9 +87,9 @@ int	legalchars(char *str)
 	return (0);
 }
 
-int	verif_map_content(dlist map)
+int	verif_map_content(t_dlist map)
 {
-	  dlist	*temp;
+	  t_dlist	*temp;
 
 	temp = &map;
 	while (temp->next)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
+/*   Updated: 2021/09/03 17:42:47 by jemartel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -5,9 +17,9 @@
 #include "utils/libft/libft.h"
 #include "utils/minilibx/mlx.h"
 
-void	free_list(dlist *head)
+void	free_list(t_dlist *head)
 {
-	dlist	*next;
+	t_dlist	*next;
 
 	if (head != NULL)
 	{
@@ -18,7 +30,7 @@ void	free_list(dlist *head)
 	}
 }
 
-void	freeray(screen *ray)
+void	freeray(t_screen *ray)
 {
 	int	inc;
 
@@ -29,7 +41,7 @@ void	freeray(screen *ray)
 	free(ray->tiles);
 }
 
-int	render_cycle(int keycode, screen *state)
+int	render_cycle(int keycode, t_screen *state)
 {
 	play_contact(state);
 	if (keycode >= 0)
@@ -40,47 +52,44 @@ int	render_cycle(int keycode, screen *state)
 	if (keycode == ESC)
 	{
 		printf("session destroyed");
-		mlx_destroy_window(state->mlx, state->win);
 		freeray(state);
+		mlx_destroy_window(state->mlx, state->win);
 		exit(0);
 	}
 	return (0);
 }
 
-int	verif(dlist map)
+t_dlist	*verif(t_dlist *map)
 {
 	int	flag;
 
 	flag = 0;
-	flag += verif_len(map);
-	flag += verif_wall(map);
-	flag += verif_param(map, 'P');
-	flag += verif_param(map, 'E');
-	flag += verif_param(map, 'C');
-	flag += verif_map_content(map);
-	return (flag);
+	if (!map)
+	{
+		ft_putstr_fd("Error:could not read map\n", 1);
+		exit(0);
+	}
+	flag += assert(verif_len(*map), "Error: len incorrect\n");
+	flag += assert(verif_wall(*map), "Error: incorrect wall\n");
+	flag += assert(verif_param(*map, 'P'), "Error: wrong number of Player\n");
+	flag += assert(verif_param(*map, 'E'), "Error: wrong number of exit\n");
+	flag += assert(verif_param(*map, 'C'), "Error: wrong nbr of collectibe\n");
+	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
+	if (flag > 0)
+	{
+		free_list(map);
+		exit(0);
+	}
+	return (map);
 }
 
 int	main(void)
 {
-	screen	state;
-	dlist	*temp;
-	int		fd;
+	t_screen	state;
+	int			fd;
 
 	fd = open("./assets/map.ber", O_RDONLY);
-	if (fd < 0)
-	{
-		printf("map could not be initiated");
-		exit(-1);
-	}
-	temp = mapcreator(fd);
-	main_init(&state, temp);
-	if (verif(*temp) > 0)
-	{
-		free_list(temp);
-		perror("your map is wrong");
-		exit(0);
-	}
+	main_init(&state, verif(mapcreator(fd)));
 	mlx_loop_hook(state.mlx, render_player, &state);
 	mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
 	mlx_loop(state.mlx);

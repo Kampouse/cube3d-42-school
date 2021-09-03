@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/03 17:56:13 by jemartel          #+#    #+#             */
+/*   Updated: 2021/09/03 17:56:26 by jemartel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "stdio.h"
 #include "stdlib.h"
 
@@ -18,7 +30,7 @@ static unsigned int	nbr_lenght(long input, int sign)
 	return (nbr_digit);
 }
 
-static void 	converter_nbr(char *str, long input, unsigned int ln, int sign)
+static void	converter_nbr(char *str, long input, unsigned int ln, int sign)
 {
 	str[ln] = '\0';
 	str[--ln] = input % 10 + '0';

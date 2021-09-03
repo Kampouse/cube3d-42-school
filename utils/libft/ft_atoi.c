@@ -6,11 +6,12 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 07:58:55 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/06/08 11:22:00 by jean-phil        ###   ########.fr       */
+/*   Updated: 2021/09/03 17:53:32 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int	ft_atoi(const char *value)
 {
 	int			base;
