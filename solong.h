@@ -85,4 +85,6 @@ int rend_dec(screen *state);
 int render_walk(screen *state);
 void main_init(screen *state ,dlist *temp);
 int verif(dlist map);
+int	type_render(screen *state, char type);
+dlist	*player_node(dlist *map);
 #endif 

@@ -1,10 +1,10 @@
 NAME = solong
  
-FLAGS =  -g -Wall -Wextra -Werror -framework OpenGL -framework AppKit 
+FLAGS =  -g -Wall -Wextra -Werror -framework OpenGL -framework AppKit   -fsanitize=address
 SRCS = main.c utils/get_next_line.c utils/get_next_line_utils.c  dblink/dblink_utils.c utils/verif.c \
 	   utils/util.c dblink/dblink.c mapInit.c render.c player.c main_init.c
 OBJS = ${SRCS:.c=.o}
-CC = gcc 
+CC = clang 
 all: ${NAME}
 
 ${NAME}:${OBJS} 

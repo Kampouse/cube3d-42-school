@@ -6,7 +6,7 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 10:26:02 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/08/31 13:02:16 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/07/03 10:26:05 by jean-phil        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_strchrr(char *str, int compared)
+char	*ft_strchr(char *str, int compared)
 {
 	unsigned int	value;
 
@@ -53,7 +53,7 @@ char	*ft_strdup(const char *str)
 		return (NULL);
 	len = ft_strlen(str);
 	i = 0;
-	output = malloc(sizeof(char) * len);
+	output = malloc(sizeof(char) * len + 1);
 	if (!output)
 		return (NULL);
 	while (i != len)
