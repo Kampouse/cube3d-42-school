@@ -6,11 +6,12 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 10:26:02 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/07/03 10:26:05 by jean-phil        ###   ########.fr       */
+/*   Updated: 2021/09/02 21:48:04 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 size_t	ft_strlen(const char *str)
 {
 	int		len;
@@ -23,7 +24,7 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_strchr(char *str, int compared)
+char	*ft_strchrr(char *str, int compared)
 {
 	unsigned int	value;
 

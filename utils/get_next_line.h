@@ -8,7 +8,7 @@
 # include "stdio.h"
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *str);
-char	*ft_strchr(char *head, int comp);
+char	*ft_strchrr(char *head, int comp);
 char	*ft_strjoin(const char *first, const char *second);
 int		get_next_line(int fd, char **line);
 # define BUFFSIZE 42

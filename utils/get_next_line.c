@@ -6,7 +6,7 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 10:22:02 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/07/03 10:22:12 by jean-phil        ###   ########.fr       */
+/*   Updated: 2021/09/02 21:47:27 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	*ft_output2(char *container, char **line)
 	char	*found;
 
 	found = NULL;
-	found = ft_strchr(container, '\n');
+	found = ft_strchrr(container, '\n');
 	if (found)
 	{
 		*line = findme(container, found);
@@ -89,7 +89,7 @@ int	get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFSIZE < 1 || read(fd, buff, 0) < 0)
 		return (-1);
-	if (ft_strchr(container, '\n'))
+	if (ft_strchrr(container, '\n'))
 	{
 		container = ft_output2(container, line);
 		return (1);
@@ -97,7 +97,7 @@ int	get_next_line(int fd, char **line)
 	while (readme(fd, buff, &val) > 0 )
 	{
 		container = ft_strjoin(container, buff);
-		if (ft_strchr(container, '\n'))
+		if (ft_strchrr(container, '\n'))
 		{
 			container = ft_output2(container, line);
 			return (1);
