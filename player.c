@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:09 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/03 17:38:21 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/09/04 00:12:28 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,20 @@ void	play_horz(t_screen *state, int keycode)
 	{
 	play_left(state, keycode);
 	play_right(state, keycode);
-	if (keycode == LEFT)
+	if (keycode == LEFT && state->map[state->locationy]
+		[state->locationx - 1] != '1' && state->move_x >= -33)
 	{
-		if (state->map[state->locationy][state->locationx - 1] != '1')
-		{
-			state->move_x -= 88;
-			state->locationx -= 1;
-			state->movecount++;
-		}
-		rend_dec(state);
+		state->move_x -= 88;
+		state->locationx -= 1;
+		state->movecount++;
 		ft_putnbr_fd(state->movecount, 1);
 	}
 	if (keycode == RIGHT && state->map[state->locationy]
-		[state->locationx + 1] != '1')
+		[state->locationx + 1] != '1' && state->move_x <= 33)
 	{
 		state->move_x += 88;
 		state->locationx += 1;
 		state->movecount++;
-		render_player(state);
 		ft_putnbr_fd(state->movecount, 1);
 	}
 }
@@ -90,21 +86,19 @@ void	play_horz(t_screen *state, int keycode)
 void	play_vert(t_screen *state, int keycode)
 {
 	if (keycode == UP && state->map[state->locationy - 1]
-		[state->locationx] != '1')
+		[state->locationx] != '1' && state->move_y > -23)
 	{
 		state->locationy -= 1;
 		state->move_y -= 56;
 		state->movecount++;
-		render_player(state);
 		ft_putnbr_fd(state->movecount, 1);
 	}
 	if (keycode == DOWN && state->map[state->locationy + 1]
-		[state->locationx] != '1')
+		[state->locationx] != '1' && state->move_y < 23)
 	{
 		state->locationy += 1;
 		state->move_y += 56;
 		state->movecount++;
-		render_player(state);
 		ft_putnbr_fd(state->movecount, 0);
 	}
 }

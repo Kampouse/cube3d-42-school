@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/03 17:38:27 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/09/03 23:28:03 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int	rend_dec(t_screen *state)
 {
 	  if (state->move_x > 0)
 	{
-		state->move_x -= 10;
-		state->x_pos += 10;
+		state->move_x -= 11;
+		state->x_pos += 11;
 	}
 	if (state->move_x < 0)
 	{
-		state->move_x += 10;
-		state->x_pos -= 10;
+		state->move_x += 11;
+		state->x_pos -= 11;
 	}
 	if (state->move_y > 0)
 	{
