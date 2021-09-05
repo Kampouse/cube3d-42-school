@@ -1,0 +1,82 @@
+#include "../solong.h"
+#include "stdio.h"
+#include "stdlib.h"
+
+t_dlist *node_init(void *content) {
+  t_dlist *link;
+
+  link = (t_dlist *)malloc(sizeof(*link));
+  if (!link)
+    return (NULL);
+  link->content = content;
+  link->prev = NULL;
+  link->next = NULL;
+  return (link);
+}
+
+void ft_lst_add_frontd(t_dlist **currlist, t_dlist *newnode) {
+  if (currlist) {
+    if (*currlist) {
+      newnode->next = *currlist;
+    }
+    *currlist = newnode;
+  }
+}
+
+void ft_lstiterd(t_dlist *currlist, void (*f)(void *)) {
+  if (!f)
+    return;
+  while (currlist) {
+    (*f)(currlist->content);
+    currlist = currlist->next;
+  }
+}
+
+void ft_lst_add_backd(t_dlist **currlist, t_dlist *node) {
+  t_dlist *last;
+
+  if (currlist) {
+    if (*currlist) {
+      last = ft_lst_lastnode(*currlist);
+      last->next = node;
+      node->prev = last;
+    } else
+      *currlist = node;
+  }
+}
+
+void ft_clearnode(t_dlist *currlist, void (*del)(void *)) {
+  if (currlist) {
+    (*del)(currlist->content);
+    free(currlist);
+  }
+}
+
+void ft_cleart_dlist(t_dlist **currlist, void (*del)(void *)) {
+  t_dlist *iter;
+
+  if (!del || !currlist || !*currlist) {
+    return;
+  }
+  // am not sure if it clear all of the list;
+  while (currlist && *currlist) {
+    iter = (*currlist)->next;
+    *currlist = iter;
+    ft_clearnode(*currlist, del);
+  }
+}
+
+/*
+int main(void)
+{
+t_dlist *lst;
+lst = NULL;
+
+ ft_lst_add_backd(&lst,node_init("stuff"));
+ ft_lst_add_backd(&lst,node_init("hello"));
+ ft_lst_add_backd(&lst,node_init("please"));
+ ft_lst_add_backd(&lst,node_init("help me"));
+lst = ft_lst_lastnode(lst);
+printf("%s",(char *)lst->content);
+}
+*/
