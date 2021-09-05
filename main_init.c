@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/03 18:00:48 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/09/05 11:22:12 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	main_init(t_screen *state, t_dlist *temp)
 			state->screeheight, "./so_long");
 	state->move_y = 0;
 	state->move_x = 0;
-	state->collected = 0;
 	state->movecount = 0;
 	state->image_state = 4;
 	map_tiles(state);

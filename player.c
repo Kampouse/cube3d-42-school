@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:09 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/04 00:12:28 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/09/05 11:21:48 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	play_contact(t_screen *state)
 	if (state->map[state->locationy][state->locationx] == 'C')
 	{
 		state->map[state->locationy][state->locationx] = '0';
-		state->collected++;
 	}
 	if (state->map[state->locationy][state->locationx] == 'E'
-		&& state->collected == 2)
+		&& ft_count_all(state->map, 'C') == 0)
 	{
 		printf("won");
+		exit(0);
 	}
 }
 

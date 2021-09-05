@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/03 17:42:47 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/09/05 11:20:48 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void	freeray(t_screen *ray)
 {
 	int	inc;
 
-	free_list(ft_lst_firstnode(ray->player));
 	inc = -1;
 	while (ray->tiles[++inc])
 		mlx_destroy_image(ray->mlx, ray->tiles[inc]);
 	free(ray->tiles);
+	free_list(ray->player);
 }
 
 int	render_cycle(int keycode, t_screen *state)
@@ -51,7 +51,6 @@ int	render_cycle(int keycode, t_screen *state)
 	}
 	if (keycode == ESC)
 	{
-		printf("session destroyed");
 		freeray(state);
 		mlx_destroy_window(state->mlx, state->win);
 		exit(0);
@@ -83,14 +82,15 @@ t_dlist	*verif(t_dlist *map)
 	return (map);
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_screen	state;
 	int			fd;
 
-	fd = open("./assets/map.ber", O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	main_init(&state, verif(mapcreator(fd)));
 	mlx_loop_hook(state.mlx, render_player, &state);
 	mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
+	mlx_do_sync(state.mlx);
 	mlx_loop(state.mlx);
 }

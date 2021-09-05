@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/03 17:34:05 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/09/04 12:23:52 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct t_screen
 	int		move_x;
 	int		move_y;
 	int		movecount;
-	int		collected;
 	int		image_state;
 	int		screenwidth;
 	int		screeheight;
@@ -87,4 +86,5 @@ int		type_render(t_screen *state, char type);
 t_dlist	*player_node(t_dlist *map);
 void	freeray(t_screen *ray);
 int		assert(int value, char *str);
+int		ft_count_all(char **str, char cmp);
 #endif 
