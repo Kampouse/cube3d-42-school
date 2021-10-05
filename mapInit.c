@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:11:15 by jemartel          #+#    #+#             */
-/*   Updated: 2021/10/05 13:11:16 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:57:18 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	map_init(t_screen *state, t_dlist *map)
 	int	len;
 
 	len = ft_lst_lenght(map);
-	state->map = malloc(sizeof(char *) * len + 1);
+	state->map = malloc(sizeof(char *) * len + 2);
 	len = 0;
 	while (map)
 	{
@@ -50,9 +50,9 @@ void	map_init(t_screen *state, t_dlist *map)
 		len++;
 		map = map->next;
 	}
-	state->screenwidth = ft_strlen(state->map[0]) * 89;
-	state->screeheight = ((len) * 56);
 	state->map[len] = 0;
+	state->screenwidth = ft_strlen(state->map[0]) * 89;
+	state->screeheight = ((len) * 55);
 }
 
 void	map_tiles(t_screen *state)

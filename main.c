@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2021/10/05 13:03:27 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/10/05 14:20:06 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	main(int argc, char *argv[])
 
 	fd = open(argv[1], O_RDONLY);
 	main_init(&state, verif(mapcreator(fd)));
+	close(fd);
 	mlx_loop_hook(state.mlx, render_player, &state);
 	mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
 	mlx_hook(state.win, 17, 0, exit_please, &state);

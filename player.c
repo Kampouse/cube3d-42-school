@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:09 by jemartel          #+#    #+#             */
-/*   Updated: 2021/10/05 13:46:41 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/10/05 19:28:42 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	play_right(t_screen *state, int keycode)
 		}
 		else
 		{
-			state->image_state = 10;
+			state->image_state = 9;
 		}
 	}
 }
@@ -48,21 +48,21 @@ void	play_left(t_screen *state, int keycode)
 {
 	if (keycode == LEFT)
 	{
-		if (state->image_state > 4 && state->image_state < 8)
+		if (state->image_state > 3 && state->image_state < 8)
 		{
 			state->image_state++;
 		}
 		else
 		{
-			state->image_state = 5;
+			state->image_state = 4;
 		}
 	}
 }
 
 void	play_horz(t_screen *state, int keycode)
 	{
-	play_left(state, keycode);
 	play_right(state, keycode);
+	play_left(state, keycode);
 	if (keycode == LEFT && state->map[state->locationy]
 		[state->locationx - 1] != '1' && state->move_x >= -33)
 	{

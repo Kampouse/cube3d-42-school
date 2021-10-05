@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2021/10/05 13:03:20 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/10/05 19:37:51 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	player_finder(t_screen *state, int x_axis, int y_axis)
 			{
 				state->locationx = horz;
 				state->locationy = vert;
-				state->x_pos = (80 * horz) + horz;
-				state->y_pos = y_axis;
+				state->x_pos = (88 * horz) + horz / 2;
+				state->y_pos = (40 * vert);
 				return ;
 			}
 			horz++;
