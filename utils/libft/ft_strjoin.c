@@ -6,12 +6,12 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 20:45:18 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/06/12 09:49:25 by jean-phil        ###   ########.fr       */
+/*   Updated: 2021/10/05 13:20:38 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*ft_strjoin(const char *first, const char *second)
+char	*ft_strjoin( char *first, char *second)
 {
 	char		*output;
 	size_t		len;

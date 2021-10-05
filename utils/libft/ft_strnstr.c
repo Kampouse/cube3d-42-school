@@ -6,11 +6,11 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 16:25:50 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/06/08 11:27:57 by jean-phil        ###   ########.fr       */
+/*   Updated: 2021/09/28 19:21:04 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "libft.h"
+#include "libft.h"
 
 char	*ft_strnstr(const char *str1, const char *str2, size_t len)
 {

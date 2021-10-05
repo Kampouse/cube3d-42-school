@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:40:34 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/03 17:52:56 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/09/08 19:21:54 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *str);
 char	*ft_strchrr(char *head, int comp);
-char	*ft_strjoin(const char *first, const char *second);
+char	*ft_strjoin(char *first, char *second);
 int		get_next_line(int fd, char **line);
 # define BUFFSIZE 25
 

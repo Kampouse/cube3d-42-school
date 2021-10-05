@@ -6,7 +6,7 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 10:22:02 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/09/02 21:47:27 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/10/05 11:14:58 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*outlast(char *container, char **line)
 		container = NULL;
 	}
 	else
-		*line = ft_strdup("");
+		*line = NULL;
 	return (container);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/04 12:23:52 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/10/05 13:14:35 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,7 @@ t_dlist	*player_node(t_dlist *map);
 void	freeray(t_screen *ray);
 int		assert(int value, char *str);
 int		ft_count_all(char **str, char cmp);
+int		exit_please(t_screen *state);
+t_dlist	*ft_lstnewl(void *content);
+char	freelist(char **list);
 #endif 

@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:48 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/03 17:39:06 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/10/05 13:55:01 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	verif_map_content(t_dlist map)
 	}
 	if (legalchars((char *)temp->content) != 0)
 	{
-		printf("missing a element");
+		ft_putstr_fd("missing a element", 1);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/03 23:28:03 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/10/05 13:39:55 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ int	render_tiles(t_screen *state, int x_axis, int y_axis)
 		{
 			render_image(state, x_axis, y_axis,
 				type_render(state, state->map[inc][cin]));
-			x_axis += 89;
+			x_axis += 90;
 			cin++;
 		}
-		y_axis += 56;
+		y_axis += 55;
 		inc++;
 	}
 	return (0);

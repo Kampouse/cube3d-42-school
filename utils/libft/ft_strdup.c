@@ -6,10 +6,11 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 20:44:23 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/06/14 09:16:48 by jean-phil        ###   ########.fr       */
+/*   Updated: 2021/09/28 19:18:46 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include  "libft.h"
+#include "libft.h"
+
 char	*ft_strdup(const char *str)
 {
 	char	*output;

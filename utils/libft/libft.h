@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/28 19:26:13 by jemartel          #+#    #+#             */
+/*   Updated: 2021/10/05 14:01:42 by jemartel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef  LIBFT_H
 # define  LIBFT_H
 # include <stdlib.h>
@@ -7,7 +19,8 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}	t_list;
+
 void		*ft_memset(void *ptr, int value, size_t num);
 void		*ft_bzero(void *ptr, size_t num);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
@@ -33,7 +46,7 @@ int			ft_tolower(int str);
 void		*ft_calloc(size_t lenght, size_t size);
 char		*ft_strdup(const char *str);
 char		*ft_substr(char const *src, unsigned int start,	size_t end);
-char		*ft_strjoin(const char *first, const char *second);
+char		*ft_strjoin(char *first, char *second);
 char		*ft_strtrim(char const *str, char const *set);
 char		**ft_split( const char *str, char comp);
 char		*ft_itoa(int input);

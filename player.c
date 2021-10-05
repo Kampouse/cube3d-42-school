@@ -6,12 +6,11 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:09 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/05 11:21:48 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/10/05 13:46:41 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
-#include "stdio.h"
 #include "stdlib.h"
 #include "utils/get_next_line.h"
 #include "utils/libft/libft.h"
@@ -26,8 +25,7 @@ void	play_contact(t_screen *state)
 	if (state->map[state->locationy][state->locationx] == 'E'
 		&& ft_count_all(state->map, 'C') == 0)
 	{
-		printf("won");
-		exit(0);
+		exit_please(state);
 	}
 }
 
@@ -68,18 +66,20 @@ void	play_horz(t_screen *state, int keycode)
 	if (keycode == LEFT && state->map[state->locationy]
 		[state->locationx - 1] != '1' && state->move_x >= -33)
 	{
-		state->move_x -= 88;
+		state->move_x -= 89;
 		state->locationx -= 1;
 		state->movecount++;
 		ft_putnbr_fd(state->movecount, 1);
+		write(1, "\n", 1);
 	}
 	if (keycode == RIGHT && state->map[state->locationy]
 		[state->locationx + 1] != '1' && state->move_x <= 33)
 	{
-		state->move_x += 88;
+		state->move_x += 89;
 		state->locationx += 1;
 		state->movecount++;
 		ft_putnbr_fd(state->movecount, 1);
+		write(1, "\n", 1);
 	}
 }
 
@@ -92,6 +92,7 @@ void	play_vert(t_screen *state, int keycode)
 		state->move_y -= 56;
 		state->movecount++;
 		ft_putnbr_fd(state->movecount, 1);
+		write(1, "\n", 1);
 	}
 	if (keycode == DOWN && state->map[state->locationy + 1]
 		[state->locationx] != '1' && state->move_y < 23)
@@ -100,5 +101,6 @@ void	play_vert(t_screen *state, int keycode)
 		state->move_y += 56;
 		state->movecount++;
 		ft_putnbr_fd(state->movecount, 0);
+		write(1, "\n", 1);
 	}
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mapInit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/05 13:11:15 by jemartel          #+#    #+#             */
+/*   Updated: 2021/10/05 13:11:16 by jemartel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -16,12 +28,12 @@ t_dlist	*mapcreator(int fd)
 	t_dlist	*list;
 	char	*str;
 
-	list = NULL;
 	if (read(fd, &str, 0) < 0)
 		return (NULL);
+	get_next_line(fd, &str);
+	 list = ft_lstnewl(str);
 	while (get_next_line(fd, &str))
 		ft_lst_add_backd(&list, node_init(str));
-	list = ft_lst_firstnode(list);
 	return (list);
 }
 
@@ -59,10 +71,13 @@ void	map_tiles(t_screen *state)
 	int			width;
 	int			height;
 
-	inc = -1;
+	inc = 0;
 	state->tiles = malloc(sizeof(void *) * 15);
-	while (*images[++inc])
+	while (*images[inc])
+	{
 		state->tiles[inc] = mlx_xpm_file_to_image(state->mlx,
-				(void *)images[inc], &width, &height);
-	state->tiles[inc] = 0;
+				(char *)images[inc], &width, &height);
+		inc++;
+	}
+	state->tiles[15] = 0;
 }

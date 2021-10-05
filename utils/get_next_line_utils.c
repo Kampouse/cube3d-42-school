@@ -6,7 +6,7 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 10:26:02 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/09/02 21:48:04 by jemartel         ###   ########.fr       */
+/*   Updated: 2021/10/05 13:10:27 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_strdup(const char *str)
 	return (output);
 }
 
-char	*ft_strjoin(const char *first, const char *second)
+char	*ft_strjoin(char *first, char *second)
 {
 	char		*output;
 	size_t		len;
@@ -84,7 +84,7 @@ char	*ft_strjoin(const char *first, const char *second)
 		output[inc] = first[inc];
 		inc++;
 	}
-	free((void *)first);
+	free(first);
 	inc = 0;
 	while (inc != len2)
 	{
