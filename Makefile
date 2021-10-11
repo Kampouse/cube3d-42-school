@@ -15,7 +15,7 @@ clean:
 	    @${RM} ${OBJS}	
 
 git:
-	@git add ${SRCS} solong.h
+	@git add ${SRCS} solong.h Makefile
 
 run: all
 	./${NAME} ./assets/map.ber
