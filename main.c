@@ -6,11 +6,11 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2021/10/05 14:20:06 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/19 17:14:28 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "cube.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "utils/get_next_line.h"
@@ -29,32 +29,6 @@ void	free_list(t_dlist *head)
 		free_list(next);
 	}
 }
-
-void	freeray(t_screen *ray)
-{
-	int	inc;
-
-	inc = -1;
-	while (ray->tiles[++inc])
-		mlx_destroy_image(ray->mlx, ray->tiles[inc]);
-}
-
-int	render_cycle(int keycode, t_screen *state)
-{
-	play_contact(state);
-	if (keycode >= 0)
-	{
-		play_vert(state, keycode);
-		play_horz(state, keycode);
-	}
-	if (keycode == ESC)
-	{
-		mlx_destroy_window(state->mlx, state->win);
-		exit(0);
-	}
-	return (0);
-}
-
 t_dlist	*verif(t_dlist *map)
 {
 	int	flag;
@@ -81,15 +55,32 @@ t_dlist	*verif(t_dlist *map)
 
 int	main(int argc, char *argv[])
 {
-	t_screen	state;
-	int			fd;
-
-	fd = open(argv[1], O_RDONLY);
-	main_init(&state, verif(mapcreator(fd)));
-	close(fd);
-	mlx_loop_hook(state.mlx, render_player, &state);
-	mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
-	mlx_hook(state.win, 17, 0, exit_please, &state);
-	mlx_do_sync(state.mlx);
-	mlx_loop(state.mlx);
+	(void)argv;
+	(void)argc;
+	t_game		*state;
+	state = malloc(sizeof(t_game));
+	state->map_data  = init_map();
+	state->map = map_init(mapcreator("./map.cub"));
+	if (loop_directions(state))
+	{
+		free(state->map_data);
+		free(state);
+		return (0);	
+	}
+	printf("%s\n",state->map_data->est_texture);
+	printf("%s\n",state->map_data->south_texture);
+	printf("%s\n",state->map_data->norh_texture);
+int inc;
+	inc = -1;
+	while(++inc < 3)
+		printf("%d\n",state->map_data->floor_color[inc]);
+	/*
+		state.mlx =mlx_init();
+		mlx_new_window(state.mlx,100,100,"helo");
+		mlx_loop(state.mlx);
+		*/
+	//mlx_loop_hook(state.mlx, render_player, &state);
+	//mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
+	//mlx_hook(state.win, 17, 0, exit_please, &state);
+	//mlx_do_sync(state.mlx);
 }
