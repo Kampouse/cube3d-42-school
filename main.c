@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/19 17:14:28 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/20 17:07:27 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -60,20 +60,16 @@ int	main(int argc, char *argv[])
 	t_game		*state;
 	state = malloc(sizeof(t_game));
 	state->map_data  = init_map();
-	state->map = map_init(mapcreator("./map.cub"));
+	state->map = NULL;
+	state->map = map_init(mapcreator("map.cub"));
 	if (loop_directions(state))
 	{
-		free(state->map_data);
 		free(state);
 		return (0);	
 	}
-	printf("%s\n",state->map_data->est_texture);
-	printf("%s\n",state->map_data->south_texture);
-	printf("%s\n",state->map_data->norh_texture);
-int inc;
+
+	int inc;
 	inc = -1;
-	while(++inc < 3)
-		printf("%d\n",state->map_data->floor_color[inc]);
 	/*
 		state.mlx =mlx_init();
 		mlx_new_window(state.mlx,100,100,"helo");

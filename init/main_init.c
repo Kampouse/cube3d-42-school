@@ -6,11 +6,25 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/19 12:46:05 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:27:59 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
+char	freelist(char **list)
+{
+	int	inc;
+
+	inc = 0;
+	while (list[inc])
+	{
+		free(list[inc]);
+		inc++;
+	}
+	free(list);
+	return (0);
+}
+/*
 void	main_init(t_screen *state, t_dlist *temp)
 {
 	map_init( temp);
@@ -31,16 +45,5 @@ int	exit_please(t_screen *state)
 	return (0);
 }
 
-char	freelist(char **list)
-{
-	int	inc;
 
-	inc = 0;
-	while (list[inc])
-	{
-		free(list[inc]);
-		inc++;
-	}
-	free(list);
-	return (0);
-}
+*/

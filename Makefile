@@ -33,11 +33,11 @@ clean:
 	    @${RM} ${OBJS}	
 
 git:
-	@git add ${SRCS} solong.h Makefile
+	@git add ${SRCS} cube.h Makefile
 val:
-	@valgrind  ./${NAME} ./assets/map.ber
+	valgrind      ./$(NAME) ./assets/map.ber
 run: all
-	./${NAME} ./assets/map.ber
+	./${NAME} map.cub
 	
 leak: all
 	@echo "\033[92mTEST 1 \n \033[0m"

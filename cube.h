@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/19 16:35:42 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/20 17:05:53 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct t_map
 	int		*ceiling_color;
 	int		*start_position;
 	int		orientation;
+	int		iterator;
 } t_map;
 typedef struct t_game
 {
