@@ -10,6 +10,7 @@ SRCS = 	main.c \
 	   	parsing/verif_wall.c	 \
 		parsing/mapInit.c	\
 		parsing/parsing.c	\
+		parsing/map.c	\
 		render/render.c 	\
 		player.c	\
 		init/main_init.c

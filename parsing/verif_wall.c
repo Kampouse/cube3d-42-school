@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:39:13 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/18 19:43:02 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/20 18:56:34 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	ft_between(char *string, char comp)
 	int	len;
 
 	if (string[0] != comp)
-		return (-1);
+		return (1);
 	len = ft_strlen(string);
 	if (string[len - 1] != comp)
-		return (-1);
+		return (1);
 	return (0);
 }
 
@@ -33,7 +33,7 @@ int	ft_all(char *string, char comp)
 	while (string[inc])
 	{
 		if (string[inc] != comp)
-			return (-1);
+			return (1);
 		inc++;
 	}
 	return (0);

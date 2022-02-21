@@ -52,9 +52,6 @@ int delete_texture(t_map *map)
 return (0);
 }
 
-
-
-
 /* should make another function that check that no null  one */
 void ft_poll_texture(char *str,t_map *map)
 {

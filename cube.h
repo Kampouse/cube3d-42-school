@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/20 17:05:53 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/20 20:02:58 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,6 @@ char	freelist(char **list);
 int		loop_directions(t_game *state);
 void	free_list(t_dlist *head);
 t_map *init_map(void);
+char *skip_empty_line(char *str);
+int parsing(t_game *game);
 #endif 
