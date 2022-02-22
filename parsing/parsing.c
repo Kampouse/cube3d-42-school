@@ -208,8 +208,8 @@ int  loop_directions(t_game *state)
 	{
 		while (state->map[inc])
 		{
-			 ft_poll_texture(skip_empty_line(state->map[inc]),state->map_data);
-			 ft_poll_color(skip_empty_line(state->map[inc]),state->map_data,inc);
+			 ft_poll_texture(skip_empty_line(state->map[inc]), state->map_data);
+			 ft_poll_color(skip_empty_line(state->map[inc]), state->map_data,inc);
 				inc++;
 		}
 		if (any_invalid(state->map_data))

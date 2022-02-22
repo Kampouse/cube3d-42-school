@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/20 18:40:33 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/21 15:15:13 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "utils/get_next_line.h"
 #include "utils/libft/libft.h"
 #include "utils/minilibx/mlx.h"
-
 void	free_list(t_dlist *head)
 {
 	t_dlist	*next;
@@ -55,6 +54,7 @@ t_dlist	*verif(t_dlist *map)
 
 int	main(int argc, char *argv[])
 {
+
 	(void)argv;
 	(void)argc;
 	t_game		*state;

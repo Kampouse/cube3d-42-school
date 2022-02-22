@@ -1,6 +1,7 @@
 #include "../cube.h"
 
 
+int any_one_above(char **map, int current_line);
 void verif_no_space(t_game *game,int pos);
 
 
@@ -16,6 +17,7 @@ int parsing(t_game *game)
 	}
 
 	verif_no_space(game,game->map_data->iterator + 1);
+any_one_above(game->map,game->map_data->iterator + 2);
 	return (0);
 }
 
@@ -33,7 +35,8 @@ int first_seen(char *str)
 		return(0);
 return(1);
 }
-void verif_no_space(t_game *game,int pos)
+
+void verif_no_space(t_game *game, int pos)
 {
 	int iter;
 	int temp;
@@ -60,4 +63,35 @@ void verif_no_space(t_game *game,int pos)
 	}
 }
 
+int any_one_above(char **map,int current_line)
+{
 
+//should look into if   line is only 1 one wide 
+	int inc;
+	int cin;
+	int temp;
+
+	cin = 1;
+	const   int start  = current_line - 1;
+	
+	inc = 0;
+	while (current_line >= start)
+		{
+			if(map[current_line][cin] == '1')			
+			{
+				printf("%c\n",map[current_line][cin]);
+				break;
+			}
+			printf("%c\n",map[current_line][cin]);
+			current_line--;	
+		}
+	if (ft_strlen(map[start]) < (unsigned int) cin)
+	{
+		if (map[start][cin] == '0')
+			printf("the wall is missing somthing\n");
+	}
+	else
+		printf("line too short\n");
+	
+return (0);
+}

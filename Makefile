@@ -28,7 +28,7 @@ all: ${NAME}
 
 ${NAME}:${OBJS} 
 		@$(MAKE) -C ./utils/libft
-		@${CC}  ${FLAGS} ${OBJS}  ./utils/libft/libft.a -o ${NAME}
+		@${CC}  ${FLAGS} ${OBJS}    ./utils/libft/libft.a -o ${NAME}
 
 clean:
 	    @${RM} ${OBJS}	
