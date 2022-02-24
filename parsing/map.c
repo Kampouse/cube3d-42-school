@@ -5,22 +5,68 @@ int any_one_above(char **map, int current_line,int pos);
 void verif_no_space(t_game *game,int pos);
 int any_one_above_line(char **map,int current_line);
 int any_one_bellow(char **map, int current_line, int pos);
+int any_one_bellow_line(char **map,int current_line);
 
 
+int was_in_set(char *str,char *set)
+{
+int inc;
+int cin;
+int temp;
+int was_in_set;
+	cin = 0;
+was_in_set = 1;
+	inc  = 0;
+	while (str[inc])
+	{
+			
+		temp = inc;
+		while(set[cin])
+		{
+			if (set[cin] == str[inc])
+			{
+				was_in_set = 0;
+				cin = 0;
+				break ;
+			}
+			cin++;
+		}
+		if (was_in_set != 0)
+			return (1);
+		was_in_set = 1;
+		inc++;
+	}
+return(0);
+}
 int parsing(t_game *game)
 {
-
+	int temp;
 	if (loop_directions(game))
 	{
 		free(game);
 		return(0);
 	}
-
-	verif_no_space(game,game->map_data->iterator + 1);
-	any_one_above_line(game->map,game->map_data->iterator + 4);
-	any_one_bellow(game->map,game->map_data->iterator + 2,1);
+	while( game->map[game->map_data->iterator] && ft_all(game->map[game->map_data->iterator],'1'))
+		game->map_data->iterator++;
+	while (game->map[game->map_data->iterator])
+	{
+		 if (ft_strlen(game->map[game->map_data->iterator])  != 0 && was_in_set(game->map[game->map_data->iterator], " \t\v\r") != 0) 
+			break ;
+		game->map_data->iterator++;
+	}
+	temp = game->map_data->iterator;
+		verif_no_space(game, temp);
+		printf("%s\n",game->map[temp]);
+	while(game->map[temp])
+	{
+		any_one_above_line(game->map,temp);
+		any_one_bellow_line(game->map, temp);
+		temp++;
+	}
 	return (0);
 }
+
+
 
 int first_seen(char *str)
 {
@@ -93,19 +139,25 @@ int any_one_above(char **map, int current_line, int pos)
 
 	while (current_line >= start)
 	{
-		printf("start (%d)  and is at :%d\n",base_len,(int)ft_strlen(map[current_line]));
-			if(ft_strlen(map[current_line]) < base_len )
+			if((int)ft_strlen(map[current_line]) < base_len )
 			{
 				printf("this line is too short up : ");
 				printf("%s\n",map[current_line]);
 				return (1);
 			}
+			if (map[current_line][pos] == '1')
+				return (0);
 			current_line--;	
 	}
-current_line++;
-if(map[current_line][pos] == '1')
+	if ((int)ft_strlen(map[current_line]) < base_len )
+			{
+				printf("this line is too short up : ");
+				printf("%s\n",map[current_line]);
+				return (1);
+			}
+	else if(map[current_line][pos] == '1')
 	return  (0);
-else 
+	else 
 	return (1);
 return (0);
 }
@@ -128,31 +180,26 @@ int any_one_bellow_line(char **map,int current_line)
 	}
 	return (0);
 }
-
-
-
+// this funcion behave correctcly 
 int any_one_bellow(char **map, int current_line, int pos)
 {
 	const	int base_len = ft_strlen(map[current_line]);	
 
-	while (map[current_line])
+	while(map[current_line])
 	{
-		printf("start (%d)  and is at :%d\n",base_len,(int)ft_strlen(map[current_line]));
-			if (ft_strlen(map[current_line]) < base_len)
+			current_line++;
+			if (map[current_line] && pos <=  (int)ft_strlen(map[current_line]))
 			{
-				printf("this line is too short: ");
-				printf("%s\n", map[current_line]);
-				return (1);
+					if (map[current_line][pos]  == '1')
+						return (0);
+					else
+						continue;
 			}
-			current_line++;	
+			if(pos > (int)ft_strlen(map[current_line]))
+				printf("out of bound\n");
+			else if(map[current_line - 1][pos] &&(map[current_line - 1][pos] == '1'))
+					return(0);
 	}
-current_line--;
-if(map[current_line][pos] == '1' || map[current_line][pos] == ' ') 
-	return 0;
-else
-	return(1);
-//should look into if   line is only 1 one wide 
+
 return (0);	
 }
-
-

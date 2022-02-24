@@ -36,7 +36,7 @@ clean:
 git:
 	@git add ${SRCS} cube.h Makefile
 val:
-	valgrind      ./$(NAME) ./assets/map.ber
+	valgrind   --leak-check=full --track-origins=yes   ./$(NAME) ./map.cub
 run: all
 	./${NAME} map.cub
 	
