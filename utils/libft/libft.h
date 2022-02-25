@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 19:26:13 by jemartel          #+#    #+#             */
-/*   Updated: 2021/10/05 14:01:42 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/20 18:34:47 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,5 @@ t_list		*ft_lstlast(t_list *currlist);
 t_list		*ft_lstnew(void *content);
 t_list		*ft_lstmap(t_list *curr, void *(*f)(void *), void (*del)(void *));
 int			ft_lstsize(t_list *currlist);
+int			ft_until_this(char *str, char *this);
 #endif 

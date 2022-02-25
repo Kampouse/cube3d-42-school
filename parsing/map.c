@@ -44,16 +44,16 @@ int look_in_space(int current_line,t_game *game,int pos)
 {
 	int inc;
 
-	 inc = ft_until_this(game->map[current_line] + pos," \t\v");
+	 inc = ft_until_this(game->map[current_line] + pos," ");
 	if (inc < 0)
 		return (0);
 	if (inc > 0)
 	{
-			if (ft_strlen(game->map[current_line - 1]) >=  inc)
+			if ((int)ft_strlen(game->map[current_line - 1]) >=  inc)
 			{
 				if (game->map[current_line - 1][inc] == '1')
 					{
-						if (ft_strlen(game->map[current_line + 1] )>= inc &&  (game->map
+						if ((int)ft_strlen(game->map[current_line + 1] )>= inc &&  (game->map
 								[current_line + 1][inc] == '1'))
 						{
 							printf("what is thi\n");
@@ -95,6 +95,8 @@ int parsing(t_game *game)
 	{
 			printf("hellO\n");	
 		any_one_above_line(game,temp);
+		if(ft_between(game->map[temp],'1'))
+			printf("not valide");
 		any_one_bellow_line(game->map, temp);
 		look_in_space(temp,game,0);
 		temp++;
@@ -119,6 +121,8 @@ int first_seen(char *str)
 return(1);
 }
 
+
+
 void verif_no_space(t_game *game, int pos)
 {
 	int iter;
@@ -131,20 +135,13 @@ void verif_no_space(t_game *game, int pos)
 	if(ft_all(game->map[iter],'1'))
 		printf("hello\n");
 
-	while (game->map[iter])
-	{
-		if (ft_between(game->map[iter], '1'))
-			printf("erro\n");
 		if(ft_until_this(game->map[iter]," ") != -1)	
 		{
 			temp =  ft_until_this(game->map[iter]," ");
 			if(first_seen(game->map[iter]) || game->map[iter][temp - 1] != '1')
 				printf("%c\n",game->map[iter][temp - 1]);
 		}
-
-		iter++;
 	}
-}
 
 int any_one_above(t_game *map,int current_line, int pos)
 {
@@ -155,6 +152,11 @@ int any_one_above(t_game *map,int current_line, int pos)
 			{
 					if (map->map[current_line][pos]  == '1')
 						return (0);
+					else if( map->map[current_line][pos]  == ' ')
+					{
+						printf("herro");
+						return(1);
+					}
 					else
 						continue;
 			}
@@ -215,6 +217,11 @@ int any_one_bellow(char **map, int current_line, int pos)
 			{
 					if (map[current_line][pos]  == '1')
 						return (0);
+					 else if(map[current_line][pos]  == ' ')
+					{
+						printf("herror space found");
+						return(1);	
+					}
 					else
 						continue;
 			}
