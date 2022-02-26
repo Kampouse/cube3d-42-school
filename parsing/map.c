@@ -39,6 +39,45 @@ was_in_set = 1;
 return(0);
 }
 
+int last_seen_at(char *str, char elem)
+{
+int index;
+if(str)
+	{
+		index =  ft_strlen(str);
+		while(index >= 0)
+		{
+			if(str[index] == elem)
+				return(index);
+			index--;
+		}
+	}
+return (-1);
+}
+
+int any_before_after(char **map,int current_line)
+{
+	int pos;
+	int temp;	
+
+	const int  start_at = ft_until_this(map[current_line],"1");
+	pos = ft_until_this(map[current_line] + start_at, " ");
+	temp = pos;
+	if(pos < 0)
+	return (0);
+		while (pos >= 0 && ft_strlen(map[current_line] + temp) > 0)  
+		{
+			if((map[current_line][temp + 1] != '1') || ( map[current_line][temp - 1] != '1'))
+		{
+			if(!(last_seen_at( map[current_line],' ') > last_seen_at(map[current_line],'1')))
+			printf("wrong\n");
+				return (1);
+		}
+			pos = ft_until_this(map[current_line] + temp, "0");
+			temp += pos;
+		}
+return (0);
+}
 
 int look_in_space(int current_line,t_game *game,int pos)
 {
@@ -90,11 +129,10 @@ int parsing(t_game *game)
 	}
 	temp = game->map_data->iterator;
 		verif_no_space(game, temp);
-
 	while(game->map[temp])
 	{
-			printf("hellO\n");	
 		any_one_above_line(game,temp);
+		any_before_after(game->map, temp);
 		if(ft_between(game->map[temp],'1'))
 			printf("not valide");
 		any_one_bellow_line(game->map, temp);
@@ -103,8 +141,6 @@ int parsing(t_game *game)
 	}
 	return (0);
 }
-
-
 
 int first_seen(char *str)
 {
@@ -135,11 +171,11 @@ void verif_no_space(t_game *game, int pos)
 	if(ft_all(game->map[iter],'1'))
 		printf("hello\n");
 
-		if(ft_until_this(game->map[iter]," ") != -1)	
+	if(ft_until_this(game->map[iter]," ") != -1)	
 		{
 			temp =  ft_until_this(game->map[iter]," ");
 			if(first_seen(game->map[iter]) || game->map[iter][temp - 1] != '1')
-				printf("%c\n",game->map[iter][temp - 1]);
+				printf("%c \n",game->map[iter][temp - 1]);
 		}
 	}
 
@@ -208,8 +244,6 @@ int any_one_bellow_line(char **map,int current_line)
 // this funcion behave correctcly 
 int any_one_bellow(char **map, int current_line, int pos)
 {
-	const	int base_len = ft_strlen(map[current_line]);	
-
 	while(map[current_line])
 	{
 			current_line++;
@@ -217,10 +251,10 @@ int any_one_bellow(char **map, int current_line, int pos)
 			{
 					if (map[current_line][pos]  == '1')
 						return (0);
-					 else if(map[current_line][pos]  == ' ')
+					else if(map[current_line][pos]  == ' ')
 					{
 						printf("herror space found");
-						return(1);	
+						return (1);	
 					}
 					else
 						continue;
@@ -230,6 +264,5 @@ int any_one_bellow(char **map, int current_line, int pos)
 			else if(map[current_line - 1][pos] &&(map[current_line - 1][pos] == '1'))
 					return(0);
 	}
-
-return (0);	
+return (0);
 }
