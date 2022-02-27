@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/21 15:15:13 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/26 20:50:31 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ int	main(int argc, char *argv[])
 	state->map_data  = init_map();
 	state->map = NULL;
 	state->map = map_init(mapcreator("map.cub"));
-	if (parsing(state))
+	if (parsing(state) != 0)
 	{
+		printf("what");
+			printf("hello\n");
 		free(state);
 		return (0);	
 	}
