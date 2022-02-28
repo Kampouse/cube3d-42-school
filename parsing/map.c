@@ -79,9 +79,10 @@ int any_before_after(char **map, int current_line)
 return (0);
 }
 
-int look_in_space(int current_line,t_game *game,int pos)
+int look_in_space(int current_line, t_game *game, int pos)
 {
 	int inc;
+
 
 	 inc = ft_until_this(game->map[current_line] + pos, " ");
 	if (inc < 0)
@@ -92,7 +93,8 @@ int look_in_space(int current_line,t_game *game,int pos)
 			{
 				if (game->map[current_line - 1][inc] == '1')
 				{
-					if ((int)ft_strlen(game->map[current_line + 1] )>= inc && (game->map
+					if ((int)ft_strlen(game->map[
+							current_line + 1] )>= inc && (game->map
 							[current_line + 1][inc] == '1'))
 							return (0);
 				}
@@ -103,40 +105,80 @@ int look_in_space(int current_line,t_game *game,int pos)
 return (0);
 }
 
-int parsing(t_game *game)
+
+int only_space(char *str)
 {
-	int temp;
-	if (loop_directions(game))
+	if(str)
 	{
-		free(game);
-		return(0);
-	}
-	while( game->map[game->map_data->iterator] && ft_all(game->map[game->map_data->iterator],'1'))
-		game->map_data->iterator++;
-
-
-	while (ft_strlen(game->map[game->map_data->iterator]) == 0)
-	{
-		game->map_data->iterator++;
-	}
-	temp = game->map_data->iterator;
-	while(game->map[temp])
-	{
-		any_one_above_line(game,temp);
-		if(any_before_after(game->map, temp))
-			return(1);
-		if(ft_between(game->map[temp],'1') != 0)
-		{
-				return (1);
-		}
-		if(any_one_bellow_line(game->map, temp))
+		if(str && ft_strlen(str) == 0)
 			return (1);
-		if(look_in_space(temp, game, 0))
+		if(str && was_in_set( str," \n\t\v") == 0)
+			return (1);
+	}
+	else
+		return (1);
+return (0);
+}
+
+
+int parse_location(t_game *game)
+{
+	int	temp;
+	int	found;
+	int	inc;
+
+temp =  game->map_data->start;
+	found = 0;
+	inc = 0;
+	 while(game->map[temp] && !only_space(game->map[temp]))
+	{
+		 if(ft_until_this(game->map[temp],"NEWS") != -1)
 		{
-			return(1);
+			game->player->x_pos = ft_until_this(game->map[temp], "NEWS");	
+			game->player->y_pos = inc;
+				found++;
 		}
 		temp++;
+		inc++;
+	}
+	if (found > 1)
+		return (1);
+		temp =  game->map_data->start;
+	 while (game->map[temp]  && !only_space(game->map[temp]))
+	{
+		 if (was_in_set(game->map[temp], "01NEWS ") != 0)
+			printf("wrong element in field");
+		temp++;	
+	}
+return (0);
+}
 
+// repalce if by assert;
+int	parsing(t_game *game, int temp)
+{
+	if (loop_directions(game))
+		return(1);
+	while (game->map[game->map_data->iterator + 1] && only_space(game->map[
+				game->map_data->iterator]))
+		game->map_data->iterator++;
+	temp = game->map_data->iterator;
+		game->map_data->start = temp;
+	if (ft_all(game->map[temp], '1'))
+		return (1);
+	while (game->map[temp])
+	{
+		if (only_space(game->map[temp]))
+			return (ft_all(game->map[temp - 1],'1'));
+		if (any_one_above_line(game, temp))
+			return (1);
+		if (any_before_after(game->map, temp))
+			return(1);
+		if (ft_between(game->map[temp],'1') != 0)
+			return (1);
+		if (any_one_bellow_line(game->map, temp))
+			return (1);
+		if (look_in_space(temp++, game, 0))
+			return (1);
 	}
 	return (0);
 }
@@ -195,11 +237,11 @@ int any_one_above(t_game *map, int current_line, int pos)
 						return (1);
 					}
 					else
-						continue;
+						continue ;
 			}
 			if (pos > (int)ft_strlen(map->map[current_line]))
 				return (1);
-			else if(map->map[current_line + 1][pos] == '1')
+			else if (map->map[current_line + 1][pos] == '1')
 					return(0);
 	}
 return (0);

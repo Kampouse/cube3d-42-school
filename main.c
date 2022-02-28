@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/26 20:50:31 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/27 19:37:00 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -59,17 +59,19 @@ int	main(int argc, char *argv[])
 	(void)argc;
 	t_game		*state;
 	state = malloc(sizeof(t_game));
+	state->player = malloc(sizeof(t_player));
 	state->map_data  = init_map();
 	state->map = NULL;
 	state->map = map_init(mapcreator("map.cub"));
-	if (parsing(state) != 0)
+	if (parsing(state,0) != 0)
 	{
-		printf("what");
-			printf("hello\n");
-		free(state);
+			printf("an erro as occured \n");
+			free(state);
 		return (0);	
 	}
 
+	printf("%d -- \n",state->map_data->start);
+	parse_location(state, 0, 0);	
 	int inc;
 	inc = -1;
 	/*

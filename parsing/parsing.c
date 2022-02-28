@@ -221,6 +221,7 @@ int  loop_directions(t_game *state)
 	}
 	else
 		status = printf("Error : could not readfile\n");
+	state->map_data->iterator++;
 return (status);
 }
 

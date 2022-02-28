@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/20 20:02:58 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/27 19:14:02 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ typedef struct t_dlist
 	struct t_dlist	*prev;
 }					t_dlist;	
 
+
+typedef struct t_player
+{
+	int		x_pos;
+	int		y_pos;
+	int		orientation;
+}				t_player;	
+
 typedef struct t_map
 {
 	char	*norh_texture;
@@ -42,18 +50,21 @@ typedef struct t_map
 	int		*ceiling_color;
 	int		*start_position;
 	int		orientation;
+	int		start;
 	int		iterator;
 } t_map;
 typedef struct t_game
 {
-	t_map	*map_data;
-	void	*mlx;
-	void	*win;
-	char	**map;
-	int		image_state;
-	int		screenwidth;
-	int		screeheight;
+	t_map		*map_data;
+	t_player	*player;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			image_state;
+	int			screenwidth;
+	int			screeheight;
 }					t_game;	
+
 t_dlist	*ft_lst_lastnode(t_dlist *currlist);
 t_dlist	*ft_lst_firstnode(t_dlist *currlist);
 t_dlist	*ft_lst_prevnode(t_dlist *currlist);
@@ -88,5 +99,6 @@ int		loop_directions(t_game *state);
 void	free_list(t_dlist *head);
 t_map *init_map(void);
 char *skip_empty_line(char *str);
-int parsing(t_game *game);
+int parsing(t_game *game,int temp);
+int parse_location(t_game *game, int found, int inc);
 #endif 

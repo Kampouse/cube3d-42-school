@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:39:13 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/26 22:36:25 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:08:55 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	ft_all(char *string, char comp)
 		}
 		inc++;
 	}
+	if(ft_strlen(str) == 0)
+		return (1);
 	free((void *)str);
 	return (0);
 }
