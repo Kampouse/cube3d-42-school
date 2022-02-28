@@ -120,37 +120,45 @@ int only_space(char *str)
 return (0);
 }
 
-
-int parse_location(t_game *game)
+int parser_helper(t_game *game,int temp,int inc)
 {
-	int	temp;
-	int	found;
-	int	inc;
 
-temp =  game->map_data->start;
-	found = 0;
-	inc = 0;
-	 while(game->map[temp] && !only_space(game->map[temp]))
-	{
-		 if(ft_until_this(game->map[temp],"NEWS") != -1)
+	if (ft_until_this(game->map[temp], "NEWS") != -1)
 		{
 			game->player->x_pos = ft_until_this(game->map[temp], "NEWS");	
 			game->player->y_pos = inc;
-				found++;
+			return (1);
 		}
+	return (0);
+}
+int parse_location(t_game *game, int found, int inc)
+{
+	int	temp;
+
+	temp =  game->map_data->start;
+	 while(game->map[temp] && !only_space(game->map[temp]))
+	{
+		found += parser_helper(game, temp, inc);
 		temp++;
 		inc++;
 	}
 	if (found > 1)
+	{
 		return (1);
-		temp =  game->map_data->start;
+	}
+	temp =  game->map_data->start;
 	 while (game->map[temp]  && !only_space(game->map[temp]))
 	{
 		 if (was_in_set(game->map[temp], "01NEWS ") != 0)
-			printf("wrong element in field");
+		{
+			printf("wrong element in field\n");
+			return (1);
+		}
 		temp++;	
 	}
-return (0);
+	if (found == 0)
+		return (1);
+	return (0);
 }
 
 // repalce if by assert;
