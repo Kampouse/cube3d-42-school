@@ -126,11 +126,43 @@ int parser_helper(t_game *game,int temp,int inc)
 	if (ft_until_this(game->map[temp], "NEWS") != -1)
 		{
 			game->player->x_pos = ft_until_this(game->map[temp], "NEWS");	
-			game->player->y_pos = inc;
+			game->player->orientation = game->map[temp][game->player->x_pos];			
+		  if (ft_until_this(game->map[temp] + game->player->x_pos, "NEWS")  < 0)
+			return (2);
+		game->player->y_pos = inc;
+		
 			return (1);
 		}
 	return (0);
 }
+
+int validate_file(t_game *game)
+{
+	int file;
+	
+	file = open(game->map_data->norh_texture, R_OK);
+	if (file > 0) 
+		close(file);
+	else
+		return (1);
+	file = open(game->map_data->est_texture, R_OK);
+	if (file > 0) 
+		close(file);
+	else
+		return (1);
+	file = open(game->map_data->west_texture, R_OK);
+	if (file > 0) 
+		close(file);
+	else
+		return (1);
+	file = open(game->map_data->south_texture, R_OK);
+	if (file > 0) 
+		close(file);
+	else
+		return (1);
+	return (0);
+}
+
 int parse_location(t_game *game, int found, int inc)
 {
 	int	temp;
@@ -143,9 +175,7 @@ int parse_location(t_game *game, int found, int inc)
 		inc++;
 	}
 	if (found > 1)
-	{
 		return (1);
-	}
 	temp =  game->map_data->start;
 	 while (game->map[temp]  && !only_space(game->map[temp]))
 	{

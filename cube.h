@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/27 19:41:47 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/02/28 19:27:36 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 #include "stdlib.h"
 #include "utils/get_next_line.h"
 #include "utils/libft/libft.h"
-#include "utils/minilibx/mlx.h"
-
+#include "MLX/include/MLX42/MLX42.h"
+#include "stdbool.h"
+#include "math.h"
 
 typedef struct t_dlist
 {
@@ -35,9 +36,11 @@ typedef struct t_dlist
 
 typedef struct t_player
 {
-	int		x_pos;
-	int		y_pos;
-	int		orientation;
+	int			x_pos;
+	int			y_pos;
+	int			orientation;
+	long		direction;
+	int			scale;
 }				t_player;	
 
 typedef struct t_map
@@ -49,15 +52,15 @@ typedef struct t_map
 	int		*floor_color;
 	int		*ceiling_color;
 	int		*start_position;
-	int		orientation;
 	int		start;
+	int		last;
 	int		iterator;
 } t_map;
 typedef struct t_game
 {
 	t_map		*map_data;
+	t_mlx		*mlx;
 	t_player	*player;
-	void		*mlx;
 	void		*win;
 	char		**map;
 	int			image_state;
@@ -101,4 +104,9 @@ t_map *init_map(void);
 char *skip_empty_line(char *str);
 int parsing(t_game *game,int temp);
 int parse_location(t_game *game, int found, int inc);
+int delete_texture(t_map *map);
+int only_space(char *str);
+void  resize_map(t_game *game);
+void player_direction(t_game *game);
+int find_at(t_game *map, long x_pos, long y_pos);
 #endif 

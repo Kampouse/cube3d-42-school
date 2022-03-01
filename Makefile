@@ -1,6 +1,6 @@
 NAME = solong
  
-FLAGS =   -g -Wall -Wextra  -framework OpenGL -framework AppKit -lmlx 
+FLAGS =   -g -Wall -Wextra  -framework Cocoa -framework OpenGl -framework IOKit
 SRCS = 	main.c \
 		utils/get_next_line.c  \
 		utils/get_next_line_utils.c  \
@@ -11,6 +11,9 @@ SRCS = 	main.c \
 		parsing/mapInit.c	\
 		parsing/parsing.c	\
 		parsing/map.c	\
+		parsing/orientation.c	\
+		parsing/resize_map.c	\
+		operator/find_at.c	\
 		render/render.c 	\
 		player.c	\
 		init/main_init.c
@@ -28,7 +31,7 @@ all: ${NAME}
 
 ${NAME}:${OBJS} 
 		@$(MAKE) -C ./utils/libft
-		@${CC}  ${FLAGS} ${OBJS}    ./utils/libft/libft.a -o ${NAME}
+		@${CC}  ${FLAGS} ${OBJS}    ./utils/libft/libft.a -L./MLX -lMLX42  -I ./MLX42/include  ~/.brew/opt/glfw/lib/libglfw.3.3.dylib -o ${NAME}
 
 clean:
 	    @${RM} ${OBJS}	

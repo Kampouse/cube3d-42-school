@@ -43,7 +43,8 @@ int delete_texture(t_map *map)
 	if(map)
 	{
 		map->ceiling_color = ft_free(map->ceiling_color);
-		map->norh_texture = ft_free(map->south_texture);
+		map->south_texture = ft_free(map->south_texture);
+		map->norh_texture = ft_free(map->norh_texture);
 		map->west_texture = ft_free(map->west_texture);
 		map->est_texture = ft_free(map->est_texture);
 		map->floor_color = ft_free(map->floor_color);
