@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/28 19:31:05 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/03/01 20:11:53 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -74,20 +74,25 @@ int	main(int argc, char *argv[])
 	state->player = malloc(sizeof(t_player));
 	state->player->scale = 32;
 	state->map_data  = init_map();
-	state->map = NULL;
 	state->map = map_init(mapcreator("map.cub"));
 	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0)
 	{
 			printf("an erro as occured \n");
-			freelist(state->map);
-			delete_texture(state->map_data);
+			//freelist(state->map);
+			//delete_texture(state->map_data);
 			//free(state->map_data);
-			free(state->player);
-			free(state);
+			//free(state->player);
+			//free(state);
 		return (0);	
 	}
 	resize_map(state);
 	player_direction(state);
+	int time;
+	time = 10;
+	state->player->x_pos = state->player->x_pos;
+	state->player->y_pos = state->player->y_pos;
+
+	find_at(state, state->player->x_pos * 64, state->player->y_pos * 64,time);
 	//t_mlx_image *g_img;
 	//state->mlx = mlx_init(1000, 1000, "MLX42", 0);
 	//g_img = mlx_new_image(mlx, 128, 128);
@@ -97,8 +102,8 @@ int	main(int argc, char *argv[])
 	//mlx_loop_hook(state->mlx,&hook,state->mlx);
 	//mlx_loop(state->mlx);
 	//mlx_terminate(state->mlx);
-		printf("%ld -- \n",state->player->direction);
-		find_at(state,100,300);
+		//printf("%ld -- \n",state->player->direction);
+		//find_at(state,100,300);
 		freelist(state->map);
 		delete_texture(state->map_data);
 		free(state->player);

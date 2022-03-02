@@ -17,7 +17,7 @@ return (NULL);
 t_map *init_map(void)
 {
 	t_map *map;
-	map = ft_calloc(1,sizeof(*map));
+	map = malloc(sizeof(*map));
 	map->ceiling_color = NULL;
 	map->norh_texture = NULL;
 	map->west_texture = NULL;

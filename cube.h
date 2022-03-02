@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/28 19:27:36 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/03/01 16:49:57 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct t_player
 	int			x_pos;
 	int			y_pos;
 	int			orientation;
-	long		direction;
+	double		direction;
 	int			scale;
 }				t_player;	
 
@@ -108,5 +108,5 @@ int delete_texture(t_map *map);
 int only_space(char *str);
 void  resize_map(t_game *game);
 void player_direction(t_game *game);
-int find_at(t_game *map, long x_pos, long y_pos);
+int find_at(t_game *map, long x_pos, long y_pos,int time);
 #endif 
