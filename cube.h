@@ -1,4 +1,5 @@
 /* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cube.h	                                            :+:      :+:    :+:   */
@@ -17,6 +18,7 @@
 # define DOWN 1
 # define UP 13
 # define ESC 53
+# define TWO_PI 6.28318530
 
 #include "stdio.h"
 #include "stdlib.h"
@@ -32,6 +34,14 @@ typedef struct t_dlist
 	struct t_dlist	*next;
 	struct t_dlist	*prev;
 }					t_dlist;	
+
+
+typedef struct t_ray
+{
+	long			x_pos;
+	long			y_pos;
+
+}					t_ray;	
 
 
 typedef struct t_player
