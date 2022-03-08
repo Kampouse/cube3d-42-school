@@ -78,6 +78,29 @@ typedef struct t_game
 	int			screeheight;
 }					t_game;	
 
+typedef struct	s_image {
+
+	t_mlx_image *image;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_image;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 t_dlist	*ft_lst_lastnode(t_dlist *currlist);
 t_dlist	*ft_lst_firstnode(t_dlist *currlist);
 t_dlist	*ft_lst_prevnode(t_dlist *currlist);
@@ -118,5 +141,11 @@ int delete_texture(t_map *map);
 int only_space(char *str);
 void  resize_map(t_game *game);
 void player_direction(t_game *game);
-int find_at(t_game *map, long x_pos, long y_pos,int time);
+int cast_ray(t_game *map);
+uint32_t color_to_rgb(int a ,int r , int g , int b);
+int square_shape(t_image *image,int x_pos, int y_pos,uint32_t color);
+void draw_map(t_game *state, t_image image,int scale);
+void draw_line(t_image *image,int x0, int y0, int x1, int y1) ;
+void draw_player(t_game *state,t_image image) ;
+int draw_circle(t_image *image, int start_x,int start_y,int rayon);
 #endif 

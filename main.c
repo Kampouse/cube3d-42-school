@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2022/03/01 20:11:53 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/03/07 19:57:20 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "utils/get_next_line.h"
 #include "utils/libft/libft.h"
 #include "MLX/include/MLX42/MLX42.h"
+
+
 
 void	free_list(t_dlist *head)
 {
@@ -55,14 +57,19 @@ t_dlist	*verif(t_dlist *map)
 
 void	hook(void *param)
 {
-	t_mlx	*mlx;
-
+	t_mlx *mlx;
 	mlx = param;
+	int mouse_x;
+	int mouse_y;
+
+	
+	//////////////////mlx_set_mouse_pos(mlx,500,500);
+	
 	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
 	{
-		mlx_terminate(mlx);
 		exit(0);
 	}
+	//mlx_focus(mlx);
 }
 int	main(int argc, char *argv[])
 {
@@ -70,6 +77,7 @@ int	main(int argc, char *argv[])
 	(void)argv;
 	(void)argc;
 	t_game		*state;
+	t_image image;
 	state = malloc(sizeof(t_game));
 	state->player = malloc(sizeof(t_player));
 	state->player->scale = 32;
@@ -91,23 +99,37 @@ int	main(int argc, char *argv[])
 	time = 10;
 	state->player->x_pos = state->player->x_pos;
 	state->player->y_pos = state->player->y_pos;
+	//cast_ray(state);
+	state->mlx = mlx_init(1000, 1000, "MLX42", 0);
+	image.image = mlx_new_image(state->mlx,1920,1080);
 
-	find_at(state, state->player->x_pos * 64, state->player->y_pos * 64,time);
-	//t_mlx_image *g_img;
-	//state->mlx = mlx_init(1000, 1000, "MLX42", 0);
 	//g_img = mlx_new_image(mlx, 128, 128);
 	//ft_memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
 	//mlx_image_to_window(mlx,g_img,100,100);
 	//mlx_loop_hook(mlx, &hook, mlx);
-	//mlx_loop_hook(state->mlx,&hook,state->mlx);
-	//mlx_loop(state->mlx);
+	//
+	//
+	t_mlx_inst *element;
+	// element = mlx_image_to_window(state->mlx,image.image,-100,-200);
+	draw_map(state,image,32);
+	square_shape(&image,state->player->x_pos * 32, state->player->y_pos * 32,color_to_rgb(0,0,0,255));
+	draw_player(state,image);
+	//draw_line(&image,(state->player->x_pos * 32) + 16, (state->player->y_pos * 32) + 16,(state->player->x_pos * 32) + 64, (state->player->y_pos * 32));
+	//draw_circle(&image,state->player->x_pos * 32,state->player->y_pos * 32,10);	
+	//draw_line(&image,state->player->x_pos * 32,state->player->y_pos * 32,1,1); 
+	mlx_image_to_window(state->mlx,image.image,0,0);
+	mlx_loop_hook(state->mlx,&hook,state->mlx);
+	mlx_loop(state->mlx);
+	int mouse_x; 
+	int mouse_y; 
+	//mlx_terminate(state->mlx);
 	//mlx_terminate(state->mlx);
 		//printf("%ld -- \n",state->player->direction);
 		//find_at(state,100,300);
-		freelist(state->map);
-		delete_texture(state->map_data);
-		free(state->player);
-		free(state);
+		//freelist(state->map);
+		//delete_texture(state->map_data);
+		//free(state->player);
+		//free(state);
 	return(0);
 		//mlx_new_window(state.mlx,100,100,"helo");
 		//mlx_loop(state.mlx);
