@@ -15,6 +15,7 @@ SRCS = 	main.c \
 		parsing/resize_map.c	\
 		operator/find_at.c	\
 		operator/graphic_operator.c	\
+		operator/raycaster.c	\
 		render/render.c 	\
 		player.c	\
 		init/main_init.c

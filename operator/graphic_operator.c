@@ -34,13 +34,18 @@ void draw_line(t_image *image,int x0, int y0, int x1, int y1)
 		sy = 1;
 	else 
 		sy = -1;
-
 	if(dx > dy)
 		err = dx / 2;
 	else 
 		err = -dy / 2;
 	  while(1)
 	{
+		if(x0 < 0)
+			x0 = 0;
+		if(y0 < 0)
+			y0 = 0;
+
+
 		mlx_putpixel(image->image,x0,y0,color_to_rgb(0,0,0,150));
 		if (x0==x1 && y0==y1)
 				break;
@@ -150,7 +155,7 @@ double  degree2radian(int a)
 	return (a * 0.017453292519); 
 }
 
-float degToRad(int a)
+float degToRad(float a)
 {
 	return a*M_PI/180.0;
 }
@@ -160,32 +165,29 @@ void getEndPoint(double angle, int len,t_game *game, int *end_x, int *end_y)
         *end_y = (game->player->y_pos * 32) + len * sin(degree2radian(angle));
 } // getEndPoint
 
-void draw_player(t_game *state,t_image image) 
+int FixAng(int a){ if(a>359){ a-=360;} if(a<0){ a+=360;} return a;}
+
+
+
+void draw_player(t_game *state,t_image image,t_ray *ray) 
 {
-	
-	double x_pos = state->player->x_pos * 32;
-	double  y_pos = state->player->y_pos * 32;
+	double x_pos = floor(state->player->x_pos * 32);
+	double  y_pos = floor(state->player->y_pos * 32);
+	double  angle = ray->dir - 60;
+	const double step_angle = 20;
 	float inc ;
+		
+	inc = 0;
+		const int   len = find_len(x_pos,y_pos,x_pos + ray->x_pos, y_pos + ray->y_pos);
 
-	int start;
-	start = 
-	inc = -state->player->direction ;
 
-
-		const int   len = find_len(x_pos,y_pos,x_pos + 64, y_pos + 64);
-		while(start != state->player->direction)
-	{
-
-	
-		if(state->player->direction == 180 || state->player->direction == 90)
+		
+					printf("%d\n",len);
+		ray->dir = FixAng(ray->dir);	
+		if(ray->dir == 180 || ray->dir == 90)
 			inc = 0.01; 
-		else
-			inc = 0;
-		//getEndPoint(inc,64,state,&end_x,&end_y);
-		printf("%f\n",state->player->direction);	
-		draw_line(&image,x_pos, y_pos,  (x_pos + sin(degToRad(state->player->direction + start ) - inc) * len), y_pos + cos(degToRad(state->player->direction + start) - inc) * len);
-		start++;
-	}
-		inc += 0.1 ;
+
+		draw_line(&image,x_pos, y_pos, (x_pos + sin(degToRad(ray->dir) - inc) * len), y_pos + cos(degToRad(ray->dir) - inc) * len);
+	//	cast_ray(state,&image);
 return ;
 }

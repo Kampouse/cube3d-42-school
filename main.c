@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2022/03/07 19:57:20 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/03/13 20:59:57 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -71,6 +71,34 @@ void	hook(void *param)
 	}
 	//mlx_focus(mlx);
 }
+
+
+int draw_grid(t_image image)
+{
+
+	int inc;
+	int cin;
+	inc  = 32;
+	cin  = 32;
+	while(inc < 1000)
+	{
+
+		draw_line(&image,inc,1,inc,1000);
+		inc+= 32;
+	}
+	while(cin < 1000)
+	{
+		draw_line(&image,cin - 1000,cin,1000,cin);
+		cin+= 32;
+	}
+
+
+
+
+
+}
+
+
 int	main(int argc, char *argv[])
 {
 
@@ -97,12 +125,14 @@ int	main(int argc, char *argv[])
 	player_direction(state);
 	int time;
 	time = 10;
-	state->player->x_pos = state->player->x_pos;
-	state->player->y_pos = state->player->y_pos;
+	state->player->x_pos = (state->player->x_pos ) * state->player->scale;
+	state->player->y_pos = (state->player->y_pos)  * state->player->scale;
+
+	state->player->x_pos = state->player->x_pos - 16;
+	state->player->y_pos = (state->player->y_pos - 16)  ;
 	//cast_ray(state);
 	state->mlx = mlx_init(1000, 1000, "MLX42", 0);
 	image.image = mlx_new_image(state->mlx,1920,1080);
-
 	//g_img = mlx_new_image(mlx, 128, 128);
 	//ft_memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
 	//mlx_image_to_window(mlx,g_img,100,100);
@@ -112,11 +142,37 @@ int	main(int argc, char *argv[])
 	t_mlx_inst *element;
 	// element = mlx_image_to_window(state->mlx,image.image,-100,-200);
 	draw_map(state,image,32);
-	square_shape(&image,state->player->x_pos * 32, state->player->y_pos * 32,color_to_rgb(0,0,0,255));
-	draw_player(state,image);
+	draw_grid(image);
+	int cin;
+cin = 0;
+	state->player->direction = 45;
+	{
+
+		raycaster(state,image);
+	}
+
+	//square_shape(&image, state->player->x_pos, state->player->y_pos, color_to_rgb(0,0,0,255));
+	//draw_line(&image,state->player->x_pos,state->player->y_pos,state->player->x_pos + 200,state->player->y_pos + 200);
+	t_ray ray;
+
+	
+	ray.dir = 180;
+	 ray.x_pos   =   state->player->x_pos  ;
+	 ray.y_pos	=   state->player->y_pos;;
+
+	 int inc;
+	 inc = 0;
+
+	//	cast_ray(state,&image);
+
+		//draw_player(state, image ,&ray);
+			ray.dir -= 60;
+		//draw_player(state, image ,&ray);
+			ray.dir += 120;
+	//	draw_player(state, image ,&ray);
 	//draw_line(&image,(state->player->x_pos * 32) + 16, (state->player->y_pos * 32) + 16,(state->player->x_pos * 32) + 64, (state->player->y_pos * 32));
 	//draw_circle(&image,state->player->x_pos * 32,state->player->y_pos * 32,10);	
-	//draw_line(&image,state->player->x_pos * 32,state->player->y_pos * 32,1,1); 
+	//draw_line(&image,0,state->player->y_pos * 32,ray.x_pos,ray.y_pos); 
 	mlx_image_to_window(state->mlx,image.image,0,0);
 	mlx_loop_hook(state->mlx,&hook,state->mlx);
 	mlx_loop(state->mlx);
