@@ -15,7 +15,7 @@ void player_direction(t_game *game)
 	}
 	else if (game->player->orientation == 'E')
 	{
-		game->player->direction = 90;
+		game->player->direction = 160;
 	}
 	else if (game->player->orientation == 'W')
 	{

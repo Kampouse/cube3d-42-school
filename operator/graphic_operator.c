@@ -63,9 +63,6 @@ void draw_line(t_image *image,int x0, int y0, int x1, int y1)
 	  }
 }
 
-   
-
- 
 
 int draw_circle(t_image *image, int start_x,int start_y,int rayon)
 {

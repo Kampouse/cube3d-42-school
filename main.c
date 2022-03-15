@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2022/03/13 20:59:57 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:57:34 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -131,8 +131,9 @@ int	main(int argc, char *argv[])
 	state->player->x_pos = state->player->x_pos - 16;
 	state->player->y_pos = (state->player->y_pos - 16)  ;
 	//cast_ray(state);
-	state->mlx = mlx_init(1000, 1000, "MLX42", 0);
-	image.image = mlx_new_image(state->mlx,1920,1080);
+	state->mlx = mlx_init(1920, 1080, "MLX42", 0);
+	image.image = mlx_new_image(state->mlx,1000,1080);
+
 	//g_img = mlx_new_image(mlx, 128, 128);
 	//ft_memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
 	//mlx_image_to_window(mlx,g_img,100,100);
@@ -145,10 +146,15 @@ int	main(int argc, char *argv[])
 	draw_grid(image);
 	int cin;
 cin = 0;
-	state->player->direction = 45;
 	{
+	state->player->direction = 0;
 
-		raycaster(state,image);
+	while(state->player->direction < PI * 2 )
+		{
+			raycaster(state,image);
+			state->player->direction += PI / 72;
+		}
+
 	}
 
 	//square_shape(&image, state->player->x_pos, state->player->y_pos, color_to_rgb(0,0,0,255));
