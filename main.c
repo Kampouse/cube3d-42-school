@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2022/03/15 17:57:34 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:15:57 by jemartel         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -147,12 +147,13 @@ int	main(int argc, char *argv[])
 	int cin;
 cin = 0;
 	{
-	state->player->direction = 0;
+		state->player->direction = degToRad(state->player->direction);
 
-	while(state->player->direction < PI * 2 )
+
+	while(state->player->direction < PI * 1.5   )
 		{
 			raycaster(state,image);
-			state->player->direction += PI / 72;
+			state->player->direction += PI / 84;
 		}
 
 	}

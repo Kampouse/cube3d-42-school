@@ -7,31 +7,22 @@ int raycaster(t_game *game ,t_image image)
 
 	float dy =    (game->player->y_pos  - (((float)game->player->y_pos / 32) * 32));
 	float dx = (game->player->y_pos  - ((((float)game->player->y_pos / 32) * 32)));
+	float x_len =  dx;
+	float y_len =  dy;
+	float max_value;
+	int inc;
+	const float delta_x = sin(game->player->direction) / 1;
+	const float delta_y = cos(game->player->direction);
 
-	float x_len =  (16);
-	float y_len =  (16);
-
-
-	float delta_x = sin(game->player->direction) / 1;
-	float delta_y = cos(game->player->direction);
-
-
-	 float delta = sqrt(((x_len * x_len)  + (y_len * y_len)) / 2);
-
-
-
-		dx = cos(degToRad(game->player->direction)) * delta_x - sin(degToRad(game->player->direction)) * delta_y;
-		dy = sin(degToRad(game->player->direction)) * delta_x + cos(degToRad(game->player->direction)) * delta_y;
-		y_len = (game->player->y_pos  ) +	(delta_x *  sinf(game->player->direction)) * 32;
-		x_len  =  (game->player->x_pos ) + (delta_x *  cosf(game->player->direction));
-	float	max_value = fmax(fabs(dx), fabs(dy));
+	dx = cos(degToRad(game->player->direction)) * delta_x +  sin(degToRad(game->player->direction)) * delta_y;
+	dy = sin(degToRad(game->player->direction)) * delta_x + cos(degToRad(game->player->direction)) * delta_y;
+	max_value = fmax(fabs(dx), fabs(dy));
+	inc = 1;
 	dx/= max_value;
 	dy/= max_value;
-	dx *=16;	
-	dy *=16;	
-			draw_line(&image,game->player->x_pos,game->player->y_pos,game->player->x_pos  + dx ,game->player->y_pos  + dy);
-
-		printf("%f %f \n",x_len,y_len);
+			while(game->map[ (int)(game->player->y_pos  + (dy * inc)) >> 5][(int)(game->player->x_pos + (dx * inc)) >> 5] != '1')
+				inc++;		
+			draw_line(&image, game->player->x_pos, game->player->y_pos, game->player->x_pos  + (dx * inc),game->player->y_pos  + (dy * inc));
 	//	printf("%f",yintersect);;
 	//long yintersect =    game->player->y_pos +  (10* sin(degToRad(game->player->direction)));;
 	//printf("%ld %ld" ,  xintersect, yintersect);
