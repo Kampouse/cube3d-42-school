@@ -2,19 +2,17 @@
 
 
 
-int raycaster(t_game *game ,t_image image)
+int raycaster(t_game *game ,t_image image,float angle)
 {
 
-	float dy =    (game->player->y_pos  - (((float)game->player->y_pos / 32) * 32));
-	float dx = (game->player->y_pos  - ((((float)game->player->y_pos / 32) * 32)));
-	float x_len =  dx;
-	float y_len =  dy;
+	float dy ;
+	float dx ;
 	float max_value;
 	int inc;
 	const float delta_x = sin(game->player->direction) / 1;
 	const float delta_y = cos(game->player->direction);
 
-	dx = cos(degToRad(game->player->direction)) * delta_x +  sin(degToRad(game->player->direction)) * delta_y;
+	dx = cos(degToRad(game->player->direction)) * delta_x -  sin(degToRad(game->player->direction)) * delta_y;
 	dy = sin(degToRad(game->player->direction)) * delta_x + cos(degToRad(game->player->direction)) * delta_y;
 	max_value = fmax(fabs(dx), fabs(dy));
 	inc = 1;

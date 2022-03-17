@@ -49,7 +49,9 @@ typedef struct t_player
 	int			x_pos;
 	int			y_pos;
 	int			orientation;
-	double		direction;
+	float		direction;
+	float		delta_x;
+	float		delta_y;
 	int			scale;
 }				t_player;	
 
@@ -151,5 +153,5 @@ int draw_circle(t_image *image, int start_x,int start_y,int rayon);
 double find_len(int startx, int starty,int endx, int endy) ;
 float degToRad(float a);
 
-int raycaster(t_game *game ,t_image image);
+int raycaster(t_game *game ,t_image image,float angle);
 #endif 

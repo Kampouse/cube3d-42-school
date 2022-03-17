@@ -1,22 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/03 17:37:17 by jemartel          #+#    #+#             */
-/*   Updated: 2022/03/16 15:15:57 by jemartel         ###   ########.fr       */
-/*                                                                           */
-/* ************************************************************************** */
-
 #include "cube.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "utils/get_next_line.h"
 #include "utils/libft/libft.h"
 #include "MLX/include/MLX42/MLX42.h"
-
 
 
 void	free_list(t_dlist *head)
@@ -147,41 +134,23 @@ int	main(int argc, char *argv[])
 	int cin;
 cin = 0;
 	{
-		state->player->direction = degToRad(state->player->direction);
 
+		state->player->direction = state->player->direction;
 
-	while(state->player->direction < PI * 1.5   )
+	float	 until = state->player->direction +  PI / 6;
+		int inc = 1;	
+
+		while (state->player->direction  < until)
 		{
-			raycaster(state,image);
-			state->player->direction += PI / 84;
+			raycaster(state, image, -state->player->direction);
+			raycaster(state, image, state->player->direction);
+			state->player->direction += PI / 48;
+			inc++;
 		}
-
 	}
 
-	//square_shape(&image, state->player->x_pos, state->player->y_pos, color_to_rgb(0,0,0,255));
-	//draw_line(&image,state->player->x_pos,state->player->y_pos,state->player->x_pos + 200,state->player->y_pos + 200);
-	t_ray ray;
-
-	
-	ray.dir = 180;
-	 ray.x_pos   =   state->player->x_pos  ;
-	 ray.y_pos	=   state->player->y_pos;;
-
-	 int inc;
-	 inc = 0;
-
-	//	cast_ray(state,&image);
-
-		//draw_player(state, image ,&ray);
-			ray.dir -= 60;
-		//draw_player(state, image ,&ray);
-			ray.dir += 120;
-	//	draw_player(state, image ,&ray);
-	//draw_line(&image,(state->player->x_pos * 32) + 16, (state->player->y_pos * 32) + 16,(state->player->x_pos * 32) + 64, (state->player->y_pos * 32));
-	//draw_circle(&image,state->player->x_pos * 32,state->player->y_pos * 32,10);	
-	//draw_line(&image,0,state->player->y_pos * 32,ray.x_pos,ray.y_pos); 
-	mlx_image_to_window(state->mlx,image.image,0,0);
-	mlx_loop_hook(state->mlx,&hook,state->mlx);
+	mlx_image_to_window(state->mlx, image.image, 0, 0);
+	mlx_loop_hook(state->mlx,&hook, state->mlx);
 	mlx_loop(state->mlx);
 	int mouse_x; 
 	int mouse_y; 
