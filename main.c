@@ -6,6 +6,7 @@
 #include "MLX/include/MLX42/MLX42.h"
 
 
+int draw_grid(t_image image);
 void	free_list(t_dlist *head)
 {
 	t_dlist	*next;
@@ -45,16 +46,30 @@ t_dlist	*verif(t_dlist *map)
 void	hook(void *param)
 {
 	t_mlx *mlx;
-	mlx = param;
+	t_game *state;
+	state = param;
+
 	int mouse_x;
 	int mouse_y;
-
-	
+	mlx = state->mlx;
 	//////////////////mlx_set_mouse_pos(mlx,500,500);
-	
-	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 	{
 		exit(0);
+	}
+if (mlx_is_key_down(mlx, MLX_KEY_A))
+	{
+		state->player->direction+= 0.1;
+	draw_map(state,state->image, 32);
+	draw_grid(state->image);
+	ray_fov(state, state->image,0 , 0);
+	}
+if (mlx_is_key_down(mlx, MLX_KEY_D))
+	{
+		state->player->direction-= 0.1;
+	draw_map(state,state->image, 32);
+	draw_grid(state->image);
+	ray_fov(state, state->image,0 , 0);
 	}
 	//mlx_focus(mlx);
 }
@@ -129,31 +144,13 @@ int	main(int argc, char *argv[])
 	//
 	t_mlx_inst *element;
 	// element = mlx_image_to_window(state->mlx,image.image,-100,-200);
-	draw_map(state,image,32);
+	state->image = image;
+	draw_map(state,image, 32);
 	draw_grid(image);
-	int cin;
-cin = 0;
-	{
-
-		state->player->direction = state->player->direction;
-
-	float	 until = state->player->direction +  PI / 6;
-		int inc = 1;	
-
-		while (state->player->direction  < until)
-		{
-			raycaster(state, image, -state->player->direction);
-			raycaster(state, image, state->player->direction);
-			state->player->direction += PI / 48;
-			inc++;
-		}
-	}
-
+	ray_fov(state, image,0 , 0);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
-	mlx_loop_hook(state->mlx,&hook, state->mlx);
+	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);
-	int mouse_x; 
-	int mouse_y; 
 	//mlx_terminate(state->mlx);
 	//mlx_terminate(state->mlx);
 		//printf("%ld -- \n",state->player->direction);

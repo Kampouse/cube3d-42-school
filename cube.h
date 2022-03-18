@@ -68,18 +68,6 @@ typedef struct t_map
 	int		last;
 	int		iterator;
 } t_map;
-typedef struct t_game
-{
-	t_map		*map_data;
-	t_mlx		*mlx;
-	t_player	*player;
-	void		*win;
-	char		**map;
-	int			image_state;
-	int			screenwidth;
-	int			screeheight;
-}					t_game;	
-
 typedef struct	s_image {
 
 	t_mlx_image *image;
@@ -88,6 +76,20 @@ typedef struct	s_image {
 	int			line_length;
 	int			endian;
 }				t_image;
+
+
+typedef struct t_game
+{
+	t_map		*map_data;
+	t_mlx		*mlx;
+	t_player	*player;
+	void		*win;
+	char		**map;
+	t_image		image;
+	int			image_state;
+	int			screenwidth;
+	int			screeheight;
+}					t_game;	
 
 
 
@@ -152,6 +154,6 @@ void draw_player(t_game *state,t_image image,t_ray *ray);
 int draw_circle(t_image *image, int start_x,int start_y,int rayon);
 double find_len(int startx, int starty,int endx, int endy) ;
 float degToRad(float a);
-
 int raycaster(t_game *game ,t_image image,float angle);
+int ray_fov(t_game *state,t_image image ,float angle,int inc);
 #endif 

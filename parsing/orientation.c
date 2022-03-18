@@ -15,14 +15,14 @@ void player_direction(t_game *game)
 	}
 	else if (game->player->orientation == 'E')
 	{
-		game->player->direction = 160;
+		game->player->direction = degToRad(88.3);
 	}
 	else if (game->player->orientation == 'W')
 	{
-		game->player->direction = 270;
+		game->player->direction = degToRad(266);
 
 	}
 	else if (game->player->orientation == 'S')
-		game->player->direction = 180;
+		game->player->direction = degToRad(176.9);
 
 }
