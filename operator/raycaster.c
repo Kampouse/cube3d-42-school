@@ -8,11 +8,12 @@ int raycaster(t_game *game, t_image image, float angle)
 	float dx ;
 	float max_value;
 	int inc;
-	const float delta_x = cos(angle) / 1;
-	const float delta_y = sin(angle);
+	const float delta_y = cos(angle) / 1;
+	const float delta_x = sin(angle);
 
 	dx = cos(degToRad(angle)) * delta_x -  sin(degToRad(angle)) * delta_y;
 	dy = sin(degToRad(angle)) * delta_x + cos(degToRad(angle)) * delta_y;
+
 	max_value = fmax(fabs(dx), fabs(dy));
 	inc = 1;
 	dx/= max_value;

@@ -49,6 +49,10 @@ void	hook(void *param)
 	t_game *state;
 	state = param;
 
+	const float delta_y = cos(state->player->direction) / 1;
+	const float delta_x = sin( state->player->direction);
+	const float	dx = cos( state->player->direction) * delta_x -  sin(state->player->direction) * delta_y;
+	const float dy = sin(degToRad(state->player->direction)) * delta_x + cos(degToRad(state->player->direction)) * delta_y;
 	int mouse_x;
 	int mouse_y;
 	mlx = state->mlx;
@@ -59,14 +63,43 @@ void	hook(void *param)
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_A))
 	{
-		state->player->direction+= 0.1;
+	state->player->direction +=	 0.05;
+	if(state->player->direction   >= 2 * PI)
+		{
+			state->player->direction = 0;
+		}
+		draw_map(state,state->image, 32);
+		draw_grid(state->image);
+		ray_fov(state, state->image,0 , 0);
+	}
+if (mlx_is_key_down(mlx, MLX_KEY_R))
+	{
+		state->player->x_pos+=delta_x * 3;
+		state->player->y_pos+=delta_y * 3;
+
+
 	draw_map(state,state->image, 32);
 	draw_grid(state->image);
 	ray_fov(state, state->image,0 , 0);
 	}
-if (mlx_is_key_down(mlx, MLX_KEY_D))
+if (mlx_is_key_down(mlx, MLX_KEY_H))
 	{
-		state->player->direction-= 0.1;
+		state->player->x_pos-=delta_x * 3;
+		state->player->y_pos-=delta_y * 3;
+
+
+	draw_map(state,state->image, 32);
+	draw_grid(state->image);
+	ray_fov(state, state->image,0 , 0);
+	}
+if (mlx_is_key_down(mlx, MLX_KEY_T))
+	{
+		state->player->direction-= 0.05;
+		if(state->player->direction  <= 0)
+		{
+		
+			state->player->direction = PI *  2;
+		}
 	draw_map(state,state->image, 32);
 	draw_grid(state->image);
 	ray_fov(state, state->image,0 , 0);
@@ -130,8 +163,6 @@ int	main(int argc, char *argv[])
 	state->player->x_pos = (state->player->x_pos ) * state->player->scale;
 	state->player->y_pos = (state->player->y_pos)  * state->player->scale;
 
-	state->player->x_pos = state->player->x_pos - 16;
-	state->player->y_pos = (state->player->y_pos - 16)  ;
 	//cast_ray(state);
 	state->mlx = mlx_init(1920, 1080, "MLX42", 0);
 	image.image = mlx_new_image(state->mlx,1000,1080);
