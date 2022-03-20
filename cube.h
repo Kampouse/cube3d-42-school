@@ -38,11 +38,15 @@ typedef struct t_dlist
 
 typedef struct t_ray
 {
-	long			x_pos;
-	long			y_pos;
 	float			dir;
+	float			dx;
+	float			dy;
+	float			delta_x;
+	float			delta_y;
+	float			angle;
+	float			max_value;
+	float			diff;
 }					t_ray;	
-
 
 typedef struct t_player
 {
@@ -154,6 +158,6 @@ void draw_player(t_game *state,t_image image,t_ray *ray);
 int draw_circle(t_image *image, int start_x,int start_y,int rayon);
 double find_len(int startx, int starty,int endx, int endy) ;
 float degToRad(float a);
-int raycaster(t_game *game ,t_image image,float angle);
+int raycaster2d(t_game *game ,t_image image,t_ray ray);
 int ray_fov(t_game *state,t_image image ,float angle,int inc);
 #endif 

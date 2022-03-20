@@ -70,7 +70,7 @@ if (mlx_is_key_down(mlx, MLX_KEY_A))
 		}
 		draw_map(state,state->image, 32);
 		draw_grid(state->image);
-		ray_fov(state, state->image,0 , 0);
+		ray_fov(state, state->image,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_R))
 	{
@@ -80,7 +80,7 @@ if (mlx_is_key_down(mlx, MLX_KEY_R))
 
 	draw_map(state,state->image, 32);
 	draw_grid(state->image);
-	ray_fov(state, state->image,0 , 0);
+	ray_fov(state, state->image,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_H))
 	{
@@ -90,21 +90,17 @@ if (mlx_is_key_down(mlx, MLX_KEY_H))
 
 	draw_map(state,state->image, 32);
 	draw_grid(state->image);
-	ray_fov(state, state->image,0 , 0);
+	ray_fov(state, state->image,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_T))
 	{
 		state->player->direction-= 0.05;
 		if(state->player->direction  <= 0)
-		{
-		
 			state->player->direction = PI *  2;
-		}
 	draw_map(state,state->image, 32);
 	draw_grid(state->image);
-	ray_fov(state, state->image,0 , 0);
+	ray_fov(state, state->image,0);
 	}
-	//mlx_focus(mlx);
 }
 
 
@@ -178,7 +174,7 @@ int	main(int argc, char *argv[])
 	state->image = image;
 	draw_map(state,image, 32);
 	draw_grid(image);
-	ray_fov(state, image,0 , 0);
+	ray_fov(state, image,0);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);
