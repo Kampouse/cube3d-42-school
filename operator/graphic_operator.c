@@ -64,16 +64,6 @@ void draw_line(t_image *image,int x0, int y0, int x1, int y1)
 }
 
 
-int draw_circle(t_image *image, int start_x,int start_y,int rayon)
-{
-	draw_line(image, start_x, start_y,start_x,start_y - 100);
-
-
-
-	
-}
-
-
 
 
 
@@ -116,7 +106,12 @@ void draw_map(t_game *state, t_image image, int scale)
 			if (state->map[cin][inc] == '1')
 				square_shape(&image, stepx, stepy, color_to_rgb(0, 0,0 ,0));
 			else
-				square_shape(&image, stepx, stepy, color_to_rgb(0 ,0, 255, 0));
+			{
+				square_shape(&image, stepx, stepy, color_to_rgb(0 ,150, 255, 0));
+				draw_line(&image,stepx,stepy,stepx + scale,stepy);
+				draw_line(&image,stepx,stepy,stepx,stepy + scale);
+
+			}
 			inc++;
 			stepx+= scale;
 		}
@@ -126,65 +121,12 @@ void draw_map(t_game *state, t_image image, int scale)
 		cin++;
 	}
 }
-double find_len(int startx, int starty,int endx, int endy) 
-{
-int x1;
-int y1;
-int y2;
-int x2;
-
-  const double len  = sqrt(pow((endy - starty), 2) + pow((endy - startx), 2));
-//x1 = startx;
-//y1 = starty;
-//x2 = x1 + cos(60) * len;
-//y2 = y1 + sin(60) * len;
-return (len);
-}
-
-
-
-
-
-
-
-double  degree2radian(int a) 
-{ 
-	return (a * 0.017453292519); 
-}
 
 float degToRad(float a)
 {
 	return a*M_PI/180.0;
 }
-void getEndPoint(double angle, int len,t_game *game, int *end_x, int *end_y) 
-{
-        *end_x = (game->player->x_pos * 32) + len * cos(angle );
-        *end_y = (game->player->y_pos * 32) + len * sin(degree2radian(angle));
-} // getEndPoint
-
-int FixAng(int a){ if(a>359){ a-=360;} if(a<0){ a+=360;} return a;}
 
 
 
-void draw_player(t_game *state,t_image image,t_ray *ray) 
-{
-	double x_pos = floor(state->player->x_pos * 32);
-	double  y_pos = floor(state->player->y_pos * 32);
-	double  angle = ray->dir - 60;
-	const double step_angle = 20;
-	float inc ;
-		
-	inc = 0;
-		const int   len = find_len(x_pos,y_pos,x_pos + ray->x_pos, y_pos + ray->y_pos);
 
-
-		
-					printf("%d\n",len);
-		ray->dir = FixAng(ray->dir);	
-		if(ray->dir == 180 || ray->dir == 90)
-			inc = 0.01; 
-
-		draw_line(&image,x_pos, y_pos, (x_pos + sin(degToRad(ray->dir) - inc) * len), y_pos + cos(degToRad(ray->dir) - inc) * len);
-	//	cast_ray(state,&image);
-return ;
-}

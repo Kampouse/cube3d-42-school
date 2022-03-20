@@ -47,88 +47,44 @@ void	hook(void *param)
 {
 	t_mlx *mlx;
 	t_game *state;
-	state = param;
-
 	const float delta_y = cos(state->player->direction) / 1;
 	const float delta_x = sin( state->player->direction);
-	const float	dx = cos( state->player->direction) * delta_x -  sin(state->player->direction) * delta_y;
-	const float dy = sin(degToRad(state->player->direction)) * delta_x + cos(degToRad(state->player->direction)) * delta_y;
-	int mouse_x;
-	int mouse_y;
+
+	state = param;
 	mlx = state->mlx;
-	//////////////////mlx_set_mouse_pos(mlx,500,500);
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-	{
 		exit(0);
-	}
 if (mlx_is_key_down(mlx, MLX_KEY_A))
 	{
 	state->player->direction +=	 0.05;
 	if(state->player->direction   >= 2 * PI)
-		{
 			state->player->direction = 0;
-		}
-		draw_map(state,state->image, 32);
-		draw_grid(state->image);
-		ray_fov(state, state->image,0);
+		draw_map(state,state->image, state->player->scale);
+		ray_fov(state, state->image,state->player->direction,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_R))
 	{
 		state->player->x_pos+=delta_x * 3;
 		state->player->y_pos+=delta_y * 3;
-
-
-	draw_map(state,state->image, 32);
-	draw_grid(state->image);
-	ray_fov(state, state->image,0);
+		draw_map(state,state->image,state->player->scale);
+		ray_fov(state, state->image,state->player->direction,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_H))
 	{
 		state->player->x_pos-=delta_x * 3;
 		state->player->y_pos-=delta_y * 3;
-
-
-	draw_map(state,state->image, 32);
-	draw_grid(state->image);
-	ray_fov(state, state->image,0);
+	draw_map(state,state->image, state->player->scale);
+	ray_fov(state, state->image,state->player->direction,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_T))
 	{
 		state->player->direction-= 0.05;
 		if(state->player->direction  <= 0)
 			state->player->direction = PI *  2;
-	draw_map(state,state->image, 32);
-	draw_grid(state->image);
-	ray_fov(state, state->image,0);
+	draw_map(state,state->image, state->player->scale);
+	ray_fov(state, state->image,state->player->direction,0);
 	}
 }
-
-
-int draw_grid(t_image image)
-{
-
-	int inc;
-	int cin;
-	inc  = 32;
-	cin  = 32;
-	while(inc < 1000)
-	{
-
-		draw_line(&image,inc,1,inc,1000);
-		inc+= 32;
-	}
-	while(cin < 1000)
-	{
-		draw_line(&image,cin - 1000,cin,1000,cin);
-		cin+= 32;
-	}
-
-
-
-
-
-}
-
 
 int	main(int argc, char *argv[])
 {
@@ -139,7 +95,7 @@ int	main(int argc, char *argv[])
 	t_image image;
 	state = malloc(sizeof(t_game));
 	state->player = malloc(sizeof(t_player));
-	state->player->scale = 32;
+	state->player->scale = 12;
 	state->map_data  = init_map();
 	state->map = map_init(mapcreator("map.cub"));
 	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0)
@@ -155,26 +111,16 @@ int	main(int argc, char *argv[])
 	resize_map(state);
 	player_direction(state);
 	int time;
+
 	time = 10;
 	state->player->x_pos = (state->player->x_pos ) * state->player->scale;
 	state->player->y_pos = (state->player->y_pos)  * state->player->scale;
-
-	//cast_ray(state);
 	state->mlx = mlx_init(1920, 1080, "MLX42", 0);
 	image.image = mlx_new_image(state->mlx,1000,1080);
-
-	//g_img = mlx_new_image(mlx, 128, 128);
-	//ft_memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
-	//mlx_image_to_window(mlx,g_img,100,100);
-	//mlx_loop_hook(mlx, &hook, mlx);
-	//
-	//
 	t_mlx_inst *element;
-	// element = mlx_image_to_window(state->mlx,image.image,-100,-200);
 	state->image = image;
-	draw_map(state,image, 32);
-	draw_grid(image);
-	ray_fov(state, image,0);
+	draw_map(state,image, state->player->scale);
+	ray_fov(state, image, state->player->direction,0);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);
