@@ -160,4 +160,5 @@ double find_len(int startx, int starty,int endx, int endy) ;
 float degToRad(float a);
 int raycaster2d(t_game *game ,t_image image,t_ray ray);
 int ray_fov(t_game *state,t_image image ,float angle,int inc);
+int ray_fov3d(t_game *state,t_image image ,float angle,int inc);
 #endif 

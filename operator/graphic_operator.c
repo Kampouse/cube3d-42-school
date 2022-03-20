@@ -76,9 +76,9 @@ int cin;
 inc = 0;
 cin = 0;
 
-	while (cin < 32)
+	while (cin < 20)
 	{
-		while (inc < 32) 
+		while (inc < 20) 
 		{
 				mlx_putpixel(image->image, x_pos + inc, y_pos + cin,color);
 			inc++;
@@ -104,10 +104,12 @@ void draw_map(t_game *state, t_image image, int scale)
 		while (state->map[cin][inc])
 		{
 			if (state->map[cin][inc] == '1')
+			{
 				square_shape(&image, stepx, stepy, color_to_rgb(0, 0,0 ,0));
+			}
 			else
 			{
-				square_shape(&image, stepx, stepy, color_to_rgb(0 ,150, 255, 0));
+				square_shape(&image, stepx, stepy, color_to_rgb(0 ,0, 255, 0));
 				draw_line(&image,stepx,stepy,stepx + scale,stepy);
 				draw_line(&image,stepx,stepy,stepx,stepy + scale);
 
