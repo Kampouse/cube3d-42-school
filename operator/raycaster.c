@@ -1,6 +1,10 @@
 #include "../cube.h"
 
 
+float distance(ax, ay, bx, by, ang)
+{
+	return cos(ang)*(bx-ax)-sin(ang)*(by-ay);
+}
 
 int raycaster2d(t_game *game, t_image image, t_ray ray)
 {
@@ -26,6 +30,7 @@ int ray_fov(t_game *state,t_image image ,float angle,int inc)
 	float	plus;
 	t_ray	ray;
 
+
 	plus = 0;
 	until = state->player->direction +  PI / 6;
 		while(state->player->direction + plus < until)
@@ -49,11 +54,23 @@ int raycaster3d(t_game *game, t_image image, t_ray ray,int scree_strip)
 	ray.max_value = fmax(fabs(ray.dx), fabs(ray.dy));
 	ray.dx/= ray.max_value;
 	ray.dy/= ray.max_value;
+	double  tempx;
+	double  tempy;
 	while(game->map[ (int)(game->player->y_pos + (ray.dy * inc)) / game->player->scale][(int)(game->player->x_pos + (ray.dx * inc))  / game->player->scale] != '1')
 		inc +=1;		
 
 	printf("%d\n",inc);
-	square_shape(&image,scree_strip *  inc,0,color_to_rgb(0,0,0,0));
+	//square_shape(&image,ray.dy * inc,100,color_to_rgb(0,0,0,0));
+	//square_shape(&image,ray.dy * inc,200,color_to_rgb(0,0,0,0));
+	tempx = game->player->x_pos - (game->player->x_pos + (ray.dx * inc)); 
+	tempy = game->player->y_pos - (game->player->y_pos + (ray.dy * inc)); 
+	tempx*=tempx;	
+	tempy*=tempy;	
+
+	tempx = sqrt(tempx + tempy);	
+	draw_line(&image,tempx,0, tempx,game->player->y_pos);
+	//printf("%f\n",distance(game->player->x_pos ,game->player->y_pos, game->player->x_pos + (ray.dx * inc), game->player->y_pos + (ray.dy * inc),ray.angle ));
+	//printf("%f\n",distance( game->player->x_pos + (ray.dx * inc), game->player->y_pos, game->player->x_pos + (ray.dx * inc), game->player->y_pos + (ray.dy * inc),ray.angle ));
 	return(0);
 }
 
@@ -64,17 +81,14 @@ int ray_fov3d(t_game *state,t_image image ,float angle,int inc)
 	int	scree_strip;
 	t_ray	ray;
 
-	plus = 0;
-	until = state->player->direction +  PI / 6;
-	scree_strip= 0;
+		plus = 0;
+		until = state->player->direction +  PI / 6;
+		scree_strip= 0;
 		while(state->player->direction + plus < until)
 	{
-
-		ray.angle = state->player->direction + plus;
+			ray.angle = state->player->direction + plus;
 			raycaster3d(state, image, ray,scree_strip);
-		scree_strip+=16;
-		//ray.angle = state->player->direction - plus;
-	//		raycaster3d(state, image, ray,scree_strip);
+			scree_strip+=16;
 			plus += PI / 84;
 	}
 }

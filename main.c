@@ -56,7 +56,7 @@ void	hook(void *param)
 		exit(0);
 if (mlx_is_key_down(mlx, MLX_KEY_A))
 	{
-	state->player->direction +=	 0.05;
+	state->player->direction +=	 0.1;
 	if(state->player->direction   >= 2 * PI)
 			state->player->direction = 0;
 		draw_map(state,state->image, state->player->scale);
@@ -64,21 +64,22 @@ if (mlx_is_key_down(mlx, MLX_KEY_A))
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_R))
 	{
-		state->player->x_pos+=delta_x * 2;
+		state->player->x_pos+=delta_x *2;
 		state->player->y_pos+=delta_y * 2;
 		draw_map(state,state->image,state->player->scale);
-		ray_fov(state, state->image,state->player->direction,0);
+		ray_fov(state, state->image, state->player->direction,0);
+		ray_fov3d(state,state->image, state->player->direction,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_H))
 	{
-		state->player->x_pos-=delta_x * 3;
-		state->player->y_pos-=delta_y * 3;
+		state->player->x_pos-=delta_x * 2;
+		state->player->y_pos-=delta_y * 2;
 	draw_map(state,state->image, state->player->scale);
 	ray_fov(state, state->image,state->player->direction,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_T))
 	{
-		state->player->direction-= 0.05;
+		state->player->direction-= 0.1;
 		if(state->player->direction  <= 0)
 			state->player->direction = PI *  2;
 	draw_map(state,state->image, state->player->scale);
@@ -119,11 +120,9 @@ int	main(int argc, char *argv[])
 	image.image = mlx_new_image(state->mlx,1000,1080);
 	t_mlx_inst *element;
 	state->image = image;
-	//draw_map(state,image, state->player->scale);
-	//ray_fov(state, image, state->player->direction,0);
-
+	draw_map(state,image, state->player->scale);
 	ray_fov3d(state, image, state->player->direction,0);
-
+	ray_fov(state, image, state->player->direction,0);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);
