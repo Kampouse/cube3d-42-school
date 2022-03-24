@@ -56,18 +56,19 @@ void	hook(void *param)
 		exit(0);
 if (mlx_is_key_down(mlx, MLX_KEY_A))
 	{
-	state->player->direction +=	 0.1;
+	state->player->direction +=	 0.120;
 	if(state->player->direction   >= 2 * PI)
 			state->player->direction = 0;
 		draw_map(state,state->image, state->player->scale);
 		ray_fov(state, state->image,state->player->direction,0);
+		ray_fov3d(state,state->image, state->player->direction,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_R))
 	{
 		state->player->x_pos+=delta_x *2;
 		state->player->y_pos+=delta_y * 2;
 		draw_map(state,state->image,state->player->scale);
-		ray_fov(state, state->image, state->player->direction,0);
+	//	ray_fov(state, state->image, state->player->direction,0);
 		ray_fov3d(state,state->image, state->player->direction,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_H))

@@ -44,6 +44,7 @@ int ray_fov(t_game *state,t_image image ,float angle,int inc)
 }
 int raycaster3d(t_game *game, t_image image, t_ray ray,int scree_strip)
 {
+
 	int inc;
 
 	inc = 0;
@@ -51,28 +52,56 @@ int raycaster3d(t_game *game, t_image image, t_ray ray,int scree_strip)
 	ray.delta_x = sin(ray.angle);
 	ray.dx = cos(degToRad(ray.angle)) * ray.delta_x -  sin(degToRad(ray.angle)) * ray.delta_y;
 	ray.dy = sin(degToRad(ray.angle)) * ray.delta_x + cos(degToRad(ray.angle)) * ray.delta_y;
+	
+
+
+
+
 	ray.max_value = fmax(fabs(ray.dx), fabs(ray.dy));
 	ray.dx/= ray.max_value;
 	ray.dy/= ray.max_value;
-	double  tempx;
-	double  tempy;
-	while(game->map[ (int)(game->player->y_pos + (ray.dy * inc)) / game->player->scale][(int)(game->player->x_pos + (ray.dx * inc))  / game->player->scale] != '1')
+
+
+		float accx = ray.dx;
+		float accy = ray.dy;
+		accx = 0;
+		accy = 0;
+	while(game->map[ (int)(game->player->y_pos + accy) / game->player->scale][(int)(game->player->x_pos +  accx)  / game->player->scale] != '1')
+	{
+		accx += ray.dx;
+		accy += ray.dy;
+	}
 		inc +=1;		
 
-	printf("%d\n",inc);
-	//square_shape(&image,ray.dy * inc,100,color_to_rgb(0,0,0,0));
-	//square_shape(&image,ray.dy * inc,200,color_to_rgb(0,0,0,0));
-	tempx = game->player->x_pos - (game->player->x_pos + (ray.dx * inc)); 
-	tempy = game->player->y_pos - (game->player->y_pos + (ray.dy * inc)); 
-	tempx*=tempx;	
-	tempy*=tempy;	
+	draw_line(&image, game->player->x_pos, game->player->y_pos, game->player->x_pos + accx, game->player->y_pos +accy);
+	//printf("%f %f\n",((game->player->x_pos - accx) /1080) * 1080 ,(game->player->y_pos - accy) / 32 );
+	float posx ;
+	float posy ;
 
-	tempx = sqrt(tempx + tempy);	
-	draw_line(&image,tempx,0, tempx,game->player->y_pos);
-	//printf("%f\n",distance(game->player->x_pos ,game->player->y_pos, game->player->x_pos + (ray.dx * inc), game->player->y_pos + (ray.dy * inc),ray.angle ));
-	//printf("%f\n",distance( game->player->x_pos + (ray.dx * inc), game->player->y_pos, game->player->x_pos + (ray.dx * inc), game->player->y_pos + (ray.dy * inc),ray.angle ));
+		posx = accx;	
+		posy = accy;	
+	posx*=posx;	
+	posy*=posy;	
+
+	float dist  = sqrt(posx + posy);
+
+	float distb = fabs(game->player->x_pos - (game->player->x_pos + accx)); 
+	float dista = fabs(game->player->y_pos - (game->player->y_pos + accy)); 
+ 
+		float height =  32 /   dist *  277;
+		if(height > 1080)
+	{
+		height =  1080 ;
+	}
+			
+
+		draw_line(&image,500 + scree_strip,72,500 + scree_strip,height + 300);
+
+		printf("%f \n",game->player->x_pos * height);
 	return(0);
 }
+
+//printf("%f\n",distance( game->player->x_pos + (ray.dx * inc), game->player->y_pos, game->player->x_pos + (ray.dx * inc), game->player->y_pos + (ray.dy * inc),ray.angle ));
 
 int ray_fov3d(t_game *state,t_image image ,float angle,int inc)
 {
@@ -80,15 +109,14 @@ int ray_fov3d(t_game *state,t_image image ,float angle,int inc)
 	float	plus;
 	int	scree_strip;
 	t_ray	ray;
-
+	int step = 0;
 		plus = 0;
-		until = state->player->direction +  PI / 6;
-		scree_strip= 0;
+		until = state->player->direction +  PI / 3;
 		while(state->player->direction + plus < until)
 	{
 			ray.angle = state->player->direction + plus;
-			raycaster3d(state, image, ray,scree_strip);
-			scree_strip+=16;
-			plus += PI / 84;
+					raycaster3d(state, image, ray, step);
+					step+= 16;
+			plus += PI  / 84;
 	}
 }
