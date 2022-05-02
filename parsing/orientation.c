@@ -1,4 +1,4 @@
-#include "../cube.h"
+#include "../Include/cube.h"
 
 void apply_radiant(t_game *game)
 {

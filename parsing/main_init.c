@@ -6,11 +6,13 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/20 16:27:59 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/02 17:15:38 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../Include/cube.h"
+
+
 char	freelist(char **list)
 {
 	int	inc;

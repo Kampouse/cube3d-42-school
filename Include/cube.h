@@ -22,9 +22,9 @@
 # define PI    3.14159265359
 #include "stdio.h"
 #include "stdlib.h"
-#include "utils/get_next_line.h"
-#include "utils/libft/libft.h"
-#include "MLX/include/MLX42/MLX42.h"
+#include "../utils/get_next_line.h"
+#include "../utils/libft/libft.h"
+#include "../utils/MLX/include/MLX42/MLX42.h"
 #include "stdbool.h"
 #include "math.h"
 

@@ -1,4 +1,4 @@
-#include "../cube.h"
+#include "../Include/cube.h"
 
 void  resize_map(t_game *game)
 {

@@ -1,4 +1,4 @@
-#include "../cube.h"
+#include "../Include/cube.h"
 
 uint32_t color_to_rgb(int a ,int r , int g , int b)
    {

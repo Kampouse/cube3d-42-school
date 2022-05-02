@@ -1,4 +1,4 @@
-#include "../cube.h"
+#include "../Include/cube.h"
 
 char *skip_empty_line(char *str)
 {

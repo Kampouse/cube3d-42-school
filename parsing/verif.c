@@ -6,11 +6,11 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:48 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/18 22:58:56 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/02 17:12:47 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../Include/cube.h"
 #include "../utils/libft/libft.h"
 #include "stdio.h"
 

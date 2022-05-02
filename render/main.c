@@ -1,10 +1,6 @@
-#include "cube.h"
+#include "../Include/cube.h"
 #include "stdio.h"
 #include "stdlib.h"
-#include "utils/get_next_line.h"
-#include "utils/libft/libft.h"
-#include "MLX/include/MLX42/MLX42.h"
-
 
 int draw_grid(t_image image);
 void	free_list(t_dlist *head)
@@ -61,33 +57,32 @@ if (mlx_is_key_down(mlx, MLX_KEY_A))
 			state->player->direction = 0;
 		draw_map(state,state->image, state->player->scale);
 		ray_fov(state, state->image,state->player->direction,0);
-		ray_fov3d(state,state->image, state->player->direction,0);
+		//ray_fov3d(state,state->image, state->player->direction,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_R))
 	{
 		state->player->x_pos+=delta_x *2;
 		state->player->y_pos+=delta_y * 2;
 		draw_map(state,state->image,state->player->scale);
-	//	ray_fov(state, state->image, state->player->direction,0);
-		ray_fov3d(state,state->image, state->player->direction,0);
+		ray_fov(state, state->image,state->player->direction,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_H))
 	{
 		state->player->x_pos-=delta_x * 2;
 		state->player->y_pos-=delta_y * 2;
-	draw_map(state,state->image, state->player->scale);
-	ray_fov(state, state->image,state->player->direction,0);
+		draw_map(state,state->image, state->player->scale);
+		ray_fov(state, state->image,state->player->direction,0);
 	}
 if (mlx_is_key_down(mlx, MLX_KEY_T))
 	{
 		state->player->direction-= 0.1;
 		if(state->player->direction  <= 0)
 			state->player->direction = PI *  2;
-	draw_map(state,state->image, state->player->scale);
-	ray_fov(state, state->image, state->player->direction,0);
+		ray_fov(state, state->image,state->player->direction,0);
+		draw_map(state,state->image, state->player->scale);
 	}
-}
 
+}
 int	main(int argc, char *argv[])
 {
 
@@ -99,7 +94,7 @@ int	main(int argc, char *argv[])
 	state->player = malloc(sizeof(t_player));
 	state->player->scale = 12;
 	state->map_data  = init_map();
-	state->map = map_init(mapcreator("map.cub"));
+	state->map = map_init(mapcreator("assets/map.cub"));
 	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0)
 	{
 			printf("an erro as occured \n");
@@ -119,11 +114,11 @@ int	main(int argc, char *argv[])
 	state->player->y_pos = (state->player->y_pos)  * state->player->scale;
 	state->mlx = mlx_init(1920, 1080, "MLX42", 0);
 	image.image = mlx_new_image(state->mlx,1000,1080);
-	t_mlx_inst *element;
+	//t_mlx_inst *element;
 	state->image = image;
 	draw_map(state,image, state->player->scale);
-	ray_fov3d(state, image, state->player->direction,0);
-	ray_fov(state, image, state->player->direction,0);
+	//ray_fov3d(state, image, state->player->direction,0);
+	//ray_fov(state, image, state->player->direction,0);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);

@@ -6,11 +6,11 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:07:53 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/18 21:57:47 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/02 17:11:21 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../../Include/cube.h"
 #include "stdlib.h"
 
 t_dlist	*ft_lst_lastnode(t_dlist *currlist)

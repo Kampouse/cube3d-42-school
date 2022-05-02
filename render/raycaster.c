@@ -1,4 +1,4 @@
-#include "../cube.h"
+#include "../Include/cube.h"
 
 
 float distance(ax, ay, bx, by, ang)
@@ -29,7 +29,8 @@ int ray_fov(t_game *state,t_image image ,float angle,int inc)
 	float	until;
 	float	plus;
 	t_ray	ray;
-
+	(void)angle;
+	(void)inc;
 
 	plus = 0;
 	until = state->player->direction +  PI / 6;
@@ -41,7 +42,9 @@ int ray_fov(t_game *state,t_image image ,float angle,int inc)
 			raycaster2d(state, image, ray );
 			plus += PI / 84;
 	}
+	return (0);
 }
+/*
 int raycaster3d(t_game *game, t_image image, t_ray ray,int scree_strip)
 {
 	int inc;
@@ -64,8 +67,6 @@ int raycaster3d(t_game *game, t_image image, t_ray ray,int scree_strip)
 	return(0);
 }
 
-//printf("%f\n",distance( game->player->x_pos + (ray.dx * inc), game->player->y_pos, game->player->x_pos + (ray.dx * inc), game->player->y_pos + (ray.dy * inc),ray.angle ));
-
 int ray_fov3d(t_game *state,t_image image ,float angle,int inc)
 {
 	float	until;
@@ -83,3 +84,4 @@ int ray_fov3d(t_game *state,t_image image ,float angle,int inc)
 			plus += PI  / 84;
 	}
 }
+*/
