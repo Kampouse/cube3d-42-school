@@ -33,7 +33,7 @@ all: ${NAME}
 
 ${NAME}:${OBJS} 
 		@$(MAKE) -C ./utils/libft
-		@${CC}  ${FLAGS} ${OBJS}    ./utils/libft/libft.a -L./MLX -lMLX42  -I ./MLX42/include  ~/.brew/opt/glfw/lib/libglfw.3.3.dylib -o ${NAME}
+		@${CC}  ${FLAGS} ${OBJS} ./utils/libft/libft.a MLX/libmlx42.a MLX/lib-x86_64/libglfw3.a  MLX/libglfw.3.3.dylib -o ${NAME}
 
 clean:
 	    @${RM} ${OBJS}	
