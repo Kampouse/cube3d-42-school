@@ -28,7 +28,8 @@ all: ${NAME}
 
 ${NAME}:${OBJS} 
 		@$(MAKE) -C ./utils/libft
-		@${CC}  ${FLAGS} ${OBJS}    ./utils/libft/libft.a -Lutils/MLX -lMLX42  -I ./MLX42/include  ~/.brew/opt/glfw/lib/libglfw.3.3.dylib -o ${NAME}
+		@$(MAKE) -C ./utils/MLX
+		@${CC}  ${FLAGS} ${OBJS} ./utils/libft/libft.a ./utils/MLX/libmlx42.a   ./utils/MLX/libglfw.3.3.dylib -o ${NAME}
 
 clean:
 	    @${RM} ${OBJS}	
