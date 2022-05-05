@@ -1,6 +1,7 @@
-NAME = solong
+NAME = cub3d
  
 FLAGS =   -g -Wall -Wextra  -Werror
+
 SRCS = 	render/main.c \
 		utils/get_next_line.c  \
 		utils/get_next_line_utils.c  \
@@ -17,13 +18,18 @@ SRCS = 	render/main.c \
 		render/render.c 	\
 		render/raycaster.c 	\
 		parsing/main_init.c
+
 HEADER= ./Include/cube.h
+
 .c.o:
 	@gcc  ${FLAGS}  -c $< -o ${<:.c=.o}
+
 OBJS = ${SRCS:.c=.o}
+
 CC = gcc
+
 OBJS = ${SRCS:.c=.o}
-CC = gcc 
+
 all: ${NAME}
 
 ${NAME}:${OBJS} 
@@ -34,10 +40,15 @@ ${NAME}:${OBJS}
 clean:
 	    @${RM} ${OBJS}	
 
+fclean: ${clean}
+	rm -rf cub3d
+
 git:
 	@git add ${SRCS} ${HEADER} Makefile
+
 val:
 	valgrind   --leak-check=full --track-origins=yes   ./$(NAME) ./map.cub
+
 run: all
 	./${NAME} assets/map.cub
 	
@@ -47,6 +58,7 @@ leak: all
 	@${RM} ${NAME}
 	@$(MAKE) -C ./utils/minilibx fclean
 	@$(MAKE) -C ./utils/libft fclean
+
 re: fclean all
 	
 .PHONY: clean fclean re all
