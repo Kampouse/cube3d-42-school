@@ -11,49 +11,49 @@ int look_in_space(int current_line,t_game *game,int pos);
 
 int was_in_set(char *str,char *set)
 {
-int inc;
-int cin;
-int temp;
-int was_in_set;
-	cin = 0;
-was_in_set = 1;
-	inc  = 0;
-	while (str[inc])
-	{
-		temp = inc;
-		while(set[cin])
+	int inc;
+	int cin;
+	int temp;
+	int was_in_set;
+		cin = 0;
+	was_in_set = 1;
+		inc  = 0;
+		while (str[inc])
 		{
-			if (set[cin] == str[inc])
+			temp = inc;
+			while(set[cin])
 			{
-				was_in_set = 0;
-				cin = 0;
-				break ;
+				if (set[cin] == str[inc])
+				{
+					was_in_set = 0;
+					cin = 0;
+					break ;
+				}
+				cin++;
 			}
-			cin++;
+			if (was_in_set != 0)
+				return (1);
+			was_in_set = 1;
+			inc++;
 		}
-		if (was_in_set != 0)
-			return (1);
-		was_in_set = 1;
-		inc++;
-	}
-return(0);
+	return(0);
 }
 
 int last_seen_at(char *str, char elem)
 {
-int index;
+	int index;
 
-if(str)
-	{
-		index =  ft_strlen(str);
-		while(index >= 0)
+	if(str)
 		{
-			if (str[index] == elem)
-				return (index);
-			index--;
+			index =  ft_strlen(str);
+			while(index >= 0)
+			{
+				if (str[index] == elem)
+					return (index);
+				index--;
+			}
 		}
-	}
-return (-1);
+	return (-1);
 }
 
 int any_before_after(char **map, int current_line)
@@ -66,17 +66,17 @@ int any_before_after(char **map, int current_line)
 	temp = pos;
 	if (pos < 0)
 		return (0);
-			while (pos > 0 && ft_strlen(map[current_line] + temp) > 0)  
-			{
-				if((map[current_line][temp + 1] != '1') || ( map[current_line][temp - 1] != '1'))
-				{
-					if (!(last_seen_at( map[current_line],' ') > last_seen_at(map[current_line],'1')))
-							return (1);
-				}
-				pos = ft_until_this(map[current_line] + temp, "0");
-				temp += pos;
-			}
-return (0);
+	while (pos > 0 && ft_strlen(map[current_line] + temp) > 0)  
+	{
+		if((map[current_line][temp + 1] != '1') || ( map[current_line][temp - 1] != '1'))
+		{
+			if (!(last_seen_at( map[current_line],' ') > last_seen_at(map[current_line],'1')))
+				return (1);
+		}
+		pos = ft_until_this(map[current_line] + temp, "0");
+		temp += pos;
+	}
+	return (0);
 }
 
 int look_in_space(int current_line, t_game *game, int pos)
@@ -89,20 +89,20 @@ int look_in_space(int current_line, t_game *game, int pos)
 		return (0);
 	if (inc > 0)
 	{
-			if ((int)ft_strlen(game->map[current_line - 1]) >=  inc)
+		if ((int)ft_strlen(game->map[current_line - 1]) >=  inc)
+		{
+			if (game->map[current_line - 1][inc] == '1')
 			{
-				if (game->map[current_line - 1][inc] == '1')
-				{
-					if ((int)ft_strlen(game->map[
-							current_line + 1] )>= inc && (game->map
-							[current_line + 1][inc] == '1'))
-							return (0);
-				}
-				else
-					return (1);
+				if ((int)ft_strlen(game->map[
+						current_line + 1] )>= inc && (game->map
+						[current_line + 1][inc] == '1'))
+						return (0);
 			}
+			else
+				return (1);
+		}
 	}
-return (0);
+	return (0);
 }
 
 
@@ -117,20 +117,18 @@ int only_space(char *str)
 	}
 	else
 		return (1);
-return (0);
+	return (0);
 }
 
 int parser_helper(t_game *game,int temp,int inc)
 {
-
 	if (ft_until_this(game->map[temp], "NEWS") != -1)
 		{
 			game->player->x_pos = ft_until_this(game->map[temp], "NEWS");	
 			game->player->orientation = game->map[temp][game->player->x_pos];			
-		  if (ft_until_this(game->map[temp] + game->player->x_pos, "NEWS")  < 0)
-			return (2);
-		game->player->y_pos = inc;
-		
+		  	if (ft_until_this(game->map[temp] + game->player->x_pos, "NEWS")  < 0)
+				return (2);
+			game->player->y_pos = inc;
 			return (1);
 		}
 	return (0);
@@ -168,7 +166,7 @@ int parse_location(t_game *game, int found, int inc)
 	int	temp;
 
 	temp =  game->map_data->start;
-	 while(game->map[temp] && !only_space(game->map[temp]))
+	while(game->map[temp] && !only_space(game->map[temp]))
 	{
 		found += parser_helper(game, temp, inc);
 		temp++;
@@ -177,7 +175,7 @@ int parse_location(t_game *game, int found, int inc)
 	if (found > 1)
 		return (1);
 	temp =  game->map_data->start;
-	 while (game->map[temp]  && !only_space(game->map[temp]))
+	while (game->map[temp]  && !only_space(game->map[temp]))
 	{
 		 if (was_in_set(game->map[temp], "01NEWS ") != 0)
 		{
@@ -225,18 +223,15 @@ int first_seen(char *str)
 {
 	int inc;
 	char *temp;
+
 	inc = 0;
 	temp = ft_strchr(str, ' ');
-
 	while(temp[inc] == ' ')
 		inc++;
-
 	if(temp[inc] == '1')
 		return(0);
-return(1);
+	return(1);
 }
-
-
 
 int verif_no_space(t_game *game, int pos)
 {
@@ -249,40 +244,37 @@ int verif_no_space(t_game *game, int pos)
 		iter++;
 	if(ft_all(game->map[iter],'1'))
 		return (1);
-
 	if (ft_until_this(game->map[iter]," ") != -1)	
 		{
 			temp =  ft_until_this(game->map[iter]," ");
-				if (temp > last_seen_at(game->map[iter],'1'))
-					return (0);
+			if (temp > last_seen_at(game->map[iter],'1'))
+				return (0);
 			if (first_seen(game->map[iter]) || game->map[iter][temp - 1] != '1')
 				return (1);
 		}
 		return (0);
-	}
+}
 
 int any_one_above(t_game *map, int current_line, int pos)
 {
 	while (current_line > map->map_data->iterator)
 	{
-			current_line--;
-			if (map->map[current_line] && pos <=  (int)ft_strlen(map->map[current_line]))
-			{
-					if (map->map[current_line][pos]  == '1')
-						return (0);
-					else if (map->map[current_line][pos]  == ' ')
-					{
-						return (1);
-					}
-					else
-						continue ;
-			}
-			if (pos > (int)ft_strlen(map->map[current_line]))
+		current_line--;
+		if (map->map[current_line] && pos <=  (int)ft_strlen(map->map[current_line]))
+		{
+			if (map->map[current_line][pos]  == '1')
+				return (0);
+			else if (map->map[current_line][pos]  == ' ')
 				return (1);
-			else if (map->map[current_line + 1][pos] == '1')
-					return(0);
+			else
+				continue ;
+		}
+		if (pos > (int)ft_strlen(map->map[current_line]))
+			return (1);
+		else if (map->map[current_line + 1][pos] == '1')
+			return(0);
 	}
-return (0);
+	return (0);
 }
 
 int any_one_above_line(t_game *map, int current_line)
@@ -299,7 +291,7 @@ int any_one_above_line(t_game *map, int current_line)
 		}
 		inc++;
 	}
-return(0);
+	return(0);
 }
 
 int any_one_bellow_line(char **map,int current_line)
@@ -320,25 +312,26 @@ int any_one_bellow_line(char **map,int current_line)
 	}
 	return (0);
 }
+
 // this funcion behave correctcly 
 int any_one_bellow(char **map, int current_line, int pos)
 {
 	while (map[current_line])
 	{
-			current_line++;
-			if (map[current_line] && pos <=  (int)ft_strlen(map[current_line]))
-			{
-				if (map[current_line][pos]  == '1')
-					return (0);
-				else if (map[current_line][pos]  == ' ')
-					return (1);	
-				else
-					continue;
-			}
-			if (pos > (int)ft_strlen(map[current_line]))
-				return (1);
-			else if (map[current_line - 1][pos] &&(map[current_line - 1][pos] == '1'))
-					return(0);
+		current_line++;
+		if (map[current_line] && pos <=  (int)ft_strlen(map[current_line]))
+		{
+			if (map[current_line][pos]  == '1')
+				return (0);
+			else if (map[current_line][pos]  == ' ')
+				return (1);	
+			else
+				continue;
+		}
+		if (pos > (int)ft_strlen(map[current_line]))
+			return (1);
+		else if (map[current_line - 1][pos] &&(map[current_line - 1][pos] == '1'))
+			return(0);
 	}
 	return (0);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   verif_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:39:13 by jemartel          #+#    #+#             */
-/*   Updated: 2022/02/27 17:08:55 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/05 08:53:49 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@
 int	ft_between(char *string, char comp)
 {
 	int	len;
+	const	char *str = ft_strtrim(string," \t\n\v");
 
-	const 	char *str = ft_strtrim(string," \t\n\v");
 	if(ft_strlen(str) == 0)
 	{
 		free((void *)str);
 		return (0);
 	}
 	if (str[0] != comp)
-	{
 		return (1);
-	}
 	len = ft_strlen(str);
 	if (str[len - 1] != comp)
 	{
@@ -39,8 +37,9 @@ int	ft_between(char *string, char comp)
 
 int	ft_all(char *string, char comp)
 {
-			int	inc;
+	int	inc;
 	const 	char *str = ft_strtrim(string,"  \t\n\v");
+
 	inc = 0;
 	while (str[inc])
 	{
@@ -74,7 +73,6 @@ int	ft_char_count(char *str, char cmp)
 }
 
 int	ft_count_all(char **str, char cmp)
-
 {
 	int	inc;
 	int	cin;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapInit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:11:15 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/02 17:13:10 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/05 08:47:40 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,27 @@ t_dlist	*mapcreator(char *map_link)
 {
 	t_dlist	*list;
 	char	*str;
-	const int		fd = open(map_link, R_OK);
+	int		fd;
+
+	fd = open(map_link, R_OK);
 	(void)list;
 	if (fd < 0)
 		return (NULL);
 	if (read(fd, &str, 0) < 0)
 		return (NULL);
 	get_next_line(fd, &str);
-	 list = ft_lstnewl(str);
+	list = ft_lstnewl(str);
 	while (get_next_line(fd, &str))
 		ft_lst_add_backd(&list, node_init(str));
-	close(fd);	
+	close(fd);
 	return (list);
 }
 
 char **map_init(t_dlist *map)
 {
-	int	len;
-	char **lines;
-	t_dlist *temp; 
+	int		len;
+	char	**lines;
+	t_dlist	*temp; 
 
 	temp = map;
 	lines = NULL;
@@ -55,7 +57,6 @@ char **map_init(t_dlist *map)
 		return(NULL);
 	while (map)
 	{
-
 		lines[len] = ft_strdup(map->content);
 		len++;
 		map = map->next;

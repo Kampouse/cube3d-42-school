@@ -3,6 +3,7 @@
 #include "stdlib.h"
 
 int draw_grid(t_image image);
+
 void	free_list(t_dlist *head)
 {
 	t_dlist	*next;
@@ -15,6 +16,7 @@ void	free_list(t_dlist *head)
 		free_list(next);
 	}
 }
+
 t_dlist	*verif(t_dlist *map)
 {
 	int	flag;
@@ -83,6 +85,7 @@ if (mlx_is_key_down(mlx, MLX_KEY_T))
 	}
 
 }
+
 int	main(int argc, char *argv[])
 {
 

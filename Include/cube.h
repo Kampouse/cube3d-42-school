@@ -35,7 +35,6 @@ typedef struct t_dlist
 	struct t_dlist	*prev;
 }					t_dlist;	
 
-
 typedef struct t_ray
 {
 	float			dir;
@@ -80,7 +79,6 @@ typedef struct	s_image {
 	int			line_length;
 	int			endian;
 }				t_image;
-
 
 typedef struct t_game
 {

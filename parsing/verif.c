@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:48 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/02 17:12:47 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/05 08:54:05 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	verif_wall(t_dlist map)
 
 int	verif_param(t_dlist map, char param)
 {
-	  t_dlist	*temp;
-	  int		counter;
+	t_dlist	*temp;
+	int		counter;
 
 	counter = 0;
 	temp = &map;
@@ -89,7 +89,7 @@ int	legalchars(char *str)
 
 int	verif_map_content(t_dlist map)
 {
-	  t_dlist	*temp;
+	t_dlist	*temp;
 
 	temp = &map;
 	while (temp->next)
