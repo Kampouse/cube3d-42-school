@@ -6,25 +6,12 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/05 08:41:59 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/06 10:44:11 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-char	freelist(char **list)
-{
-	int	inc;
-
-	inc = 0;
-	while (list[inc])
-	{
-		free(list[inc]);
-		inc++;
-	}
-	free(list);
-	return (0);
-}
 /*
 void	main_init(t_screen *state, t_dlist *temp)
 {

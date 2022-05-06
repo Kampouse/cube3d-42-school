@@ -2,13 +2,13 @@ NAME = cub3d
  
 FLAGS =   -g -Wall -Wextra  -Werror  
 
-SRCS = 	render/main.c \
+SRCS = 	main/main.c \
 		utils/get_next_line.c  \
 		utils/get_next_line_utils.c  \
 		utils/dblink/dblink_utils.c \
 		utils/dblink/dblink.c  \
 		parsing/verif.c \
-	   	parsing/verif_wall.c	 \
+		parsing/verif_wall.c	 \
 		parsing/mapInit.c	\
 		parsing/parsing.c	\
 		parsing/map.c	\
@@ -17,7 +17,8 @@ SRCS = 	render/main.c \
 		render/graphic_operator.c	\
 		render/render.c 	\
 		render/raycaster.c 	\
-		parsing/main_init.c
+		main/main_init.c \
+		main/utils.c	\
 
 HEADER= ./Include/cube.h
 FRAMEWORK= -framework Cocoa -framework OpenGL -framework IOKit
@@ -41,7 +42,7 @@ ${NAME}:${OBJS}
 clean:
 	    @${RM} ${OBJS}	
 
-fclean: ${clean}
+fclean: clean
 	rm -rf cub3d
 
 git:
