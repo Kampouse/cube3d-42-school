@@ -40,7 +40,7 @@ ${NAME}:${OBJS}
 		@$(MAKE) -s -C ./utils/MLX
 		@${CC}  ${FLAGS} ${OBJS} ${LIBS} ${FRAMEWORK}  -o ${NAME}
 clean:
-	    @${RM} ${OBJS}	
+		@${RM} ${OBJS}
 
 fclean: clean
 	rm -rf cub3d

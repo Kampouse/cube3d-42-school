@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:11:15 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/05 08:47:40 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/06 13:15:25 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	assert(int value, char *str)
 	return (value);
 }
 
+//	A.G : Clever la facon que tu creer ta liste
 t_dlist	*mapcreator(char *map_link)
 {
 	t_dlist	*list;

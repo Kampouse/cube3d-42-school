@@ -1,7 +1,7 @@
 #include "../Include/cube.h"
 
-uint32_t color_to_rgb(int a ,int r , int g , int b)
-   {
+uint32_t	color_to_rgb(int a ,int r , int g , int b)
+{
 	uint32_t color;
 	const int ra = r & 0xFF;
 	const int ga = g & 0xFF;
@@ -9,17 +9,17 @@ uint32_t color_to_rgb(int a ,int r , int g , int b)
 	const int aa = a & 0xFF;
 	(void)aa;
 		color = 0xFF | (ra << 8) | (ga << 16) | ( ba << 24);
-      return color;
-   }
+	return color;
+}
 
-void draw_line(t_image *image,int x0, int y0, int x1, int y1) 
-	{
-	  int dx = abs(x1-x0);
-	  int dy = abs(y1-y0);
-	  int sx;
-	  int sy;
-	  int err;
-	  int e2; 
+void	draw_line(t_image *image,int x0, int y0, int x1, int y1) 
+{
+	int dx = abs(x1-x0);
+	int dy = abs(y1-y0);
+	int sx;
+	int sy;
+	int err;
+	int e2; 
 
 	if (x0 <  x1)
 		sx = 1;
@@ -33,39 +33,36 @@ void draw_line(t_image *image,int x0, int y0, int x1, int y1)
 		err = dx / 2;
 	else 
 		err = -dy / 2;
-	  while(1)
+	while(1)
 	{
 		if(x0 < 0)
 			x0 = 0;
 		if(y0 < 0)
 			y0 = 0;
-
-
 		mlx_putpixel(image->image,x0,y0,color_to_rgb(0,0,0,150));
-		if (x0==x1 && y0==y1)
+		if (x0 == x1 && y0 == y1)
 				break;
 		e2 = err;
-		if (e2 >-dx)
-	{
-				err -= dy; 
+		if (e2 >- dx)
+		{
+			err -= dy; 
 			x0 += sx; 
 		}
 		if (e2 < dy) 
 		{
-				err += dx;
-				y0 += sy; 
+			err += dx;
+			y0 += sy; 
 		}
-	  }
+	}
 }
 
-int square_shape(t_image *image,int x_pos, int y_pos,uint32_t color)
+int	square_shape(t_image *image,int x_pos, int y_pos,uint32_t color)
 {
-	int inc;
-	int cin;
+	int	inc;
+	int	cin;
 
 	inc = 0;
 	cin = 0;
-
 	while (cin < 20)
 	{
 		while (inc < 20) 
@@ -79,12 +76,12 @@ int square_shape(t_image *image,int x_pos, int y_pos,uint32_t color)
 	return (0);
 }
 
-void draw_map(t_game *state, t_image image, int scale)
+void	draw_map(t_game *state, t_image image, int scale)
 {
-	int inc;
-	int cin;
-	int stepx;
-	int stepy;
+	int	inc;
+	int	cin;
+	int	stepx;
+	int	stepy;
 	
 	inc = 0;
 	cin = 0;
@@ -115,9 +112,7 @@ void draw_map(t_game *state, t_image image, int scale)
 	}
 }
 
-float degToRad(float a)
+float	degToRad(float a)
 {
 	return a*M_PI/180.0;
 }
-
-

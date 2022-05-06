@@ -81,7 +81,7 @@ void	ft_poll_texture(char *str,t_map *map)
 	}
 }
 
-int verif_number(char **strs)
+int	verif_number(char **strs)
 {
 	int	inc;
 	int	cin;
@@ -104,7 +104,7 @@ int verif_number(char **strs)
 }
 
 /* maybe add a is digit in some way   so you can see if eleme is number or not */
-int *get_color(char *str)
+int	*get_color(char *str)
 {
 	char	**darray;
 	int		inc;
@@ -196,7 +196,8 @@ void	ft_poll_color(char *str,t_map *map,int inc)
 		free(str);
 	}
 }
-int  loop_directions(t_game *state)
+
+int	loop_directions(t_game *state)
 {
 	int	inc;
 	int	status;
@@ -205,6 +206,7 @@ int  loop_directions(t_game *state)
 	inc = 0;
 	if (state->map != NULL)
 	{
+		//	Ici on valide l'entrer de la map
 		while (state->map[inc])
 		{
 			 ft_poll_texture(skip_empty_line(state->map[inc]), state->map_data);
@@ -219,7 +221,10 @@ int  loop_directions(t_game *state)
 		}
 	}
 	else
-		status = printf("Error : could not readfile\n");
+	{
+		ft_putstr_fd("Error : could not readfile\n", 2);
+		return (1);
+	}
 	state->map_data->iterator++;
-return (status);
+	return (status);
 }

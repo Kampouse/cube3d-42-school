@@ -1,12 +1,12 @@
 #include "../Include/cube.h"
 
 
-float distance(ax, ay, bx, by, ang)
+float	distance(ax, ay, bx, by, ang)
 {
 	return cos(ang)*(bx-ax)-sin(ang)*(by-ay);
 }
 
-int raycaster2d(t_game *game, t_image image, t_ray ray)
+int	raycaster2d(t_game *game, t_image image, t_ray ray)
 {
 	int inc;
 

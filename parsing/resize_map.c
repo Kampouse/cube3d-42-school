@@ -1,6 +1,7 @@
 #include "../Include/cube.h"
 
-void  resize_map(t_game *game)
+//	Me gusta
+void	resize_map(t_game *game)
 {
 	char	**new_map;
 	int		len;

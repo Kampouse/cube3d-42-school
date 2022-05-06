@@ -32,6 +32,7 @@ int	main(int argc, char *argv[])
 {
 	(void)argv;
 	(void)argc;
+	int			time;
 	t_game		*state;
 	t_image		image;
 
@@ -42,7 +43,7 @@ int	main(int argc, char *argv[])
 	state->map = map_init(mapcreator("assets/map.cub")); // ici changer le path avec le argv
 	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0)
 	{
-			printf("an erro as occured \n");
+			ft_putstr_fd("an erro as occured \n", 2);
 			//freelist(state->map);
 			//delete_texture(state->map_data);
 			//free(state->map_data);
@@ -51,8 +52,7 @@ int	main(int argc, char *argv[])
 		return (0);	
 	}
 	resize_map(state);
-	player_direction(state);
-	int time;
+	player_direction(state);		//math part
 	time = 10;
 	state->player->x_pos = (state->player->x_pos ) * state->player->scale;
 	state->player->y_pos = (state->player->y_pos)  * state->player->scale;

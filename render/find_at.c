@@ -3,7 +3,6 @@
 
 int	isRayFacingUp(float angle)
 {
-
 	if(angle < 270 && angle > 90)
 		return(0);
 	else 
@@ -41,13 +40,6 @@ int print_pos(t_game *map, long  x_pos,long y_pos)
 	printf("%c\n",map->map[(y_pos + 64) /64][(x_pos + 64) /64]);
 }
 
-
-
-
-
-
-
-
 int cast_ray(t_game *game,t_image *image)
 {
 	float x_pos = game->player->x_pos;
@@ -64,88 +56,75 @@ int cast_ray(t_game *game,t_image *image)
 	unsigned int mapy;
 	float plane_x = 0;
 	float plane_y = 0.66;
-
 	dir = 1;
-	
 	//second_x = floor(x_pos - sin(degToRad(60) - 0.01) * 32);
 	//second_y = floor(y_pos + cos(degToRad(60) - 0.01) * 32);
-	
-
-
-
 	//printf("%f (%f) lol", second_x - x_pos,roundf((second_y  - y_pos) / 32));
 	// determiner sur quel iterateur faire la comparaison positif negatif ect kk
-	
 	//second_y = (second_y - y_pos);
 	//second_x = (second_x - x_pos);
 	//printf("(%d)",abs(1 / second_y));
 	step_x = 0;
 	step_y= 0 ;
 	int inc = 1;
-	
 	//printf("%f))))\n",second_y );
 	while(inc  <  1080)
 	{
 		inc+= 1;
-	
-	double camera_x  = 2 * inc   / (double) 1080  - 1;
-
+		double camera_x  = 2 * inc   / (double) 1080  - 1;
 		//printf("%f",camera_x);
-	double  ray_dirx = 	dir + plane_x * camera_x;
-	double  ray_diry = 	0 + plane_y * camera_x;
-	double side_dist_x;
-	double side_dist_y;
-	double  deltax =	 sqrt(1 + (pow(ray_diry,2) / pow(ray_dirx,2)));
-	double  deltay =	  sqrt(1 + (pow(ray_dirx,2) / pow(ray_diry,2)));
-	int stepx;
-	int stepy;
-	//printf("%f-\n",ray_dirx);
-	//printf("%f-\n",ray_diry);
-
-	mapx = (int)x_pos; 
-	mapy = (int)y_pos; 
-	if(ray_dirx < 0)
-	{
-		side_dist_x = ( x_pos - mapx  ) *  deltax;
-		step_x = -1;
-	}
-	else
-	{
-		step_x = 1;
-		side_dist_x = (mapx  + 1 - x_pos) *  deltax;
-	}
-	if(ray_diry < 0)
-	{
-		side_dist_y = ( y_pos - mapy) *  deltay;
-		step_y = -1;
-	}
-	else
-	{
-		step_y = 1;
-		side_dist_y = (mapy  + 1 - y_pos) *  deltay;
-	}
-	while(1)
-	{
-		if(side_dist_x < side_dist_y)
+		double  ray_dirx = 	dir + plane_x * camera_x;
+		double  ray_diry = 	0 + plane_y * camera_x;
+		double side_dist_x;
+		double side_dist_y;
+		double  deltax =	 sqrt(1 + (pow(ray_diry,2) / pow(ray_dirx,2)));
+		double  deltay =	  sqrt(1 + (pow(ray_dirx,2) / pow(ray_diry,2)));
+		int stepx;
+		int stepy;
+		//printf("%f-\n",ray_dirx);
+		//printf("%f-\n",ray_diry);
+		mapx = (int)x_pos; 
+		mapy = (int)y_pos; 
+		if(ray_dirx < 0)
 		{
-			side_dist_x += deltax;
-			mapx += step_x;
+			side_dist_x = ( x_pos - mapx  ) *  deltax;
+			step_x = -1;
 		}
 		else
 		{
-			 side_dist_y +=  deltay;	
-			 mapy += step_y;
+			step_x = 1;
+			side_dist_x = (mapx  + 1 - x_pos) *  deltax;
 		}
-		if(game->map[mapy][mapx]  == '1')
+		if(ray_diry < 0)
 		{
-
-			break;
-
+			side_dist_y = ( y_pos - mapy) *  deltay;
+			step_y = -1;
 		}
-	}
-	draw_line(image,x_pos * 32,y_pos * 32,(mapx)  * 32,(mapy)  * 32);
-	printf("%d %d\n",mapx,mapy);
+		else
+		{
+			step_y = 1;
+			side_dist_y = (mapy  + 1 - y_pos) *  deltay;
+		}
+		while(1)
+		{
+			if(side_dist_x < side_dist_y)
+			{
+				side_dist_x += deltax;
+				mapx += step_x;
+			}
+			else
+			{
+				side_dist_y +=  deltay;	
+				mapy += step_y;
+			}
+			if(game->map[mapy][mapx]  == '1')
+			{
 
+				break;
+			}
+		}
+		draw_line(image,x_pos * 32,y_pos * 32,(mapx)  * 32,(mapy)  * 32);
+		printf("%d %d\n",mapx,mapy);
 	}
 //	mapy =	 (int)  ((y_pos + second_y ) / 32)  * step_y;
 	//mapx =	 (int)  ((x_pos + second_x ) / 32)  * step_x;

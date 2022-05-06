@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/06 10:44:03 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/06 13:34:16 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,34 @@ char	freelist(char **list)
 	}
 	free(list);
 	return (0);
+}
+
+int	was_in_set(char *str,char *set)
+{
+	int inc;
+	int cin;
+	int temp;
+	int was_in_set;
+		cin = 0;
+	was_in_set = 1;
+		inc  = 0;
+		while (str[inc])
+		{
+			temp = inc;
+			while(set[cin])
+			{
+				if (set[cin] == str[inc])
+				{
+					was_in_set = 0;
+					cin = 0;
+					break ;
+				}
+				cin++;
+			}
+			if (was_in_set != 0)
+				return (1);
+			was_in_set = 1;
+			inc++;
+		}
+	return(0);
 }

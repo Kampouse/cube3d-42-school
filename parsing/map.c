@@ -9,36 +9,6 @@ int any_one_bellow_line(char **map,int current_line);
 
 int look_in_space(int current_line,t_game *game,int pos);
 
-int was_in_set(char *str,char *set)
-{
-	int inc;
-	int cin;
-	int temp;
-	int was_in_set;
-		cin = 0;
-	was_in_set = 1;
-		inc  = 0;
-		while (str[inc])
-		{
-			temp = inc;
-			while(set[cin])
-			{
-				if (set[cin] == str[inc])
-				{
-					was_in_set = 0;
-					cin = 0;
-					break ;
-				}
-				cin++;
-			}
-			if (was_in_set != 0)
-				return (1);
-			was_in_set = 1;
-			inc++;
-		}
-	return(0);
-}
-
 int last_seen_at(char *str, char elem)
 {
 	int index;
@@ -190,7 +160,6 @@ int parse_location(t_game *game, int found, int inc)
 }
 
 // repalce if by assert;
-// A.G : mettre la fonction parsing dans parsing.c serait cool
 int	parsing(t_game *game, int temp)
 {
 	if (loop_directions(game))
