@@ -12,11 +12,6 @@ uint32_t color_to_rgb(int a ,int r , int g , int b)
       return color;
    }
 
-
-
-
-
-
 void draw_line(t_image *image,int x0, int y0, int x1, int y1) 
 	{
 	  int dx = abs(x1-x0);
@@ -63,18 +58,13 @@ void draw_line(t_image *image,int x0, int y0, int x1, int y1)
 	  }
 }
 
-
-
-
-
 int square_shape(t_image *image,int x_pos, int y_pos,uint32_t color)
 {
+	int inc;
+	int cin;
 
-int inc;
-int cin;
-
-inc = 0;
-cin = 0;
+	inc = 0;
+	cin = 0;
 
 	while (cin < 20)
 	{
@@ -86,8 +76,9 @@ cin = 0;
 		inc = 0;
 		cin++;
 	}
-return (0);
+	return (0);
 }
+
 void draw_map(t_game *state, t_image image, int scale)
 {
 	int inc;

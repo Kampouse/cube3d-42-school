@@ -1,6 +1,6 @@
 #include "../Include/cube.h"
 
-char *skip_empty_line(char *str)
+char	*skip_empty_line(char *str)
 {
 	const char	*temp = ft_strtrim(str," \n\t\v");
 
@@ -14,7 +14,9 @@ char *skip_empty_line(char *str)
 	return (NULL);
 }
 
-t_map *init_map(void)
+// Init dans parsing, pt le mettre a un
+// endroit appeller ini ?
+t_map	*init_map(void)
 {
 	t_map	*map;
 
@@ -28,7 +30,8 @@ t_map *init_map(void)
 	return (map);
 }
 
-void *ft_free(void *content)
+//	Je mettrait ca dans un autre file avec les init ?
+void	*ft_free(void *content)
 {
 	if(content != NULL)
 	{
@@ -40,7 +43,7 @@ void *ft_free(void *content)
 		return (NULL);
 }
 
-int delete_texture(t_map *map)
+int	delete_texture(t_map *map)
 {
 	if(map)
 	{
@@ -55,8 +58,11 @@ int delete_texture(t_map *map)
 	return (0);
 }
 
-/* should make another function that check that no null  one */
-void ft_poll_texture(char *str,t_map *map)
+/* 
+	should make another function that check that no null one
+	Note : Add ./path validation
+*/
+void	ft_poll_texture(char *str,t_map *map)
 {
 	char	*temp;
 
@@ -74,6 +80,7 @@ void ft_poll_texture(char *str,t_map *map)
 		free(str);
 	}
 }
+
 int verif_number(char **strs)
 {
 	int	inc;
@@ -99,9 +106,9 @@ int verif_number(char **strs)
 /* maybe add a is digit in some way   so you can see if eleme is number or not */
 int *get_color(char *str)
 {
-	char **darray;
-	int inc;
-	int *array;
+	char	**darray;
+	int		inc;
+	int		*array;
 
 	array = NULL;
 	inc = 0;
@@ -125,10 +132,10 @@ int *get_color(char *str)
 	return (array);
 }
 
-int valid_range(int *numbers)
+int	valid_range(int *numbers)
 {
-	int is_not_ok;
-	int inc;
+	int	is_not_ok;
+	int	inc;
 
 	inc = 0;
 	is_not_ok = 0;
@@ -144,9 +151,9 @@ int valid_range(int *numbers)
 	return (is_not_ok);
 }
 
-int any_invalid(t_map *map)
+int	any_invalid(t_map *map)
 {
-	int is_not_ok;
+	int	is_not_ok;
 
 	is_not_ok = 0;
 	if(map->west_texture == NULL)
@@ -164,9 +171,9 @@ int any_invalid(t_map *map)
 	return (is_not_ok);
 }
 
-void ft_poll_color(char *str,t_map *map,int inc)
+void	ft_poll_color(char *str,t_map *map,int inc)
 {
-	char *temp;
+	char	*temp;
 
 	temp = NULL;
 	if (str)
@@ -191,12 +198,12 @@ void ft_poll_color(char *str,t_map *map,int inc)
 }
 int  loop_directions(t_game *state)
 {
-	int inc;
-	int status;
+	int	inc;
+	int	status;
 
 	status = 0;
 	inc = 0;
-	if (state->map !=NULL)
+	if (state->map != NULL)
 	{
 		while (state->map[inc])
 		{

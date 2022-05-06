@@ -4,19 +4,6 @@
 
 int draw_grid(t_image image);
 
-void	free_list(t_dlist *head)
-{
-	t_dlist	*next;
-
-	if (head != NULL)
-	{
-		next = head->next;
-		free(head->content);
-		free(head);
-		free_list(next);
-	}
-}
-
 t_dlist	*verif(t_dlist *map)
 {
 	int	flag;
@@ -41,63 +28,18 @@ t_dlist	*verif(t_dlist *map)
 	return (map);
 }
 
-void	hook(void *param)
-{
-	t_mlx *mlx;
-	t_game *state;
-	state = param;
-	const float delta_y = cos(state->player->direction) / 1;
-	const float delta_x = sin( state->player->direction);
-
-	mlx = state->mlx;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		exit(0);
-if (mlx_is_key_down(mlx, MLX_KEY_A))
-	{
-	state->player->direction +=	 0.120;
-	if(state->player->direction   >= 2 * PI)
-			state->player->direction = 0;
-		draw_map(state,state->image, state->player->scale);
-		ray_fov(state, state->image,state->player->direction,0);
-		//ray_fov3d(state,state->image, state->player->direction,0);
-	}
-if (mlx_is_key_down(mlx, MLX_KEY_R))
-	{
-		state->player->x_pos+=delta_x *2;
-		state->player->y_pos+=delta_y * 2;
-		draw_map(state,state->image,state->player->scale);
-		ray_fov(state, state->image,state->player->direction,0);
-	}
-if (mlx_is_key_down(mlx, MLX_KEY_H))
-	{
-		state->player->x_pos-=delta_x * 2;
-		state->player->y_pos-=delta_y * 2;
-		draw_map(state,state->image, state->player->scale);
-		ray_fov(state, state->image,state->player->direction,0);
-	}
-if (mlx_is_key_down(mlx, MLX_KEY_T))
-	{
-		state->player->direction-= 0.1;
-		if(state->player->direction  <= 0)
-			state->player->direction = PI *  2;
-		ray_fov(state, state->image,state->player->direction,0);
-		draw_map(state,state->image, state->player->scale);
-	}
-
-}
-
 int	main(int argc, char *argv[])
 {
-
 	(void)argv;
 	(void)argc;
 	t_game		*state;
-	t_image image;
+	t_image		image;
+
 	state = malloc(sizeof(t_game));
 	state->player = malloc(sizeof(t_player));
 	state->player->scale = 12;
 	state->map_data  = init_map();
-	state->map = map_init(mapcreator("assets/map.cub"));
+	state->map = map_init(mapcreator("assets/map.cub")); // ici changer le path avec le argv
 	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0)
 	{
 			printf("an erro as occured \n");
@@ -111,7 +53,6 @@ int	main(int argc, char *argv[])
 	resize_map(state);
 	player_direction(state);
 	int time;
-
 	time = 10;
 	state->player->x_pos = (state->player->x_pos ) * state->player->scale;
 	state->player->y_pos = (state->player->y_pos)  * state->player->scale;

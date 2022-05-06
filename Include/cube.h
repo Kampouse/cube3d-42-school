@@ -71,6 +71,7 @@ typedef struct t_map
 	int		last;
 	int		iterator;
 } t_map;
+
 typedef struct	s_image {
 
 	t_mlx_image *image;
@@ -93,20 +94,7 @@ typedef struct t_game
 	int			screeheight;
 }					t_game;	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void	hook(void *param);
 t_dlist	*ft_lst_lastnode(t_dlist *currlist);
 t_dlist	*ft_lst_firstnode(t_dlist *currlist);
 t_dlist	*ft_lst_prevnode(t_dlist *currlist);

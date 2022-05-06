@@ -190,6 +190,7 @@ int parse_location(t_game *game, int found, int inc)
 }
 
 // repalce if by assert;
+// A.G : mettre la fonction parsing dans parsing.c serait cool
 int	parsing(t_game *game, int temp)
 {
 	if (loop_directions(game))
