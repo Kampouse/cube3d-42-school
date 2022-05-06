@@ -43,6 +43,8 @@ clean:
 		@${RM} ${OBJS}
 
 fclean: clean
+
+	make -C ./utils/libft clean
 	rm -rf cub3d
 
 git:
