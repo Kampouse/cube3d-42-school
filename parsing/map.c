@@ -1,13 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
+/*   Updated: 2022/05/09 12:33:44 by aguay            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Include/cube.h"
-
-
-int any_one_above(t_game *map, int current_line,int pos);
-int verif_no_space(t_game *game,int pos);
-int any_one_above_line(t_game *map,int current_line);
-int any_one_bellow(char **map, int current_line, int pos);
-int any_one_bellow_line(char **map,int current_line);
-
-int look_in_space(int current_line,t_game *game,int pos);
 
 int last_seen_at(char *str, char elem)
 {
@@ -162,7 +165,7 @@ int parse_location(t_game *game, int found, int inc)
 // repalce if by assert;
 int	parsing(t_game *game, int temp)
 {
-	if (loop_directions(game))
+	if (loop_directions(game))	// Init le vecteur Player 
 		return(1);
 	while (game->map[game->map_data->iterator + 1] && only_space(game->map[
 				game->map_data->iterator]))

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
+/*   Updated: 2022/05/09 12:13:44 by aguay            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Include/cube.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -31,7 +43,7 @@ t_dlist	*verif(t_dlist *map)
 int	main(int argc, char *argv[])
 {
 	(void)argv;
-	(void)argc;
+	(void)argc;	// A.G : Need to add parsing some days
 	int			time;
 	t_game		*state;
 	t_image		image;
@@ -40,7 +52,7 @@ int	main(int argc, char *argv[])
 	state->player = malloc(sizeof(t_player));
 	state->player->scale = 12;
 	state->map_data  = init_map();
-	state->map = map_init(mapcreator("assets/map.cub")); // ici changer le path avec le argv
+	state->map = map_init(mapcreator("assets/map.cub")); // A.G : ici changer le path avec le argv
 	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0)
 	{
 			ft_putstr_fd("an erro as occured \n", 2);

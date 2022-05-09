@@ -1,42 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resize_map.c                                       :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/09 12:14:18 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/09 12:26:50 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-//	Me gusta
-void	resize_map(t_game *game)
+int	verif_number(char **strs)
 {
-	char	**new_map;
-	int		len;
-	int		iter;
+	int	inc;
+	int	cin;
 
-	iter = game->map_data->start;
-	len = 0;
-	while (game->map[iter] && !(only_space(game->map[iter])))
+	cin = 0;
+	inc = 0;
+	while(strs[inc])
 	{
-		iter++;
-		len++;
+		while(strs[inc][cin])
+		{
+			if(ft_isdigit(strs[inc][cin]))
+				cin++;
+			else
+				return (1);
+		}
+		cin = 0;
+		inc++;
 	}
-	game->map_data->last = len;
-	new_map = ft_calloc(len + 1,sizeof(new_map));
-	iter = game->map_data->start;
-	len = 0;
-	while (game->map[iter] && !(only_space(game->map[iter])))
-	{
-		new_map[len] = ft_strdup(game->map[iter]);
-		iter++;
-		len++;
-	}
-	freelist(game->map);
-	game->map = new_map;
+	return (0);
 }
 
+int	valid_range(int *numbers)
+{
+	int	is_not_ok;
+	int	inc;
+
+	inc = 0;
+	is_not_ok = 0;
+		while (inc < 4)
+		{
+			if (numbers[inc] < 0  ||  numbers[inc] > 255)
+			{
+				is_not_ok = 1;
+				break ;
+			}
+			inc++;
+		}
+	return (is_not_ok);
+}

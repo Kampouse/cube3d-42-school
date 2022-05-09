@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:11:15 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/06 13:15:25 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/09 11:54:55 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_dlist	*mapcreator(char *map_link)
 		return (NULL);
 	if (read(fd, &str, 0) < 0)
 		return (NULL);
-	get_next_line(fd, &str);
+	get_next_line(fd, &str);	//	A.G : C'est ton get_next_line ? Tu envoie le buffer dans &str ?
 	list = ft_lstnewl(str);
 	while (get_next_line(fd, &str))
 		ft_lst_add_backd(&list, node_init(str));

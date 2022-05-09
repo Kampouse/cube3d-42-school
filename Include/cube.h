@@ -94,6 +94,18 @@ typedef struct t_game
 	int			screeheight;
 }					t_game;	
 
+int			verif_number(char **strs);
+int			any_one_above(t_game *map, int current_line,int pos);
+int			verif_no_space(t_game *game,int pos);
+int			any_one_above_line(t_game *map,int current_line);
+int			any_one_bellow(char **map, int current_line, int pos);
+int			any_one_bellow_line(char **map,int current_line);
+int			look_in_space(int current_line,t_game *game,int pos);
+void		*ft_free(void *content);
+int			*get_color(char *str);
+void		ft_poll_color(char *str,t_map *map,int inc);
+void		ft_poll_texture(char *str,t_map *map);
+int			valid_range(int *numbers);
 void		hook(void *param);
 t_dlist		*ft_lst_lastnode(t_dlist *currlist);
 t_dlist		*ft_lst_firstnode(t_dlist *currlist);
