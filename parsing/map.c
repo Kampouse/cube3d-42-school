@@ -6,33 +6,33 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/09 12:33:44 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/09 13:31:11 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-int last_seen_at(char *str, char elem)
+int	last_seen_at(char *str, char elem)
 {
-	int index;
+	int	index;
 
-	if(str)
+	if (str)
+	{
+		index = ft_strlen(str);
+		while(index >= 0)
 		{
-			index =  ft_strlen(str);
-			while(index >= 0)
-			{
-				if (str[index] == elem)
-					return (index);
-				index--;
-			}
+			if (str[index] == elem)
+				return (index);
+			index--;
 		}
+	}
 	return (-1);
 }
 
-int any_before_after(char **map, int current_line)
+int	any_before_after(char **map, int current_line)
 {
-	int pos;
-	int temp;	
+	int	pos;
+	int	temp;	
 	const int  start_at = ft_until_this(map[current_line],"1");
 
 	pos = ft_until_this(map[current_line] + start_at, " ");
@@ -52,12 +52,11 @@ int any_before_after(char **map, int current_line)
 	return (0);
 }
 
-int look_in_space(int current_line, t_game *game, int pos)
+int	look_in_space(int current_line, t_game *game, int pos)
 {
-	int inc;
+	int	inc;
 
-
-	 inc = ft_until_this(game->map[current_line] + pos, " ");
+	inc = ft_until_this(game->map[current_line] + pos, " ");
 	if (inc < 0)
 		return (0);
 	if (inc > 0)
@@ -79,7 +78,7 @@ int look_in_space(int current_line, t_game *game, int pos)
 }
 
 
-int only_space(char *str)
+int	only_space(char *str)
 {
 	if(str)
 	{
@@ -93,7 +92,7 @@ int only_space(char *str)
 	return (0);
 }
 
-int parser_helper(t_game *game,int temp,int inc)
+int	parser_helper(t_game *game,int temp,int inc)
 {
 	if (ft_until_this(game->map[temp], "NEWS") != -1)
 		{
@@ -107,7 +106,7 @@ int parser_helper(t_game *game,int temp,int inc)
 	return (0);
 }
 
-int validate_file(t_game *game)
+int	validate_file(t_game *game)
 {
 	int file;
 	
@@ -134,7 +133,7 @@ int validate_file(t_game *game)
 	return (0);
 }
 
-int parse_location(t_game *game, int found, int inc)
+int	parse_location(t_game *game, int found, int inc)
 {
 	int	temp;
 
@@ -192,10 +191,10 @@ int	parsing(t_game *game, int temp)
 	return (0);
 }
 
-int first_seen(char *str)
+int	first_seen(char *str)
 {
-	int inc;
-	char *temp;
+	int		inc;
+	char	*temp;
 
 	inc = 0;
 	temp = ft_strchr(str, ' ');
@@ -206,13 +205,13 @@ int first_seen(char *str)
 	return(1);
 }
 
-int verif_no_space(t_game *game, int pos)
+int	verif_no_space(t_game *game, int pos)
 {
-	int iter;
-	int temp;
+	int	iter;
+	int	temp;
+
 	iter = pos;
 	temp = 0;
-
 	while (!skip_empty_line(game->map[iter]))
 		iter++;
 	if(ft_all(game->map[iter],'1'))
@@ -228,7 +227,7 @@ int verif_no_space(t_game *game, int pos)
 		return (0);
 }
 
-int any_one_above(t_game *map, int current_line, int pos)
+int	any_one_above(t_game *map, int current_line, int pos)
 {
 	while (current_line > map->map_data->iterator)
 	{
@@ -250,9 +249,9 @@ int any_one_above(t_game *map, int current_line, int pos)
 	return (0);
 }
 
-int any_one_above_line(t_game *map, int current_line)
+int	any_one_above_line(t_game *map, int current_line)
 {
-	int inc;
+	int	inc;
 
 	inc = 0;
 	while (map->map[current_line][inc])
@@ -267,9 +266,9 @@ int any_one_above_line(t_game *map, int current_line)
 	return(0);
 }
 
-int any_one_bellow_line(char **map,int current_line)
+int	any_one_bellow_line(char **map,int current_line)
 {
-	int inc;
+	int	inc;
 
 	inc = 0;
 	while (map[current_line][inc])
@@ -287,7 +286,7 @@ int any_one_bellow_line(char **map,int current_line)
 }
 
 // this funcion behave correctcly 
-int any_one_bellow(char **map, int current_line, int pos)
+int	any_one_bellow(char **map, int current_line, int pos)
 {
 	while (map[current_line])
 	{
