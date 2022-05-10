@@ -57,6 +57,7 @@ val:
 
 run: all
 	./${NAME} assets/map.cub
+bun: all
 
 leak: all
 	@echo "\033[92mTEST 1 \n \033[0m"
