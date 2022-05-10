@@ -53,10 +53,10 @@ git:
 	@git add ${SRCS} ${HEADER} Makefile
 
 val:
-	valgrind   --leak-check=full --track-origins=yes   ./$(NAME) ./map.cub
+	valgrind    --track-origins=yes   ./$(NAME) ./map2.cub
 
 run: all
-	./${NAME} assets/map.cub
+	./${NAME} map2.cub
 bun: all
 
 leak: all

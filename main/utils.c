@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/06 13:34:16 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/10 16:36:57 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	freelist(char **list)
 	int	inc;
 
 	inc = 0;
-	while (list[inc])
+	while (list && list[inc])
 	{
 		free(list[inc]);
 		inc++;

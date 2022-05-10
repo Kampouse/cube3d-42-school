@@ -40,6 +40,8 @@ typedef struct t_ray
 	float			dir;
 	float			dx;
 	float			dy;
+	float			plane_y;
+	float			plane_x;
 	float			delta_x;
 	float			delta_y;
 	float			angle;
@@ -84,6 +86,7 @@ typedef struct	s_image {
 typedef struct t_game
 {
 	t_map		*map_data;
+	t_ray 		*ray;
 	t_mlx		*mlx;
 	t_player	*player;
 	void		*win;
@@ -160,5 +163,6 @@ float		degToRad(float a);
 int			raycaster2d(t_game *game ,t_image image,t_ray ray);
 int			ray_fov(t_game *state,t_image image ,float angle,int inc);
 int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
+int verify_extention(char *str) ;
 
 #endif 

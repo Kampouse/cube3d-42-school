@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/09 12:32:40 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/10 16:24:48 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ t_map	*init_map(void)
 {
 	t_map	*map;
 
-	map = malloc(sizeof(*map));
+	map = malloc(sizeof(t_map));
 	map->ceiling_color = NULL;
 	map->norh_texture = NULL;
 	map->west_texture = NULL;
 	map->est_texture = NULL;
+	map->south_texture  = NULL;
 	map->ceiling_color = NULL;
 	map->floor_color = NULL;
 	return (map);
@@ -65,6 +66,19 @@ int	*get_color(char *str)
 	}
 	free(str);
 	return (array);
+}
+
+/* return if the extention of the file is correct */ 
+	int verify_extention(char *str) 
+{
+	const int ext_len = ft_strlen(".cub");	
+	const int len = ft_strlen(str);
+
+	if(len < ext_len)
+		return (1);
+	else if ( ft_strncmp(str + len - ext_len, ".cub",ft_strlen(str)) ==  0)
+		return (0);
+	return (1);
 }
 
 /*

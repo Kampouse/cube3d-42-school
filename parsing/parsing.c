@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/09 12:28:31 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/10 16:19:26 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*skip_empty_line(char *str)
 int	any_invalid(t_map *map)
 {
 	int	is_not_ok;
-
 	is_not_ok = 0;
 	if(map->west_texture == NULL)
 		is_not_ok++;
@@ -64,8 +63,8 @@ int	loop_directions(t_game *state)
 		}
 		if (any_invalid(state->map_data))
 		{
-			delete_texture(state->map_data);
-			freelist(state->map);
+			//delete_texture(state->map_data);
+			//freelist(state->map);
 			return(printf("an error occured while reading texture or color"));
 		}
 	}
