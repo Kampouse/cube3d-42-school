@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/11 11:04:38 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/11 11:32:20 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char *argv[])
 		exit(0);
 	}
 	else
-		if(verify_extention(argv[1]) == 1)
+		if(verify_extention(argv[1],".cub") == 1)
 		{
 			ft_putstr_fd("Error: wrong file extension expected a .cub\n", 1);
 			exit(0);

@@ -163,6 +163,6 @@ float		degToRad(float a);
 int			raycaster2d(t_game *game ,t_image image,t_ray ray);
 int			ray_fov(t_game *state,t_image image ,float angle,int inc);
 int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
-int			verify_extention(char *str);
+int			verify_extention(char *str,const char *extention);
 
 #endif 

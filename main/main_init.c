@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/10 16:24:48 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/11 10:52:03 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ int	*get_color(char *str)
 }
 
 /* return if the extention of the file is correct */ 
-	int verify_extention(char *str) 
+	int verify_extention(char *str,const char *extention ) 
 {
-	const int ext_len = ft_strlen(".cub");	
+	const int ext_len = ft_strlen(extention);	
 	const int len = ft_strlen(str);
 
 	if(len < ext_len)
 		return (1);
-	else if ( ft_strncmp(str + len - ext_len, ".cub",ft_strlen(str)) ==  0)
+	else if ( ft_strncmp(str + len - ext_len,extention,ft_strlen(str)) ==  0)
 		return (0);
 	return (1);
 }

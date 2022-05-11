@@ -56,7 +56,7 @@ val:
 	valgrind    --track-origins=yes   ./$(NAME) ./map2.cub
 
 run: all
-	./${NAME} map2.cub
+	./${NAME} ./assets/map.cub 
 bun: all
 
 leak: all
