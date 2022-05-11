@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/09 12:14:39 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/11 11:13:25 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,4 @@ void	draw_map(t_game *state, t_image image, int scale)
 		stepy += scale;
 		cin++;
 	}
-}
-
-float	degToRad(float a)
-{
-	return a*M_PI/180.0;
 }

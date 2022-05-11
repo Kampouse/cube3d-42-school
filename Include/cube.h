@@ -155,14 +155,14 @@ int			cast_ray(t_game *game,t_image *image);
 uint32_t	color_to_rgb(int a ,int r , int g , int b);
 int			square_shape(t_image *image,int x_pos, int y_pos,uint32_t color);
 void		draw_map(t_game *state, t_image image,int scale);
-void		draw_line(t_image *image,int x0, int y0, int x1, int y1) ;
+void		draw_line(t_image *image,int x0, int y0, int x1, int y1);
 void		draw_player(t_game *state,t_image image,t_ray *ray);
 int			draw_circle(t_image *image, int start_x,int start_y,int rayon);
-double		find_len(int startx, int starty,int endx, int endy) ;
+double		find_len(int startx, int starty,int endx, int endy);
 float		degToRad(float a);
 int			raycaster2d(t_game *game ,t_image image,t_ray ray);
 int			ray_fov(t_game *state,t_image image ,float angle,int inc);
 int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
-int verify_extention(char *str) ;
+int			verify_extention(char *str);
 
 #endif 

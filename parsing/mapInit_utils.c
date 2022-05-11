@@ -6,11 +6,16 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/10 16:33:33 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/11 11:13:56 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
+
+float	degToRad(float a)
+{
+	return (a * M_PI / 180.0);
+}
 
 void	ft_poll_color(char *str,t_map *map,int inc)
 {
@@ -66,7 +71,7 @@ void	ft_poll_texture(char *str,t_map *map)
 	}
 }
 
-int	delete_texture(t_map *map)	// c'est dans parsing ou ini ? (aucun des deux s'est pour clean up J-p)
+int	delete_texture(t_map *map)
 {
 	if(map)
 	{

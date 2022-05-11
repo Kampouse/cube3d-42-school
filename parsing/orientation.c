@@ -3,11 +3,10 @@
 void apply_radiant(t_game *game)
 {
 	const double pi = 3.14159265359 * 2;
-	game->player->direction  = game->player->direction *  (pi / 360);
-
+	game->player->direction  = game->player->direction * (pi / 360);
 }
 
-void player_direction(t_game *game)
+void player_direction(t_game *game)	// +25 lines here
 {
 	if (game->player->orientation == 'N')
 	{

@@ -6,14 +6,14 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/10 16:36:57 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/11 11:15:31 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 #include "../utils/libft/libft.h"
 
-void	free_list(t_dlist *head)
+void	free_list(t_dlist *head) // sexy
 {
 	t_dlist	*next;
 

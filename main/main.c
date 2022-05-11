@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/10 16:35:59 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/11 11:04:38 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char *argv[])
 	state->ray = malloc(sizeof(t_ray));
 	state->player->scale = 12;
 	state->map_data  = init_map();
-	state->map = map_init(mapcreator(argv[1])); // A.G : ici changer le path avec le argv
+	state->map = map_init(mapcreator(argv[1]));
 	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0)
 	{
 			ft_putstr_fd("an erro as occured \n", 2);
@@ -75,14 +75,12 @@ int	main(int argc, char *argv[])
 
 		return (0);	
 	}
-
 	resize_map(state);
 	player_direction(state);		//math part
 	time = 10;
 	state->player->x_pos = (state->player->x_pos ) * state->player->scale;
 	state->player->y_pos = (state->player->y_pos)  * state->player->scale;
 	(void)image;
-	
 	//t_mlx_inst *element;
 	/* 
 	state->mlx = mlx_init(1920, 1080, "MLX42", 0);
