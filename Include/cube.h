@@ -99,6 +99,7 @@ typedef struct t_game
 	int			screeheight;
 }					t_game;	
 
+bool		move_ok(t_game *game, float delta_x, float delta_y);
 void		show_player_info(t_game *game);
 int			verif_number(char **strs);
 int			any_one_above(t_game *map, int current_line,int pos);

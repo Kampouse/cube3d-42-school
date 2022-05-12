@@ -20,6 +20,7 @@ SRCS = 	main/main.c					\
 		render/render.c 			\
 		render/raycaster.c 			\
 		render/helper.c				\
+		render/raycaster_utils.c	\
 		main/main_init.c			\
 		main/utils.c				\
 
