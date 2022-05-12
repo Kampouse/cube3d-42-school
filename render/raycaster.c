@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/12 10:34:17 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/12 13:52:12 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 float	distance(ax, ay, bx, by, ang)
 {
-	return cos(ang)*(bx-ax)-sin(ang)*(by-ay);
+	return (cos(ang)*(bx-ax)-sin(ang)*(by-ay));
 }
 
 int	raycaster2d(t_game *game, t_image image, t_ray ray)
@@ -36,7 +36,7 @@ int	raycaster2d(t_game *game, t_image image, t_ray ray)
 	return(0);
 }
 
-int	ray_fov(t_game *state,t_image image ,float angle,int inc)
+int	ray_fov(t_game *state, t_image image , float angle, int inc)
 {
 	float	until;
 	float	plus;
@@ -45,18 +45,17 @@ int	ray_fov(t_game *state,t_image image ,float angle,int inc)
 	(void)inc;
 
 	plus = 0;
-	until = state->player->direction +  PI / 6;
+	until = state->player->direction + PI / 6;
 		while(state->player->direction + plus < until)
 	{
 		ray.angle = state->player->direction + plus;
 			raycaster2d(state, image, ray);
 		ray.angle = state->player->direction - plus;
-			raycaster2d(state, image, ray );
+			raycaster2d(state, image, ray);
 			plus += PI / 84;
 	}
 	return (0);
 }
-
 /*
 int raycaster3d(t_game *game, t_image image, t_ray ray,int scree_strip)
 {

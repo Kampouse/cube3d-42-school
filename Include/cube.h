@@ -33,7 +33,7 @@ typedef struct t_dlist
 	void			*content;
 	struct t_dlist	*next;
 	struct t_dlist	*prev;
-}					t_dlist;	
+}					t_dlist;
 
 typedef struct t_ray
 {
@@ -51,6 +51,8 @@ typedef struct t_ray
 
 typedef struct t_player
 {
+	int			x_map;
+	int			y_map;
 	int			x_pos;
 	int			y_pos;
 	int			orientation;

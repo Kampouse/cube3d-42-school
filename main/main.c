@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/12 10:36:12 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/12 13:48:18 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,16 @@ int	main(int argc, char *argv[])
 	resize_map(state);
 	player_direction(state);
 	time = 10;
-	state->player->x_pos = (state->player->x_pos ) * state->player->scale;
-	state->player->y_pos = (state->player->y_pos)  * state->player->scale;
+	state->player->x_pos = (state->player->x_pos) * state->player->scale;
+	state->player->y_pos = (state->player->y_pos) * state->player->scale;
+	state->player->x_map = state->player->x_pos / state->player->scale;
+	state->player->y_map = state->player->y_pos / state->player->scale;
 	(void)image;
 	state->mlx = mlx_init(600, 200, "MLX42", 0);
 	image.image = mlx_new_image(state->mlx,1000,1080);
 	state->image = image;
-	draw_map(state,image, state->player->scale);
-	draw_map(state,image, state->player->scale);
+	draw_map(state ,image, state->player->scale);
+	draw_map(state ,image, state->player->scale);
 	//ray_fov3d(state, image, state->player->direction,0);
 	//ray_fov(state, image, state->player->direction,0);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
@@ -103,7 +105,7 @@ int	main(int argc, char *argv[])
 			//free(state->player);
 			//freelist(state->map);
 			//free(state);
-	return(0);
+		return(0);
 		//mlx_new_window(state.mlx,100,100,"helo");
 		//mlx_loop(state.mlx);
 	//mlx_loop_hook(state.mlx, render_player, &state);
