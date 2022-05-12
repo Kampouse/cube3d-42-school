@@ -19,6 +19,7 @@ SRCS = 	main/main.c					\
 		render/graphic_operator.c	\
 		render/render.c 			\
 		render/raycaster.c 			\
+		render/helper.c				\
 		main/main_init.c			\
 		main/utils.c				\
 
@@ -36,6 +37,7 @@ OBJS = ${SRCS:.c=.o}
 CC = gcc
 
 all: ${NAME}
+	make clean
 
 ${NAME}:${OBJS} 
 		@$(MAKE) -C ./utils/libft

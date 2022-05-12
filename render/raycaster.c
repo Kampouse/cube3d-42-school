@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/09 12:14:44 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/12 10:34:17 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ float	distance(ax, ay, bx, by, ang)
 
 int	raycaster2d(t_game *game, t_image image, t_ray ray)
 {
-	int inc;
+	int	inc;
 
 	inc = 0;
 	ray.delta_y = cos(ray.angle) / 1;
@@ -36,7 +36,7 @@ int	raycaster2d(t_game *game, t_image image, t_ray ray)
 	return(0);
 }
 
-int ray_fov(t_game *state,t_image image ,float angle,int inc)
+int	ray_fov(t_game *state,t_image image ,float angle,int inc)
 {
 	float	until;
 	float	plus;
@@ -56,6 +56,7 @@ int ray_fov(t_game *state,t_image image ,float angle,int inc)
 	}
 	return (0);
 }
+
 /*
 int raycaster3d(t_game *game, t_image image, t_ray ray,int scree_strip)
 {

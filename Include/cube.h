@@ -97,6 +97,7 @@ typedef struct t_game
 	int			screeheight;
 }					t_game;	
 
+void		show_player_info(t_game *game);
 int			verif_number(char **strs);
 int			any_one_above(t_game *map, int current_line,int pos);
 int			verif_no_space(t_game *game,int pos);

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/11 11:15:31 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/12 10:22:52 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	hook(void *param)
 	const float delta_x = sin( state->player->direction);
 
 	mlx = state->mlx;
+	show_player_info(state);
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		exit(0);
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
