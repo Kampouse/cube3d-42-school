@@ -16,6 +16,7 @@ SRCS = 	main/main.c					\
 		parsing/resize_map.c		\
 		parsing/parsing_utils.c		\
 		parsing/mapInit_utils.c		\
+		render/raycaster_tonyg.c	\
 		render/graphic_operator.c	\
 		render/render.c 			\
 		render/raycaster.c 			\
@@ -43,7 +44,7 @@ all: ${NAME}
 ${NAME}:${OBJS} 
 		@$(MAKE) -C ./utils/libft
 		@$(MAKE) -s -C ./utils/MLX
-		@${CC}  ${FLAGS} ${OBJS} ${LIBS} ${FRAMEWORK}  -o ${NAME}
+		@${CC} ${FLAGS} ${OBJS} ${LIBS} ${FRAMEWORK}  -o ${NAME}
 
 clean:
 		@${RM} ${OBJS}
@@ -59,7 +60,8 @@ val:
 	valgrind    --track-origins=yes   ./$(NAME) ./map2.cub
 
 run: all
-	./${NAME} ./assets/map.cub 
+	./${NAME} ./assets/map.cub
+
 bun: all
 
 leak: all

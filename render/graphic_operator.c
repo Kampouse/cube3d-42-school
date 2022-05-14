@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/11 11:13:25 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/12 15:25:48 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	draw_map(t_game *state, t_image image, int scale)
 	stepx = 0;
 	stepy  = 0;
 	while (state->map[cin])
-	{	
+	{
 		while (state->map[cin][inc])
 		{
 			if (state->map[cin][inc] == '1')
@@ -112,7 +112,6 @@ void	draw_map(t_game *state, t_image image, int scale)
 				square_shape(&image, stepx, stepy, color_to_rgb(0 ,0, 255, 0));
 				draw_line(&image,stepx,stepy,stepx + scale,stepy);
 				draw_line(&image,stepx,stepy,stepx,stepy + scale);
-
 			}
 			inc++;
 			stepx+= scale;
