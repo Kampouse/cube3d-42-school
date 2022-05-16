@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/16 13:31:45 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/16 13:45:25 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	raycaster2d(t_game *game, t_image image)
 {
 	t_ray	ray;
 	int		inc;
+	int		stepx;
+	int		stepy;
 	float	stepsize_x;
 	float	stepsize_y;
 	
@@ -38,9 +40,19 @@ int	raycaster2d(t_game *game, t_image image)
 	while(game->map[(int)(game->player->y_pos + (ray.dy * inc)) / game->player->scale][(int)(game->player->x_pos + (ray.dx * inc))  / game->player->scale] != '1')
 		inc += 1;
 	printf("delta_x = %f\ndelta_y = %f\ndx = %f\ndy = %f\n", ray.delta_x, ray.delta_y, ray.dx, ray.dy);
-	stepsize_x = sqrt(1 + (ray.dy / ray.dx) * (ray.dy / ray.dx));
-	stepsize_y = sqrt(1 + (ray.dx / ray.dy) * (ray.dx / ray.dy));
+	stepsize_y = sqrt(1 + (ray.dy / ray.dx) * (ray.dy / ray.dx));
+	stepsize_x = sqrt(1 + (ray.dx / ray.dy) * (ray.dx / ray.dy));
 	printf("stepsize_x = %f\nstepsize_y = %f\n\n\n", stepsize_x, stepsize_y);
+	stepx = game->player->x_map;
+	stepy = game->player->y_map;
+	if (ray.dx < 0)
+		stepx = -1;
+	else
+		stepx = 1;
+	if (ray.dy < 0)
+		stepy = -1;
+	else
+		stepy = 1;
 	draw_line(&image, game->player->x_pos, game->player->y_pos, game->player->x_pos + (ray.dx * inc), game->player->y_pos + (ray.dy * inc));
 	return (0);
 }
