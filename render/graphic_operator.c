@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/12 15:25:48 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/16 11:48:08 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ uint32_t	color_to_rgb(int a ,int r , int g , int b)
 	return color;
 }
 
-void	draw_line(t_image *image,int x0, int y0, int x1, int y1) 
+void	draw_line(t_image *image ,int x0, int y0, int x1, int y1) 
 {
 	int dx = abs(x1-x0);
 	int dy = abs(y1-y0);
@@ -41,7 +41,7 @@ void	draw_line(t_image *image,int x0, int y0, int x1, int y1)
 		sy = 1;
 	else 
 		sy = -1;
-	if(dx > dy)
+	if (dx > dy)
 		err = dx / 2;
 	else 
 		err = -dy / 2;
@@ -51,7 +51,7 @@ void	draw_line(t_image *image,int x0, int y0, int x1, int y1)
 			x0 = 0;
 		if(y0 < 0)
 			y0 = 0;
-		mlx_putpixel(image->image,x0,y0,color_to_rgb(0,0,0,150));
+		mlx_putpixel(image->image, x0, y0, color_to_rgb(0,0,0,150));
 		if (x0 == x1 && y0 == y1)
 				break;
 		e2 = err;

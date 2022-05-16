@@ -20,6 +20,7 @@
 # define ESC 53
 # define TWO_PI 6.28318530
 # define PI    3.14159265359
+# define RADIANTS 57.2858	// do this * radiant and you get the angle
 #include "stdio.h"
 #include "stdlib.h"
 #include "../utils/get_next_line.h"
@@ -169,5 +170,6 @@ int			raycaster2d(t_game *game ,t_image image,t_ray ray);
 int			ray_fov(t_game *state,t_image image ,float angle,int inc);
 int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
 int			verify_extention(char *str,const char *extention);
+int			cast_ray2(t_game *game);
 
 #endif 

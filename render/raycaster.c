@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/14 14:18:37 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/16 11:49:08 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	raycaster2d(t_game *game, t_image image, t_ray ray)
 	ray.max_value = fmax(fabs(ray.dx), fabs(ray.dy));
 	ray.dx/= ray.max_value;
 	ray.dy/= ray.max_value;
+	// En dessous, on itere sur chaque scaling point jusquau prochain mur au lieu de calculer
+	// Des points sans passer sur tous.
 	while(game->map[(int)(game->player->y_pos + (ray.dy * inc)) / game->player->scale][(int)(game->player->x_pos + (ray.dx * inc))  / game->player->scale] != '1')
 		inc += 1;
 	draw_line(&image, game->player->x_pos, game->player->y_pos, game->player->x_pos + (ray.dx * inc), game->player->y_pos + (ray.dy * inc));
