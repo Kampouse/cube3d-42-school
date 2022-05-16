@@ -16,7 +16,6 @@ SRCS = 	main/main.c					\
 		parsing/resize_map.c		\
 		parsing/parsing_utils.c		\
 		parsing/mapInit_utils.c		\
-		render/raycaster_tonyg.c	\
 		render/graphic_operator.c	\
 		render/render.c 			\
 		render/raycaster.c 			\

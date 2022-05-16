@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/16 11:23:36 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/16 12:37:59 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	hook(void *param)
 		draw_map(state, state->image, state->player->scale);
 		put_player_2d(state);
 		ray_fov(state, state->image, state->player->direction, 0);
-		cast_ray2(state);
 		//ray_fov3d(state,state->image, state->player->direction, 0);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_W) && move_ok(state, delta_x, delta_y))
@@ -53,7 +52,6 @@ void	hook(void *param)
 		draw_map(state,state->image,state->player->scale);
 		put_player_2d(state);
 		ray_fov(state, state->image,state->player->direction,0);
-		cast_ray2(state);
 		state->player->x_pos += delta_x * 2;
 		state->player->y_pos += delta_y * 2;
 	}
@@ -62,7 +60,6 @@ void	hook(void *param)
 		draw_map(state,state->image, state->player->scale);
 		put_player_2d(state);
 		ray_fov(state, state->image,state->player->direction,0);
-		cast_ray2(state);
 		state->player->x_pos += delta_x * 2;
 		state->player->y_pos += delta_y * 2;
 	}
@@ -74,7 +71,6 @@ void	hook(void *param)
 		draw_map(state,state->image, state->player->scale);
 		put_player_2d(state);
 		ray_fov(state, state->image,state->player->direction,0);
-		cast_ray2(state);
 	}
 }
 

@@ -166,10 +166,9 @@ void		draw_player(t_game *state,t_image image,t_ray *ray);
 int			draw_circle(t_image *image, int start_x,int start_y,int rayon);
 double		find_len(int startx, int starty,int endx, int endy);
 float		degToRad(float a);
-int			raycaster2d(t_game *game ,t_image image,t_ray ray);
+int			raycaster2d(t_game *game ,t_image image);
 int			ray_fov(t_game *state,t_image image ,float angle,int inc);
 int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
 int			verify_extention(char *str,const char *extention);
-int			cast_ray2(t_game *game);
 
 #endif 
