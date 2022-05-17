@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/16 12:46:21 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/16 18:00:58 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,11 @@ void	put_player_2d(t_game *game)
 		}
 		x++;
 	}
+}
+
+float	ft_fabs(float x)
+{
+	if (x < 0)
+		return (-x);
+	return (x);
 }

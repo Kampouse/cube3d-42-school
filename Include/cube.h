@@ -100,6 +100,7 @@ typedef struct t_game
 	int			screeheight;
 }					t_game;	
 
+float		ft_fabs(float x);
 void		put_player_2d(t_game *game);
 bool		move_ok(t_game *game, float delta_x, float delta_y);
 void		show_player_info(t_game *game);
