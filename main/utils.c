@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/16 19:34:15 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/17 08:54:04 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	hook(void *param)
 		exit(0);
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
 	{
-		state->player->direction += 0.120;
-		if(state->player->direction >= 2 * PI)
-			state->player->direction = 0;
+		state->player->direction += 0.1;
 		draw_map(state, state->image, state->player->scale);
 		put_player_2d(state);
 		ray_fov(state, state->image, state->player->direction, 0);

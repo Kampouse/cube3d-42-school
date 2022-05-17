@@ -6,11 +6,46 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/16 18:00:58 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/17 15:07:30 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
+
+void	ft_dda(t_ray *ray)
+{
+	if (ray->nb_step_x == 0 && ray->nb_step_y == 0)
+	{
+		ray->len++;
+		ray->pos_rayx = ray->pos_rayx + ray->dx;
+		ray->pos_rayy = ray->pos_rayy + ray->dy;
+	}
+	if (ray->nb_step_x == 0)
+		ray->nb_step_x = 9999;
+	if (ray->nb_step_y == 0)
+		ray->nb_step_y = 9999;
+	if (ray->nb_step_x <= ray->nb_step_y)
+	{
+		ray->len = ray->len + ray->nb_step_x;
+		while (ray->nb_step_x > 0)
+		{
+			ray->pos_rayx = ray->pos_rayx + ray->dx;
+			ray->pos_rayy = ray->pos_rayy + ray->dy;
+			ray->nb_step_x--;
+		}
+	}
+	if (ray->nb_step_y < ray->nb_step_x)
+	{
+		ray->len = ray->len + ray->nb_step_y;
+		while (ray->nb_step_y > 0)
+		{
+			ray->pos_rayx = ray->pos_rayx + ray->dx;
+			ray->pos_rayy = ray->pos_rayy + ray->dy;
+			ray->nb_step_y--;
+		}
+	}
+	printf("After/in dda  posx = %f  posy = %f\n\n", ray->pos_rayx, ray->pos_rayy);
+}
 
 void	put_player_2d(t_game *game)
 {

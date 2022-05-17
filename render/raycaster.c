@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/16 20:46:05 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/17 15:09:22 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,45 +20,52 @@ float	distance(ax, ay, bx, by, ang)
 int	raycaster2d(t_game *game, t_image image)
 {
 	t_ray	ray;
-	int		inc;
-	int		pos_rayx;
-	int		pos_rayy;
-	int		map_rayx;
-	int		map_rayy;
-	int		nb_step_x;
-	int		nb_step_y;
-	
-	inc = 0;
-	pos_rayx = game->player->x_pos;
-	pos_rayy = game->player->y_pos;
-	map_rayx = game->player->x_map - 1;
-	map_rayy = game->player->y_map - 1;
+	int		next_case;
+	int		x = 0;
+
+	ray.len = 0;
+	next_case = 0;
+	ray.pos_rayx = game->player->x_pos;
+	ray.pos_rayy = game->player->y_pos;
 	ray.angle = game->player->direction;
 	ray.delta_y = cos(ray.angle) / 1;
 	ray.delta_x = sin(ray.angle);
 	ray.dx = cos(degToRad(ray.angle)) * ray.delta_x -  sin(degToRad(ray.angle)) * ray.delta_y;
 	ray.dy = sin(degToRad(ray.angle)) * ray.delta_x + cos(degToRad(ray.angle)) * ray.delta_y;
-	// En dessous, on itere sur chaque scaling point jusquau prochain mur au lieu de calculer
-	// Des points sans passer sur tous.
-	while(game->map[(int)(game->player->y_pos + (ray.dy * inc)) / game->player->scale][(int)(game->player->x_pos + (ray.dx * inc)) / game->player->scale] != '1')
+	while(x < 1)
 	{
+		ray.map_rayx = (ray.pos_rayx / game->player->scale) + 1;
+		ray.map_rayy = (ray.pos_rayy / game->player->scale) + 1;
 		if (ray.dx < 0)
-			nb_step_x = (pos_rayx - map_rayx * game->player->scale) / -ray.delta_x;
+		{
+			next_case = (ray.map_rayx - 1) * game->player->scale;
+			ray.nb_step_x = (ray.pos_rayx - next_case) / ray.dx;
+			if (ray.nb_step_x < 0)
+				ray.nb_step_x = -ray.nb_step_x;
+		}
 		else
-			nb_step_x = (((map_rayx + 1) * game->player->scale) - pos_rayx) / ray.delta_x;
+		{
+			next_case = ray.map_rayx * game->player->scale;
+			ray.nb_step_x = (next_case - ray.pos_rayx) / ray.dx;
+		}
 		if (ray.dy < 0)
-			nb_step_y = (pos_rayy - map_rayy * game->player->scale) / -ray.delta_y;
+		{
+			next_case = (ray.map_rayy - 1) * game->player->scale;
+			ray.nb_step_y = (ray.pos_rayy - next_case) / -ray.dy;
+			if (ray.nb_step_x < 0)
+				ray.nb_step_y = -ray.nb_step_y;
+		}
 		else
-			nb_step_y = (((map_rayy + 1) * game->player->scale) - pos_rayy) / ray.delta_y;
-		if (nb_step_y < 0)
-			
-		printf("pos_x = %d\npos_y = %d\n", game->player->x_map, game->player->y_map);
-		printf("nb_step_x = %d\n", nb_step_x);
-		printf("nb_step_y = %d\n\n", nb_step_y);
-		inc++;
+		{
+			next_case = ray.map_rayy * game->player->scale;
+			ray.nb_step_y = (next_case - ray.pos_rayy) / ray.dy;
+		}
+		printf("before dda  x = %d  posx = %f  posy = %f\n\n",x, ray.pos_rayx, ray.pos_rayy);
+		ft_dda(&ray);
+		printf("after dda  x = %d  posx = %f  posy = %f\n\n",x, ray.pos_rayx, ray.pos_rayy);
+		x++;
 	}
-	draw_line(&image, game->player->x_pos, game->player->y_pos, game->player->x_pos + (ray.dx * inc), game->player->y_pos + (ray.dy * inc));
-	return (0);
+	draw_line(&image, game->player->x_pos, game->player->y_pos, game->player->x_pos + (ray.dx * ray.len), game->player->y_pos + (ray.dy * ray.len));	return (0);
 }
 
 int	ray_fov(t_game *state, t_image image , float angle, int inc)

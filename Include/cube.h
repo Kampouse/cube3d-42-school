@@ -48,6 +48,13 @@ typedef struct t_ray
 	float			angle;
 	float			max_value;
 	float			diff;
+	float			pos_rayx;
+	float			pos_rayy;
+	int				map_rayx;
+	int				map_rayy;
+	int				nb_step_x;
+	int				nb_step_y;
+	int				len;
 }					t_ray;	
 
 typedef struct t_player
@@ -100,6 +107,8 @@ typedef struct t_game
 	int			screeheight;
 }					t_game;	
 
+void		ft_dda(t_ray *ray);
+void		ft_actualise_map(t_game *game, t_ray *ray);
 float		ft_fabs(float x);
 void		put_player_2d(t_game *game);
 bool		move_ok(t_game *game, float delta_x, float delta_y);
