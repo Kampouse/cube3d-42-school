@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/17 15:07:30 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/19 07:50:32 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_dda(t_ray *ray)
 {
+	ray->nb_step_x++;
+	ray->nb_step_y++;
 	if (ray->nb_step_x == 0 && ray->nb_step_y == 0)
 	{
 		ray->len++;
@@ -44,7 +46,6 @@ void	ft_dda(t_ray *ray)
 			ray->nb_step_y--;
 		}
 	}
-	printf("After/in dda  posx = %f  posy = %f\n\n", ray->pos_rayx, ray->pos_rayy);
 }
 
 void	put_player_2d(t_game *game)

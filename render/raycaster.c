@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/17 15:09:22 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/19 08:02:34 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,17 @@ float	distance(ax, ay, bx, by, ang)
 	return (cos(ang)*(bx-ax)-sin(ang)*(by-ay));
 }
 
-int	raycaster2d(t_game *game, t_image image)
+int	raycaster2d(t_game *game, t_image image, t_ray ray)
 {
-	t_ray	ray;
 	int		next_case;
-	int		x = 0;
 
 	ray.len = 0;
 	next_case = 0;
-	ray.pos_rayx = game->player->x_pos;
-	ray.pos_rayy = game->player->y_pos;
-	ray.angle = game->player->direction;
 	ray.delta_y = cos(ray.angle) / 1;
 	ray.delta_x = sin(ray.angle);
 	ray.dx = cos(degToRad(ray.angle)) * ray.delta_x -  sin(degToRad(ray.angle)) * ray.delta_y;
 	ray.dy = sin(degToRad(ray.angle)) * ray.delta_x + cos(degToRad(ray.angle)) * ray.delta_y;
-	while(x < 1)
+	while(game->map[ (int)(game->player->y_pos + (ray.dy * ray.len)) / game->player->scale][(int)(game->player->x_pos + (ray.dx * ray.len))  / game->player->scale] != '1')
 	{
 		ray.map_rayx = (ray.pos_rayx / game->player->scale) + 1;
 		ray.map_rayy = (ray.pos_rayy / game->player->scale) + 1;
@@ -60,10 +55,7 @@ int	raycaster2d(t_game *game, t_image image)
 			next_case = ray.map_rayy * game->player->scale;
 			ray.nb_step_y = (next_case - ray.pos_rayy) / ray.dy;
 		}
-		printf("before dda  x = %d  posx = %f  posy = %f\n\n",x, ray.pos_rayx, ray.pos_rayy);
 		ft_dda(&ray);
-		printf("after dda  x = %d  posx = %f  posy = %f\n\n",x, ray.pos_rayx, ray.pos_rayy);
-		x++;
 	}
 	draw_line(&image, game->player->x_pos, game->player->y_pos, game->player->x_pos + (ray.dx * ray.len), game->player->y_pos + (ray.dy * ray.len));	return (0);
 }
@@ -72,20 +64,24 @@ int	ray_fov(t_game *state, t_image image , float angle, int inc)
 {
 	float	until;
 	float	plus;
+	t_ray	ray;
 	(void)angle;
 	(void)inc;
 
 	plus = 0;
+	ray.pos_rayx = state->player->x_pos;
+	ray.pos_rayy = state->player->y_pos;
+	ray.angle = state->player->direction;
 	until = state->player->direction + PI / 3;
-	raycaster2d(state, image);
-	// while(state->player->direction + plus < until)
-	// {
-	// 	ray.angle = state->player->direction + plus;
-	// 	raycaster2d(state, image, ray);
-	// 	ray.angle = state->player->direction - plus;
-	// 	raycaster2d(state, image, ray);
-	// 	plus += PI / 84; 
-	// }
+	raycaster2d(state, image, ray);
+	while(state->player->direction + plus < until)
+	{
+		ray.angle = state->player->direction + plus;
+		raycaster2d(state, image, ray);
+		ray.angle = state->player->direction - plus;
+		raycaster2d(state, image, ray);
+		plus += PI / 84; 
+	}
 	return (0);
 }
 
