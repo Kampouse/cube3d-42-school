@@ -13,14 +13,17 @@
 
 #ifndef  CUBE_H
 # define  CUBE_H
-# define LEFT 0
-# define RIGHT 2
-# define DOWN 1
-# define UP 13
-# define ESC 53
-# define TWO_PI 6.28318530
-# define PI    3.14159265359
-# define RADIANTS 57.2858	// do this * radiant and you get the angle
+# define LEFT			0
+# define RIGHT			2
+# define DOWN			1
+# define UP				13
+# define ESC			53
+# define TWO_PI			6.28318530
+# define PI				3.14159265359
+# define HEIGHT			600
+# define WIDTH			800
+# define RADIANTS 		57.2858
+
 #include "stdio.h"
 #include "stdlib.h"
 #include "../utils/get_next_line.h"
@@ -101,12 +104,18 @@ typedef struct t_game
 	t_player	*player;
 	void		*win;
 	char		**map;
+	int			map_width;
+	int			map_heigth;
 	t_image		image;
 	int			image_state;
 	int			screenwidth;
 	int			screeheight;
 }					t_game;	
 
+void		map_size_init(t_game *game);
+void		paint_in_black(t_game *game);
+void		initialise_map(t_game *game);
+void		ft_add_vertical(t_game *game, t_ray *ray);
 void		ft_dda(t_ray *ray);
 void		ft_actualise_map(t_game *game, t_ray *ray);
 float		ft_fabs(float x);

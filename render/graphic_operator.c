@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/16 11:48:08 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/19 15:27:26 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,35 +88,43 @@ int	square_shape(t_image *image,int x_pos, int y_pos,uint32_t color)
 	return (0);
 }
 
+static void	draw_border(t_game *game, t_image image, int scale)
+{
+	int	x;
+	int	y;
+
+	printf("width = %d\n", game->map_width);
+	x = (WIDTH / 2) - ((game->map_width * scale) / 2);
+	y = ((HEIGHT / 2) - ((game->map_heigth * scale) / 2)) - 1;
+	while (x < ((game->map_width * game->player->scale)))
+		mlx_putpixel(image.image, x++, y, 0xffffff);
+}
+
 void	draw_map(t_game *state, t_image image, int scale)
 {
 	int	inc;
 	int	cin;
 	int	stepx;
 	int	stepy;
-	
+
+	paint_in_black(state);
+	draw_border(state, image, scale);
 	inc = 0;
 	cin = 0;
-	stepx = 0;
-	stepy  = 0;
+	stepx = (WIDTH / 2) - ((state->map_width * scale) / 2);
+	stepy  = (HEIGHT / 2) - ((state->map_heigth * scale) / 2);
 	while (state->map[cin])
 	{
 		while (state->map[cin][inc])
 		{
 			if (state->map[cin][inc] == '1')
-			{
-				square_shape(&image, stepx, stepy, color_to_rgb(0, 0,0 ,0));
-			}
+				square_shape(&image, stepx, stepy, color_to_rgb(0, 0, 0 ,0));
 			else
-			{
-				square_shape(&image, stepx, stepy, color_to_rgb(0 ,0, 255, 0));
-				draw_line(&image,stepx,stepy,stepx + scale,stepy);
-				draw_line(&image,stepx,stepy,stepx,stepy + scale);
-			}
+				square_shape(&image, stepx, stepy, color_to_rgb(0 , 0, 255, 0));
 			inc++;
-			stepx+= scale;
+			stepx += scale;
 		}
-		stepx = 0;
+		stepx = (WIDTH / 2) - ((state->map_width * scale) / 2);
 		inc = 0;
 		stepy += scale;
 		cin++;

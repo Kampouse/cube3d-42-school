@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/12 10:52:38 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/19 13:02:54 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,9 +168,9 @@ int	parsing(t_game *game, int temp)
 		return(1);
 	while (game->map[game->map_data->iterator + 1] && only_space(game->map[
 				game->map_data->iterator]))
-		game->map_data->iterator++;
+	game->map_data->iterator++;
 	temp = game->map_data->iterator;
-		game->map_data->start = temp;
+	game->map_data->start = temp;
 	if (ft_all(game->map[temp], '1'))
 		return (1);
 	while (game->map[temp])

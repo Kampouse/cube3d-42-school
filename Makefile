@@ -17,9 +17,8 @@ SRCS = 	main/main.c					\
 		parsing/parsing_utils.c		\
 		parsing/mapInit_utils.c		\
 		render/graphic_operator.c	\
-		render/render.c 			\
+		render/graphic_operator2.c	\
 		render/raycaster.c 			\
-		render/helper.c				\
 		render/raycaster_utils.c	\
 		main/main_init.c			\
 		main/utils.c				\

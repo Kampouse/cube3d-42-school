@@ -1,24 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   graphic_operator2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/16 11:18:16 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/19 12:56:15 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-void	show_player_info(t_game *game)
+void	paint_in_black(t_game *game)
 {
-	printf("Player info :\n");
-	printf("x_pos\t\t= %d\n", game->player->x_pos);
-	printf("y_pos\t\t= %d\n", game->player->y_pos);
-	printf("orientation\t= %d\n", game->player->orientation);
-	printf("Radiant\t\t= %f\n", game->player->direction);
-	printf("x_map\t\t= %d\n", game->player->x_map);
-	printf("y_map\t\t= %d\n", game->player->y_map);
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT)
+			mlx_putpixel(game->image.image, x, y++, color_to_rgb(0, 0, 0,0));
+		x++;
+	}
+}
+
+void	initialise_map(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT / 2)
+			mlx_putpixel(game->image.image, x, y++, 0xFFFF);
+		while (y < HEIGHT)
+			mlx_putpixel(game->image.image, x, y++, 0x0000);
+		x++;
+	}
 }

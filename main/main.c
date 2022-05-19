@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/17 08:45:59 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/19 14:19:12 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_dlist	*verif(t_dlist *map)
 
 int	main(int argc, char *argv[])
 {
-	int			time;
 	t_game		*state;
 	t_image		image;
 
@@ -77,40 +76,17 @@ int	main(int argc, char *argv[])
 	}
 	resize_map(state);
 	player_direction(state);
-	time = 10;
 	state->player->x_pos = (state->player->x_pos) * state->player->scale;
 	state->player->y_pos = (state->player->y_pos) * state->player->scale;
 	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
 	state->player->y_map = (state->player->y_pos / state->player->scale) + 1;
 	(void)image;
-	state->mlx = mlx_init(600, 200, "MLX42", 0);
-	image.image = mlx_new_image(state->mlx,1000,1080);
+	state->mlx = mlx_init(800, 600, "MLX42", 0);
+	image.image = mlx_new_image(state->mlx, 800, 600);
 	state->image = image;
-	draw_map(state , image, state->player->scale);
-	draw_map(state , image, state->player->scale);
-	//ray_fov3d(state, image, state->player->direction,0);
-	//ray_fov(state, image, state->player->direction,0);
-	put_player_2d(state);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
+	initialise_map(state);
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);
-	//mlx_terminate(state->mlx);
-	//mlx_terminate(state->mlx);
-		//printf("%ld -- \n",state->player->direction);
-		//find_at(state,100,300);
-		//freelist(state->map);
-		//delete_texture(state->map_data);
-		//free(state->player);
-		//free(state);
-			//delete_texture(state->map_data);
-			//free(state->player);
-			//freelist(state->map);
-			//free(state);
-		return(0);
-		//mlx_new_window(state.mlx,100,100,"helo");
-		//mlx_loop(state.mlx);
-	//mlx_loop_hook(state.mlx, render_player, &state);
-	//mlx_hook(state.win, 2, (1L << 0), render_cycle, &state);
-	//mlx_hook(state.win, 17, 0, exit_please, &state);
-	//mlx_do_sync(state.mlx);
+	return(0);
 }

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/10 16:19:26 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:58:41 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	loop_directions(t_game *state)
 	inc = 0;
 	if (state->map != NULL)
 	{
-		//	Ici on valide l'entrer de la map
 		while (state->map[inc])
 		{
 			 ft_poll_texture(skip_empty_line(state->map[inc]), state->map_data);
