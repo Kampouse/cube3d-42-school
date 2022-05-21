@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/19 15:09:36 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/21 14:32:07 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,31 @@ void	hook(void *param)
 		exit(0);
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
 	{
-		printf("a pressed\n");
-		state->player->direction += 0.1;
-		ray_fov(state, state->image, state->player->direction, 0);
 		initialise_map(state);
+		state->player->direction += 0.1;
+		ray_fov(state, state->player->direction, 0);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_W) && move_ok(state, delta_x, delta_y))
 	{
-		ray_fov(state, state->image,state->player->direction, 0);
+		initialise_map(state);
+		ray_fov(state, state->player->direction, 0);
 		state->player->x_pos += delta_x * 2;
 		state->player->y_pos += delta_y * 2;
-		initialise_map(state);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_S) && move_ok(state, -delta_x, -delta_y))
 	{
-		ray_fov(state, state->image,state->player->direction, 0);
+		initialise_map(state);
+		ray_fov(state, state->player->direction, 0);
 		state->player->x_pos -= delta_x * 2;
 		state->player->y_pos -= delta_y * 2;
-		initialise_map(state);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
 	{
+		initialise_map(state);
 		state->player->direction -= 0.1;
 		if(state->player->direction <= 0)
 			state->player->direction = PI * 2;
-		ray_fov(state, state->image,state->player->direction, 0);
-		initialise_map(state);
+		ray_fov(state, state->player->direction, 0);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_M))
 	{

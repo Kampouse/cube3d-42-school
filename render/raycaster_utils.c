@@ -6,21 +6,28 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/19 14:54:11 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/21 14:36:34 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-// void	ft_add_vertical(t_game *game, t_ray *ray)
-// {
-// 	float		hauteur;
-// 	int			offset;
-// 	static int	offset_width = 0;
+void	ft_add_vertical(t_game *game, t_ray *ray)
+{
+	float	hauteur;
+	int		mid;
+	int		offset;
 
-// 	offset = 0;
-// 	hauteur = (9000 / ray->len) / 2;
-// }
+	mid = ((HEIGHT / 2) - ((game->map_heigth * game->player->scale) / 2));
+	hauteur = (3000/ ray->len) / 2;
+	offset = 0;
+	while (offset < hauteur && (HEIGHT / 2) + offset < HEIGHT && HEIGHT / 2 - offset >= 0)
+	{
+		mlx_putpixel(game->image.image, ray->angle, (HEIGHT / 2) + offset, 0XEBF00B);
+		mlx_putpixel(game->image.image, ray->angle, (HEIGHT / 2) - offset, 0XEBF00B);
+		offset++;
+	}
+}
 
 void	ft_dda(t_ray *ray)
 {

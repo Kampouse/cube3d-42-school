@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/19 15:27:26 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/21 13:26:47 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int	square_shape(t_image *image,int x_pos, int y_pos,uint32_t color)
 
 	inc = 0;
 	cin = 0;
-	while (cin < 20)
+	while (cin < 12)
 	{
-		while (inc < 20) 
+		while (inc < 12) 
 		{
 				mlx_putpixel(image->image, x_pos + inc, y_pos + cin,color);
 			inc++;
@@ -92,12 +92,19 @@ static void	draw_border(t_game *game, t_image image, int scale)
 {
 	int	x;
 	int	y;
+	int	heigth_top;
 
-	printf("width = %d\n", game->map_width);
 	x = (WIDTH / 2) - ((game->map_width * scale) / 2);
 	y = ((HEIGHT / 2) - ((game->map_heigth * scale) / 2)) - 1;
-	while (x < ((game->map_width * game->player->scale)))
+	heigth_top = y;
+	while (x <= (game->map_width * (game->player->scale + 2)))
 		mlx_putpixel(image.image, x++, y, 0xffffff);
+	while (y <= (game->map_heigth * game->player->scale) + heigth_top)
+		mlx_putpixel(image.image, x, y++, 0xffffff);
+	while (x >= (WIDTH / 2) - ((game->map_width * scale) / 2))
+		mlx_putpixel(image.image, x--, y, 0xffffff);
+	while (y >= heigth_top)
+		mlx_putpixel(image.image, x, y--, 0xffffff);
 }
 
 void	draw_map(t_game *state, t_image image, int scale)
@@ -108,7 +115,6 @@ void	draw_map(t_game *state, t_image image, int scale)
 	int	stepy;
 
 	paint_in_black(state);
-	draw_border(state, image, scale);
 	inc = 0;
 	cin = 0;
 	stepx = (WIDTH / 2) - ((state->map_width * scale) / 2);
@@ -129,4 +135,5 @@ void	draw_map(t_game *state, t_image image, int scale)
 		stepy += scale;
 		cin++;
 	}
+	draw_border(state, image, scale);
 }

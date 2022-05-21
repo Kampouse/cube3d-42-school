@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/19 12:28:37 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/21 14:29:48 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ float	distance(ax, ay, bx, by, ang)
 	return (cos(ang)*(bx-ax)-sin(ang)*(by-ay));
 }
 
-int	raycaster2d(t_game *game, t_image image, t_ray ray)
+int	raycaster2d(t_game *game, t_ray ray)
 {
 	int	next_case;
 
@@ -57,13 +57,12 @@ int	raycaster2d(t_game *game, t_image image, t_ray ray)
 		}
 		ft_dda(&ray);
 	}
-	// ft_add_vertical(game, &ray);
-	(void)image;
-	// draw_line(&image, game->player->x_pos, game->player->y_pos, game->player->x_pos + (ray.dx * ray.len), game->player->y_pos + (ray.dy * ray.len));
+	ft_add_vertical(game, &ray);
 	return (0);
 }
 
-int	ray_fov(t_game *state, t_image image , float angle, int inc)
+// Got to change this so every pixel get a ray
+int	ray_fov(t_game *state, float angle, int inc)
 {
 	float	until;
 	float	plus;
@@ -75,13 +74,13 @@ int	ray_fov(t_game *state, t_image image , float angle, int inc)
 	ray.pos_rayx = state->player->x_pos;
 	ray.pos_rayy = state->player->y_pos;
 	ray.angle = state->player->direction;
-	until = state->player->direction + PI / 3;
+	until = WIDTH;
 	while(state->player->direction + plus < until)
 	{
 		ray.angle = state->player->direction + plus;
-		raycaster2d(state, image, ray);
+		raycaster2d(state, ray);
 		ray.angle = state->player->direction - plus;
-		raycaster2d(state, image, ray);
+		raycaster2d(state, ray);
 		plus += 1; 
 	}
 	return (0);
