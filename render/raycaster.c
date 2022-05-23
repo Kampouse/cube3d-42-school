@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/21 14:29:48 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/23 09:44:53 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ float	distance(ax, ay, bx, by, ang)
 	return (cos(ang)*(bx-ax)-sin(ang)*(by-ay));
 }
 
-int	raycaster2d(t_game *game, t_ray ray)
+int	raycaster2d(t_game *game, t_ray ray, int i)
 {
 	int	next_case;
 
@@ -27,6 +27,8 @@ int	raycaster2d(t_game *game, t_ray ray)
 	ray.delta_x = sin(ray.angle);
 	ray.dx = cos(degToRad(ray.angle)) * ray.delta_x -  sin(degToRad(ray.angle)) * ray.delta_y;
 	ray.dy = sin(degToRad(ray.angle)) * ray.delta_x + cos(degToRad(ray.angle)) * ray.delta_y;
+	ray.pos_rayx = game->player->x_pos;
+	ray.pos_rayy = game->player->y_pos;
 	while(game->map[(int)(game->player->y_pos + (ray.dy * ray.len)) / game->player->scale][(int)(game->player->x_pos + (ray.dx * ray.len))  / game->player->scale] != '1')
 	{
 		ray.map_rayx = (ray.pos_rayx / game->player->scale) + 1;
@@ -57,31 +59,36 @@ int	raycaster2d(t_game *game, t_ray ray)
 		}
 		ft_dda(&ray);
 	}
-	ft_add_vertical(game, &ray);
+	ft_add_vertical(game, &ray, i);
 	return (0);
 }
 
-// Got to change this so every pixel get a ray
-int	ray_fov(t_game *state, float angle, int inc)
+int	ray_fov(t_game *state)
 {
 	float	until;
-	float	plus;
+	float	offset;
+	float	increment;
+	int		i;
 	t_ray	ray;
-	(void)angle;
-	(void)inc;
 
-	plus = 0;
-	ray.pos_rayx = state->player->x_pos;
-	ray.pos_rayy = state->player->y_pos;
-	ray.angle = state->player->direction;
-	until = WIDTH;
-	while(state->player->direction + plus < until)
+	i = 0;
+	offset = state->player->direction - PI / 3;
+	until = state->player->direction;
+	increment = ((state->player->direction + PI / 3) - (state->player->direction - PI / 3)) / WIDTH;
+	while(offset <= until)
 	{
-		ray.angle = state->player->direction + plus;
-		raycaster2d(state, ray);
-		ray.angle = state->player->direction - plus;
-		raycaster2d(state, ray);
-		plus += 1; 
+		ray.angle = state->player->direction + offset;
+		raycaster2d(state, ray, i);
+		offset += increment;
+		i++;
+	}
+	until = state->player->direction + PI / 3;
+	while (offset <= until)
+	{
+		ray.angle = state->player->direction + offset;
+		raycaster2d(state, ray, i);
+		offset += increment;
+		i++;
 	}
 	return (0);
 }

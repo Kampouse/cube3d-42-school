@@ -57,7 +57,7 @@ typedef struct t_ray
 	int				map_rayy;
 	int				nb_step_x;
 	int				nb_step_y;
-	int				len;
+	float			len;
 }					t_ray;	
 
 typedef struct t_player
@@ -112,10 +112,12 @@ typedef struct t_game
 	int			screeheight;
 }					t_game;	
 
+void		ft_move_w(t_game *game);
+void		ft_move_s(t_game *game);
 void		map_size_init(t_game *game);
 void		paint_in_black(t_game *game);
 void		initialise_map(t_game *game);
-void		ft_add_vertical(t_game *game, t_ray *ray);
+void		ft_add_vertical(t_game *game, t_ray *ray, int i);
 void		ft_dda(t_ray *ray);
 void		ft_actualise_map(t_game *game, t_ray *ray);
 float		ft_fabs(float x);
@@ -185,8 +187,8 @@ void		draw_player(t_game *state,t_image image,t_ray *ray);
 int			draw_circle(t_image *image, int start_x,int start_y,int rayon);
 double		find_len(int startx, int starty,int endx, int endy);
 float		degToRad(float a);
-int			raycaster2d(t_game *game, t_ray ray);
-int			ray_fov(t_game *state, float angle, int inc);
+int			raycaster2d(t_game *game, t_ray ray, int i);
+int			ray_fov(t_game *state);
 int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
 int			verify_extention(char *str,const char *extention);
 

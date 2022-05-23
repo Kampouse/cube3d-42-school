@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/21 14:32:07 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/23 09:42:58 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,26 @@ void	hook(void *param)
 {
 	t_mlx	*mlx;
 	t_game	*state;
-
 	state = param;
-	const float delta_y = cos(state->player->direction);
-	const float delta_x = sin( state->player->direction);
+
 	mlx = state->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		exit(0);
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
 	{
 		initialise_map(state);
-		state->player->direction += 0.1;
-		ray_fov(state, state->player->direction, 0);
+		state->player->direction -= 0.1;
+		ray_fov(state);
 	}
-	if (mlx_is_key_down(mlx, MLX_KEY_W) && move_ok(state, delta_x, delta_y))
-	{
-		initialise_map(state);
-		ray_fov(state, state->player->direction, 0);
-		state->player->x_pos += delta_x * 2;
-		state->player->y_pos += delta_y * 2;
-	}
-	if (mlx_is_key_down(mlx, MLX_KEY_S) && move_ok(state, -delta_x, -delta_y))
-	{
-		initialise_map(state);
-		ray_fov(state, state->player->direction, 0);
-		state->player->x_pos -= delta_x * 2;
-		state->player->y_pos -= delta_y * 2;
-	}
+	if (mlx_is_key_down(mlx, MLX_KEY_W))
+		ft_move_w(state);
+	if (mlx_is_key_down(mlx, MLX_KEY_S))
+		ft_move_s(state);
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
 	{
 		initialise_map(state);
-		state->player->direction -= 0.1;
-		if(state->player->direction <= 0)
-			state->player->direction = PI * 2;
-		ray_fov(state, state->player->direction, 0);
+		state->player->direction += 0.1;
+		ray_fov(state);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_M))
 	{
@@ -86,21 +72,15 @@ char	freelist(char **list)
 	return (0);
 }
 
-bool	move_ok(t_game *game, float delta_x, float delta_y)
+bool	move_ok(t_game *game, float dx, float dy)
 {
-	int	x;
-	int	y;
+	int	x_pos;
+	int	y_pos;
 
-	x = game->player->x_pos + delta_x * 2;
-	y = game->player->y_pos + delta_y * 2;
-	x /= game->player->scale;
-	y /= game->player->scale;
-	if (game->map[y][x] != '1')
-	{
-		game->player->x_map = x + 1;
-		game->player->y_map = y + 1;
+	x_pos = ((game->player->x_pos + dx) / game->player->scale) + 1;
+	y_pos = ((game->player->y_pos + dy) / game->player->scale) + 1;
+	if (game->map[y_pos][x_pos] != '1')
 		return (true);
-	}
 	return (false);
 }
 
