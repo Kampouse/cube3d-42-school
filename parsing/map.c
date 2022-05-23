@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/19 13:02:54 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/23 10:20:31 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int	parser_helper(t_game *game,int temp,int inc)
 	if (ft_until_this(game->map[temp], "NEWS") != -1)
 		{
 			game->player->x_pos = ft_until_this(game->map[temp], "NEWS");	
-			game->player->orientation = game->map[temp][game->player->x_pos];			
-		  	if (ft_until_this(game->map[temp] + game->player->x_pos, "NEWS")  < 0)
+			game->player->orientation = game->map[temp][ft_ftoi(game->player->x_pos)];			
+		  	if (ft_until_this(game->map[temp] + ft_ftoi(game->player->x_pos), "NEWS")  < 0)
 				return (2);
 			game->player->y_pos = inc;
 			return (1);

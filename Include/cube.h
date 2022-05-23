@@ -44,8 +44,6 @@ typedef struct t_ray
 	float			dir;
 	float			dx;
 	float			dy;
-	float			plane_y;
-	float			plane_x;
 	float			delta_x;
 	float			delta_y;
 	float			angle;
@@ -64,8 +62,8 @@ typedef struct t_player
 {
 	int			x_map;
 	int			y_map;
-	int			x_pos;
-	int			y_pos;
+	float		x_pos;
+	float		y_pos;
 	int			orientation;
 	float		direction;
 	float		delta_x;
@@ -112,6 +110,9 @@ typedef struct t_game
 	int			screeheight;
 }					t_game;	
 
+void		ft_update_ori(t_game *game);
+float		RadToDeg(float a);
+int			ft_ftoi(float x);
 void		ft_move_w(t_game *game);
 void		ft_move_s(t_game *game);
 void		map_size_init(t_game *game);
@@ -122,7 +123,7 @@ void		ft_dda(t_ray *ray);
 void		ft_actualise_map(t_game *game, t_ray *ray);
 float		ft_fabs(float x);
 void		put_player_2d(t_game *game);
-bool		move_ok(t_game *game, float delta_x, float delta_y);
+bool		move_ok(t_game *game, float dx, float dy, char c);
 void		show_player_info(t_game *game);
 int			verif_number(char **strs);
 int			any_one_above(t_game *map, int current_line,int pos);

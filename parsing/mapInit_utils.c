@@ -6,15 +6,33 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/19 14:14:46 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/23 11:08:53 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
+int	ft_ftoi(float x)
+{
+	int	retour;
+
+	retour = 0;
+	while (x > 0)
+	{
+		retour++;
+		x--;
+	}
+	return (retour);
+}
+
 float	degToRad(float a)
 {
-	return (a * M_PI / 180.0);
+	return ((a / 180.0) * PI);
+}
+
+float	RadToDeg(float a)
+{
+	return ((a / PI) * 180);
 }
 
 void	ft_poll_color(char *str,t_map *map,int inc)

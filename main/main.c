@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/23 09:06:57 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/23 10:59:05 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	main(int argc, char *argv[])
 	state->player->y_pos = (state->player->y_pos) * state->player->scale;
 	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
 	state->player->y_map = (state->player->y_pos / state->player->scale) + 1;
-	(void)image;
 	state->mlx = mlx_init(800, 600, "MLX42", 0);
 	image.image = mlx_new_image(state->mlx, 800, 600);
 	state->image = image;

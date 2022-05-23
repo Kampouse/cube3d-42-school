@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/23 09:44:13 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/23 11:21:23 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,17 @@ void	ft_move_w(t_game *game)
 	float	dx;
 	float	dy;
 
-	delta_y = sin(game->player->direction);
-	delta_x = cos(game->player->direction) / 1;
+	delta_y = cos(game->player->direction);
+	delta_x = sin(game->player->direction);
 	dx = cos(degToRad(game->player->direction)) * delta_x -  sin(degToRad(game->player->direction)) * delta_y;
 	dy = sin(degToRad(game->player->direction)) * delta_x + cos(degToRad(game->player->direction)) * delta_y;
-	if (move_ok(game, dx, dy) == false)
+	if (move_ok(game, dx, dy, '+') == false)
+	{
+		printf("move invalide\n");
 		return;
-	game->player->x_pos += delta_x;
-	game->player->y_pos += delta_y;
+	}
+	game->player->x_pos += dx;
+	game->player->y_pos += dy;
 	initialise_map(game);
 	ray_fov(game);
 }
@@ -38,12 +41,15 @@ void	ft_move_s(t_game *game)
 	float	dx;
 	float	dy;
 
-	delta_y = sin(game->player->direction);
-	delta_x = cos(game->player->direction) / 1;	// / 1 ?
+	delta_y = cos(game->player->direction);
+	delta_x = sin(game->player->direction);
 	dx = cos(degToRad(game->player->direction)) * delta_x -  sin(degToRad(game->player->direction)) * delta_y;
 	dy = sin(degToRad(game->player->direction)) * delta_x + cos(degToRad(game->player->direction)) * delta_y;
-	if (move_ok(game, dx, dy) == false)
+	if (move_ok(game, dx, dy, '-') == false)
+	{
+		printf("move invalide\n");
 		return;
+	}
 	game->player->x_pos -= dx;
 	game->player->y_pos -= dy;
 	initialise_map(game);

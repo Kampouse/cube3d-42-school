@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/23 09:42:58 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/23 13:40:48 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	hook(void *param)
 {
 	t_mlx	*mlx;
 	t_game	*state;
-	state = param;
 
+	state = param;
 	mlx = state->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		exit(0);
@@ -39,6 +39,8 @@ void	hook(void *param)
 	{
 		initialise_map(state);
 		state->player->direction -= 0.1;
+		if (state->player->direction < 0)
+			state->player->direction = 6.2;
 		ray_fov(state);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_W))
@@ -49,6 +51,8 @@ void	hook(void *param)
 	{
 		initialise_map(state);
 		state->player->direction += 0.1;
+		if (state->player->direction > 6.2)
+			state->player->direction = 0;
 		ray_fov(state);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_M))
@@ -72,13 +76,21 @@ char	freelist(char **list)
 	return (0);
 }
 
-bool	move_ok(t_game *game, float dx, float dy)
+bool	move_ok(t_game *game, float dx, float dy, char c)
 {
 	int	x_pos;
 	int	y_pos;
 
-	x_pos = ((game->player->x_pos + dx) / game->player->scale) + 1;
-	y_pos = ((game->player->y_pos + dy) / game->player->scale) + 1;
+	if (c == '+')
+	{
+		x_pos = ((game->player->x_pos + dx) / game->player->scale) + 1;
+		y_pos = ((game->player->y_pos + dy) / game->player->scale) + 1;
+	}
+	else
+	{
+		x_pos = ((game->player->x_pos - dx) / game->player->scale) ;
+		y_pos = ((game->player->y_pos - dy) / game->player->scale);
+	}
 	if (game->map[y_pos][x_pos] != '1')
 		return (true);
 	return (false);
