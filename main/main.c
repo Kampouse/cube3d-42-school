@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/23 09:06:57 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/23 19:13:43 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_dlist	*verif(t_dlist *map)
 	flag += assert(verif_param(*map, 'P'), "Error: wrong number of Player\n");
 	flag += assert(verif_param(*map, 'E'), "Error: wrong number of exit\n");
 	flag += assert(verif_param(*map, 'C'), "Error: wrong nbr of collectibe\n");
+	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
 	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
 	if (flag > 0)
 	{
@@ -63,7 +64,7 @@ int	main(int argc, char *argv[])
 	state->player->scale = 12;
 	state->map_data  = init_map();
 	state->map = map_init(mapcreator(argv[1]));
-	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0)
+	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0 || validate_file (state) != 0)
 	{
 			ft_putstr_fd("an erro as occured \n", 2);
 			freelist(state->map);
@@ -76,6 +77,7 @@ int	main(int argc, char *argv[])
 	}
 	resize_map(state);
 	player_direction(state);
+	load_image(state->map_data);
 	state->player->x_pos = (state->player->x_pos) * state->player->scale;
 	state->player->y_pos = (state->player->y_pos) * state->player->scale;
 	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
@@ -86,8 +88,10 @@ int	main(int argc, char *argv[])
 	state->image = image;
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	initialise_map(state);
+	printf("%d\n",	pixel_to_color(state->map_data->est_tex,200,200));
 	ray_fov(state);
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);
+
 	return(0);
 }

@@ -2,13 +2,13 @@
 
 
              
-NO	./path_to_the_north_texture
+NO	./assets/tile.png
 
-SO	./path_to_the_south_texture
+SO	 ./assets/tile.png
 
-WE	./path_to_the_west_texture
+WE	  ./assets/tile.png
 
-EA	./path_to_the_east_texture
+EA	 ./assets/tile.png
 
 F 255,100,0
 
