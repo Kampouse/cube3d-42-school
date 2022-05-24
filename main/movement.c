@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/24 10:23:03 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 10:41:56 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	move(t_game *game, char c)
 
 	if (c == '+')
 	{
-		point_x = game->player->x_pos + (game->player->delta_x * 2);
-		point_y = game->player->y_pos + (game->player->delta_y * 2);
+		point_x = game->player->x_pos + game->player->delta_x;
+		point_y = game->player->y_pos + game->player->delta_y;
 	}
 	else
 	{
-		point_x = game->player->x_pos - (game->player->delta_x * 2);
-		point_y = game->player->y_pos - (game->player->delta_y * 2);
+		point_x = game->player->x_pos - game->player->delta_x;
+		point_y = game->player->y_pos - game->player->delta_y;
 	}
 	if (point_x < 0 || point_y < 0)
 		return;

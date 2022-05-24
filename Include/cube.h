@@ -109,6 +109,7 @@ typedef struct t_game
 	char		last_step;
 }					t_game;	
 
+void		fix_it_hihi(t_game *game);
 float		RadToDeg(float a);
 int			ft_ftoi(float x);
 void		ft_move_w(t_game *game);

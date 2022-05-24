@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/24 09:46:09 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 10:41:10 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ int	ray_fov(t_game *state)
 		offset += increment;
 		i++;
 	}
+	fix_it_hihi(state);
 	return (0);
 }

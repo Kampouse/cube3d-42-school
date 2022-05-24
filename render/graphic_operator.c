@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/24 07:26:51 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 10:31:43 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	square_shape(t_image *image,int x_pos, int y_pos,uint32_t color)
 	return (0);
 }
 
-static void	draw_border(t_game *game, t_image image, int scale)
+static void	draw_border_map(t_game *game, t_image image, int scale)
 {
 	int	x;
 	int	y;
@@ -135,5 +135,5 @@ void	draw_map(t_game *state, t_image image, int scale)
 		stepy += scale;
 		cin++;
 	}
-	draw_border(state, image, scale);
+	draw_border_map(state, image, scale);
 }
