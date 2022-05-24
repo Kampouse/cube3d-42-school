@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/23 10:59:05 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 08:26:12 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int	main(int argc, char *argv[])
 			free(state->player);
 			free(state->ray);
 			free(state);
-
-		return (0);	
+			return (0);
 	}
 	resize_map(state);
 	player_direction(state);
@@ -85,6 +84,7 @@ int	main(int argc, char *argv[])
 	state->image = image;
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	initialise_map(state);
+	state->command_on = false;
 	ray_fov(state);
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);

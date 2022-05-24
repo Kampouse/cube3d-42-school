@@ -6,49 +6,38 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/23 15:36:56 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 08:52:58 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-int	ft_what_pos(float x)
-{
-	int	retour;
-
-	retour = 0;
-	while (x >= 0)
-	{
-		retour++;
-		x--;
-	}
-	return (retour);
-}
-
 char	ft_what_face(t_game *game, t_ray *ray)
 {
-	int	pos_x;
-	int	pos_y;
-	int	scale;
-
-	scale = game->player->scale;
-	pos_x = ft_what_pos(ray->pos_rayx);
-	pos_y = ft_what_pos(ray->pos_rayy);
-	if (ray->dx < 0 && ray->dy < 0)	// entre Nort et West
+	(void)game;
+	if (ray->dx < 0 && ray->dy < 0)
 	{
+		if (ray->last_hit == 'x')
+			return ('W');
 		return ('N');
 	}
-	if (ray->dx < 0 && ray->dy > 0) // entre West et Sud
+	if (ray->dx < 0 && ray->dy > 0)
 	{
-		return ('W');
-	}
-	if (ray->dx > 0 && ray->dy > 0) // entre Sud et East
-	{
+		if (ray->last_hit == 'x')
+			return ('W');
 		return ('S');
 	}
-	if (ray->dx > 0 && ray->dy < 0) // entre East et Nord
+	if (ray->dx > 0 && ray->dy > 0)
 	{
-		return ('E');
+		if (ray->last_hit == 'x')
+			return ('E');
+		return ('S');
+	}
+	if (ray->dx > 0 && ray->dy < 0)
+	{
+		if (ray->last_hit == 'x')
+			return ('E');
+		return ('N');
 	}
 	return ('X');
 }
@@ -61,14 +50,15 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 	char		c = ft_what_face(game, ray);
 
 	offset = 0;
+	game->last_ray = c;
 	if (c == 'N')
-		color = color_to_rgb(1, 0, 0, 100);
+		color = color_to_rgb(255, 255, 255, 1);
 	if (c == 'E')
-		color = color_to_rgb(1, 0, 100, 0);
+		color = color_to_rgb(0, 0, 255, 1);
 	if (c == 'S')
-		color = color_to_rgb(1, 100, 0, 0);
-	if (c == 'w')
-		color = color_to_rgb(1, 100, 100, 100);
+		color = color_to_rgb(0, 128, 0, 1);
+	if (c == 'W')
+		color = color_to_rgb(255, 0, 0, 1);
 	while (offset <= hauteur && (HEIGHT / 2) + offset <= HEIGHT && HEIGHT / 2 - offset >= 0)
 	{
 		mlx_putpixel(game->image.image, i, (HEIGHT / 2) + offset, color);
@@ -80,18 +70,17 @@ void	ft_dda(t_ray *ray)
 {
 	ray->nb_step_x++;
 	ray->nb_step_y++;
-	if (ray->nb_step_x == 0 && ray->nb_step_y == 0)
-	{
-		ray->len++;
-		ray->pos_rayx = ray->pos_rayx + ray->dx;
-		ray->pos_rayy = ray->pos_rayy + ray->dy;
-	}
 	if (ray->nb_step_x == 0)
 		ray->nb_step_x = 9999;
 	if (ray->nb_step_y == 0)
 		ray->nb_step_y = 9999;
-	if (ray->nb_step_x <= ray->nb_step_y)
+	if (ray->nb_step_x == ray->nb_step_y)	// ici pour fix
 	{
+		
+	}
+	if (ray->nb_step_x < ray->nb_step_y)
+	{
+		ray->last_hit = 'x';
 		ray->len = ray->len + ray->nb_step_x;
 		while (ray->nb_step_x > 0)
 		{
@@ -102,6 +91,7 @@ void	ft_dda(t_ray *ray)
 	}
 	if (ray->nb_step_y < ray->nb_step_x)
 	{
+		ray->last_hit = 'y';
 		ray->len = ray->len + ray->nb_step_y;
 		while (ray->nb_step_y > 0)
 		{

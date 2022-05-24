@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/23 15:25:50 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 08:43:58 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ int	raycaster2d(t_game *game, t_ray ray, int i)
 	ray.dy = sin(degToRad(ray.angle)) * ray.delta_x + cos(degToRad(ray.angle)) * ray.delta_y;
 	ray.pos_rayx = game->player->x_pos;
 	ray.pos_rayy = game->player->y_pos;
+	if (i == WIDTH / 2)
+	{
+		game->player->dx = ray.dx;
+		game->player->dy = ray.dy;
+		game->player->delta_x = ray.delta_x;
+		game->player->delta_y = ray.delta_y;
+	}
 	while(game->map[(int)(game->player->y_pos + (ray.dy * ray.len)) / game->player->scale][(int)(game->player->x_pos + (ray.dx * ray.len))  / game->player->scale] != '1')
 	{
 		ray.map_rayx = (ray.pos_rayx / game->player->scale) + 1;
@@ -58,9 +65,6 @@ int	raycaster2d(t_game *game, t_ray ray, int i)
 		ft_dda(&ray);
 	}
 	ft_add_vertical(game, &ray, i);
-	mlx_putpixel(game->image.image, game->player->direction, HEIGHT / 2, 0xFF0000);
-	mlx_putpixel(game->image.image, game->player->direction, HEIGHT / 2 + 1, 0xFF0000);
-	mlx_putpixel(game->image.image, game->player->direction, HEIGHT / 2 + 2, 0xFF0000);
 	return (0);
 }
 

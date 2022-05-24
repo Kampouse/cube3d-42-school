@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/23 13:40:48 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 08:37:39 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,36 @@ void	hook(void *param)
 	mlx = state->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		exit(0);
-	if (mlx_is_key_down(mlx, MLX_KEY_A))
+	if (mlx_is_key_down(mlx, MLX_KEY_A) && state->command_on == false)
 	{
+		state->command_on = true;
 		initialise_map(state);
 		state->player->direction -= 0.1;
 		if (state->player->direction < 0)
 			state->player->direction = 6.2;
 		ray_fov(state);
+		state->command_on = false;
 	}
-	if (mlx_is_key_down(mlx, MLX_KEY_W))
+	if (mlx_is_key_down(mlx, MLX_KEY_W) && state->command_on == false)
 		ft_move_w(state);
-	if (mlx_is_key_down(mlx, MLX_KEY_S))
+	if (mlx_is_key_down(mlx, MLX_KEY_S) && state->command_on == false)
 		ft_move_s(state);
-	if (mlx_is_key_down(mlx, MLX_KEY_D))
+	if (mlx_is_key_down(mlx, MLX_KEY_D) && state->command_on == false)
 	{
+		state->command_on = true;
 		initialise_map(state);
 		state->player->direction += 0.1;
 		if (state->player->direction > 6.2)
 			state->player->direction = 0;
 		ray_fov(state);
+		state->command_on = false;
 	}
-	if (mlx_is_key_down(mlx, MLX_KEY_M))
+	if (mlx_is_key_down(mlx, MLX_KEY_M) && state->command_on == false)
 	{
+		state->command_on = true;
 		draw_map(state, state->image, state->player->scale);
 		put_player_2d(state);
+		state->command_on = false;
 	}
 }
 
@@ -74,26 +80,6 @@ char	freelist(char **list)
 	}
 	free(list);
 	return (0);
-}
-
-bool	move_ok(t_game *game, float dx, float dy, char c)
-{
-	int	x_pos;
-	int	y_pos;
-
-	if (c == '+')
-	{
-		x_pos = ((game->player->x_pos + dx) / game->player->scale) + 1;
-		y_pos = ((game->player->y_pos + dy) / game->player->scale) + 1;
-	}
-	else
-	{
-		x_pos = ((game->player->x_pos - dx) / game->player->scale) ;
-		y_pos = ((game->player->y_pos - dy) / game->player->scale);
-	}
-	if (game->map[y_pos][x_pos] != '1')
-		return (true);
-	return (false);
 }
 
 int	was_in_set(char *str,char *set)

@@ -41,14 +41,11 @@ typedef struct t_dlist
 
 typedef struct t_ray
 {
-	float			dir;
 	float			dx;
 	float			dy;
 	float			delta_x;
 	float			delta_y;
 	float			angle;
-	float			max_value;
-	float			diff;
 	float			pos_rayx;
 	float			pos_rayy;
 	int				map_rayx;
@@ -56,6 +53,7 @@ typedef struct t_ray
 	int				nb_step_x;
 	int				nb_step_y;
 	float			len;
+	char			last_hit;
 }					t_ray;	
 
 typedef struct t_player
@@ -68,6 +66,8 @@ typedef struct t_player
 	float		direction;
 	float		delta_x;
 	float		delta_y;
+	float		dx;
+	float		dy;
 	int			scale;
 }				t_player;	
 
@@ -100,17 +100,15 @@ typedef struct t_game
 	t_ray 		*ray;
 	t_mlx		*mlx;
 	t_player	*player;
+	bool		command_on;
 	void		*win;
 	char		**map;
 	int			map_width;
 	int			map_heigth;
 	t_image		image;
-	int			image_state;
-	int			screenwidth;
-	int			screeheight;
+	char		last_ray;
 }					t_game;	
 
-void		ft_update_ori(t_game *game);
 float		RadToDeg(float a);
 int			ft_ftoi(float x);
 void		ft_move_w(t_game *game);
@@ -123,7 +121,7 @@ void		ft_dda(t_ray *ray);
 void		ft_actualise_map(t_game *game, t_ray *ray);
 float		ft_fabs(float x);
 void		put_player_2d(t_game *game);
-bool		move_ok(t_game *game, float dx, float dy, char c);
+void		move(t_game *game, char c);
 void		show_player_info(t_game *game);
 int			verif_number(char **strs);
 int			any_one_above(t_game *map, int current_line,int pos);
