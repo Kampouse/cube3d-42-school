@@ -6,15 +6,14 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/24 08:52:58 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 09:49:22 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-char	ft_what_face(t_game *game, t_ray *ray)
+char	ft_what_face(t_ray *ray)
 {
-	(void)game;
 	if (ray->dx < 0 && ray->dy < 0)
 	{
 		if (ray->last_hit == 'x')
@@ -47,9 +46,10 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 	const float	hauteur = (3000 / ray->len) / 2;
 	uint32_t	color;
 	int			offset;
-	char		c = ft_what_face(game, ray);
+	char		c = ft_what_face(ray);
 
 	offset = 0;
+	game->last_step = ray->last_hit;
 	game->last_ray = c;
 	if (c == 'N')
 		color = color_to_rgb(255, 255, 255, 1);
@@ -66,7 +66,7 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 	}
 }
 
-void	ft_dda(t_ray *ray)
+void	ft_dda(t_game *game, t_ray *ray)
 {
 	ray->nb_step_x++;
 	ray->nb_step_y++;
@@ -74,9 +74,12 @@ void	ft_dda(t_ray *ray)
 		ray->nb_step_x = 9999;
 	if (ray->nb_step_y == 0)
 		ray->nb_step_y = 9999;
-	if (ray->nb_step_x == ray->nb_step_y)	// ici pour fix
+	if (ray->nb_step_x == ray->nb_step_y)
 	{
-		
+		if (game->last_step == 'x')
+			ray->nb_step_y++;
+		else
+			ray->nb_step_x++;	
 	}
 	if (ray->nb_step_x < ray->nb_step_y)
 	{

@@ -107,6 +107,7 @@ typedef struct t_game
 	int			map_heigth;
 	t_image		image;
 	char		last_ray;
+	char		last_step;
 }					t_game;	
 
 float		RadToDeg(float a);
@@ -117,7 +118,7 @@ void		map_size_init(t_game *game);
 void		paint_in_black(t_game *game);
 void		initialise_map(t_game *game);
 void		ft_add_vertical(t_game *game, t_ray *ray, int i);
-void		ft_dda(t_ray *ray);
+void		ft_dda(t_game *game, t_ray *ray);
 void		ft_actualise_map(t_game *game, t_ray *ray);
 float		ft_fabs(float x);
 void		put_player_2d(t_game *game);

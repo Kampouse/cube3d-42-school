@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/24 08:43:58 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 09:46:09 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	raycaster2d(t_game *game, t_ray ray, int i)
 			next_case = ray.map_rayy * game->player->scale;
 			ray.nb_step_y = (next_case - ray.pos_rayy) / ray.dy;
 		}
-		ft_dda(&ray);
+		ft_dda(game, &ray);
 	}
 	ft_add_vertical(game, &ray, i);
 	return (0);
