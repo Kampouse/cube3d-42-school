@@ -100,7 +100,6 @@ typedef struct t_game
 	t_ray 		*ray;
 	t_mlx		*mlx;
 	t_player	*player;
-	bool		command_on;
 	void		*win;
 	char		**map;
 	int			map_width;
