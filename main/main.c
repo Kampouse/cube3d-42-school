@@ -6,6 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
+/*   Updated: 2022/05/26 08:40:28 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/05/24 09:57:03 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -31,6 +32,7 @@ t_dlist	*verif(t_dlist *map)
 	flag += assert(verif_param(*map, 'P'), "Error: wrong number of Player\n");
 	flag += assert(verif_param(*map, 'E'), "Error: wrong number of exit\n");
 	flag += assert(verif_param(*map, 'C'), "Error: wrong nbr of collectibe\n");
+	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
 	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
 	if (flag > 0)
 	{
@@ -63,7 +65,7 @@ int	main(int argc, char *argv[])
 	state->player->scale = 12;
 	state->map_data  = init_map();
 	state->map = map_init(mapcreator(argv[1]));
-	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0)
+	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0 || validate_file (state) != 0)
 	{
 			ft_putstr_fd("an erro as occured \n", 2);
 			freelist(state->map);
@@ -75,6 +77,8 @@ int	main(int argc, char *argv[])
 	}
 	resize_map(state);
 	player_direction(state);
+
+
 	state->player->x_pos = (state->player->x_pos) * state->player->scale;
 	state->player->y_pos = (state->player->y_pos) * state->player->scale;
 	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
@@ -83,6 +87,8 @@ int	main(int argc, char *argv[])
 	state->mlx = mlx_init(800, 600, "MLX42", 0);
 	image.image = mlx_new_image(state->mlx, 800, 600);
 	state->image = image;
+
+	load_image(state);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	initialise_map(state);
 	ray_fov(state);
