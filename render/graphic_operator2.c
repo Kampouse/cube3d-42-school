@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/19 12:56:15 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 10:40:52 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,13 @@ void	initialise_map(t_game *game)
 			mlx_putpixel(game->image.image, x, y++, 0x0000);
 		x++;
 	}
+}
+
+void	fix_it_hihi(t_game *game)
+{
+	int	y;
+
+	y = 0;
+	while (y < HEIGHT)
+		mlx_putpixel(game->image.image, 0, y++, 0x000000);
 }

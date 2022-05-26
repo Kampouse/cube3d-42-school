@@ -6,7 +6,8 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/24 09:42:00 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/25 15:25:45 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/24 10:22:57 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +31,17 @@ void	hook(void *param)
 {
 	t_mlx	*mlx;
 	t_game	*state;
-	state = param;
 
+	state = param;
 	mlx = state->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		exit(0);
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
 	{
 		initialise_map(state);
-		state->player->direction -= 0.1;
+		state->player->direction -= 0.05;
+		if (state->player->direction < 0)
+			state->player->direction = 6.2;
 		ray_fov(state);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_W))
@@ -48,7 +51,9 @@ void	hook(void *param)
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
 	{
 		initialise_map(state);
-		state->player->direction += 0.1;
+		state->player->direction += 0.05;
+		if (state->player->direction > 6.2)
+			state->player->direction = 0;
 		ray_fov(state);
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_M))
@@ -70,18 +75,6 @@ char	freelist(char **list)
 	}
 	free(list);
 	return (0);
-}
-
-bool	move_ok(t_game *game, float dx, float dy)
-{
-	int	x_pos;
-	int	y_pos;
-
-	x_pos = ((game->player->x_pos + dx) / game->player->scale) + 1;
-	y_pos = ((game->player->y_pos + dy) / game->player->scale) + 1;
-	if (game->map[y_pos][x_pos] != '1')
-		return (true);
-	return (false);
 }
 
 int	was_in_set(char *str,char *set)

@@ -41,16 +41,11 @@ typedef struct t_dlist
 
 typedef struct t_ray
 {
-	float			dir;
 	float			dx;
 	float			dy;
-	float			plane_y;
-	float			plane_x;
 	float			delta_x;
 	float			delta_y;
 	float			angle;
-	float			max_value;
-	float			diff;
 	float			pos_rayx;
 	float			pos_rayy;
 	int				map_rayx;
@@ -58,18 +53,21 @@ typedef struct t_ray
 	int				nb_step_x;
 	int				nb_step_y;
 	float			len;
+	char			last_hit;
 }					t_ray;	
 
 typedef struct t_player
 {
 	int			x_map;
 	int			y_map;
-	int			x_pos;
-	int			y_pos;
+	float		x_pos;
+	float		y_pos;
 	int			orientation;
 	float		direction;
 	float		delta_x;
 	float		delta_y;
+	float		dx;
+	float		dy;
 	int			scale;
 }				t_player;	
 
@@ -79,10 +77,11 @@ typedef struct t_map
 	char	*south_texture;
 	char	*west_texture;
 	char	*est_texture;
-	t_mlx_tex 	*north_tex;
-	t_mlx_tex 	*south_tex;
-	t_mlx_tex 	*west_tex;
-	t_mlx_tex	*est_tex;
+	t_mlx_image 	*north_tex;
+	t_mlx_image 	*south_tex;
+	t_mlx_image 	*west_tex;
+	t_mlx_image		*est_tex;
+
 	int		*floor_color;
 	int		*ceiling_color;
 	int		*start_position;
@@ -111,22 +110,24 @@ typedef struct t_game
 	int			map_width;
 	int			map_heigth;
 	t_image		image;
-	int			image_state;
-	int			screenwidth;
-	int			screeheight;
+	char		last_ray;
+	char		last_step;
 }					t_game;	
 
+void		fix_it_hihi(t_game *game);
+float		RadToDeg(float a);
+int			ft_ftoi(float x);
 void		ft_move_w(t_game *game);
 void		ft_move_s(t_game *game);
 void		map_size_init(t_game *game);
 void		paint_in_black(t_game *game);
 void		initialise_map(t_game *game);
 void		ft_add_vertical(t_game *game, t_ray *ray, int i);
-void		ft_dda(t_ray *ray);
+void		ft_dda(t_game *game, t_ray *ray);
 void		ft_actualise_map(t_game *game, t_ray *ray);
 float		ft_fabs(float x);
 void		put_player_2d(t_game *game);
-bool		move_ok(t_game *game, float delta_x, float delta_y);
+void		move(t_game *game, char c);
 void		show_player_info(t_game *game);
 int			verif_number(char **strs);
 int			any_one_above(t_game *map, int current_line,int pos);
@@ -196,7 +197,7 @@ int			ray_fov(t_game *state);
 int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
 int			verify_extention(char *str,const char *extention);
 int			validate_file(t_game *game);
-void load_image(t_map *map_data);
-uint32_t   pixel_to_color(t_mlx_tex *tex,uint32_t x_pos, uint32_t y_pos);
-int  wall_color( t_mlx_tex *tex, t_game *game, uint32_t  ray_x, uint32_t ray_y);
+void load_image(t_game *state);
+uint32_t   pixel_to_color(t_mlx_image *tex,uint32_t x_pos, uint32_t y_pos);
+int  wall_color( t_mlx_image *tex, t_game *game, uint32_t  ray_x, uint32_t ray_y);
 #endif 

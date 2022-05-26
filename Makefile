@@ -1,6 +1,7 @@
 NAME = cub3d
  
-FLAGS =   -g -Wall -Wextra  -Werror  
+FLAGS =   -g -Wall -Wextra -Werror 
+
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\

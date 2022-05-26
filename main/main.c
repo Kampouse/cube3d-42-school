@@ -6,7 +6,8 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/24 09:35:58 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/26 08:29:07 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/24 09:57:03 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +73,25 @@ int	main(int argc, char *argv[])
 			free(state->player);
 			free(state->ray);
 			free(state);
-
-		return (0);	
+			return (0);	
 	}
 	resize_map(state);
 	player_direction(state);
-	load_image(state->map_data);
+
+
 	state->player->x_pos = (state->player->x_pos) * state->player->scale;
 	state->player->y_pos = (state->player->y_pos) * state->player->scale;
 	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
 	state->player->y_map = (state->player->y_pos / state->player->scale) + 1;
-	(void)image;
+	state->last_step = 'x';
 	state->mlx = mlx_init(800, 600, "MLX42", 0);
 	image.image = mlx_new_image(state->mlx, 800, 600);
 	state->image = image;
+
+	load_image(state);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	initialise_map(state);
-	printf("%d\n",	pixel_to_color(state->map_data->est_tex,200,200));
-	//ray_fov(state);
+	ray_fov(state);
 	wall_color(state->map_data->est_tex,state,100,100); 
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);
