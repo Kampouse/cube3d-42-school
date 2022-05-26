@@ -1,6 +1,6 @@
 NAME = cub3d
  
-FLAGS =   -g -Wall -Wextra  -Werror  
+FLAGS =   -g -Wall -Wextra  -Werror
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\
@@ -28,7 +28,7 @@ HEADER = ./Include/cube.h
 
 FRAMEWORK = -framework Cocoa -framework OpenGL -framework IOKit
 
-LIBS=  ./utils/libft/libft.a ./utils/MLX/libmlx42.a  ./utils/MLX/glfw/lib-x86_64/libglfw3.a
+LIBS =  ./utils/libft/libft.a ./utils/MLX/libmlx42.a  ./utils/MLX/glfw/lib-x86_64/libglfw3.a
 
 .c.o:
 	@gcc  ${FLAGS}  -c $< -o ${<:.c=.o}
