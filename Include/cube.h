@@ -54,6 +54,7 @@ typedef struct t_ray
 	int				nb_step_y;
 	float			len;
 	char			last_hit;
+	int				max_len;
 }					t_ray;	
 
 typedef struct t_player

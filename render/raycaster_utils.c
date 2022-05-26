@@ -6,7 +6,8 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/25 15:49:10 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/26 08:30:53 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/24 13:15:51 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +71,6 @@ void	ft_dda(t_game *game, t_ray *ray)
 {
 	ray->nb_step_x++;
 	ray->nb_step_y++;
-	if (ray->nb_step_x == 0)
-		ray->nb_step_x = 9999;
-	if (ray->nb_step_y == 0)
-		ray->nb_step_y = 9999;
 	if (ray->nb_step_x == ray->nb_step_y)
 	{
 		if (game->last_step == 'x')

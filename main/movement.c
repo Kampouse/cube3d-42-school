@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/24 10:41:56 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 13:11:06 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ void	move(t_game *game, char c)
 	}
 	if (point_x < 0 || point_y < 0)
 		return;
-	game->player->x_pos = point_x;
-	game->player->y_pos = point_y;
+	if (point_x > 0 && point_y > 0)
+	{
+		game->player->x_pos = point_x;
+		game->player->y_pos = point_y;
+	}
 }
 
 void	ft_move_w(t_game *game)
