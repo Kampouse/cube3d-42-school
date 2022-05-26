@@ -6,11 +6,16 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/24 10:41:10 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/24 13:15:38 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
+
+// static int	ft_max_len(t_game *game, t_ray *ray) // return the max len of a ray
+// {
+	
+// }
 
 float	ft_fabs(float x)
 {
@@ -38,7 +43,7 @@ int	raycaster2d(t_game *game, t_ray ray, int i)
 		game->player->delta_x = ray.delta_x;
 		game->player->delta_y = ray.delta_y;
 	}
-	while(game->map[(int)(game->player->y_pos + (ray.dy * ray.len)) / game->player->scale][(int)(game->player->x_pos + (ray.dx * ray.len))  / game->player->scale] != '1')
+	while(game->map[(int)(game->player->y_pos + (ray.dy * ray.len)) / game->player->scale][(int)(game->player->x_pos + (ray.dx * ray.len)) / game->player->scale] != '1')
 	{
 		ray.map_rayx = (ray.pos_rayx / game->player->scale) + 1;
 		ray.map_rayy = (ray.pos_rayy / game->player->scale) + 1;
