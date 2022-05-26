@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/26 08:30:13 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/26 08:40:28 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/05/24 09:57:03 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -92,9 +92,7 @@ int	main(int argc, char *argv[])
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	initialise_map(state);
 	ray_fov(state);
-	wall_color(state->map_data->est_tex,state,100,100); 
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);
-
 	return(0);
 }
