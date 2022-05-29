@@ -1,6 +1,7 @@
 NAME = cub3d
  
-FLAGS =   -g -Wall -Wextra  -Werror
+
+FLAGS =   -g -Wall -Wextra -Werror 
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\
@@ -23,6 +24,7 @@ SRCS = 	main/main.c					\
 		render/graphic_operator2.c	\
 		render/raycaster.c 			\
 		render/raycaster_utils.c	\
+		render/draw.c	\
 
 HEADER = ./Include/cube.h
 

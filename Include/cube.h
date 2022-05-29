@@ -78,6 +78,11 @@ typedef struct t_map
 	char	*south_texture;
 	char	*west_texture;
 	char	*est_texture;
+	t_mlx_image 	*north_tex;
+	t_mlx_image 	*south_tex;
+	t_mlx_image 	*west_tex;
+	t_mlx_image		*est_tex;
+
 	int		*floor_color;
 	int		*ceiling_color;
 	int		*start_position;
@@ -192,5 +197,8 @@ int			raycaster2d(t_game *game, t_ray ray, int i);
 int			ray_fov(t_game *state);
 int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
 int			verify_extention(char *str,const char *extention);
-
+int			validate_file(t_game *game);
+void load_image(t_game *state);
+uint32_t   pixel_to_color(t_mlx_image *tex,uint32_t x_pos, uint32_t y_pos);
+int  wall_color( t_mlx_image *tex, t_game *game, uint32_t  ray_x, uint32_t ray_y);
 #endif 
