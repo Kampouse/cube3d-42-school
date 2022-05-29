@@ -55,6 +55,9 @@ typedef struct t_ray
 	float			len;
 	char			last_hit;
 	int				max_len;
+	int				last_cordy	;			
+	int				last_cordx;				
+	int				map_heigth ;
 }					t_ray;	
 
 typedef struct t_player

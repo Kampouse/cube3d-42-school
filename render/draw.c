@@ -1,5 +1,4 @@
 #include "../Include/cube.h" 
-#include <_types/_uint32_t.h>
 #include <sys/types.h>
 #include <unistd.h>
 
