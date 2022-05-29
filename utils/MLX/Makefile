@@ -6,7 +6,7 @@
 #    By: w2wizard <w2wizard@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/15 15:06:20 by w2wizard      #+#    #+#                  #
-#    Updated: 2022/02/21 10:43:07 by lde-la-h      ########   odam.nl          #
+#    Updated: 2022/05/27 21:21:28 by jemartel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ else
     endif
 endif
 
-CFLAGS	= -Wextra -Wall -Wunreachable-code -Wno-char-subscripts
+CFLAGS	=   -Wunreachable-code -Wno-char-subscripts
 ifndef NOWARNING
 CFLAGS	+= -Werror # Windows
 endif
@@ -35,8 +35,8 @@ endif
 # /usr/bin/find is explicitly mentioned here for Windows compilation under Cygwin
 SHDR	=	src/mlx_vert.c src/mlx_frag.c
 SHDRSRC	=	shaders/default.frag shaders/default.vert
-LIBS	=	$(shell /usr/bin/find ./lib -iname "*.c")
-SRCS	=	$(shell /usr/bin/find ./src -iname "*.c") $(SHDR) $(LIBS)
+LIBS	=	$(shell find ./lib -iname "*.c")
+SRCS	=	$(shell find ./src -iname "*.c") $(SHDR) $(LIBS)
 OBJS	=	${SRCS:.c=.o}
 
 # //= Rules =// #
