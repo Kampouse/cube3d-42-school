@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:11:15 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/19 13:02:12 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/29 08:06:26 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,21 @@ t_dlist	*mapcreator(char *map_link)
 	return (list);
 }
 
-char **map_init(t_dlist *map)
+char	**map_init(t_dlist *map)
 {
 	int		len;
 	char	**lines;
-	t_dlist	*temp; 
+	t_dlist	*temp;
 
 	temp = map;
 	lines = NULL;
-	if(map == NULL) 
+	if (map == NULL)
 		return (NULL);
 	len = ft_lst_lenght(map);
-	lines = ft_calloc( len + 1,sizeof(char *));
+	lines = ft_calloc(len + 1, sizeof(char *));
 	len = 0;
 	if (!map)
-		return(NULL);
+		return (NULL);
 	while (map)
 	{
 		lines[len] = ft_strdup(map->content);
@@ -66,5 +66,5 @@ char **map_init(t_dlist *map)
 		map = map->next;
 	}
 	free_list(temp);
-	return(lines);
+	return (lines);
 }
