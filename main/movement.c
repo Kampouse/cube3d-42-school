@@ -6,11 +6,18 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/24 13:11:06 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/29 08:03:44 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
+
+static bool	is_in_wall(t_game *game, int point_x, int point_y)
+{
+	if (game->map[point_y][point_x] && game->map[point_y][point_x] != '1')
+		return (true);
+	return (false);
+}
 
 void	move(t_game *game, char c)
 {
@@ -19,17 +26,16 @@ void	move(t_game *game, char c)
 
 	if (c == '+')
 	{
-		point_x = game->player->x_pos + game->player->delta_x;
-		point_y = game->player->y_pos + game->player->delta_y;
+		point_x = game->player->x_pos + game->player->dx;
+		point_y = game->player->y_pos + game->player->dy;
 	}
 	else
 	{
-		point_x = game->player->x_pos - game->player->delta_x;
-		point_y = game->player->y_pos - game->player->delta_y;
+		point_x = game->player->x_pos - game->player->dx;
+		point_y = game->player->y_pos - game->player->dy;
 	}
-	if (point_x < 0 || point_y < 0)
-		return;
-	if (point_x > 0 && point_y > 0)
+	if (is_in_wall(game, (point_x / game->player->scale),
+			(point_y / game->player->scale)))
 	{
 		game->player->x_pos = point_x;
 		game->player->y_pos = point_y;

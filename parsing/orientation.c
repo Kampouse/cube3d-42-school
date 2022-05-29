@@ -1,10 +1,16 @@
-#include "../Include/cube.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   orientation.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
+/*   Updated: 2022/05/29 08:29:59 by aguay            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	apply_radiant(t_game *game)
-{
-	const double pi = 3.14159265359 * 2;
-	game->player->direction  = game->player->direction * (pi / 360);
-}
+#include "../Include/cube.h"
 
 void	player_direction(t_game *game)
 {

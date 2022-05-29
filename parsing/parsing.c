@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/19 10:58:41 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/29 08:35:02 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*skip_empty_line(char *str)
 {
-	const char	*temp = ft_strtrim(str," \n\t\v");	// Norm to fix ?
+	const char	*temp = ft_strtrim(str, " \n\t\v");
 
 	if (ft_strlen(temp) == 0)
 	{
@@ -22,25 +22,28 @@ char	*skip_empty_line(char *str)
 		return (0);
 	}
 	else
-		return((char *)temp);
+		return ((char *)temp);
 	return (NULL);
 }
 
 int	any_invalid(t_map *map)
 {
 	int	is_not_ok;
+
 	is_not_ok = 0;
-	if(map->west_texture == NULL)
+	if (map->west_texture == NULL)
 		is_not_ok++;
-	if(map->south_texture == NULL)
+	if (map->south_texture == NULL)
 		is_not_ok++;
-	if(map->est_texture == NULL)
+	if (map->est_texture == NULL)
 		is_not_ok++;
-	if(map->norh_texture == NULL)
+	if (map->norh_texture == NULL)
 		is_not_ok++;
-	if (!map->floor_color ||(map->floor_color && valid_range(map->floor_color)))
+	if (!map->floor_color || (map->floor_color && valid_range(
+				map->floor_color)))
 		is_not_ok++;
-	if (!map->ceiling_color ||(map->ceiling_color && valid_range(map->ceiling_color)))
+	if (!map->ceiling_color || (map->ceiling_color && valid_range(
+				map->ceiling_color)))
 		is_not_ok++;
 	return (is_not_ok);
 }
@@ -56,16 +59,13 @@ int	loop_directions(t_game *state)
 	{
 		while (state->map[inc])
 		{
-			 ft_poll_texture(skip_empty_line(state->map[inc]), state->map_data);
-			 ft_poll_color(skip_empty_line(state->map[inc]), state->map_data,inc);
-				inc++;
+			ft_poll_texture(skip_empty_line(state->map[inc]), state->map_data);
+			ft_poll_color(skip_empty_line(state->map[inc]),
+				state->map_data, inc);
+			inc++;
 		}
 		if (any_invalid(state->map_data))
-		{
-			//delete_texture(state->map_data);
-			//freelist(state->map);
-			return(printf("an error occured while reading texture or color"));
-		}
+			return (printf("an error occured while reading texture or color"));
 	}
 	else
 	{

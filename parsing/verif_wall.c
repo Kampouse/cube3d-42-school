@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:39:13 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/05 08:53:49 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/29 08:36:33 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 int	ft_between(char *string, char comp)
 {
-	int	len;
-	const	char *str = ft_strtrim(string," \t\n\v");
+	int			len;
+	const char	*str = ft_strtrim(string, " \t\n\v");
 
-	if(ft_strlen(str) == 0)
+	if (ft_strlen(str) == 0)
 	{
 		free((void *)str);
 		return (0);
@@ -37,8 +37,8 @@ int	ft_between(char *string, char comp)
 
 int	ft_all(char *string, char comp)
 {
-	int	inc;
-	const 	char *str = ft_strtrim(string,"  \t\n\v");
+	int			inc;
+	const char	*str = ft_strtrim(string, "  \t\n\v");
 
 	inc = 0;
 	while (str[inc])
@@ -50,7 +50,7 @@ int	ft_all(char *string, char comp)
 		}
 		inc++;
 	}
-	if(ft_strlen(str) == 0)
+	if (ft_strlen(str) == 0)
 		return (1);
 	free((void *)str);
 	return (0);
