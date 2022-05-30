@@ -6,10 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/26 08:30:53 by jemartel         ###   ########.fr       */
-/*   Updated: 2022/05/24 13:15:51 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/30 12:36:11 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../Include/cube.h"
 
@@ -71,6 +71,7 @@ void	ft_dda(t_game *game, t_ray *ray)
 {
 	ray->nb_step_x++;
 	ray->nb_step_y++;
+
 	if (ray->nb_step_x == ray->nb_step_y)
 	{
 		if (game->last_step == 'x')
@@ -82,23 +83,27 @@ void	ft_dda(t_game *game, t_ray *ray)
 	{
 		ray->last_hit = 'x';
 		ray->len = ray->len + ray->nb_step_x;
-		while (ray->nb_step_x > 0)
+		while (ray->nb_step_x > 1)
 		{
 			ray->pos_rayx = ray->pos_rayx + ray->dx;
 			ray->pos_rayy = ray->pos_rayy + ray->dy;
 			ray->nb_step_x--;
 		}
+		ray->pos_rayx = ray->pos_rayx + (ray->dx * ray->nb_step_x);
+		ray->pos_rayy = ray->pos_rayy + (ray->dy * ray->nb_step_x);
 	}
 	if (ray->nb_step_y < ray->nb_step_x)
 	{
 		ray->last_hit = 'y';
 		ray->len = ray->len + ray->nb_step_y;
-		while (ray->nb_step_y > 0)
+		while (ray->nb_step_y > 1)
 		{
 			ray->pos_rayx = ray->pos_rayx + ray->dx;
 			ray->pos_rayy = ray->pos_rayy + ray->dy;
 			ray->nb_step_y--;
 		}
+		ray->pos_rayx = ray->pos_rayx + (ray->dx * ray->nb_step_y);
+		ray->pos_rayy = ray->pos_rayy + (ray->dy * ray->nb_step_y);
 	}
 }
 

@@ -13,11 +13,6 @@
 
 #ifndef  CUBE_H
 # define  CUBE_H
-# define LEFT			0
-# define RIGHT			2
-# define DOWN			1
-# define UP				13
-# define ESC			53
 # define TWO_PI			6.28318530
 # define PI				3.14159265359
 # define HEIGHT			600
@@ -50,15 +45,15 @@ typedef struct t_ray
 	float			pos_rayy;
 	int				map_rayx;
 	int				map_rayy;
-	int				nb_step_x;
-	int				nb_step_y;
+	float			nb_step_x;
+	float			nb_step_y;
 	float			len;
 	char			last_hit;
 	int				max_len;
-	int				last_cordy	;			
-	int				last_cordx;				
+	int				last_cordy;
+	int				last_cordx;
 	int				map_heigth ;
-}					t_ray;	
+}					t_ray;
 
 typedef struct t_player
 {
@@ -73,7 +68,7 @@ typedef struct t_player
 	float		dx;
 	float		dy;
 	int			scale;
-}				t_player;	
+}				t_player;
 
 typedef struct t_map
 {
@@ -85,7 +80,6 @@ typedef struct t_map
 	t_mlx_image 	*south_tex;
 	t_mlx_image 	*west_tex;
 	t_mlx_image		*est_tex;
-
 	int		*floor_color;
 	int		*ceiling_color;
 	int		*start_position;
@@ -106,7 +100,7 @@ typedef struct	s_image {
 typedef struct t_game
 {
 	t_map		*map_data;
-	t_ray 		*ray;
+	t_ray		*ray;
 	t_mlx		*mlx;
 	t_player	*player;
 	void		*win;
@@ -118,6 +112,7 @@ typedef struct t_game
 	char		last_step;
 }					t_game;	
 
+void		ft_render_screen(t_game *game);
 void		fix_it_hihi(t_game *game);
 float		RadToDeg(float a);
 int			ft_ftoi(float x);

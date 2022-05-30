@@ -1,5 +1,7 @@
 NAME = cub3d
-FLAGS =   -g  -Wextra -fsanitize=leak
+ 
+
+FLAGS =   -g -Wall -Wextra -Werror -O3
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\
@@ -38,13 +40,13 @@ OBJS = ${SRCS:.c=.o}
 CC = gcc
 
 all: ${NAME}
-
-
+	make clean
 
 ${NAME}:${OBJS} 
 		@$(MAKE) -C ./utils/libft
 		@$(MAKE) -s -C ./utils/MLX
-		@${CC}  ${FLAGS} ${OBJS} ./utils/MLX/libmlx42.a ./utils/libft/libft.a -lglfw -lm  -o ${NAME}
+		@${CC} ${FLAGS} ${OBJS} ${LIBS} ${FRAMEWORK}  -o ${NAME}
+
 clean:
 		@${RM} ${OBJS}
 
@@ -62,11 +64,6 @@ run: all
 	./${NAME} ./assets/map.cub
 
 bun: all
-
-
-debug:
-	nemiver ./${NAME} ./assets/map.cub
-	
 
 leak: all
 	@echo "\033[92mTEST 1 \n \033[0m"

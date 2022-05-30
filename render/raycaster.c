@@ -6,17 +6,24 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/29 20:33:11 by jemartel         ###   ########.fr       */
-/*   Updated: 2022/05/24 13:15:38 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/30 12:28:26 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../Include/cube.h"
 
-// static int	ft_max_len(t_game *game, t_ray *ray) // return the max len of a ray
-// {
-	
-// }
+static int	ft_max_len(t_game *game, t_ray ray)
+{
+	float	max_stepx;
+	float	max_stepy;
+
+	max_stepx = ft_fabs(game->player->x_pos / ray.dx);
+	max_stepy = ft_fabs(game->player->y_pos / ray.dy);
+	if (ray.nb_step_x > max_stepx && ray.nb_step_y > max_stepy)
+		return (false);
+	return (true);
+}
 
 float	ft_fabs(float x)
 {
@@ -25,25 +32,6 @@ float	ft_fabs(float x)
 	return (x);
 }
 
-		
-int stuffed(t_game *game,t_ray *ray)
-{
-	int location  =	(game->player->y_pos + (ray->dy * ray->len)) / game->player->scale;
-	int locationx =	(game->player->x_pos + (ray->dx * ray->len)) / game->player->scale;
- int inc;
- inc  = 0;
- while(game->map[inc])
-	 inc++;
-	  if(ft_strlen(game->map[location / game->player->scale]) < (int)locationx)
-	{
-
-	  ft_putnbr_fd(location,2);
-	  ft_putchar_fd(' ',2);
-	}
-
-
-return 0;
-}
 int	raycaster2d(t_game *game, t_ray ray, int i)
 {
 	float	next_case;
@@ -63,10 +51,9 @@ int	raycaster2d(t_game *game, t_ray ray, int i)
 		game->player->delta_x = ray.delta_x;
 		game->player->delta_y = ray.delta_y;
 	}
-		ray.last_cordy = (int)(game->player->y_pos + (ray.dy * ray.len)) / game->player->scale;
-		ray.last_cordx  = (int)(game->player->x_pos + (ray.dx * ray.len)) / game->player->scale;
-		while (game->map[ray.last_cordy][ray.last_cordx] != '1')
-
+	ray.last_cordy = (int)(game->player->y_pos + (ray.dy * ray.len)) / game->player->scale;
+	ray.last_cordx  = (int)(game->player->x_pos + (ray.dx * ray.len)) / game->player->scale;
+	while (game->map[ray.last_cordy][ray.last_cordx] != '1' &&  ft_max_len(game, ray))
 	{
 		ray.map_rayx = (ray.pos_rayx / game->player->scale) + 1;
 		ray.map_rayy = (ray.pos_rayy / game->player->scale) + 1;
@@ -93,10 +80,10 @@ int	raycaster2d(t_game *game, t_ray ray, int i)
 		ft_dda(game, &ray);
 		ray.last_cordy = (int)(game->player->y_pos + (ray.dy * ray.len)) / game->player->scale;
 		ray.last_cordx  = (int)(game->player->x_pos + (ray.dx * ray.len)) / game->player->scale;
-		if(ray.last_cordy >= game->map_heigth)		
+		if (ray.last_cordy >= game->map_heigth)
 			ray.last_cordy = game->map_heigth - 1;
-		if(ray.last_cordx > ft_strlen(game->map[ray.last_cordy]))
-				ray.last_cordx = ft_strlen(game->map[ray.last_cordy]);
+		if (ray.last_cordx > (int)ft_strlen(game->map[ray.last_cordy]))
+			ray.last_cordx = (int)ft_strlen(game->map[ray.last_cordy]);
 	}
 	ft_add_vertical(game, &ray, i);
 	return (0);
