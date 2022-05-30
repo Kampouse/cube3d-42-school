@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/29 20:33:11 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/30 18:25:18 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/05/24 13:15:38 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -117,6 +117,9 @@ int	ray_fov(t_game *state)
 	while(offset <= until)
 	{
 		ray.angle = state->player->direction + offset;
+
+       state->ray = &ray;
+
 		raycaster2d(state, ray, i);
 		offset += increment;
 		i++;

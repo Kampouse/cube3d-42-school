@@ -40,7 +40,6 @@ CC = gcc
 all: ${NAME}
 
 
-
 ${NAME}:${OBJS} 
 		@$(MAKE) -C ./utils/libft
 		@$(MAKE) -s -C ./utils/MLX
