@@ -50,18 +50,12 @@ t_mlx_image *textur_to_draw(t_game *game)
 	if(game->last_ray == 'S')
 		return (game->map_data->north_tex);
 
-
-
-
-
-
 return NULL;
 }
 int  wall_color( t_mlx_image *tex, t_game *game, uint32_t  ray_x, uint32_t height)
 {
 	unsigned int	inc = 0;
 	(void)game;
-	t_mlx_image *type;
 	while(inc < height)
 	{
 		draw_pixel(game-> image .image,  ray_x, inc, pixel_to_color(tex, ray_x, inc));

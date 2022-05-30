@@ -6,10 +6,12 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/30 20:32:55 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:42:31 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/05/24 13:15:51 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/30 12:36:11 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../Include/cube.h"
 
@@ -50,6 +52,7 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 	char		c = ft_what_face(ray);
 
 	offset = 0;
+	color = 0;
 	game->last_step = ray->last_hit;
 	game->last_ray = c;
 	if (c == 'N')
@@ -71,6 +74,7 @@ void	ft_dda(t_game *game, t_ray *ray)
 {
 	ray->nb_step_x++;
 	ray->nb_step_y++;
+
 	if (ray->nb_step_x == ray->nb_step_y)
 	{
 		if (game->last_step == 'x')
@@ -82,23 +86,27 @@ void	ft_dda(t_game *game, t_ray *ray)
 	{
 		ray->last_hit = 'x';
 		ray->len = ray->len + ray->nb_step_x;
-		while (ray->nb_step_x > 0)
+		while (ray->nb_step_x > 1)
 		{
 			ray->pos_rayx = ray->pos_rayx + ray->dx;
 			ray->pos_rayy = ray->pos_rayy + ray->dy;
 			ray->nb_step_x--;
 		}
+		ray->pos_rayx = ray->pos_rayx + (ray->dx * ray->nb_step_x);
+		ray->pos_rayy = ray->pos_rayy + (ray->dy * ray->nb_step_x);
 	}
 	if (ray->nb_step_y < ray->nb_step_x)
 	{
 		ray->last_hit = 'y';
 		ray->len = ray->len + ray->nb_step_y;
-		while (ray->nb_step_y > 0)
+		while (ray->nb_step_y > 1)
 		{
 			ray->pos_rayx = ray->pos_rayx + ray->dx;
 			ray->pos_rayy = ray->pos_rayy + ray->dy;
 			ray->nb_step_y--;
 		}
+		ray->pos_rayx = ray->pos_rayx + (ray->dx * ray->nb_step_y);
+		ray->pos_rayy = ray->pos_rayy + (ray->dy * ray->nb_step_y);
 	}
 }
 

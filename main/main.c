@@ -6,10 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/28 20:00:22 by jemartel         ###   ########.fr       */
-/*   Updated: 2022/05/24 09:57:03 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/30 11:57:16 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../Include/cube.h"
 #include "stdio.h"
@@ -85,11 +85,9 @@ int	main(int argc, char *argv[])
 	state->mlx = mlx_init(800, 600, "MLX42", 0);
 	image.image = mlx_new_image(state->mlx, 800, 600);
 	state->image = image;
-
 	load_image(state);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	initialise_map(state);
-	int inc = 0;
 	ray_fov(state);
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);

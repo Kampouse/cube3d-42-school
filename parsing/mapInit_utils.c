@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/25 15:26:03 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:41:52 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/05/23 11:08:53 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -73,9 +73,6 @@ void	ft_poll_color(char *str,t_map *map,int inc)
 */
 void	ft_poll_texture(char *str,t_map *map)
 {
-	char	*temp;
-
-	temp = NULL;
 	if(str && map)
 	{
 		if (ft_strncmp(str,"NO",2) == 0 && ft_strlen(str) > 2)
