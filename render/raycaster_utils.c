@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/30 20:42:31 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:25:07 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/05/24 13:15:51 by aguay            ###   ########.fr       */
 /*   Updated: 2022/05/30 12:36:11 by aguay            ###   ########.fr       */
 /*                                                                            */
@@ -46,12 +46,12 @@ char	ft_what_face(t_ray *ray)
 
 void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 {
-	const float	hauteur = (3000 / ray->len) / 2;
+	const float	hauteur = (3000 / ray->len) / PI / 0.5;
 	uint32_t	color;
 	int			offset;
 	char		c = ft_what_face(ray);
 
-	offset = 0;
+	offset = -1;
 	color = 0;
 	game->last_step = ray->last_hit;
 	game->last_ray = c;
@@ -63,10 +63,14 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 		color = color_to_rgb(0, 128, 0, 1);
 	if (c == 'W')
 		color = color_to_rgb(255, 0, 0, 1);
-	while (offset <= hauteur && (HEIGHT / 2) + offset <= HEIGHT && HEIGHT / 2 - offset >= 0)
+	printf("%f %f\n",((float)game->map_data->north_tex->height / hauteur) ,  (hauteur / 122));
+	// i  basacly the value that will skip some part of the image or stagher a one place 
+    
+	while (offset <= (int)hauteur && (HEIGHT / 2) + offset <= HEIGHT  && HEIGHT / 2 - offset >= 0)
 	{
 		mlx_putpixel(game->image.image, i, (HEIGHT / 2) + offset, color);
 		mlx_putpixel(game->image.image, i, (HEIGHT / 2) - offset++, color);
+
 	}
 }
 
@@ -117,8 +121,9 @@ void	put_player_2d(t_game *game)
 	int	pos_x;
 	int	pos_y;
 
-	pos_x = game->player->x_pos + (WIDTH / 2) - ((game->map_width * game->player->scale) / 2);
-	pos_y = game->player->y_pos + (HEIGHT / 2) - ((game->map_heigth * game->player->scale) / 2);
+	pos_x = floor(game->player->x_pos + (WIDTH / 2) - ((game->map_width * game->player->scale) / 2));
+	pos_y = floor(game->player->y_pos + (HEIGHT / 2) - ((game->map_heigth * game->player->scale) / 2));
+
 	y = 0;
 	x = 0;
 	while (x < 3)

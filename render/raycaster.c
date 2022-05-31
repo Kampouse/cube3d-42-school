@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/30 20:35:18 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:13:19 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/05/24 13:15:38 by aguay            ###   ########.fr       */
 /*   Updated: 2022/05/30 12:28:26 by aguay            ###   ########.fr       */
 /*                                                                            */
@@ -82,10 +82,11 @@ int	raycaster2d(t_game *game, t_ray ray, int i)
 		ft_dda(game, &ray);
 		ray.last_cordy = (int)(game->player->y_pos + (ray.dy * ray.len)) / game->player->scale;
 		ray.last_cordx  = (int)(game->player->x_pos + (ray.dx * ray.len)) / game->player->scale;
-		if (ray.last_cordy >= game->map_heigth)
+		if (ray.last_cordy > game->map_heigth)
 			ray.last_cordy = game->map_heigth - 1;
-		if (ray.last_cordx > (int)ft_strlen(game->map[ray.last_cordy]))
-			ray.last_cordx = (int)ft_strlen(game->map[ray.last_cordy]);
+//this  condition might break
+		if (ray.last_cordx >= (int)ft_strlen(game->map[ray.last_cordy]))
+			ray.last_cordx = (int)ft_strlen(game->map[ray.last_cordy]) - 1;
 	}
 	ft_add_vertical(game, &ray, i);
 	return (0);
