@@ -38,8 +38,6 @@ typedef struct t_ray
 {
 	float			dx;
 	float			dy;
-	float			delta_x;
-	float			delta_y;
 	float			angle;
 	float			pos_rayx;
 	float			pos_rayy;
@@ -63,8 +61,6 @@ typedef struct t_player
 	float		y_pos;
 	int			orientation;
 	float		direction;
-	float		delta_x;
-	float		delta_y;
 	float		dx;
 	float		dy;
 	int			scale;
@@ -191,7 +187,7 @@ void		draw_player(t_game *state,t_image image,t_ray *ray);
 int			draw_circle(t_image *image, int start_x,int start_y,int rayon);
 double		find_len(int startx, int starty,int endx, int endy);
 float		degToRad(float a);
-int			raycaster2d(t_game *game, t_ray ray, int i);
+int			raycaster2d(t_game *game, t_ray *ray, int i);
 int			ray_fov(t_game *state);
 int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
 int			verify_extention(char *str,const char *extention);

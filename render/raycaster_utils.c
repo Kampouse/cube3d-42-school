@@ -6,10 +6,9 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/30 12:36:11 by aguay            ###   ########.fr       */
+/*   Updated: 2022/05/31 14:58:02 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../Include/cube.h"
 
@@ -82,28 +81,28 @@ void	ft_dda(t_game *game, t_ray *ray)
 	if (ray->nb_step_x < ray->nb_step_y)
 	{
 		ray->last_hit = 'x';
-		ray->len = ray->len + ray->nb_step_x;
+		ray->len += ray->nb_step_x;
 		while (ray->nb_step_x > 1)
 		{
-			ray->pos_rayx = ray->pos_rayx + ray->dx;
-			ray->pos_rayy = ray->pos_rayy + ray->dy;
+			ray->pos_rayx += ray->dx;
+			ray->pos_rayy += ray->dy;
 			ray->nb_step_x--;
 		}
-		ray->pos_rayx = ray->pos_rayx + (ray->dx * ray->nb_step_x);
-		ray->pos_rayy = ray->pos_rayy + (ray->dy * ray->nb_step_x);
+		ray->pos_rayx += ray->dx * ray->nb_step_x;
+		ray->pos_rayy += ray->dy * ray->nb_step_x;
 	}
 	if (ray->nb_step_y < ray->nb_step_x)
 	{
 		ray->last_hit = 'y';
-		ray->len = ray->len + ray->nb_step_y;
+		ray->len += ray->nb_step_y;
 		while (ray->nb_step_y > 1)
 		{
-			ray->pos_rayx = ray->pos_rayx + ray->dx;
-			ray->pos_rayy = ray->pos_rayy + ray->dy;
+			ray->pos_rayx += ray->dx;
+			ray->pos_rayy += ray->dy;
 			ray->nb_step_y--;
 		}
-		ray->pos_rayx = ray->pos_rayx + (ray->dx * ray->nb_step_y);
-		ray->pos_rayy = ray->pos_rayy + (ray->dy * ray->nb_step_y);
+		ray->pos_rayx += ray->dx * ray->nb_step_y;
+		ray->pos_rayy += ray->dy * ray->nb_step_y;
 	}
 }
 

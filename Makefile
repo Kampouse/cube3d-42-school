@@ -24,7 +24,7 @@ SRCS = 	main/main.c					\
 		render/graphic_operator2.c	\
 		render/raycaster.c 			\
 		render/raycaster_utils.c	\
-		render/draw.c	\
+		render/draw.c				\
 
 HEADER = ./Include/cube.h
 
