@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/01 14:29:14 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/01 14:36:34 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ int	raycaster2d(t_game *game, t_ray *ray, int i)
 		}
 		ft_dda(game, ray);
 		if (ray->dy < 0)
-			ray->last_cordy = (int)((game->player->y_pos + (ray->dy * ray->len) - 0.0003) / game->player->scale);
+			ray->last_cordy = (int)((game->player->y_pos + (ray->dy * ray->len) - 0.0006) / game->player->scale);
 		else
-			ray->last_cordy = (int)((game->player->y_pos + (ray->dy * ray->len) + 0.0003) / game->player->scale);
+			ray->last_cordy = (int)((game->player->y_pos + (ray->dy * ray->len) + 0.0006) / game->player->scale);
 		if (ray->dx < 0)
-			ray->last_cordx = (int)((game->player->x_pos + (ray->dx * ray->len) - 0.0003) / game->player->scale);
+			ray->last_cordx = (int)((game->player->x_pos + (ray->dx * ray->len) - 0.0006) / game->player->scale);
 		else
-			ray->last_cordx = (int)((game->player->x_pos + (ray->dx * ray->len) + 0.0003) / game->player->scale);
+			ray->last_cordx = (int)((game->player->x_pos + (ray->dx * ray->len) + 0.0006) / game->player->scale);
 		if (ray->last_cordy >= game->map_heigth)
 			ray->last_cordy = game->map_heigth - 1;
 		if (ray->last_cordx > (int)ft_strlen(game->map[ray->last_cordy]))
