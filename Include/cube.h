@@ -107,6 +107,14 @@ typedef struct t_game
 	char		last_step;
 }					t_game;	
 
+void		ft_step_y(t_ray *ray);
+void		ft_step_x(t_ray *ray);
+void		ft_small_step(t_ray *ray, char c);
+void		cast_a_ray(t_game *game, t_ray *ray, int i, float offset, float increment);
+void		ft_nb_step_dx(t_game *game, t_ray *ray);
+void		ft_nb_step_dy(t_game *game, t_ray *ray);
+void		ft_nb_step(t_game *game, t_ray *ray);
+void		ft_init_ray(t_game *game, t_ray *ray, int i);
 void		ft_render_screen(t_game *game);
 void		fix_it_hihi(t_game *game);
 float		RadToDeg(float a);
@@ -186,7 +194,7 @@ void		draw_player(t_game *state,t_image image,t_ray *ray);
 int			draw_circle(t_image *image, int start_x,int start_y,int rayon);
 double		find_len(int startx, int starty,int endx, int endy);
 float		degToRad(float a);
-int			raycaster2d(t_game *game, t_ray *ray, int i);
+int			raycaster(t_game *game, t_ray *ray, int i);
 int			ray_fov(t_game *state);
 int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
 int			verify_extention(char *str,const char *extention);

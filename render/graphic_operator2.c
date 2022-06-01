@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/29 08:43:10 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/01 16:01:57 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	paint_in_black(t_game *game)
 	{
 		y = 0;
 		while (y < HEIGHT)
-			mlx_putpixel(game->image.image, x, y++, color_to_rgb(0, 0, 0,0));
+			mlx_putpixel(game->image.image, x, y++, color_to_rgb(0, 0, 0, 0));
 		x++;
 	}
 }
