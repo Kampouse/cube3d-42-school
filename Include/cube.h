@@ -17,7 +17,6 @@
 # define PI				3.14159265359
 # define HEIGHT			600
 # define WIDTH			800
-# define RADIANTS 		57.2858
 
 #include "stdio.h"
 #include "stdlib.h"
@@ -50,7 +49,7 @@ typedef struct t_ray
 	int				max_len;
 	int				last_cordy;
 	int				last_cordx;
-	int				map_heigth ;
+	int				map_heigth;
 }					t_ray;
 
 typedef struct t_player

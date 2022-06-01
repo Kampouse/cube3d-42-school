@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/31 14:41:21 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/01 14:29:14 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,40 @@ int	raycaster2d(t_game *game, t_ray *ray, int i)
 		if (ray->dx < 0)
 		{
 			next_case = (ray->map_rayx - 1) * game->player->scale;
+			if (ray->pos_rayx == (ray->map_rayx - 1) * game->player->scale)
+				next_case = ray->map_rayx * game->player->scale;
 			ray->nb_step_x = ft_fabs((ray->pos_rayx - next_case) / ray->dx);
 		}
 		else
 		{
 			next_case = ray->map_rayx * game->player->scale;
+			if (ray->pos_rayx == ray->map_rayx * game->player->scale)
+				next_case = (ray->map_rayx + 1) * game->player->scale;
 			ray->nb_step_x = (next_case - ray->pos_rayx) / ray->dx;
 		}
 		if (ray->dy < 0)
 		{
 			next_case = (ray->map_rayy - 1) * game->player->scale;
+			if (ray->pos_rayy == (ray->map_rayy - 1) * game->player->scale)
+				next_case = ray->map_rayy * game->player->scale;
 			ray->nb_step_y = ft_fabs((ray->pos_rayy - next_case) / -ray->dy);
 		}
 		else
 		{
 			next_case = ray->map_rayy * game->player->scale;
+			if (ray->pos_rayy == ray->map_rayy * game->player->scale)
+				next_case = (ray->map_rayy + 1) * game->player->scale;
 			ray->nb_step_y = (next_case - ray->pos_rayy) / ray->dy;
 		}
 		ft_dda(game, ray);
-		ray->last_cordy = (int)((game->player->y_pos + (ray->dy * ray->len)) / game->player->scale);
-		ray->last_cordx  = (int)((game->player->x_pos + (ray->dx * ray->len)) / game->player->scale);
+		if (ray->dy < 0)
+			ray->last_cordy = (int)((game->player->y_pos + (ray->dy * ray->len) - 0.0003) / game->player->scale);
+		else
+			ray->last_cordy = (int)((game->player->y_pos + (ray->dy * ray->len) + 0.0003) / game->player->scale);
+		if (ray->dx < 0)
+			ray->last_cordx = (int)((game->player->x_pos + (ray->dx * ray->len) - 0.0003) / game->player->scale);
+		else
+			ray->last_cordx = (int)((game->player->x_pos + (ray->dx * ray->len) + 0.0003) / game->player->scale);
 		if (ray->last_cordy >= game->map_heigth)
 			ray->last_cordy = game->map_heigth - 1;
 		if (ray->last_cordx > (int)ft_strlen(game->map[ray->last_cordy]))

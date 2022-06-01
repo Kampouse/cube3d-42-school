@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/31 14:58:02 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/01 14:13:06 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,6 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 
 void	ft_dda(t_game *game, t_ray *ray)
 {
-	ray->nb_step_x++;
-	ray->nb_step_y++;
-
 	if (ray->nb_step_x == ray->nb_step_y)
 	{
 		if (game->last_step == 'x')

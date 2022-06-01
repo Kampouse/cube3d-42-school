@@ -1,7 +1,7 @@
 NAME = cub3d
  
 
-FLAGS =   -g -Wall -Wextra -Werror -O3
+FLAGS = -Wall -Wextra -Werror -O3
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\
@@ -33,7 +33,7 @@ FRAMEWORK = -framework Cocoa -framework OpenGL -framework IOKit
 LIBS =  ./utils/libft/libft.a ./utils/MLX/libmlx42.a  ./utils/MLX/glfw/lib-x86_64/libglfw3.a
 
 .c.o:
-	@gcc  ${FLAGS}  -c $< -o ${<:.c=.o}
+	@gcc ${FLAGS} -c $< -o ${<:.c=.o}
 
 OBJS = ${SRCS:.c=.o}
 
