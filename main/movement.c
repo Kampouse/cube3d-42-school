@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/05/29 08:03:44 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/03 15:20:09 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	move(t_game *game, char c)
 
 	if (c == '+')
 	{
-		point_x = game->player->x_pos + game->player->dx;
-		point_y = game->player->y_pos + game->player->dy;
+		point_x = game->player->x_pos + (game->player->dx * 0.5);
+		point_y = game->player->y_pos + (game->player->dy * 0.5);
 	}
 	else
 	{
-		point_x = game->player->x_pos - game->player->dx;
-		point_y = game->player->y_pos - game->player->dy;
+		point_x = game->player->x_pos - (game->player->dx * 0.5);
+		point_y = game->player->y_pos - (game->player->dy * 0.5);
 	}
 	if (is_in_wall(game, (point_x / game->player->scale),
 			(point_y / game->player->scale)))

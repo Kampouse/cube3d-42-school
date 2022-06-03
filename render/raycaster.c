@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/01 15:43:15 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/03 16:09:48 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ void	ft_last_cord(t_game *game, t_ray *ray)
 
 void	ft_nb_step(t_game *game, t_ray *ray)
 {
-	float	next_case;
-
-	next_case = 0;
 	ray->map_rayx = (ray->pos_rayx / game->player->scale) + 1;
 	ray->map_rayy = (ray->pos_rayy / game->player->scale) + 1;
 	ft_nb_step_dx(game, ray);
@@ -52,6 +49,7 @@ int	raycaster(t_game *game, t_ray *ray, int i)
 		ft_dda(game, ray);
 		ft_last_cord(game, ray);
 	}
+	ft_fishey(game, ray, i);
 	ft_add_vertical(game, ray, i);
 	return (0);
 }
@@ -69,9 +67,14 @@ int	ray_fov(t_game *state)
 	until = state->player->direction + PI / 3;
 	increment = ((state->player->direction
 				+ PI / 3) - (state->player->direction - PI / 3)) / WIDTH;
+	printf("Player is facing %f degree\n", RadToDeg(state->player->direction));
 	while (offset <= until)
 	{
 		ray.angle = state->player->direction + offset;
+		if (ray.angle > 6.283)
+			ray.angle -= 6.283;
+		else if (ray.angle < 0)
+			ray.angle += 6.283;
 		raycaster(state, &ray, i);
 		offset += increment;
 		i++;

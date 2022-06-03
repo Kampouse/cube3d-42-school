@@ -1,7 +1,7 @@
 NAME = cub3d
  
 
-FLAGS = -Wall -Wextra -Werror -O3
+FLAGS =  -O3
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\
@@ -25,7 +25,8 @@ SRCS = 	main/main.c					\
 		render/raycaster.c 			\
 		render/raycaster_utils.c	\
 		render/raycaster_utils2.c	\
-		render/draw.c				\
+		render/fisheye.c			\
+		render/draw.c	\
 
 HEADER = ./Include/cube.h
 
@@ -34,19 +35,25 @@ FRAMEWORK = -framework Cocoa -framework OpenGL -framework IOKit
 LIBS =  ./utils/libft/libft.a ./utils/MLX/libmlx42.a  ./utils/MLX/glfw/lib-x86_64/libglfw3.a
 
 .c.o:
-	@gcc ${FLAGS} -c $< -o ${<:.c=.o}
+	@gcc  ${FLAGS}  -c $< -o ${<:.c=.o}
 
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
+OS := $(shell uname -s)
 
 all: ${NAME}
-	make clean
-
 ${NAME}:${OBJS} 
 		@$(MAKE) -C ./utils/libft
 		@$(MAKE) -s -C ./utils/MLX
+
+ifeq ($(OS),Darwin)
 		@${CC} ${FLAGS} ${OBJS} ${LIBS} ${FRAMEWORK}  -o ${NAME}
+endif
+ifeq ($(OS),Linux)
+		@${CC}  ${FLAGS} ${OBJS} ./utils/MLX/libmlx42.a ./utils/libft/libft.a -lglfw -lm  -o ${NAME}
+		make clean
+endif
 
 clean:
 		@${RM} ${OBJS}

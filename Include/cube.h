@@ -107,6 +107,8 @@ typedef struct t_game
 	char		last_step;
 }					t_game;	
 
+float		ft_wrap_angle(float angle);
+void		ft_fishey(t_game *game, t_ray *ray, int i);
 void		ft_step_y(t_ray *ray);
 void		ft_step_x(t_ray *ray);
 void		ft_small_step(t_ray *ray, char c);
