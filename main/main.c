@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/01 13:20:48 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/04 10:19:14 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ t_dlist	*verif(t_dlist *map)
 	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
 	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
 	if (flag > 0)
-	{
-		//free_list(map);
 		exit(0);
-	}
 	return (map);
 }
 

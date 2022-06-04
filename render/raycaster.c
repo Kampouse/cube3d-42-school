@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/03 16:09:48 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/04 11:26:59 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,13 @@ int	ray_fov(t_game *state)
 	t_ray	ray;
 
 	i = 0;
-	offset = state->player->direction - PI / 3;
-	until = state->player->direction + PI / 3;
+	offset = state->player->direction - PI / 6;
+	until = state->player->direction + PI / 6;
 	increment = ((state->player->direction
-				+ PI / 3) - (state->player->direction - PI / 3)) / WIDTH;
-	printf("Player is facing %f degree\n", RadToDeg(state->player->direction));
+				+ PI / 6) - (state->player->direction - PI / 6)) / WIDTH;
 	while (offset <= until)
 	{
-		ray.angle = state->player->direction + offset;
-		if (ray.angle > 6.283)
-			ray.angle -= 6.283;
-		else if (ray.angle < 0)
-			ray.angle += 6.283;
+		ray.angle = ft_wrap_angle(offset);
 		raycaster(state, &ray, i);
 		offset += increment;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/03 15:01:19 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/04 11:27:03 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_init_ray(t_game *game, t_ray *ray, int i)
 {
 	ray->len = 0;
-	ray->dy = cos(ray->angle);
-	ray->dx = sin(ray->angle);
+	ray->dx = cos(ray->angle);
+	ray->dy = sin(ray->angle);
 	ray->pos_rayx = game->player->x_pos;
 	ray->pos_rayy = game->player->y_pos;
 	if (i == WIDTH / 2)

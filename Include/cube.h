@@ -35,6 +35,7 @@ typedef struct t_dlist
 
 typedef struct t_ray
 {
+	float			slope;
 	float			dx;
 	float			dy;
 	float			angle;
