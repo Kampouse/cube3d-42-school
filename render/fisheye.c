@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/04 10:48:45 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/04 11:31:34 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ void	ft_fishey(t_game *game, t_ray *ray, int i)
 	float	theta;
 
 	theta = ft_wrap_angle(game->player->direction - atan(ray->dy / ray->dx));
-	// printf("Angle from player to ray %d is = %f\n", i, RadToDeg(theta));
-	// ray->len = ft_fabs(ray->len * (cos(theta)));
+	ray->len = ft_fabs(ray->len * (cos(theta)));
 }
