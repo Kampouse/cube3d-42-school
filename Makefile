@@ -69,13 +69,13 @@ val:
 	valgrind    --track-origins=yes   --leak-check=full -s ./$(NAME) ./map/invalid_map.cub
 
 run: all
-	./${NAME} ./assets/map.cub
+	./${NAME} ./map/invalid_map.cub
 
 bun: all
 
 leak: all
 	@echo "\033[92mTEST 1 \n \033[0m"
-	@(leaks --atExit --  ./${NAME} ./assets/map.ber) 
+	@(leaks --atExit --  ./${NAME} ./map/invalid_map.cub) 
 	@${RM} ${NAME}
 	@$(MAKE) -C ./utils/minilibx fclean
 	@$(MAKE) -C ./utils/libft fclean

@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 20:39:03 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/05 14:56:53 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/05/23 10:20:31 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../Include/cube.h"
 
@@ -34,20 +34,17 @@ int	any_before_after(char **map, int current_line)
 {
 	int	pos;
 	int	temp;	
-	int  start_at;
-
-		if(ft_until_this(map[current_line],"1") < 0)
-			return 1;
-
+	const int  start_at = ft_until_this(map[current_line],"1");
 	pos = ft_until_this(map[current_line] + start_at, " ");
 	temp = pos;
+
 	if (pos < 0)
-		return (0);
+		return (1);
 	while (pos > 0 && ft_strlen(map[current_line] + temp) > 0)  
 	{
-		if((map[current_line][temp + 1] != '1') || ( map[current_line][temp - 1] != '1'))
+		if((map[current_line][temp] != '1') || ( map[current_line][temp - 1] != '1'))
 		{
-			if (!(last_seen_at( map[current_line],' ') > last_seen_at(map[current_line],'1')))
+			if ((last_seen_at( map[current_line],' ') > last_seen_at(map[current_line],'1')))
 				return (1);
 		}
 		pos = ft_until_this(map[current_line] + temp, "0");
@@ -112,8 +109,8 @@ int	parser_helper(t_game *game,int temp,int inc)
 
 int	validate_file(t_game *game)
 {
-	int	file;
-
+	int file;
+	
 	file = open(game->map_data->norh_texture, R_OK);
 	if (file > 0) 
 		close(file);
@@ -165,9 +162,10 @@ int	parse_location(t_game *game, int found, int inc)
 	return (0);
 }
 
+// repalce if by assert;
 int	parsing(t_game *game, int temp)
 {
-	if (loop_directions(game))
+	if (loop_directions(game))	// Init le vecteur Player 
 		return(1);
 	while (game->map[game->map_data->iterator + 1] && only_space(game->map[
 				game->map_data->iterator]))
