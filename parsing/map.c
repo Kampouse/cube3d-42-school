@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 12:05:25 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:39:03 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ int	any_before_after(char **map, int current_line)
 {
 	int	pos;
 	int	temp;	
-	const int  start_at = ft_until_this(map[current_line],"1");
+	int  start_at;
+
+		if(ft_until_this(map[current_line],"1") < 0)
+			return 1;
 
 	pos = ft_until_this(map[current_line] + start_at, " ");
 	temp = pos;

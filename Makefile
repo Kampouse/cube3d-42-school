@@ -1,7 +1,7 @@
 NAME = cub3d
  
 
-FLAGS =  -O3
+FLAGS =  -g -o0
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\
@@ -66,7 +66,7 @@ git:
 	@git add ${SRCS} ${HEADER} Makefile
 
 val:
-	valgrind    --track-origins=yes   ./$(NAME) ./map2.cub
+	valgrind    --track-origins=yes   --leak-check=full -s ./$(NAME) ./map/invalid_map.cub
 
 run: all
 	./${NAME} ./assets/map.cub
