@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/05 08:46:59 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/05 14:40:16 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,14 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 	const double	hauteur = (3000 / ray->len) / 2;
 	uint32_t		color;
 	int				offset;
-	const char		c = ft_what_face(ray);
+	const char		face = ft_what_face(ray);
  
 	offset = -1;
 	color = 0;
 	game->last_step = ray->last_hit;
-	game->last_ray = c;
-	if (c == 'N')
-		color = color_to_rgb(255, 255, 255, 1);
-	if (c == 'E')
-		color = color_to_rgb(0, 0, 255, 1);
-	if (c == 'S')
-		color = color_to_rgb(0, 128, 0, 1);
-	if (c == 'W')
-		color = color_to_rgb(255, 0, 0, 1);
-	while (offset < (int)hauteur && (HEIGHT / 2) + offset < HEIGHT  && HEIGHT / 2 - offset > 0)
-	{
-		mlx_putpixel(game->image.image, i, (HEIGHT / 2) + offset, color);
-		mlx_putpixel(game->image.image, i, (HEIGHT / 2) - offset++, color);
-	}
+	game->last_ray = face;
+	game->ray = ray;
+	render_texture(game, i, hauteur);
 }
 
 void	ft_dda(t_game *game, t_ray *ray)
