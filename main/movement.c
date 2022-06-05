@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/04 10:14:58 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/04 11:41:45 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	move(t_game *game, char c)
 
 	if (c == '+')
 	{
-		point_x = game->player->x_pos + (game->player->dx * 0.5);
-		point_y = game->player->y_pos + (game->player->dy * 0.5);
+		point_x = game->player->x_pos + game->player->dx;
+		point_y = game->player->y_pos + game->player->dy;
 	}
 	else
 	{
-		point_x = game->player->x_pos - (game->player->dx * 0.5);
-		point_y = game->player->y_pos - (game->player->dy * 0.5);
+		point_x = game->player->x_pos - game->player->dx;
+		point_y = game->player->y_pos - game->player->dy;
 	}
 	if (is_in_wall(game, (point_x / game->player->scale),
 			(point_y / game->player->scale)))

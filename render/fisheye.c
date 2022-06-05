@@ -6,13 +6,13 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/04 11:31:34 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/04 12:30:17 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-float	ft_wrap_angle(float angle)
+double	ft_wrap_angle(double angle)
 {
 	if (angle < 0.0)
 		return (angle + 2.0 * PI);

@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/04 11:27:03 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/05 07:54:42 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_init_ray(t_game *game, t_ray *ray, int i)
 
 void	ft_nb_step_dx(t_game *game, t_ray *ray)
 {
-	float	next_case;
+	double	next_case;
 
 	next_case = 0;
 	if (ray->dx < 0)
@@ -53,7 +53,7 @@ void	ft_nb_step_dx(t_game *game, t_ray *ray)
 
 void	ft_nb_step_dy(t_game *game, t_ray *ray)
 {
-	float	next_case;
+	double	next_case;
 
 	next_case = 0;
 	if (ray->dy < 0)

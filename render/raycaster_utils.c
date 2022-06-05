@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/01 16:00:15 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/04 12:29:03 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-float	ft_fabs(float x)
+double	ft_fabs(double x)
 {
 	if (x < 0)
 		return (-x);
@@ -50,10 +50,10 @@ char	ft_what_face(t_ray *ray)
 
 void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 {
-	const float	hauteur = (3000 / ray->len) / 2;
-	uint32_t	color;
-	int			offset;
-	const char	c = ft_what_face(ray);
+	const double	hauteur = (3000 / ray->len) / 2;
+	uint32_t		color;
+	int				offset;
+	const char		c = ft_what_face(ray);
 
 	offset = 0;
 	game->last_step = ray->last_hit;
