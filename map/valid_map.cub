@@ -2,13 +2,13 @@
 
 
              
-NO	./assets/tile.png
+NO	./assets/Dirt.png
 
-SO	 ./assets/tile.png
+SO	 ./assets/BrickBlue.png
 
-WE	  ./assets/tile.png
+WE	  ./assets/Lava.png
 
-EA	 ./assets/tile.png
+EA	 ./assets/WoodLight.png
 
 F 255,100,0
 

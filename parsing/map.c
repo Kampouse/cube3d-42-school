@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/25 15:25:51 by jemartel         ###   ########.fr       */
-/*   Updated: 2022/05/23 10:20:31 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/05 12:05:25 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../Include/cube.h"
 
@@ -109,8 +109,8 @@ int	parser_helper(t_game *game,int temp,int inc)
 
 int	validate_file(t_game *game)
 {
-	int file;
-	
+	int	file;
+
 	file = open(game->map_data->norh_texture, R_OK);
 	if (file > 0) 
 		close(file);
@@ -162,10 +162,9 @@ int	parse_location(t_game *game, int found, int inc)
 	return (0);
 }
 
-// repalce if by assert;
 int	parsing(t_game *game, int temp)
 {
-	if (loop_directions(game))	// Init le vecteur Player 
+	if (loop_directions(game))
 		return(1);
 	while (game->map[game->map_data->iterator + 1] && only_space(game->map[
 				game->map_data->iterator]))

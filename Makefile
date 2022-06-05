@@ -26,7 +26,8 @@ SRCS = 	main/main.c					\
 		render/raycaster_utils.c	\
 		render/raycaster_utils2.c	\
 		render/fisheye.c			\
-		render/draw.c	\
+		render/draw.c				\
+		render/render_texture.c		\
 
 HEADER = ./Include/cube.h
 

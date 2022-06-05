@@ -6,10 +6,9 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/23 11:08:53 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/05 11:59:08 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../Include/cube.h"
 
@@ -74,13 +73,13 @@ void	ft_poll_texture(char *str,t_map *map)
 {
 	if(str && map)
 	{
-		if (ft_strncmp(str,"NO",2) == 0 && ft_strlen(str) > 2)
+		if (ft_strncmp(str, "NO", 2) == 0 && ft_strlen(str) > 2)
 			map->norh_texture = ft_strtrim(str + 2," \n\t\v");
-		else if (ft_strncmp(str,"SO",2) == 0 && ft_strlen(str) > 2)
+		else if (ft_strncmp(str, "SO", 2) == 0 && ft_strlen(str) > 2)
 			map->south_texture = ft_strtrim(str + 2," \n\t\v");
-		else if (ft_strncmp(str,"WE",2) == 0 && ft_strlen(str) > 2)
+		else if (ft_strncmp(str, "WE", 2) == 0 && ft_strlen(str) > 2)
 			map->west_texture = ft_strtrim(str + 2," \n\t\v");
-		else if (ft_strncmp(str,"EA",2) == 0 && ft_strlen(str) > 2)
+		else if (ft_strncmp(str, "EA", 2) == 0 && ft_strlen(str) > 2)
 			map->est_texture = ft_strtrim(str + 2," \n\t\v");
 		free(str);
 	}

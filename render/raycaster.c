@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 08:50:32 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/05 12:06:54 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,17 @@ void	ft_last_cord(t_game *game, t_ray *ray, int i)
 	const float	offset = 0.0006;
 
 	if (ray->dy < 0)
-	{
 		ray->last_cordy = (int)((game->player->y_pos
 					+ (ray->dy * ray->len) - offset) / game->player->scale);
-	}
 	else
-	{
 		ray->last_cordy = (int)((game->player->y_pos
 					+ (ray->dy * ray->len) + offset) / game->player->scale);
-	}
 	if (ray->dx < 0)
-	{
 		ray->last_cordx = (int)((game->player->x_pos
 					+ (ray->dx * ray->len) - offset) / game->player->scale);
-	}
 	else
-	{
 		ray->last_cordx = (int)((game->player->x_pos
 					+ (ray->dx * ray->len) + offset) / game->player->scale);
-	}
 	if (ray->last_cordy >= game->map_heigth)
 		ray->last_cordy = game->map_heigth - 1;
 	if (ray->last_cordx > (int)ft_strlen(game->map[ray->last_cordy]))
