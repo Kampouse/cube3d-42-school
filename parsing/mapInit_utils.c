@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 11:59:08 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/05 22:06:10 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ void	ft_poll_color(char *str, t_map *map, int inc)
 			}
 		}
 		free(str);
+		return;
 	}
+	free(str);
+	str = NULL;
 }
 
 /* 
@@ -82,6 +85,8 @@ void	ft_poll_texture(char *str,t_map *map)
 		else if (ft_strncmp(str, "EA", 2) == 0 && ft_strlen(str) > 2)
 			map->est_texture = ft_strtrim(str + 2," \n\t\v");
 		free(str);
+		str = NULL;
+		return;
 	}
 }
 

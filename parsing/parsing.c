@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/29 08:35:02 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/05 22:05:38 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@ char	*skip_empty_line(char *str)
 
 	if (ft_strlen(temp) == 0)
 	{
+
 		free((void *)temp);
 		return (0);
 	}
 	else
+{
 		return ((char *)temp);
+}
+
+	free((void *)temp);
 	return (NULL);
 }
 
@@ -60,8 +65,7 @@ int	loop_directions(t_game *state)
 		while (state->map[inc])
 		{
 			ft_poll_texture(skip_empty_line(state->map[inc]), state->map_data);
-			ft_poll_color(skip_empty_line(state->map[inc]),
-				state->map_data, inc);
+			ft_poll_color(skip_empty_line(state->map[inc]),state->map_data, inc);
 			inc++;
 		}
 		if (any_invalid(state->map_data))
