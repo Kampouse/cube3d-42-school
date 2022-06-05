@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   orientation.c                                      :+:      :+:    :+:   */
+/*   fisheye.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/04 11:29:22 by anthony          ###   ########.fr       */
+/*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
+/*   Updated: 2022/06/04 12:30:17 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-void	player_direction(t_game *game)
+double	ft_wrap_angle(double angle)
 {
-	if (game->player->orientation == 'E')
-		game->player->direction = degToRad(0);
-	else if (game->player->orientation == 'N')
-		game->player->direction = degToRad(270);
-	else if (game->player->orientation == 'W')
-		game->player->direction = degToRad(180);
-	else if (game->player->orientation == 'S')
-		game->player->direction = degToRad(90);
+	if (angle < 0.0)
+		return (angle + 2.0 * PI);
+	if (angle > 2.0 * PI)
+		return (angle - 2.0 * PI);
+	return (angle);
+}
+
+void	ft_fishey(t_game *game, t_ray *ray, int i)
+{
+	float	theta;
+
+	theta = ft_wrap_angle(game->player->direction - atan(ray->dy / ray->dx));
+	ray->len = ft_fabs(ray->len * (cos(theta)));
 }

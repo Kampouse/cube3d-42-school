@@ -17,7 +17,6 @@
 # define PI				3.14159265359
 # define HEIGHT			600
 # define WIDTH			800
-# define RADIANTS 		57.2858
 
 #include "stdio.h"
 #include "stdlib.h"
@@ -36,37 +35,33 @@ typedef struct t_dlist
 
 typedef struct t_ray
 {
-	float			dx;
-	float			dy;
-	float			delta_x;
-	float			delta_y;
-	float			angle;
-	float			pos_rayx;
-	float			pos_rayy;
+	double			dx;
+	double			dy;
+	double			angle;
+	double			pos_rayx;
+	double			pos_rayy;
 	int				map_rayx;
 	int				map_rayy;
-	float			nb_step_x;
-	float			nb_step_y;
-	float			len;
+	double			nb_step_x;
+	double			nb_step_y;
+	double			len;
 	char			last_hit;
 	int				max_len;
 	int				last_cordy;
-	int				last_cordx;				
-	int				map_heigth ;
+	int				last_cordx;
+	int				map_heigth;
 }					t_ray;
 
 typedef struct t_player
 {
 	int			x_map;
 	int			y_map;
-	float		x_pos;
-	float		y_pos;
+	double		x_pos;
+	double		y_pos;
 	int			orientation;
-	float		direction;
-	float		delta_x;
-	float		delta_y;
-	float		dx;
-	float		dy;
+	double		direction;
+	double		dx;
+	double		dy;
 	int			scale;
 }				t_player;
 
@@ -112,10 +107,21 @@ typedef struct t_game
 	char		last_step;
 }					t_game;	
 
+void		ajust_x(t_ray *ray, t_game *game);
+void		ajust_y(t_ray *ray, t_game *game);
+double		ft_wrap_angle(double angle);
+void		ft_fishey(t_game *game, t_ray *ray, int i);
+void		ft_step_y(t_ray *ray);
+void		ft_step_x(t_ray *ray);
+void		ft_small_step(t_ray *ray, char c);
+void		ft_nb_step_dx(t_game *game, t_ray *ray);
+void		ft_nb_step_dy(t_game *game, t_ray *ray);
+void		ft_nb_step(t_game *game, t_ray *ray);
+void		ft_init_ray(t_game *game, t_ray *ray, int i);
 void		ft_render_screen(t_game *game);
 void		fix_it_hihi(t_game *game);
-float		RadToDeg(float a);
-int			ft_ftoi(float x);
+double		RadToDeg(double a);
+int			ft_ftoi(double x);
 void		ft_move_w(t_game *game);
 void		ft_move_s(t_game *game);
 void		map_size_init(t_game *game);
@@ -124,7 +130,7 @@ void		initialise_map(t_game *game);
 void		ft_add_vertical(t_game *game, t_ray *ray, int i);
 void		ft_dda(t_game *game, t_ray *ray);
 void		ft_actualise_map(t_game *game, t_ray *ray);
-float		ft_fabs(float x);
+double		ft_fabs(double x);
 void		put_player_2d(t_game *game);
 void		move(t_game *game, char c);
 void		show_player_info(t_game *game);
@@ -190,10 +196,9 @@ void		draw_line(t_image *image,int x0, int y0, int x1, int y1);
 void		draw_player(t_game *state,t_image image,t_ray *ray);
 int			draw_circle(t_image *image, int start_x,int start_y,int rayon);
 double		find_len(int startx, int starty,int endx, int endy);
-float		degToRad(float a);
-int			raycaster2d(t_game *game, t_ray ray, int i);
+double		degToRad(double a);
+int			raycaster(t_game *game, t_ray *ray, int i);
 int			ray_fov(t_game *state);
-int			ray_fov3d(t_game *state,t_image image ,float angle,int inc);
 int			verify_extention(char *str,const char *extention);
 int			validate_file(t_game *game);
 void load_image(t_game *state);

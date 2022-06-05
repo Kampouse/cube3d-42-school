@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mapInit_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/30 20:41:52 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/05/23 11:08:53 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../Include/cube.h"
 
-int	ft_ftoi(float x)
+int	ft_ftoi(double x)
 {
 	int	retour;
 
@@ -26,22 +26,21 @@ int	ft_ftoi(float x)
 	return (retour);
 }
 
-float	degToRad(float a)
+double	degToRad(double a)
 {
-	return ((a / 180.0) * PI);
+	return (a * (PI / 180));
 }
 
-float	RadToDeg(float a)
+double	RadToDeg(double a)
 {
-	return ((a / PI) * 180);
+	return (a * (180 / PI));
 }
 
-void	ft_poll_color(char *str,t_map *map,int inc)
+void	ft_poll_color(char *str, t_map *map, int inc)
 {
 	char	*temp;
 
 	temp = NULL;
-	// this function could be improved 
 	if (str && ft_strlen(str) > 1)
 	{
 		if (ft_strncmp(str,"F",1) == 0)

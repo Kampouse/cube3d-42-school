@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/30 11:57:16 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/04 11:55:37 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ t_dlist	*verif(t_dlist *map)
 	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
 	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
 	if (flag > 0)
-	{
-		//free_list(map);
 		exit(0);
-	}
 	return (map);
 }
 
@@ -62,7 +59,7 @@ int	main(int argc, char *argv[])
 	state->map = NULL;
 	state->player = malloc(sizeof(t_player));
 	state->ray = malloc(sizeof(t_ray));
-	state->player->scale = 12;
+	state->player->scale = 10;
 	state->map_data  = init_map();
 	state->map = map_init(mapcreator(argv[1]));
 	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0 || validate_file (state) != 0)
@@ -77,8 +74,8 @@ int	main(int argc, char *argv[])
 	}
 	resize_map(state);
 	player_direction(state);
-	state->player->x_pos = (state->player->x_pos) * state->player->scale;
-	state->player->y_pos = (state->player->y_pos) * state->player->scale;
+	state->player->x_pos = ((state->player->x_pos) * state->player->scale) - (state->player->scale / 2);
+	state->player->y_pos = ((state->player->y_pos) * state->player->scale) - (state->player->scale / 2);
 	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
 	state->player->y_map = (state->player->y_pos / state->player->scale) + 1;
 	state->last_step = 'x';

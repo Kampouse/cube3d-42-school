@@ -6,31 +6,33 @@
 
 void load_image(t_game *game)
 {
-
-	const t_mlx_tex *temp =   mlx_load_png(game->map_data->norh_texture);
-	const t_mlx_tex *temp2 = mlx_load_png(game->map_data->south_texture );
-	const t_mlx_tex *temp3 =  mlx_load_png(game->map_data->west_texture );;
-	const t_mlx_tex *temp4 = mlx_load_png(game->map_data->est_texture );;
-	 game->map_data->north_tex = mlx_texture_to_image(game-> mlx ,(t_mlx_tex  *) temp);
-	 game->map_data->south_tex =  mlx_texture_to_image(game-> mlx ,(t_mlx_tex  *) temp2);
-	 game->map_data->est_tex  =   mlx_texture_to_image(game-> mlx ,(t_mlx_tex  *) temp3);
-	 game->map_data->west_tex  =  mlx_texture_to_image(game-> mlx ,(t_mlx_tex  *) temp4);
+	const t_mlx_tex	*temp =   mlx_load_png(game->map_data->norh_texture);
+	const t_mlx_tex	*temp2 = mlx_load_png(game->map_data->south_texture );
+	const t_mlx_tex	*temp3 =  mlx_load_png(game->map_data->west_texture );
+	const t_mlx_tex	*temp4 = mlx_load_png(game->map_data->est_texture );
+	game->map_data->north_tex = mlx_texture_to_image(game-> mlx ,(t_mlx_tex  *) temp);
+	game->map_data->south_tex =  mlx_texture_to_image(game-> mlx ,(t_mlx_tex  *) temp2);
+	game->map_data->est_tex  =   mlx_texture_to_image(game-> mlx ,(t_mlx_tex  *) temp3);
+	game->map_data->west_tex  =  mlx_texture_to_image(game-> mlx ,(t_mlx_tex  *) temp4);
 	mlx_delete_texture((t_mlx_tex * ) temp );
 	mlx_delete_texture((t_mlx_tex * ) temp2 );
 	mlx_delete_texture((t_mlx_tex * ) temp3 );
 	mlx_delete_texture((t_mlx_tex * ) temp4 );
-
 }
-uint32_t    pixel_to_color(t_mlx_image *tex,uint32_t  x_pos, uint32_t  y_pos)
+
+uint32_t	pixel_to_color(t_mlx_image *tex,uint32_t  x_pos, uint32_t  y_pos)
 {
-		unsigned int *pixel;
-	pixel = (unsigned int *)(tex->pixels + (x_pos + y_pos  % tex->width * 5) * sizeof(unsigned int));
-	return(*pixel); 
+	unsigned int	*pixel;
+
+	if (x_pos >= tex->width || y_pos >= tex->height)
+		return (0);
+	pixel = (unsigned int *)(tex->pixels + (x_pos + y_pos  * tex->width) * sizeof(unsigned int));
+	return (*pixel);
 }
 
 void	draw_pixel(t_mlx_image *img, uint32_t  x, uint32_t  y, uint32_t  color)
 {
-	uint32_t 	*pixel;
+	uint32_t	*pixel;
 
 	if (x >= img->width || y >= img->height)
 		return ;

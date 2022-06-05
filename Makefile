@@ -1,7 +1,7 @@
 NAME = cub3d
  
 
-FLAGS =   -g -Wall -Wextra -Werror -O3
+FLAGS =  -O3
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\
@@ -24,6 +24,8 @@ SRCS = 	main/main.c					\
 		render/graphic_operator2.c	\
 		render/raycaster.c 			\
 		render/raycaster_utils.c	\
+		render/raycaster_utils2.c	\
+		render/fisheye.c			\
 		render/draw.c	\
 
 HEADER = ./Include/cube.h
@@ -49,6 +51,7 @@ ifeq ($(OS),Darwin)
 endif
 ifeq ($(OS),Linux)
 		@${CC}  ${FLAGS} ${OBJS} ./utils/MLX/libmlx42.a ./utils/libft/libft.a -lglfw -lm  -o ${NAME}
+		make clean
 endif
 
 clean:

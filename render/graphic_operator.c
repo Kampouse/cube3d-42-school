@@ -6,19 +6,20 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/30 11:57:21 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/01 16:06:58 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-uint32_t	color_to_rgb(int a ,int r , int g , int b)
+uint32_t	color_to_rgb(int a ,int r, int g , int b)
 {
-	uint32_t color;
-	const int ra = r & 0xFF;
-	const int ga = g & 0xFF;
-	const int ba = b & 0xFF;
-	const int aa = a & 0xFF;
+	uint32_t	color;
+	const int	ra = r & 0xFF;
+	const int	ga = g & 0xFF;
+	const int	ba = b & 0xFF;
+	const int	aa = a & 0xFF;
+
 	(void)aa;
 		color = 0xFF | (ra << 8) | (ga << 16) | ( ba << 24);
 	return color;
@@ -26,12 +27,12 @@ uint32_t	color_to_rgb(int a ,int r , int g , int b)
 
 void	draw_line(t_image *image ,int x0, int y0, int x1, int y1) 
 {
-	int dx = abs(x1-x0);
-	int dy = abs(y1-y0);
-	int sx;
-	int sy;
-	int err;
-	int e2; 
+	int	dx = abs(x1-x0);
+	int	dy = abs(y1-y0);
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2; 
 
 	if (x0 <  x1)
 		sx = 1;
@@ -51,24 +52,24 @@ void	draw_line(t_image *image ,int x0, int y0, int x1, int y1)
 			x0 = 0;
 		if(y0 < 0)
 			y0 = 0;
-		mlx_putpixel(image->image, x0, y0, color_to_rgb(0,0,0,150));
+		mlx_putpixel(image->image, x0, y0, color_to_rgb(0, 0, 0, 150));
 		if (x0 == x1 && y0 == y1)
-				break;
+			break ;
 		e2 = err;
-		if (e2 >- dx)
+		if (e2 > -dx)
 		{
-			err -= dy; 
-			x0 += sx; 
+			err -= dy;
+			x0 += sx;
 		}
-		if (e2 < dy) 
+		if (e2 < dy)
 		{
 			err += dx;
-			y0 += sy; 
+			y0 += sy;
 		}
 	}
 }
 
-int	square_shape(t_image *image,int x_pos, int y_pos,uint32_t color)
+int	square_shape(t_image *image, int x_pos, int y_pos, uint32_t color)
 {
 	int	inc;
 	int	cin;
@@ -77,9 +78,9 @@ int	square_shape(t_image *image,int x_pos, int y_pos,uint32_t color)
 	cin = 0;
 	while (cin < 12)
 	{
-		while (inc < 12) 
+		while (inc < 12)
 		{
-				mlx_putpixel(image->image, x_pos + inc, y_pos + cin,color);
+			mlx_putpixel(image->image, x_pos + inc, y_pos + cin, color);
 			inc++;
 		}
 		inc = 0;
@@ -118,15 +119,15 @@ void	draw_map(t_game *state, t_image image, int scale)
 	inc = 0;
 	cin = 0;
 	stepx = (WIDTH / 2) - ((state->map_width * scale) / 2);
-	stepy  = (HEIGHT / 2) - ((state->map_heigth * scale) / 2);
+	stepy = (HEIGHT / 2) - ((state->map_heigth * scale) / 2);
 	while (state->map[cin])
 	{
 		while (state->map[cin][inc])
 		{
 			if (state->map[cin][inc] == '1')
-				square_shape(&image, stepx, stepy, color_to_rgb(0, 0, 0 ,0));
+				square_shape(&image, stepx, stepy, color_to_rgb(0, 0, 0, 0));
 			else
-				square_shape(&image, stepx, stepy, color_to_rgb(0 , 0, 255, 0));
+				square_shape(&image, stepx, stepy, color_to_rgb(0, 0, 255, 0));
 			inc++;
 			stepx += scale;
 		}
