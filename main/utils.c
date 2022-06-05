@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/24 10:22:57 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/05 08:06:36 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../Include/cube.h"
 #include "../utils/libft/libft.h"
 
-void	free_list(t_dlist *head) // sexy
+void	free_list(t_dlist *head)
 {
 	t_dlist	*next;
 
@@ -79,30 +79,29 @@ char	freelist(char **list)
 
 int	was_in_set(char *str,char *set)
 {
-	int inc;
-	int cin;
-	int was_in_set;
+	int	inc;
+	int	cin;
+	int	was_in_set;
+	
 	cin = 0;
 	was_in_set = 1;
-		inc  = 0;
-		while (str[inc])
+	inc  = 0;
+	while (str[inc])
+	{
+		while(set[cin])
 		{
-			temp = inc;
-			(void)temp;
-			while(set[cin])
+			if (set[cin] == str[inc])
 			{
-				if (set[cin] == str[inc])
-				{
-					was_in_set = 0;
-					cin = 0;
-					break ;
-				}
-				cin++;
+				was_in_set = 0;
+				cin = 0;
+				break ;
 			}
-			if (was_in_set != 0)
-				return (1);
-			was_in_set = 1;
-			inc++;
+			cin++;
 		}
+		if (was_in_set != 0)
+			return (1);
+		was_in_set = 1;
+		inc++;
+	}
 	return(0);
 }

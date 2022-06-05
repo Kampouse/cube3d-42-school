@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/04 12:30:17 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/05 08:49:46 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,30 @@ double	ft_wrap_angle(double angle)
 	if (angle > 2.0 * PI)
 		return (angle - 2.0 * PI);
 	return (angle);
+}
+
+bool	ft_reste_eleve(float x)
+{
+	float	reste;
+
+	reste = x - (int)x;
+	if (reste > 0.99 || reste < 0.0008)
+		return (true);
+	return (false);
+}
+
+void	ft_fixhit2(t_game *game, t_ray *ray)
+{
+	if (ray->last_hit == 'x')
+	{
+		if (ray->last_hit != game->last_step && ft_reste_eleve(game->player->y_pos + (ray->dy * ray->len)))
+			ray->last_hit = game->last_step;
+	}
+	if (ray->last_hit == 'y')
+	{
+		if (ray->last_hit != game->last_step && ft_reste_eleve(game->player->x_pos + (ray->dx * ray->len)))
+			ray->last_hit = game->last_step;
+	}
 }
 
 void	ft_fishey(t_game *game, t_ray *ray, int i)

@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/04 12:29:03 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/05 08:46:59 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 		color = color_to_rgb(0, 128, 0, 1);
 	if (c == 'W')
 		color = color_to_rgb(255, 0, 0, 1);
-	while (offset <= (int)hauteur && (HEIGHT / 2) + offset <= HEIGHT  && HEIGHT / 2 - offset >= 0)
+	while (offset < (int)hauteur && (HEIGHT / 2) + offset < HEIGHT  && HEIGHT / 2 - offset > 0)
 	{
 		mlx_putpixel(game->image.image, i, (HEIGHT / 2) + offset, color);
 		mlx_putpixel(game->image.image, i, (HEIGHT / 2) - offset++, color);

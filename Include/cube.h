@@ -107,6 +107,7 @@ typedef struct t_game
 	char		last_step;
 }					t_game;	
 
+void		ft_fixhit2(t_game *game, t_ray *ray);
 void		ajust_x(t_ray *ray, t_game *game);
 void		ajust_y(t_ray *ray, t_game *game);
 double		ft_wrap_angle(double angle);

@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/04 12:37:49 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/05 08:50:32 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_last_cord(t_game *game, t_ray *ray, int i)
 {
-	const float	offset = 0.0062;
+	const float	offset = 0.0006;
 
 	if (ray->dy < 0)
 	{
@@ -48,11 +48,13 @@ void	ft_nb_step(t_game *game, t_ray *ray)
 	ray->map_rayy = (ray->pos_rayy / game->player->scale) + 1;
 	ft_nb_step_dx(game, ray);
 	ft_nb_step_dy(game, ray);
-	// printf("stepy = %f stepx = %f\n", ray->nb_step_y, ray->nb_step_x);
 }
 
 int	raycaster(t_game *game, t_ray *ray, int i)
 {
+	static int	x;
+
+	x = 0;
 	ft_init_ray(game, ray, i);
 	while (game->map[ray->last_cordy][ray->last_cordx] != '1')
 	{
@@ -60,7 +62,7 @@ int	raycaster(t_game *game, t_ray *ray, int i)
 		ft_dda(game, ray);
 		ft_last_cord(game, ray, i);
 	}
-	// printf("%d) Last hit = %c (%d,%d), (%f,%f)\n", i, ray->last_hit, ray->last_cordy, ray->last_cordx, game->player->y_pos + (ray->dy * ray->len), game->player->x_pos + (ray->dx * ray->len));
+	ft_fixhit2(game, ray);
 	ft_fishey(game, ray, i);
 	ft_add_vertical(game, ray, i);
 	return (0);
