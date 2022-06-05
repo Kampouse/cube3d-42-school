@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/03 16:07:03 by anthony          ###   ########.fr       */
+/*   Updated: 2022/05/24 10:22:57 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int	was_in_set(char *str,char *set)
 		inc  = 0;
 		while (str[inc])
 		{
+			temp = inc;
+			(void)temp;
 			while(set[cin])
 			{
 				if (set[cin] == str[inc])

@@ -54,8 +54,9 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 	uint32_t		color;
 	int				offset;
 	const char		c = ft_what_face(ray);
-
-	offset = 0;
+ 
+	offset = -1;
+	color = 0;
 	game->last_step = ray->last_hit;
 	game->last_ray = c;
 	if (c == 'N')
@@ -66,8 +67,7 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 		color = color_to_rgb(0, 128, 0, 1);
 	if (c == 'W')
 		color = color_to_rgb(255, 0, 0, 1);
-	while (offset <= hauteur && (HEIGHT / 2)
-		+ offset <= HEIGHT && HEIGHT / 2 - offset >= 0)
+	while (offset <= (int)hauteur && (HEIGHT / 2) + offset <= HEIGHT  && HEIGHT / 2 - offset >= 0)
 	{
 		mlx_putpixel(game->image.image, i, (HEIGHT / 2) + offset, color);
 		mlx_putpixel(game->image.image, i, (HEIGHT / 2) - offset++, color);
