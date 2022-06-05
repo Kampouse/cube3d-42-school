@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic_operator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/01 16:06:58 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/05 09:11:20 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,25 +89,6 @@ int	square_shape(t_image *image, int x_pos, int y_pos, uint32_t color)
 	return (0);
 }
 
-static void	draw_border_map(t_game *game, t_image image, int scale)
-{
-	int	x;
-	int	y;
-	int	heigth_top;
-
-	x = (WIDTH / 2) - ((game->map_width * scale) / 2);
-	y = ((HEIGHT / 2) - ((game->map_heigth * scale) / 2)) - 1;
-	heigth_top = y;
-	while (x <= (game->map_width * (game->player->scale + 2)))
-		mlx_putpixel(image.image, x++, y, 0xffffff);
-	while (y <= (game->map_heigth * game->player->scale) + heigth_top)
-		mlx_putpixel(image.image, x, y++, 0xffffff);
-	while (x >= (WIDTH / 2) - ((game->map_width * scale) / 2))
-		mlx_putpixel(image.image, x--, y, 0xffffff);
-	while (y >= heigth_top)
-		mlx_putpixel(image.image, x, y--, 0xffffff);
-}
-
 void	draw_map(t_game *state, t_image image, int scale)
 {
 	int	inc;
@@ -136,5 +117,4 @@ void	draw_map(t_game *state, t_image image, int scale)
 		stepy += scale;
 		cin++;
 	}
-	draw_border_map(state, image, scale);
 }

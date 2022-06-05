@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/04 11:55:37 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/05 09:10:32 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int	main(int argc, char *argv[])
 	}
 	resize_map(state);
 	player_direction(state);
-	state->player->x_pos = ((state->player->x_pos) * state->player->scale) - (state->player->scale / 2);
-	state->player->y_pos = ((state->player->y_pos) * state->player->scale) - (state->player->scale / 2);
+	state->player->x_pos = ((state->player->x_pos) * state->player->scale) + 1;
+	state->player->y_pos = ((state->player->y_pos) * state->player->scale) + 1;
 	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
 	state->player->y_map = (state->player->y_pos / state->player->scale) + 1;
 	state->last_step = 'x';
