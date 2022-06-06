@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/06 16:16:55 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 16:45:33 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,32 +72,4 @@ void	ft_dda(t_game *game, t_ray *ray)
 		ft_step_x(ray);
 	if (ray->nb_step_y < ray->nb_step_x)
 		ft_step_y(ray);
-}
-
-void	put_player_2d(t_game *game)
-{
-	int	x;
-	int	y;
-	int	pos_x;
-	int	pos_y;
-
-	pos_x = game->player->x_pos + (WIDTH / 2)
-		- ((game->map_width * game->player->scale) / 2);
-	pos_y = game->player->y_pos + (HEIGHT / 2)
-		- ((game->map_heigth * game->player->scale) / 2);
-	y = 0;
-	x = 0;
-	while (x < 3)
-	{
-		y = 0;
-		while (y < 3)
-		{
-			mlx_putpixel(game->image.image, pos_x + x, pos_y + y, 0XEBF00B);
-			mlx_putpixel(game->image.image, pos_x - x, pos_y + y, 0XEBF00B);
-			mlx_putpixel(game->image.image, pos_x + x, pos_y - y, 0XEBF00B);
-			mlx_putpixel(game->image.image, pos_x - x, pos_y - y, 0XEBF00B);
-			y++;
-		}
-		x++;
-	}
 }
