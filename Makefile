@@ -112,6 +112,9 @@ val:
 
 run: all
 	./${NAME} ./map/valid_map1.cub
+norm:
+	~/bin/result/bin/norminette ${SRCS}
+
 
 bun: all
 
