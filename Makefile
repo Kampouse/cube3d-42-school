@@ -7,6 +7,8 @@ SRCS = 	main/main.c					\
 		main/utils.c				\
 		main/movement.c				\
 		main/game_hooks.c			\
+		main/rotation.c				\
+		main/movement_utils.c		\
 		utils/get_next_line.c		\
 		utils/get_next_line_utils.c	\
 		utils/dblink/dblink_utils.c	\

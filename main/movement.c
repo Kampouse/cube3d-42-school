@@ -3,55 +3,85 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/06 05:28:35 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:16:20 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-static bool	is_in_wall(t_game *game, int point_x, int point_y)
+static void	move_left(t_game *game)
 {
-	if (game->map[point_y][point_x] && game->map[point_y][point_x] != '1')
-		return (true);
-	return (false);
-}
+	const double	angle = ft_wrap_angle(game->player->direction - 1.57);
+	const double	dx = cos(angle);
+	const double	dy = sin(angle);
+	const double	point_x = game->player->x_pos + dx;
+	const double	point_y = game->player->y_pos + dy;
 
-void	move(t_game *game, char c)
-{
-	float	point_x;
-	float	point_y;
-
-	if (c == '+')
-	{
-		point_x = game->player->x_pos + game->player->dx;
-		point_y = game->player->y_pos + game->player->dy;
-	}
-	else
-	{
-		point_x = game->player->x_pos - game->player->dx;
-		point_y = game->player->y_pos - game->player->dy;
-	}
-	if (is_in_wall(game, (point_x / game->player->scale),
-			((point_y) / game->player->scale)))
+	if (is_in_wall(game, (point_x + dx) / game->player->scale,
+			(point_y + dy) / game->player->scale))
 	{
 		game->player->x_pos = point_x;
 		game->player->y_pos = point_y;
 	}
 }
 
-void	ft_move_w(t_game *game)
+static void	move_right(t_game *game)
 {
-	move(game, '+');
-	initialise_map(game);
-	ray_fov(game);
+	const double	angle = ft_wrap_angle(game->player->direction + 1.57);
+	const double	dx = cos(angle);
+	const double	dy = sin(angle);
+	const double	point_x = game->player->x_pos + dx;
+	const double	point_y = game->player->y_pos + dy;
+
+	if (is_in_wall(game, (point_x + dx) / game->player->scale,
+			(point_y + dy) / game->player->scale))
+	{
+		game->player->x_pos = point_x;
+		game->player->y_pos = point_y;
+	}
 }
 
-void	ft_move_s(t_game *game)
+static void	move_foward(t_game *game)
 {
-	move(game, '-');
-	initialise_map(game);
-	ray_fov(game);
+	double	point_x;
+	double	point_y;
+
+	point_x = game->player->x_pos + game->player->dx;
+	point_y = game->player->y_pos + game->player->dy;
+	if (is_in_wall(game, (point_x + game->player->dx) / game->player->scale,
+			(point_y + game->player->dy) / game->player->scale))
+	{
+		game->player->x_pos = point_x;
+		game->player->y_pos = point_y;
+	}
+}
+
+static void	move_backward(t_game *game)
+{
+	double	point_x;
+	double	point_y;
+
+	point_x = game->player->x_pos - game->player->dx;
+	point_y = game->player->y_pos - game->player->dy;
+	if (is_in_wall(game, (point_x - game->player->dx) / game->player->scale,
+			(point_y - game->player->dy) / game->player->scale))
+	{
+		game->player->x_pos = point_x;
+		game->player->y_pos = point_y;
+	}
+}
+
+void	move(t_game *game, char c)
+{
+	if (c == '+')
+		move_foward(game);
+	else if (c == '-')
+		move_backward(game);
+	else if (c == 'l')
+		move_left(game);
+	else if (c == 'r')
+		move_right(game);
 }
