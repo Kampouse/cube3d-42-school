@@ -39,7 +39,7 @@ LIBS =  ./utils/libft/libft.a ./utils/MLX/libmlx42.a  ./utils/MLX/glfw/lib-x86_6
 	@gcc  ${FLAGS}  -c $< -o ${<:.c=.o}
 
 OBJS = ${SRCS:.c=.o}
-
+MAP = ./map/valid_map1.cub
 CC = gcc
 OS := $(shell uname -s)
 
@@ -65,7 +65,7 @@ git:
 	@git add ${SRCS} ${HEADER} Makefile
 
 val:
-	valgrind    --track-origins=yes   ./$(NAME) ./map/invalid_map.cub
+	valgrind    --leak-check=full --track-origins=yes   ./$(NAME) $(MAP)
 
 run: all
 	./${NAME} ./map/valid_map1.cub

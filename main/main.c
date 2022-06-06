@@ -6,24 +6,39 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 03:35:47 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 04:17:55 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../Include/cube.h"
 #include "stdio.h"
 #include "stdlib.h"
 
-t_game	*game_init(char *argv)
+void	argc_manager(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		ft_putstr_fd("Error: wrong number of arguments expected a file \n", 1);
+		exit(0);
+	}
+	else if (verify_extention(argv[1], ".cub") == 1)
+	{
+		ft_putstr_fd("Error: wrong file extension expected a .cub\n", 1);
+		exit(0);
+	}
+}
+
+t_game	*game_init(int argc, char **argv)
 {
 	t_game	*state;
 
+	argc_manager(argc, argv);
 	state = malloc(sizeof(t_game));
 	state->map = NULL;
 	state->player = malloc(sizeof(t_player));
-	state->ray = malloc(sizeof(t_ray));
+	state->ray = NULL;
 	state->player->scale = 10;
 	state->map_data = init_map();
-	state->map = map_init(mapcreator(argv));
+	state->map = map_init(mapcreator(argv[1]));
 	return (state);
 }
 
@@ -42,20 +57,6 @@ int	parser_validator(t_game *state)
 	if (error > 0)
 		printf("FROM validate_file() line: %d at:%s", __LINE__, __FILE__);
 	return (error);
-}
-
-void	argc_manager(int argc, char **argv)
-{
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error: wrong number of arguments expected a file \n", 1);
-		exit(0);
-	}
-	else if (verify_extention(argv[1], ".cub") == 1)
-	{
-		ft_putstr_fd("Error: wrong file extension expected a .cub\n", 1);
-		exit(0);
-	}
 }
 
 int	delete_this(t_game *state)
@@ -80,7 +81,7 @@ void	init_this(t_game *state)
 	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
 	state->player->y_map = (state->player->y_pos / state->player->scale) + 1;
 	state->last_step = 'x';
-	state->mlx = mlx_init(800, 600, "MLX42", 0);
+	state->mlx = mlx_init(800, 600, "./cube3d", 0);
 	image.image = mlx_new_image(state->mlx, 800, 600);
 	state->image = image;
 	load_image(state);
@@ -93,9 +94,8 @@ int	main(int argc, char *argv[])
 {
 	t_game		*state;
 
-	argc_manager(argc, argv);
-	state = game_init(argv[1]);
-	if (parser_validator(state) > 0 )
+	state = game_init(argc, argv);
+	if (parser_validator(state) > 0)
 		return (delete_this(state));
 	init_this(state);
 	mlx_loop_hook(state->mlx, &hook, state);

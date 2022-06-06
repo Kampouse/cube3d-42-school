@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 08:06:36 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/06 04:00:03 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,18 @@ void	hook(void *param)
 
 	state = param;
 	mlx = state->mlx;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+	if(mlx == NULL)
 		exit(0);
+
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+	{
+		mlx_delete_image(mlx,state->image.image);
+		mlx_terminate(mlx);
+		freelist(state->map);
+		exit(0);
+		mlx = NULL;
+      return;
+	}
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
 	{
 		initialise_map(state);
