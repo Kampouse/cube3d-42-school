@@ -2,13 +2,13 @@
 
 
              
-NO	./assets/Dirt.png
+NO	./assets/BrickMoss.png
 
-SO	 ./assets/BrickBlue.png
+SO	 ./assets/Caillou.png
 
-WE	  ./assets/Lava.png
+WE	  ./assets/Copper.png
 
-EA	 ./assets/WoodLight.png
+EA	 ./assets/Tile.png
 
 F 255,100,0
 

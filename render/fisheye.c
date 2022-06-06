@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/06 09:18:27 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 09:23:21 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	ft_reste_eleve(float x)
 	float	reste;
 
 	reste = x - (int)x;
-	if (reste > 0.9999 || reste < 0.00001)
+	if (reste > 0.999 || reste < 0.0008)
 		return (true);
 	return (false);
 }
