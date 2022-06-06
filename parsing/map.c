@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 08:53:25 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 17:13:03 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	any_before_after(char **map, int current_line)
 		{
 			if (!(last_seen_at(map[current_line], ' ') > last_seen_at
 					(map[current_line], '1')))
-				return (1);
+				return (assert(1, "broken wall\n"));
 		}
 		pos = ft_until_this(map[current_line] + temp, "0");
 		temp += pos;
@@ -73,7 +73,7 @@ int	look_in_space(int current_line, t_game *game, int pos)
 					return (0);
 			}
 			else
-				return (1);
+				return (assert(1, "space encounter\n"));
 		}
 	}
 	return (0);
@@ -174,35 +174,22 @@ int	parsing(t_game *game, int temp)
 	temp = game->map_data->iterator;
 	game->map_data->start = temp;
 	if (ft_all(game->map[temp], '1'))
-		return (1);
+		return (assert(1, "all  are not one\n"));
 	while (game->map[temp])
 	{
 		if (only_space(game->map[temp]))
 			return (ft_all(game->map[temp - 1], '1'));
 		if (any_one_above_line(game, temp))
-			printf("above\n");
+			return(assert(1,"above\n"));
 		if (any_before_after(game->map, temp))
-		{
-			printf("before after\n");
-			return (1);
-		}
+			return (assert(1,"before or after\n"));
 		if (ft_between(game->map[temp], '1') != 0)
-		{
-			printf("between\n");
-			return (1);
-		}
+			return (assert(1,"between\n"));
 		if (any_one_bellow_line(game->map, temp))
-		{
-			printf("bellow\n");
 			return (1);
-		}
 		if (look_in_space(temp++, game, 0))
-		{
-			printf("look in space\n");
-			return (1);
-		}
+			return (assert(1,"look in space\n"));
 	}
-	printf("testing\n");
 	return (0);
 }
 
@@ -275,7 +262,7 @@ int	any_one_above_line(t_game *map, int current_line)
 		if (map->map[current_line][inc] == '0')
 		{
 			if (any_one_above(map, current_line, inc))
-				return (1);
+				return (assert(1,"something is above\n"));
 		}
 		inc++;
 	}
@@ -292,7 +279,7 @@ int	any_one_bellow_line(char **map, int current_line)
 		if (map[current_line][inc] == '0')
 		{
 			if (any_one_bellow(map, current_line, inc))
-				return (1);
+				return (assert(1,"Nothing bellow\n"));
 		}
 		inc++;
 	}
