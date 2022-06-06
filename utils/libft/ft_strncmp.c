@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:06:49 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/05/25 21:45:06 by jean-phil        ###   ########.fr       */
+/*   Updated: 2022/06/06 09:06:20 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_strncmp(const char *str1, const char *str2, size_t len)
 	}	
 	if (str1[val] != str2[val] && val != len)
 	{
-		 return ((unsigned char) str1[val] - (unsigned char) str2[val]);
+		return ((unsigned char) str1[val] - (unsigned char) str2[val]);
 	}
 	return (0);
 }

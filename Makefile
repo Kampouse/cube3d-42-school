@@ -1,7 +1,7 @@
 NAME = cub3d
  
 
-FLAGS =  -g
+FLAGS = -Wall -Werror -Wextra -O3
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\
@@ -40,17 +40,23 @@ LIBS =  ./utils/libft/libft.a ./utils/MLX/libmlx42.a  ./utils/MLX/glfw/lib-x86_6
 	@gcc  ${FLAGS}  -c $< -o ${<:.c=.o}
 
 OBJS = ${SRCS:.c=.o}
+
 MAP = ./map/valid_map1.cub
+
 CC = gcc
+
 OS := $(shell uname -s)
 
 all: ${NAME}
 ${NAME}:${OBJS} 
 		@$(MAKE) -C ./utils/libft
 		@$(MAKE) -s -C ./utils/MLX
+
 ifeq ($(OS),Darwin)
 		@${CC} ${FLAGS} ${OBJS} ${LIBS} ${FRAMEWORK}  -o ${NAME}
+		make clean
 endif
+
 ifeq ($(OS),Linux)
 		@${CC}  ${FLAGS} ${OBJS} ./utils/MLX/libmlx42.a ./utils/libft/libft.a -lglfw -lm  -o ${NAME}
 endif

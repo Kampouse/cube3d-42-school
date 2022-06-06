@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   graphic_operator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 09:11:20 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/06 09:03:58 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-uint32_t	color_to_rgb(int a ,int r, int g , int b)
+uint32_t	color_to_rgb(int a, int r, int g, int b)
 {
 	uint32_t	color;
 	const int	ra = r & 0xFF;
@@ -20,37 +20,37 @@ uint32_t	color_to_rgb(int a ,int r, int g , int b)
 	const int	ba = b & 0xFF;
 	const int	aa = a & 0xFF;
 
-	(void)aa;
-		color = 0xFF | (ra << 8) | (ga << 16) | ( ba << 24);
-	return color;
+	(void) aa;
+		color = 0xFF | (ra << 8) | (ga << 16) | (ba << 24);
+	return (color);
 }
 
-void	draw_line(t_image *image ,int x0, int y0, int x1, int y1) 
+void	draw_line(t_image *image, int x0, int y0, int x1, int y1)
 {
-	int	dx = abs(x1-x0);
-	int	dy = abs(y1-y0);
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2; 
+	const int	dx = abs(x1 - x0);
+	const int	dy = abs(y1 - y0);
+	int			sx;
+	int			sy;
+	int			err;
+	int			e2;
 
-	if (x0 <  x1)
+	if (x0 < x1)
 		sx = 1;
-	else 
+	else
 		sx = -1;
-	if (y0 <  y1)
+	if (y0 < y1)
 		sy = 1;
-	else 
+	else
 		sy = -1;
 	if (dx > dy)
 		err = dx / 2;
-	else 
+	else
 		err = -dy / 2;
-	while(1)
+	while (1)
 	{
-		if(x0 < 0)
+		if (x0 < 0)
 			x0 = 0;
-		if(y0 < 0)
+		if (y0 < 0)
 			y0 = 0;
 		mlx_putpixel(image->image, x0, y0, color_to_rgb(0, 0, 0, 150));
 		if (x0 == x1 && y0 == y1)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 05:50:53 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 08:56:33 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-void	ft_last_cord(t_game *game, t_ray *ray, int i)
+void	ft_last_cord(t_game *game, t_ray *ray)
 {
 	const float	offset = 0.0006;
 
@@ -52,10 +52,10 @@ int	raycaster(t_game *game, t_ray *ray, int i)
 	{
 		ft_nb_step(game, ray);
 		ft_dda(game, ray);
-		ft_last_cord(game, ray, i);
+		ft_last_cord(game, ray);
 	}
 	ft_fixhit2(game, ray);
-	ft_fishey(game, ray, i);
+	ft_fishey(game, ray);
 	ft_add_vertical(game, ray, i);
 	return (0);
 }

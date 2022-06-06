@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by anthony           #+#    #+#             */
-/*   Updated: 2022/06/06 05:50:46 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 09:00:00 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	render_texture(t_game *game, int i, double hauteur, int x)
 {
-	 const t_mlx_image		*img = textur_to_draw(game);
+	const t_mlx_image		*img = textur_to_draw(game);
 	float					asset_height;
 	float					asset_width;
 	int						iterator;

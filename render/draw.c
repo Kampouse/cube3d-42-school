@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
+/*   Updated: 2022/06/06 08:59:10 by aguay            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Include/cube.h" 
 #include <sys/types.h>
 #include <unistd.h>
@@ -31,7 +43,7 @@ uint32_t	pixel_to_color(t_mlx_image *tex, uint32_t x_pos, uint32_t y_pos)
 
 	if (x_pos >= tex->width || y_pos >= tex->height)
 		return (0);
-	 temp = x_pos + y_pos * tex->width;
+	temp = x_pos + y_pos * tex->width;
 	pixel = (unsigned int *)(tex->pixels +(temp) * sizeof(unsigned int));
 	return (*pixel);
 }

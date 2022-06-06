@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 05:27:51 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 08:36:37 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../Include/cube.h"
+
 #include "stdio.h"
 #include "stdlib.h"
+#include "../Include/cube.h"
 
 void	argc_manager(int argc, char **argv)
 {
@@ -50,10 +51,10 @@ int	parser_validator(t_game *state)
 	error += parsing(state, 0);
 	if (error > 0)
 		printf("FROM  Parsing() line: %d at: %s", __LINE__, __FILE__);
-	error +=parse_location(state, 0, 0);
+	error += parse_location(state, 0, 0);
 	if (error > 0)
 		printf("FROM parse_location() line: %d at:%s", __LINE__, __FILE__);
-	error +=validate_file (state);
+	error += validate_file (state);
 	if (error > 0)
 		printf("FROM validate_file() line: %d at:%s", __LINE__, __FILE__);
 	return (error);

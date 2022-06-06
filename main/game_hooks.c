@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 05:26:04 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 05:27:38 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 08:35:40 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	hook(void *param)
 		mlx_terminate(mlx);
 		freelist(state->map);
 		exit(0);
-		  return ;
+		return ;
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
 	{

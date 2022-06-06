@@ -114,7 +114,7 @@ void		ft_fixhit2(t_game *game, t_ray *ray);
 void		ajust_x(t_ray *ray, t_game *game);
 void		ajust_y(t_ray *ray, t_game *game);
 double		ft_wrap_angle(double angle);
-void		ft_fishey(t_game *game, t_ray *ray, int i);
+void		ft_fishey(t_game *game, t_ray *ray);
 void		ft_step_y(t_ray *ray);
 void		ft_step_x(t_ray *ray);
 void		ft_small_step(t_ray *ray, char c);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memcpy.c                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 21:28:42 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/06/12 20:31:20 by jean-phil        ###   ########.fr       */
+/*   Updated: 2022/06/06 09:06:31 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	if (!dest && !src)
 		return (NULL);
-	 heler_src = (unsigned char *)src;
-	 heler_dest = (unsigned char *)dest;
+	heler_src = (unsigned char *)src;
+	heler_dest = (unsigned char *)dest;
 	while (i < n)
 	{
 		heler_dest[i] = heler_src[i];

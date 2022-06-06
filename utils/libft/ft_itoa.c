@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 19:34:59 by jemartel          #+#    #+#             */
-/*   Updated: 2021/09/28 19:35:02 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 09:06:47 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	converter_nbr(char *str, long input, unsigned int ln, int sign)
 		str[--ln] = input % 10 + '0';
 		input /= 10;
 	}
-	if (sign == -1 )
+	if (sign == -1)
 		str[0] = '-';
 }
 

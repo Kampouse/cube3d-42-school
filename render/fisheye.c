@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fisheye.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 08:49:46 by anthony          ###   ########.fr       */
+/*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
+/*   Updated: 2022/06/06 09:18:27 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	ft_reste_eleve(float x)
 	float	reste;
 
 	reste = x - (int)x;
-	if (reste > 0.99 || reste < 0.0008)
+	if (reste > 0.9999 || reste < 0.00001)
 		return (true);
 	return (false);
 }
@@ -35,17 +35,19 @@ void	ft_fixhit2(t_game *game, t_ray *ray)
 {
 	if (ray->last_hit == 'x')
 	{
-		if (ray->last_hit != game->last_step && ft_reste_eleve(game->player->y_pos + (ray->dy * ray->len)))
+		if (ray->last_hit != game->last_step && ft_reste_eleve
+			(game->player->y_pos + (ray->dy * ray->len)))
 			ray->last_hit = game->last_step;
 	}
 	if (ray->last_hit == 'y')
 	{
-		if (ray->last_hit != game->last_step && ft_reste_eleve(game->player->x_pos + (ray->dx * ray->len)))
+		if (ray->last_hit != game->last_step && ft_reste_eleve
+			(game->player->x_pos + (ray->dx * ray->len)))
 			ray->last_hit = game->last_step;
 	}
 }
 
-void	ft_fishey(t_game *game, t_ray *ray, int i)
+void	ft_fishey(t_game *game, t_ray *ray)
 {
 	float	theta;
 

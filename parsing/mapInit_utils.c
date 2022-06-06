@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapInit_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 05:33:32 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 08:39:22 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	ft_poll_color(char *str, t_map *map, int inc)
 	temp = NULL;
 	if (str && ft_strlen(str) > 1)
 	{
-		if (ft_strncmp(str,"F",1) == 0)
+		if (ft_strncmp(str, "F", 1) == 0)
 		{
-			temp = ft_strtrim(str + 1," \n\t\v");
-			if(temp)
+			temp = ft_strtrim(str + 1, " \n\t\v");
+			if (temp)
 			{
 				map->floor_color = get_color(temp);
 				map->iterator = inc;
@@ -48,7 +48,7 @@ void	ft_poll_color(char *str, t_map *map, int inc)
 		}
 		if (ft_strncmp(str, "C", 1) == 0)
 		{
-			temp = ft_strtrim(str + 1," \n\t\v");
+			temp = ft_strtrim(str + 1, " \n\t\v");
 			if (temp)
 			{
 				map->ceiling_color = get_color(temp);
@@ -64,25 +64,25 @@ void	ft_poll_color(char *str, t_map *map, int inc)
 	Note : Add ./path validation
 	+ 1
 */
-void	ft_poll_texture(char *str,t_map *map)
+void	ft_poll_texture(char *str, t_map *map)
 {
-	if(str && map)
+	if (str && map)
 	{
 		if (ft_strncmp(str, "NO", 2) == 0 && ft_strlen(str) > 2)
-			map->norh_texture = ft_strtrim(str + 2," \n\t\v");
+			map->norh_texture = ft_strtrim(str + 2, " \n\t\v");
 		else if (ft_strncmp(str, "SO", 2) == 0 && ft_strlen(str) > 2)
-			map->south_texture = ft_strtrim(str + 2," \n\t\v");
+			map->south_texture = ft_strtrim(str + 2, " \n\t\v");
 		else if (ft_strncmp(str, "WE", 2) == 0 && ft_strlen(str) > 2)
-			map->west_texture = ft_strtrim(str + 2," \n\t\v");
+			map->west_texture = ft_strtrim(str + 2, " \n\t\v");
 		else if (ft_strncmp(str, "EA", 2) == 0 && ft_strlen(str) > 2)
-			map->est_texture = ft_strtrim(str + 2," \n\t\v");
+			map->est_texture = ft_strtrim(str + 2, " \n\t\v");
 		free(str);
 	}
 }
 
 int	delete_texture(t_map *map)
 {
-	if(map)
+	if (map)
 	{
 		map->ceiling_color = ft_free(map->ceiling_color);
 		map->south_texture = ft_free(map->south_texture);
@@ -90,7 +90,7 @@ int	delete_texture(t_map *map)
 		map->west_texture = ft_free(map->west_texture);
 		map->est_texture = ft_free(map->est_texture);
 		map->floor_color = ft_free(map->floor_color);
-		free(map);	
+		free(map);
 	}
 	return (0);
 }
