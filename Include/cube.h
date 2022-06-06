@@ -109,7 +109,7 @@ typedef struct t_game
 
 
 //	Parsing functions
-void		render_texture(t_game *game, int i, double hauteur);
+void		render_texture(t_game *game, int i, double hauteur,int x);
 void		ft_fixhit2(t_game *game, t_ray *ray);
 void		ajust_x(t_ray *ray, t_game *game);
 void		ajust_y(t_ray *ray, t_game *game);
@@ -200,7 +200,7 @@ void		draw_line(t_image *image,int x0, int y0, int x1, int y1);
 void		draw_player(t_game *state,t_image image,t_ray *ray);
 int			draw_circle(t_image *image, int start_x,int start_y,int rayon);
 double		find_len(int startx, int starty,int endx, int endy);
-double		degToRad(double a);
+double		deg_to_rad(double a);
 int			raycaster(t_game *game, t_ray *ray, int i);
 int			ray_fov(t_game *state);
 int			verify_extention(char *str,const char *extention);

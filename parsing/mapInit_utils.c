@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 11:59:08 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/06 05:33:32 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,9 @@ int	ft_ftoi(double x)
 	return (retour);
 }
 
-double	degToRad(double a)
+double	deg_to_rad(double a)
 {
 	return (a * (PI / 180));
-}
-
-double	RadToDeg(double a)
-{
-	return (a * (180 / PI));
 }
 
 void	ft_poll_color(char *str, t_map *map, int inc)

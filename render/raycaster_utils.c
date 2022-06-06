@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/05 14:40:16 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/06 05:41:06 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 	game->last_step = ray->last_hit;
 	game->last_ray = face;
 	game->ray = ray;
-	render_texture(game, i, hauteur);
+	render_texture(game, i, hauteur,1);
 }
 
 void	ft_dda(t_game *game, t_ray *ray)

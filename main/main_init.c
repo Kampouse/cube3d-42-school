@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 11:30:16 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/06 05:32:17 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	*ft_free(void *content)
 		return (NULL);
 }
 
+/* convert string to a array for the color */
 int	*get_color(char *str)
 {
 	char	**darray;

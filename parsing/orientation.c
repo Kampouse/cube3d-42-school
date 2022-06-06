@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/05 14:24:28 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/06 05:35:45 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	player_direction(t_game *game)
 {
 	if (game->player->orientation == 'E')
-		game->player->direction = degToRad(1);
+		game->player->direction = deg_to_rad(1);
 	else if (game->player->orientation == 'N')
-		game->player->direction = degToRad(271);
+		game->player->direction = deg_to_rad(271);
 	else if (game->player->orientation == 'W')
-		game->player->direction = degToRad(181);
+		game->player->direction = deg_to_rad(181);
 	else if (game->player->orientation == 'S')
-		game->player->direction = degToRad(91);
+		game->player->direction = deg_to_rad(91);
 }
