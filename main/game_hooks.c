@@ -3,17 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   game_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 05:26:04 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 11:00:30 by aguay            ###   ########.fr       */
+/*   Created: 2022/06/06 14:14:18 by jemartel          #+#    #+#             */
+/*   Updated: 2022/06/06 14:14:20 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 #include "../utils/libft/libft.h"
 
-void	hook_second(void *param);
+static void	exit_routine(t_game *game)
+{
+	mlx_delete_image(game->mlx, game->image.image);
+	mlx_terminate(game->mlx);
+	freelist(game->map);
+	exit(0);
+	return ;
+}
 
 void	hook(void *param)
 {
@@ -23,13 +30,7 @@ void	hook(void *param)
 	state = param;
 	mlx = state->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-	{
-		mlx_delete_image(mlx, state->image.image);
-		mlx_terminate(mlx);
-		freelist(state->map);
-		exit(0);
-		return ;
-	}
+		exit_routine(state);
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
 		ft_rotate_left(state);
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))

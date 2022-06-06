@@ -6,7 +6,7 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 10:22:02 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/10/05 11:14:58 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:52:50 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	get_next_line(int fd, char **line)
 		container = ft_output2(container, line);
 		return (1);
 	}
-	while (readme(fd, buff, &val) > 0 )
+	while (readme(fd, buff, &val) > 0)
 	{
 		container = ft_strjoin(container, buff);
 		if (ft_strchrr(container, '\n'))

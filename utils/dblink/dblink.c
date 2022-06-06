@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:12:36 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/02 17:11:31 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:55:09 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../Include/cube.h"
@@ -68,7 +68,7 @@ void	ft_cleart_dlist(t_dlist **currlist, void (*del)(void *))
 
 	if (!del || !currlist || !*currlist)
 		return ;
-	  while (currlist && *currlist)
+	while (currlist && *currlist)
 	{
 		iter = (*currlist)->next;
 		*currlist = iter;

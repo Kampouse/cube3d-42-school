@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 08:36:37 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 13:07:29 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,20 @@ int	parser_validator(t_game *state)
 	error = 0;
 	error += parsing(state, 0);
 	if (error > 0)
-		printf("FROM  Parsing() line: %d at: %s", __LINE__, __FILE__);
+		return (printf("FROM  Parsing() line: %d at: %s\n", __LINE__, __FILE__));
 	error += parse_location(state, 0, 0);
 	if (error > 0)
-		printf("FROM parse_location() line: %d at:%s", __LINE__, __FILE__);
+		return (printf("FROM parse_location() line: %d at:%s\n", __LINE__,
+				__FILE__));
 	error += validate_file (state);
 	if (error > 0)
-		printf("FROM validate_file() line: %d at:%s", __LINE__, __FILE__);
+		printf("FROM validate_file() line: %d at:%s\n", __LINE__, __FILE__);
 	return (error);
 }
 
 int	delete_this(t_game *state)
 {
-	ft_putstr_fd("an erro as occured \n", 2);
+	//ft_putstr_fd("an erro as occured \n", 2);
 	freelist(state->map);
 	delete_texture(state->map_data);
 	free(state->player);

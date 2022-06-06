@@ -1,4 +1,9 @@
+
+
+
 NAME = cub3d
+
+NAME_B = cub3d_bonus
 
 FLAGS = -Wall -Werror -Wextra -O3
 
@@ -31,6 +36,35 @@ SRCS = 	main/main.c					\
 		render/draw.c				\
 		render/render_texture.c		\
 
+SRCS_B =  	main/main.c				\
+		main/main_init.c			\
+		main/utils.c				\
+		main/movement.c				\
+		main/rotation.c				\
+		main/movement_utils.c		\
+		utils/get_next_line.c		\
+		utils/get_next_line_utils.c	\
+		utils/dblink/dblink_utils.c	\
+		utils/dblink/dblink.c		\
+		parsing/verif.c				\
+		parsing/verif_wall.c		\
+		parsing/mapInit.c			\
+		parsing/parsing.c			\
+		parsing/map.c				\
+		parsing/orientation.c		\
+		parsing/resize_map.c		\
+		parsing/parsing_utils.c		\
+		parsing/mapInit_utils.c		\
+		render/graphic_operator.c	\
+		render/graphic_operator2.c	\
+		render/raycaster.c 			\
+		render/raycaster_utils.c	\
+		render/raycaster_utils2.c	\
+		render/fisheye.c			\
+		render/draw.c				\
+		render/render_texture.c		\
+		bonus/game_hooks_bonus.c	\
+
 HEADER = ./Include/cube.h
 
 FRAMEWORK = -framework Cocoa -framework OpenGL -framework IOKit
@@ -42,6 +76,8 @@ LIBS =  ./utils/libft/libft.a ./utils/MLX/libmlx42.a  ./utils/MLX/glfw/lib-x86_6
 
 OBJS = ${SRCS:.c=.o}
 
+OBJS_B = ${SRCS_B:.c=.o}
+
 MAP = ./map/valid_map1.cub
 
 CC = gcc
@@ -49,12 +85,12 @@ CC = gcc
 OS := $(shell uname -s)
 
 all: ${NAME}
-${NAME}:${OBJS} 
+${NAME}:${OBJS}
 		@$(MAKE) -C ./utils/libft
 		@$(MAKE) -s -C ./utils/MLX
 
 ifeq ($(OS),Darwin)
-		@${CC} ${FLAGS} ${OBJS} ${LIBS} ${FRAMEWORK}  -o ${NAME}
+		@${CC} ${FLAGS} ${OBJS} ${LIBS} ${FRAMEWORK} -o ${NAME}
 		make clean
 endif
 
@@ -64,16 +100,18 @@ endif
 
 clean:
 		@${RM} ${OBJS}
+		@${RM} ${OBJS_B}
 
 fclean: clean
 	make -C ./utils/libft clean
 	rm -rf cub3d
+	rm -rf cub3d_bonus
 
 git:
 	@git add ${SRCS} ${HEADER} Makefile
 
 val:
-	valgrind --track-origins=yes   ./$(NAME) ./map/invalid_map.cub
+	valgrind --track-origins=yes ./$(NAME) ./map/invalid_map.cub
 
 run: all
 	./${NAME} ./map/valid_map1.cub
@@ -89,6 +127,19 @@ leak: all
 	@${RM} ${NAME}
 	@$(MAKE) -C ./utils/minilibx fclean
 	@$(MAKE) -C ./utils/libft fclean
+
+bonus: ${OBJS_B}
+	@$(MAKE) -C ./utils/libft
+	@$(MAKE) -s -C ./utils/MLX
+
+ifeq ($(OS),Darwin)
+		@${CC} ${FLAGS} ${OBJS_B} ${LIBS} ${FRAMEWORK} -o ${NAME_B}
+		make clean
+endif
+
+ifeq ($(OS),Linux)
+		@${CC} ${FLAGS} ${OBJS} ./utils/MLX/libmlx42.a ./utils/libft/libft.a -lglfw -lm -o ${NAME_B}
+endif
 
 re: fclean all
 

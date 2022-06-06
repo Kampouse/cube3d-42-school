@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 
 /*                                                                            */
@@ -110,7 +111,8 @@ typedef struct t_game
 
 //	Parsing functions
 
-bool	is_in_wall(t_game *game, int point_x, int point_y);
+void		hook_second(void *param);
+bool		is_in_wall(t_game *game, int point_x, int point_y);
 void		ft_rotate_left(t_game *game);
 void		ft_rotate_right(t_game *game);
 void		render_texture(t_game *game, int i, double hauteur,int x);

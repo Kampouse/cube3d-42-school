@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 17:13:03 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 13:28:23 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,15 +180,15 @@ int	parsing(t_game *game, int temp)
 		if (only_space(game->map[temp]))
 			return (ft_all(game->map[temp - 1], '1'));
 		if (any_one_above_line(game, temp))
-			return(assert(1,"above\n"));
+			return (assert(1, "above\n"));
 		if (any_before_after(game->map, temp))
-			return (assert(1,"before or after\n"));
+			return (assert(1, "before or after\n"));
 		if (ft_between(game->map[temp], '1') != 0)
-			return (assert(1,"between\n"));
+			return (assert(1, "between\n"));
 		if (any_one_bellow_line(game->map, temp))
 			return (1);
 		if (look_in_space(temp++, game, 0))
-			return (assert(1,"look in space\n"));
+			return (assert(1, "look in space\n"));
 	}
 	return (0);
 }

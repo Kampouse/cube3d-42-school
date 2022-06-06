@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/06 11:16:20 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 13:24:32 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	move_left(t_game *game)
 {
-	const double	angle = ft_wrap_angle(game->player->direction - 1.57);
+	const double	angle = ft_wrap_angle(game->player->direction - 1.5708);
 	const double	dx = cos(angle);
 	const double	dy = sin(angle);
 	const double	point_x = game->player->x_pos + dx;
@@ -30,7 +30,7 @@ static void	move_left(t_game *game)
 
 static void	move_right(t_game *game)
 {
-	const double	angle = ft_wrap_angle(game->player->direction + 1.57);
+	const double	angle = ft_wrap_angle(game->player->direction + 1.5708);
 	const double	dx = cos(angle);
 	const double	dy = sin(angle);
 	const double	point_x = game->player->x_pos + dx;

@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:07:53 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/02 17:11:21 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:54:46 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_lst_lenght(t_dlist *currlist)
 
 t_dlist	*ft_lstnewl(void *content)
 {
-	t_dlist	 *link;
+	t_dlist	*link;
 
 	link = (t_dlist *)malloc(sizeof(*link));
 	if (!link)
