@@ -6,7 +6,8 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 13:28:06 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 18:06:01 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:20:52 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +44,4 @@ int	square_shape(t_image *image, int x_pos, int y_pos, uint32_t color)
 		cin++;
 	}
 	return (0);
-}
-
-void	draw_map(t_game *state, t_image image, int scale)
-{
-	int	inc;
-	int	cin;
-	int	stepx;
-	int	stepy;
-
-	paint_in_black(state);
-	inc = 0;
-	cin = 0;
-	stepx = (WIDTH / 2) - ((state->map_width * scale) / 2);
-	stepy = (HEIGHT / 2) - ((state->map_heigth * scale) / 2);
-	while (state->map[cin])
-	{
-		while (state->map[cin][inc])
-		{
-			if (state->map[cin][inc] == '1')
-				square_shape(&image, stepx, stepy, color_to_rgb(0, 0, 0, 0));
-			else
-				square_shape(&image, stepx, stepy, color_to_rgb(0, 0, 255, 0));
-			inc++;
-			stepx += scale;
-		}
-		stepx = (WIDTH / 2) - ((state->map_width * scale) / 2);
-		inc = 0;
-		stepy += scale;
-		cin++;
-	}
 }

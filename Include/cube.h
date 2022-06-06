@@ -79,6 +79,8 @@ typedef struct t_map
 	int			*floor_color;
 	int			*ceiling_color;
 	int			*start_position;
+	int			width;
+	int			height;
 	int			start;
 	int			last;
 	int			iterator;
@@ -111,6 +113,7 @@ typedef struct t_game
 
 //	Parsing functions
 
+void		render_map(t_game *game);
 void		hook_second(void *param);
 bool		is_in_wall(t_game *game, int point_x, int point_y);
 void		ft_rotate_left(t_game *game);

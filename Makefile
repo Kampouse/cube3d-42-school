@@ -64,6 +64,7 @@ SRCS_B =  	main/main.c				\
 		render/draw.c				\
 		render/render_texture.c		\
 		bonus/game_hooks_bonus.c	\
+		bonus/render_map.c			\
 
 HEADER = ./Include/cube.h
 
@@ -115,9 +116,9 @@ val:
 
 run: all
 	./${NAME} ./map/valid_map1.cub
+
 norm:
 	norminette ${SRCS}
-
 
 bun: all
 
