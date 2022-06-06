@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 12:05:25 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/06 03:09:40 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,10 @@ int	parser_helper(t_game *game,int temp,int inc)
 	if (ft_until_this(game->map[temp], "NEWS") != -1)
 		{
 			game->player->x_pos = ft_until_this(game->map[temp], "NEWS");	
+			//should look for other line 
+			if(ft_until_this(game->map[temp] + ft_ftoi(game->player->x_pos) + 1,"NEWS") > 0) 
+				return(assert(2,"two player one same line\n"));
 			game->player->orientation = game->map[temp][ft_ftoi(game->player->x_pos)];			
-		  	if (ft_until_this(game->map[temp] + ft_ftoi(game->player->x_pos), "NEWS")  < 0)
-				return (2);
 			game->player->y_pos = inc;
 			return (1);
 		}
@@ -115,22 +116,22 @@ int	validate_file(t_game *game)
 	if (file > 0) 
 		close(file);
 	else
-		return (1);
+		return (assert(1,"wrong file NORTH\n"));
 	file = open(game->map_data->est_texture, R_OK);
 	if (file > 0) 
 		close(file);
 	else
-		return (1);
+		return ( assert(1,"wrong file EST \n"));
 	file = open(game->map_data->west_texture, R_OK);
 	if (file > 0) 
 		close(file);
 	else
-		return (1);
+		return ( assert(1,"wrong file WEST\n"));
 	file = open(game->map_data->south_texture, R_OK);
 	if (file > 0) 
 		close(file);
 	else
-		return (1);
+		return ( assert(1,"wrong file south_texture\n"));
 	return (0);
 }
 
@@ -176,18 +177,35 @@ int	parsing(t_game *game, int temp)
 	while (game->map[temp])
 	{
 		if (only_space(game->map[temp]))
-			return (ft_all(game->map[temp - 1],'1'));
+			{
+				return (ft_all(game->map[temp - 1],'1'));
+			}
 		if (any_one_above_line(game, temp))
-			return (1);
+			{
+				printf("above\n");
+			}
 		if (any_before_after(game->map, temp))
+			{
+				printf("before after\n");
 			return(1);
+			}
 		if (ft_between(game->map[temp],'1') != 0)
+		{
+			printf("between\n");
 			return (1);
+		}
 		if (any_one_bellow_line(game->map, temp))
+		{
+			printf("bellow\n");
 			return (1);
+		}
 		if (look_in_space(temp++, game, 0))
+		{
+			printf("look in space\n");
 			return (1);
+		}
 	}
+	printf("testing\n");
 	return (0);
 }
 

@@ -6,72 +6,73 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/05 15:34:34 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/06 03:35:47 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 #include "../Include/cube.h"
 #include "stdio.h"
 #include "stdlib.h"
 
-int draw_grid(t_image image);
-
-t_dlist	*verif(t_dlist *map)
+t_game	*game_init(char *argv)
 {
-	int	flag;
+	t_game	*state;
 
-	flag = 0;
-	if (!map)
-	{
-		ft_putstr_fd("Error:could not read map\n", 1);
-		exit(0);
-	}
-	flag += assert(verif_len(*map), "Error: len incorrect\n");
-	flag += assert(verif_wall(*map), "Error: incorrect wall\n");
-	flag += assert(verif_param(*map, 'P'), "Error: wrong number of Player\n");
-	flag += assert(verif_param(*map, 'E'), "Error: wrong number of exit\n");
-	flag += assert(verif_param(*map, 'C'), "Error: wrong nbr of collectibe\n");
-	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
-	flag += assert(verif_map_content(*map), "Error: wrong element in the map\n");
-	if (flag > 0)
-		exit(0);
-	return (map);
-}
-
-int	main(int argc, char *argv[])
-{
-	t_game		*state;
-	t_image		image;
-
-	if(argc != 2)
-	{
-		ft_putstr_fd("Error: wrong number of arguments expected a file \n", 1);
-		exit(0);
-	}
-	else
-		if(verify_extention(argv[1],".cub") == 1)
-		{
-			ft_putstr_fd("Error: wrong file extension expected a .cub\n", 1);
-			exit(0);
-		}
 	state = malloc(sizeof(t_game));
 	state->map = NULL;
 	state->player = malloc(sizeof(t_player));
 	state->ray = malloc(sizeof(t_ray));
 	state->player->scale = 10;
-	state->map_data  = init_map();
-	state->map = map_init(mapcreator(argv[1]));
-	if (parsing(state,0) != 0 || parse_location(state,0,0) != 0 || validate_file (state) != 0)
+	state->map_data = init_map();
+	state->map = map_init(mapcreator(argv));
+	return (state);
+}
+
+int	parser_validator(t_game *state)
+{
+	int	error;
+
+	error = 0;
+	error += parsing(state, 0);
+	if (error > 0)
+		printf("FROM  Parsing() line: %d at: %s", __LINE__, __FILE__);
+	error +=parse_location(state, 0, 0);
+	if (error > 0)
+		printf("FROM parse_location() line: %d at:%s", __LINE__, __FILE__);
+	error +=validate_file (state);
+	if (error > 0)
+		printf("FROM validate_file() line: %d at:%s", __LINE__, __FILE__);
+	return (error);
+}
+
+void	argc_manager(int argc, char **argv)
+{
+	if (argc != 2)
 	{
-			ft_putstr_fd("an erro as occured \n", 2);
-			freelist(state->map);
-			delete_texture(state->map_data);
-			free(state->player);
-			free(state->ray);
-			free(state);
-			return (0);	
+		ft_putstr_fd("Error: wrong number of arguments expected a file \n", 1);
+		exit(0);
 	}
+	else if (verify_extention(argv[1], ".cub") == 1)
+	{
+		ft_putstr_fd("Error: wrong file extension expected a .cub\n", 1);
+		exit(0);
+	}
+}
+
+int	delete_this(t_game *state)
+{
+	ft_putstr_fd("an erro as occured \n", 2);
+	freelist(state->map);
+	delete_texture(state->map_data);
+	free(state->player);
+	free(state->ray);
+	free(state);
+	return (0);
+}
+
+void	init_this(t_game *state)
+{
+	t_image		image;
+
 	resize_map(state);
 	player_direction(state);
 	state->player->x_pos = ((state->player->x_pos) * state->player->scale) + 1;
@@ -86,7 +87,18 @@ int	main(int argc, char *argv[])
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	initialise_map(state);
 	ray_fov(state);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_game		*state;
+
+	argc_manager(argc, argv);
+	state = game_init(argv[1]);
+	if (parser_validator(state) > 0 )
+		return (delete_this(state));
+	init_this(state);
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);
-	return(0);
+	return (0);
 }

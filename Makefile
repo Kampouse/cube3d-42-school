@@ -1,7 +1,7 @@
 NAME = cub3d
  
 
-FLAGS =  -O3
+FLAGS =  -g
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\
@@ -52,7 +52,6 @@ ifeq ($(OS),Darwin)
 endif
 ifeq ($(OS),Linux)
 		@${CC}  ${FLAGS} ${OBJS} ./utils/MLX/libmlx42.a ./utils/libft/libft.a -lglfw -lm  -o ${NAME}
-		make clean
 endif
 
 clean:
@@ -66,16 +65,16 @@ git:
 	@git add ${SRCS} ${HEADER} Makefile
 
 val:
-	valgrind    --track-origins=yes   ./$(NAME) ./map2.cub
+	valgrind    --track-origins=yes   ./$(NAME) ./map/invalid_map.cub
 
 run: all
-	./${NAME} ./assets/map.cub
+	./${NAME} ./map/valid_map1.cub
 
 bun: all
 
 leak: all
 	@echo "\033[92mTEST 1 \n \033[0m"
-	@(leaks --atExit --  ./${NAME} ./assets/map.ber) 
+	@(leaks --atExit --  ./${NAME} ./map/map.ber) 
 	@${RM} ${NAME}
 	@$(MAKE) -C ./utils/minilibx fclean
 	@$(MAKE) -C ./utils/libft fclean
