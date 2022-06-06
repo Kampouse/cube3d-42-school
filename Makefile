@@ -1,5 +1,4 @@
 NAME = cub3d
- 
 
 FLAGS = -Wall -Werror -Wextra -O3
 
@@ -58,7 +57,7 @@ ifeq ($(OS),Darwin)
 endif
 
 ifeq ($(OS),Linux)
-		@${CC}  ${FLAGS} ${OBJS} ./utils/MLX/libmlx42.a ./utils/libft/libft.a -lglfw -lm  -o ${NAME}
+		@${CC} ${FLAGS} ${OBJS} ./utils/MLX/libmlx42.a ./utils/libft/libft.a -lglfw -lm -o ${NAME}
 endif
 
 clean:
@@ -72,7 +71,7 @@ git:
 	@git add ${SRCS} ${HEADER} Makefile
 
 val:
-	valgrind    --track-origins=yes   ./$(NAME) ./map/invalid_map.cub
+	valgrind --track-origins=yes   ./$(NAME) ./map/invalid_map.cub
 
 run: all
 	./${NAME} ./map/valid_map1.cub

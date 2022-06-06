@@ -2,21 +2,21 @@
 
 
              
-NO	./assets/BrickGrey.png
+NO	./assets/WoodDark.png
 
-SO	 ./assets/Dirt.png
+SO	 ./assets/Copper.png
 
-WE	  ./assets/Metal.png
+WE	  ./assets/Caillou.png
 
-EA	 ./assets/Lava.png
+EA	 ./assets/Tile.png
 
 F 255,100,0
 
 C 225,30,0
 
-
-11111111111111111111
-100000000000001000S1
+                  111
+111111111111111111101
+100000000000001000S11
 10000001110000100001
 10111001110000100001
 10111000000000100001

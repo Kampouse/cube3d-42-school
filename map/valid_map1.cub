@@ -1,10 +1,10 @@
-NO	./assets/Diamon.png
+NO	./assets/BrickMoss.png
 
-SO	 ./assets/Snow.png
+SO	 ./assets/WoodDark.png
 
-WE	  ./assets/Tile2.png
+WE	  ./assets/StoneGrey.png
 
-EA	 ./assets/Wood.png
+EA	 ./assets/StoneDark.png
 
 F 255,100,0
 
