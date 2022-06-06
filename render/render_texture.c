@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by anthony           #+#    #+#             */
-/*   Updated: 2022/06/06 09:00:00 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 16:17:22 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	render_texture(t_game *game, int i, double hauteur, int x)
 
 	iterator = (HEIGHT / 2) + hauteur;
 	until = (HEIGHT / 2) - hauteur;
+	asset_width = 0;
 	if (game->ray->last_hit == 'x')
 		asset_width = (fmod(game->ray->pos_rayy, (double)game->player->scale)
 				* img->width) / game->player->scale;

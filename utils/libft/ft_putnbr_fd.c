@@ -6,7 +6,7 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 07:46:10 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/06/08 09:38:21 by jean-phil        ###   ########.fr       */
+/*   Updated: 2022/06/06 16:20:49 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 static void	ft_putchar(char input, int fd)
 {
-	write(fd, &input, 1);
+	int	val;
+
+	val = write(fd, &input, 1);
+	(void)val;
 }
 
 void	ft_putnbr_fd(int input, int fd)

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 08:56:33 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 16:16:18 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ void	ft_nb_step(t_game *game, t_ray *ray)
 
 int	raycaster(t_game *game, t_ray *ray, int i)
 {
-	static int	x;
 
-	x = 0;
 	ft_init_ray(game, ray, i);
 	while (game->map[ray->last_cordy][ray->last_cordx] != '1')
 	{

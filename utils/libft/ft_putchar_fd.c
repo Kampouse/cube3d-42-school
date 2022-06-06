@@ -6,7 +6,7 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 15:46:57 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/05/16 15:48:12 by jean-phil        ###   ########.fr       */
+/*   Updated: 2022/06/06 16:18:44 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	int	val;
+
+	 val = write(fd, &c, 1);
+	 (void)val;
 }

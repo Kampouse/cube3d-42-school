@@ -6,7 +6,7 @@
 /*   By: jean-phil <jemartel@student.42quebec>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:53:29 by jean-phil         #+#    #+#             */
-/*   Updated: 2021/06/08 09:39:54 by jean-phil        ###   ########.fr       */
+/*   Updated: 2022/06/06 16:19:50 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@
 void	ft_putendl_fd(char *str, int fd)
 {
 	int		i;
+	int		b;
 	char	nl;
 
 	nl = '\n';
 	i = 0;
 	while (str[i])
 	{
-		write(fd, &str[i], 1);
+		b = write(fd, &str[i], 1);
 		i++;
 	}
-	write(fd, &nl, 1);
+	 i = write(fd, &nl, 1);
+	 (void)b;
 }

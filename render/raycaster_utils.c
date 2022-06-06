@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/06 09:00:56 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 16:16:55 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,8 @@ char	ft_what_face(t_ray *ray)
 void	ft_add_vertical(t_game *game, t_ray *ray, int i)
 {
 	const double	hauteur = (3000 / ray->len) / 2;
-	uint32_t		color;
-	int				offset;
 	const char		face = ft_what_face(ray);
 
-	offset = -1;
-	color = 0;
 	game->last_step = ray->last_hit;
 	game->last_ray = face;
 	game->ray = ray;
