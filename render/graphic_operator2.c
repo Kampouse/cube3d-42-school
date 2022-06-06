@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/01 16:01:57 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 14:46:12 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	initialise_map(t_game *game)
 	{
 		y = 0;
 		while (y < HEIGHT / 2)
-			mlx_putpixel(game->image.image, x, y++, 0xFFFF);
+			mlx_putpixel(game->image.image, x, y++, color_to_rgb(0,  game->map_data->ceiling_color[0] , game->map_data->ceiling_color[1] ,  game->map_data->ceiling_color[2]));
 		while (y < HEIGHT)
-			mlx_putpixel(game->image.image, x, y++, 0x0000);
+			mlx_putpixel(game->image.image, x, y++, color_to_rgb(0,game->map_data->floor_color[0],game->map_data->floor_color[1],game->map_data->floor_color[2]));
 		x++;
 	}
 }

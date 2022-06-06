@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_hooks.c                                       :+:      :+:    :+:   */
+/*   game_hooks_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 14:14:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 14:16:08 by jemartel         ###   ########.fr       */
-/*   Created: 2022/06/06 05:26:04 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 13:15:03 by aguay            ###   ########.fr       */
+/*   Created: 2022/06/06 05:26:04 by aguay             #+#    #+#             */
+/*   Updated: 2022/06/06 13:32:02 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../Include/cube.h"
 #include "../utils/libft/libft.h"
 
@@ -32,10 +31,6 @@ void	hook(void *param)
 	mlx = state->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		exit_routine(state);
-	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		ft_rotate_left(state);
-	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		ft_rotate_right(state);
 	hook_second(param);
 }
 
@@ -51,9 +46,9 @@ void	hook_second(void *param)
 	if (mlx_is_key_down(mlx, MLX_KEY_S))
 		ft_move_s(state);
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
-		ft_move_d(state);
+		ft_rotate_right(state);
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
-		ft_move_a(state);
+		ft_rotate_left(state);
 	if (mlx_is_key_down(mlx, MLX_KEY_M))
 	{
 		draw_map(state, state->image, state->player->scale);

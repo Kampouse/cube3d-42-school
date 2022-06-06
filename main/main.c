@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 13:07:29 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:17:33 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,10 @@ int	parser_validator(t_game *state)
 
 int	delete_this(t_game *state)
 {
-	//ft_putstr_fd("an erro as occured \n", 2);
 	freelist(state->map);
 	delete_texture(state->map_data);
+	free(state->map_data);
 	free(state->player);
-	free(state->ray);
 	free(state);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 13:28:23 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:18:14 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,7 +262,7 @@ int	any_one_above_line(t_game *map, int current_line)
 		if (map->map[current_line][inc] == '0')
 		{
 			if (any_one_above(map, current_line, inc))
-				return (assert(1,"something is above\n"));
+				return (assert(1, "something is above\n"));
 		}
 		inc++;
 	}
@@ -279,7 +279,7 @@ int	any_one_bellow_line(char **map, int current_line)
 		if (map[current_line][inc] == '0')
 		{
 			if (any_one_bellow(map, current_line, inc))
-				return (assert(1,"Nothing bellow\n"));
+				return (assert(1, "Nothing bellow\n"));
 		}
 		inc++;
 	}
