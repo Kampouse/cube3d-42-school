@@ -7,6 +7,7 @@ SRCS = 	main/main.c					\
 		main/main_init.c			\
 		main/utils.c				\
 		main/movement.c				\
+		main/game_hooks.c			\
 		utils/get_next_line.c		\
 		utils/get_next_line_utils.c	\
 		utils/dblink/dblink_utils.c	\
@@ -65,7 +66,7 @@ git:
 	@git add ${SRCS} ${HEADER} Makefile
 
 val:
-	valgrind    --leak-check=full --track-origins=yes   ./$(NAME) $(MAP)
+	valgrind    --track-origins=yes   ./$(NAME) ./map/invalid_map.cub
 
 run: all
 	./${NAME} ./map/valid_map1.cub
