@@ -109,6 +109,10 @@ typedef struct t_game
 
 
 //	Parsing functions
+
+bool	is_in_wall(t_game *game, int point_x, int point_y);
+void		ft_rotate_left(t_game *game);
+void		ft_rotate_right(t_game *game);
 void		render_texture(t_game *game, int i, double hauteur,int x);
 void		ft_fixhit2(t_game *game, t_ray *ray);
 void		ajust_x(t_ray *ray, t_game *game);
@@ -128,6 +132,8 @@ double		RadToDeg(double a);
 int			ft_ftoi(double x);
 void		ft_move_w(t_game *game);
 void		ft_move_s(t_game *game);
+void		ft_move_a(t_game *game);
+void		ft_move_d(t_game *game);
 void		map_size_init(t_game *game);
 void		paint_in_black(t_game *game);
 void		initialise_map(t_game *game);
