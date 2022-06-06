@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 08:36:37 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 14:20:41 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,23 @@ int	delete_this(t_game *state)
 	return (0);
 }
 
+static void	init_map_size(t_game *game)
+{
+	size_t	height;
+	size_t	width;
+
+	width = 0;
+	height = 0;
+	while (game->map[height])
+	{
+		if (ft_strlen(game->map[height]) > width)
+			width = ft_strlen(game->map[height]);
+		height++;
+	}
+	game->map_data->width = (int)width;
+	game->map_data->height = (int)height - 1;
+}
+
 void	init_this(t_game *state)
 {
 	t_image		image;
@@ -86,6 +103,7 @@ void	init_this(t_game *state)
 	image.image = mlx_new_image(state->mlx, 800, 600);
 	state->image = image;
 	load_image(state);
+	init_map_size(state);
 	mlx_image_to_window(state->mlx, image.image, 0, 0);
 	initialise_map(state);
 	ray_fov(state);

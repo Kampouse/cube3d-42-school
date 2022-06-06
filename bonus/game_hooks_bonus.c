@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 05:26:04 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/06 13:32:02 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 14:39:58 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,23 @@ void	hook_second(void *param)
 	state = param;
 	mlx = state->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_W))
-		ft_move_w(state);
-	if (mlx_is_key_down(mlx, MLX_KEY_S))
-		ft_move_s(state);
-	if (mlx_is_key_down(mlx, MLX_KEY_D))
-		ft_rotate_right(state);
-	if (mlx_is_key_down(mlx, MLX_KEY_A))
-		ft_rotate_left(state);
-	if (mlx_is_key_down(mlx, MLX_KEY_M))
 	{
-		draw_map(state, state->image, state->player->scale);
-		put_player_2d(state);
+		ft_move_w(state);
+		render_map(state);
+	}
+	if (mlx_is_key_down(mlx, MLX_KEY_S))
+	{
+		ft_move_s(state);
+		render_map(state);
+	}
+	if (mlx_is_key_down(mlx, MLX_KEY_D))
+	{
+		ft_rotate_right(state);
+		render_map(state);
+	}
+	if (mlx_is_key_down(mlx, MLX_KEY_A))
+	{
+		ft_rotate_left(state);
+		render_map(state);
 	}
 }

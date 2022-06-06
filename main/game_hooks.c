@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 05:26:04 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 13:15:03 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/06 14:29:21 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,4 @@ void	hook_second(void *param)
 		ft_move_d(state);
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
 		ft_move_a(state);
-	if (mlx_is_key_down(mlx, MLX_KEY_M))
-	{
-		draw_map(state, state->image, state->player->scale);
-		put_player_2d(state);
-	}
 }
