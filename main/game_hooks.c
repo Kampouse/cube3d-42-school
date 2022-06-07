@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 14:14:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 14:16:08 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/07 03:19:22 by jemartel         ###   ########.fr       */
 /*   Created: 2022/06/06 05:26:04 by jemartel          #+#    #+#             */
 /*   Updated: 2022/06/06 14:29:21 by aguay            ###   ########.fr       */
 /*                                                                            */
@@ -17,7 +17,6 @@
 static void	exit_routine(t_game *game)
 {
 	mlx_delete_image(game->mlx, game->image.image);
-	mlx_terminate(game->mlx);
 	freelist(game->map);
 	exit(0);
 	return ;

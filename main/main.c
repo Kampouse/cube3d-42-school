@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 18:05:52 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/07 03:35:24 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/06/06 14:20:41 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -66,7 +66,6 @@ int	delete_this(t_game *state)
 {
 	freelist(state->map);
 	delete_texture(state->map_data);
-	free(state->map_data);
 	free(state->player);
 	free(state);
 	return (0);

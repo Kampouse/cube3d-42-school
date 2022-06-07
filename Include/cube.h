@@ -204,7 +204,7 @@ int			only_space(char *str);
 void		resize_map(t_game *game);
 void		player_direction(t_game *game);
 int			cast_ray(t_game *game,t_image *image);
-uint32_t	color_to_rgb(int a ,int r , int g , int b);
+uint32_t	color_to_rgb(uint32_t  a ,uint32_t r , uint32_t g , uint32_t b);
 int			square_shape(t_image *image,int x_pos, int y_pos,uint32_t color);
 void		draw_map(t_game *state, t_image image,int scale);
 void		draw_line(t_image *image,int x0, int y0, int x1, int y1);
