@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/29 08:35:17 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/07 15:50:04 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,10 @@ int	line_size(char *str)
 	return (i);
 }
 
-void	resize_map(t_game *game)
+void	resize_map(t_game *game, int len, int width, int iter)
 {
 	char	**new_map;
-	int		len;
-	int		iter;
-	int		width;
 
-	iter = game->map_data->start;
-	len = 0;
-	width = 0;
 	while (game->map[iter] && !(only_space(game->map[iter])))
 	{
 		iter++;

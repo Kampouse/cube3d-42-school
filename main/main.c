@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/07 03:35:24 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:51:26 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/06/06 14:20:41 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -92,7 +92,7 @@ void	init_this(t_game *state)
 {
 	t_image		image;
 
-	resize_map(state);
+	resize_map(state, 0, 0, state->map_data->start);
 	player_direction(state);
 	state->player->x_pos = ((state->player->x_pos) * state->player->scale) + 1;
 	state->player->y_pos = ((state->player->y_pos) * state->player->scale) + 1;

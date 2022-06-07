@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/07 13:18:29 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:41:02 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,15 @@ int	only_space(char *str)
 	return (0);
 }
 
-
-int  find_secound_player(t_game *game, int temp)
+int	find_secound_player(t_game *game, int temp)
 {
-	while(game->map[temp])
+	while (game->map[temp])
 	{
-		if (ft_until_this(game->map[temp],"NEWS" ) != -1)
+		if (ft_until_this(game->map[temp], "NEWS" ) != -1)
 			return (1);
 		temp++;
 	}
-return (0);
+	return (0);
 }
 
 int	parser_helper(t_game *game, int temp, int inc)
@@ -113,7 +112,7 @@ int	parser_helper(t_game *game, int temp, int inc)
 		if (ft_until_this(game->map[temp] + ft_ftoi
 				(game->player->x_pos) + 1, "NEWS") > 0)
 			return (assert(2, "two player one same line\n"));
-		if(find_secound_player(game, temp + 1))
+		if (find_secound_player(game, temp + 1))
 			return (assert(2, "two player on diff line\n"));
 		game->player->orientation = game->map[temp][ft_ftoi
 			(game->player->x_pos)];

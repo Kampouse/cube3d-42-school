@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/07 08:19:39 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/07 15:48:52 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ int			was_in_set(char *str, char *set);
 int			parse_location(t_game *game, int found, int inc);
 int			delete_texture(t_map *map);
 int			only_space(char *str);
-void		resize_map(t_game *game);
+void	resize_map(t_game *game,int len,int width,int iter);
 int			verif_number(char **strs);
 int			any_one_above(t_game *map, int current_line, int pos);
 int			verif_no_space(t_game *game, int pos);
