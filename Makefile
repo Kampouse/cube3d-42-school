@@ -1,11 +1,8 @@
-
-
-
 NAME = cub3d
 
 NAME_B = cub3d_bonus
 
-FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra -O3
 
 SRCS = 	main/main.c					\
 		main/main_init.c			\
@@ -92,7 +89,6 @@ ${NAME}:${OBJS}
 
 ifeq ($(OS),Darwin)
 		@${CC} ${FLAGS} ${OBJS} ${LIBS} ${FRAMEWORK} -o ${NAME}
-		make clean
 endif
 
 ifeq ($(OS),Linux)
@@ -124,7 +120,7 @@ bun: all
 
 leak: all
 	@echo "\033[92mTEST 1 \n \033[0m"
-	@(leaks --atExit --  ./${NAME} ./map/map.ber) 
+	@leaks --atExit --  ./${NAME} map/validmap.cub
 	@${RM} ${NAME}
 	@$(MAKE) -C ./utils/minilibx fclean
 	@$(MAKE) -C ./utils/libft fclean
@@ -135,7 +131,6 @@ bonus: ${OBJS_B}
 
 ifeq ($(OS),Darwin)
 		@${CC} ${FLAGS} ${OBJS_B} ${LIBS} ${FRAMEWORK} -o ${NAME_B}
-		make clean
 endif
 
 ifeq ($(OS),Linux)
