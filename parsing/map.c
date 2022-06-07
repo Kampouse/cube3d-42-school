@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/07 15:41:02 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/07 17:23:37 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,8 +200,12 @@ int	parsing(t_game *game, int temp)
 			return (assert(1, "between\n"));
 		if (any_one_bellow_line(game->map, temp))
 			return (1);
-		if (look_in_space(temp++, game, 0))
+		if (look_in_space(temp, game, 0))
 			return (assert(1, "look in space\n"));
+		if (any_corner(game->map,temp++))
+			return (assert(1, "diagonal missing \n"));
+
+
 	}
 	return (0);
 }
@@ -296,6 +300,21 @@ int	any_one_bellow_line(char **map, int current_line)
 		}
 		inc++;
 	}
+	return (0);
+}
+
+
+int	any_corner(char **map, int current_line)
+{
+
+	int first;
+	
+	first = ft_until_this(map[current_line], "0NEWS");
+	if (first == -1)
+		return (0);
+	
+		if( map[current_line - 1][first - 1] == ' ')
+			return (1);
 	return (0);
 }
 

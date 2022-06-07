@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/07 15:48:52 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/07 17:16:51 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,5 +212,5 @@ t_dlist		*ft_lst_firstnode(t_dlist *currlist);
 t_dlist		*ft_lst_prevnode(t_dlist *currlist);
 t_dlist		*ft_lst_nextnode(t_dlist *currlist);
 t_dlist		*node_init(void *content);
-
+int	any_corner(char **map, int current_line);
 #endif 
