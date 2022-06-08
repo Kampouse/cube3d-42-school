@@ -48,6 +48,8 @@ SRCS_B =  	main/main.c				\
 		parsing/verif.c				\
 		parsing/verif_wall.c		\
 		parsing/mapInit.c			\
+		parsing/map_second.c		\
+		parsing/map_third.c			\
 		parsing/parsing.c			\
 		parsing/map.c				\
 		parsing/orientation.c		\
