@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 16:09:54 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/08 05:07:50 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_last_cord(t_game *game, t_ray *ray)
 	if (ray->last_cordy >= game->map_heigth)
 		ray->last_cordy = game->map_heigth - 1;
 	if (ray->last_cordx > (int)ft_strlen(game->map[ray->last_cordy]))
-		ray->last_cordx = (int)ft_strlen(game->map[ray->last_cordy]);
+		ray->last_cordx = (int)ft_strlen(game->map[ray->last_cordy]) - 1;
 }
 
 void	ft_nb_step(t_game *game, t_ray *ray)

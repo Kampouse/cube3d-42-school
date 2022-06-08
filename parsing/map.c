@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/07 17:23:37 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/08 05:08:42 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,6 @@ int	only_space(char *str)
 	return (0);
 }
 
-int	find_secound_player(t_game *game, int temp)
-{
-	while (game->map[temp])
-	{
-		if (ft_until_this(game->map[temp], "NEWS" ) != -1)
-			return (1);
-		temp++;
-	}
-	return (0);
-}
-
 int	parser_helper(t_game *game, int temp, int inc)
 {
 	if (ft_until_this(game->map[temp], "NEWS") != -1)
@@ -112,8 +101,6 @@ int	parser_helper(t_game *game, int temp, int inc)
 		if (ft_until_this(game->map[temp] + ft_ftoi
 				(game->player->x_pos) + 1, "NEWS") > 0)
 			return (assert(2, "two player one same line\n"));
-		if (find_secound_player(game, temp + 1))
-			return (assert(2, "two player on diff line\n"));
 		game->player->orientation = game->map[temp][ft_ftoi
 			(game->player->x_pos)];
 		game->player->y_pos = inc;
@@ -200,12 +187,8 @@ int	parsing(t_game *game, int temp)
 			return (assert(1, "between\n"));
 		if (any_one_bellow_line(game->map, temp))
 			return (1);
-		if (look_in_space(temp, game, 0))
+		if (look_in_space(temp++, game, 0))
 			return (assert(1, "look in space\n"));
-		if (any_corner(game->map,temp++))
-			return (assert(1, "diagonal missing \n"));
-
-
 	}
 	return (0);
 }
@@ -300,21 +283,6 @@ int	any_one_bellow_line(char **map, int current_line)
 		}
 		inc++;
 	}
-	return (0);
-}
-
-
-int	any_corner(char **map, int current_line)
-{
-
-	int first;
-	
-	first = ft_until_this(map[current_line], "0NEWS");
-	if (first == -1)
-		return (0);
-	
-		if( map[current_line - 1][first - 1] == ' ')
-			return (1);
 	return (0);
 }
 
