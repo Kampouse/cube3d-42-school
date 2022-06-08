@@ -20,6 +20,8 @@ SRCS = 	main/main.c					\
 		parsing/mapInit.c			\
 		parsing/parsing.c			\
 		parsing/map.c				\
+		parsing/map_second.c		\
+		parsing/map_third.c			\
 		parsing/orientation.c		\
 		parsing/resize_map.c		\
 		parsing/parsing_utils.c		\
@@ -120,10 +122,7 @@ bun: all
 
 leak: all
 	@echo "\033[92mTEST 1 \n \033[0m"
-	@leaks --atExit --  ./${NAME} map/validmap.cub
-	@${RM} ${NAME}
-	@$(MAKE) -C ./utils/minilibx fclean
-	@$(MAKE) -C ./utils/libft fclean
+	@leaks --atExit --  ./${NAME} ./map/valid_map1.cub
 
 bonus: ${OBJS_B}
 	@$(MAKE) -C ./utils/libft

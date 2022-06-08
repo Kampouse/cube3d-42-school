@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/07 17:16:51 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:07:44 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void		render_texture(t_game *game, int i, double hauteur, int x);
 void		fix_it_hihi(t_game *game);
 void		ft_add_vertical(t_game *game, t_ray *ray, int i);
 void		ft_actualise_map(t_game *game, t_ray *ray);
-uint32_t	color_to_rgb(uint32_t a, uint32_t, uint32_t g, uint32_t b);
+uint32_t	color_to_rgb(uint32_t r, uint32_t g, uint32_t b);
 int			square_shape(t_image *image, int x_pos, int y_pos, uint32_t color);
 uint32_t	pixel_to_color(t_mlx_image *tex, uint32_t x_pos, uint32_t y_pos);
 void		draw_pixel(t_mlx_image *img, uint32_t x,
@@ -151,8 +151,12 @@ void		ft_nb_step_dx(t_game *game, t_ray *ray);
 void		ft_nb_step_dy(t_game *game, t_ray *ray);
 void		ft_nb_step(t_game *game, t_ray *ray);
 void		ft_fixhit2(t_game *game, t_ray *ray);
-
+int			validate_file(t_game *game);
 //	Parsing functions
+int			last_seen_at(char *str, char elem);
+int			any_before_after(char **map, int current_line);
+int			look_in_space(int current_line, t_game *game, int pos);
+int			parser_helper(t_game *game, int temp, int inc);
 int			ft_ftoi(double x);
 void		map_size_init(t_game *game);
 void		load_image(t_game *state);
@@ -193,7 +197,7 @@ int			was_in_set(char *str, char *set);
 int			parse_location(t_game *game, int found, int inc);
 int			delete_texture(t_map *map);
 int			only_space(char *str);
-void	resize_map(t_game *game,int len,int width,int iter);
+void		resize_map(t_game *game, int len, int width, int iter);
 int			verif_number(char **strs);
 int			any_one_above(t_game *map, int current_line, int pos);
 int			verif_no_space(t_game *game, int pos);
@@ -212,5 +216,6 @@ t_dlist		*ft_lst_firstnode(t_dlist *currlist);
 t_dlist		*ft_lst_prevnode(t_dlist *currlist);
 t_dlist		*ft_lst_nextnode(t_dlist *currlist);
 t_dlist		*node_init(void *content);
-int	any_corner(char **map, int current_line);
+void		init_this(t_game *state);
+void		init_map_size(t_game *game);
 #endif 

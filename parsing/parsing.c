@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/05/29 08:35:02 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/08 14:15:28 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int	loop_directions(t_game *state)
 			inc++;
 		}
 		if (any_invalid(state->map_data))
-			return (printf("an error occured while reading texture or color"));
+			return (printf("texture or color resulted in error\n"));
 	}
 	else
 	{
-		ft_putstr_fd("Error : could not readfile\n", 2);
+		ft_putstr_fd("could not readfile\n", 2);
 		return (1);
 	}
 	state->map_data->iterator++;

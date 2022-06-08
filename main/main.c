@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/07 15:51:26 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:10:24 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/06/06 14:20:41 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -54,7 +54,7 @@ int	parser_validator(t_game *state)
 		return (printf("FROM  Parsing() line: %d at: %s\n", __LINE__, __FILE__));
 	error += parse_location(state, 0, 0);
 	if (error > 0)
-		return (printf("FROM parse_location() line: %d at:%s\n", __LINE__,
+		return (printf("Error\n:FROM parse_location() line: %d at:%s\n", __LINE__,
 				__FILE__));
 	error += validate_file (state);
 	if (error > 0)
@@ -71,51 +71,16 @@ int	delete_this(t_game *state)
 	return (0);
 }
 
-static void	init_map_size(t_game *game)
-{
-	size_t	height;
-	size_t	width;
-
-	width = 0;
-	height = 0;
-	while (game->map[height])
-	{
-		if (ft_strlen(game->map[height]) > width)
-			width = ft_strlen(game->map[height]);
-		height++;
-	}
-	game->map_data->width = (int)width;
-	game->map_data->height = (int)height - 1;
-}
-
-void	init_this(t_game *state)
-{
-	t_image		image;
-
-	resize_map(state, 0, 0, state->map_data->start);
-	player_direction(state);
-	state->player->x_pos = ((state->player->x_pos) * state->player->scale) + 1;
-	state->player->y_pos = ((state->player->y_pos) * state->player->scale) + 1;
-	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
-	state->player->y_map = (state->player->y_pos / state->player->scale) + 1;
-	state->last_step = 'x';
-	state->mlx = mlx_init(800, 600, "./cube3d", 0);
-	image.image = mlx_new_image(state->mlx, 800, 600);
-	state->image = image;
-	load_image(state);
-	init_map_size(state);
-	mlx_image_to_window(state->mlx, image.image, 0, 0);
-	initialise_map(state);
-	ray_fov(state);
-}
-
 int	main(int argc, char *argv[])
 {
 	t_game		*state;
 
 	state = game_init(argc, argv);
 	if (parser_validator(state) > 0)
+	{
+		ft_putstr_fd ("Error \n", 1);
 		return (delete_this(state));
+	}
 	init_this(state);
 	mlx_loop_hook(state->mlx, &hook, state);
 	mlx_loop(state->mlx);

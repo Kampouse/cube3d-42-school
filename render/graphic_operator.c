@@ -6,21 +6,16 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/08 18:19:59 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:45:54 by jemartel         ###   ########.fr       */
 /*   Updated: 2022/06/06 14:20:52 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
 
-uint32_t	color_to_rgb(uint32_t a, uint32_t r, uint32_t g, uint32_t b)
+uint32_t	color_to_rgb(uint32_t r, uint32_t g, uint32_t b)
 {
-
-	(void)a;
-
-
-
-		return (0xFF | (r << 8) | g << 16 | (b << 24));
+	return (0xFF | (r << 8) | g << 16 | (b << 24));
 }
 
 int	square_shape(t_image *image, int x_pos, int y_pos, uint32_t color)

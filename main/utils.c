@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 05:30:21 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:09:44 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../Include/cube.h"
@@ -66,4 +66,42 @@ int	was_in_set(char *str, char *set)
 		inc++;
 	}
 	return (0);
+}
+
+void	init_map_size(t_game *game)
+{
+	size_t	height;
+	size_t	width;
+
+	width = 0;
+	height = 0;
+	while (game->map[height])
+	{
+		if (ft_strlen(game->map[height]) > width)
+			width = ft_strlen(game->map[height]);
+		height++;
+	}
+	game->map_data->width = (int)width;
+	game->map_data->height = (int)height - 1;
+}
+
+void	init_this(t_game *state)
+{
+	t_image		image;
+
+	resize_map(state, 0, 0, state->map_data->start);
+	player_direction(state);
+	state->player->x_pos = ((state->player->x_pos) * state->player->scale) + 1;
+	state->player->y_pos = ((state->player->y_pos) * state->player->scale) + 1;
+	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
+	state->player->y_map = (state->player->y_pos / state->player->scale) + 1;
+	state->last_step = 'x';
+	state->mlx = mlx_init(800, 600, "./cube3d", 0);
+	image.image = mlx_new_image(state->mlx, 800, 600);
+	state->image = image;
+	load_image(state);
+	init_map_size(state);
+	mlx_image_to_window(state->mlx, image.image, 0, 0);
+	initialise_map(state);
+	ray_fov(state);
 }
