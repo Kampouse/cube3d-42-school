@@ -108,7 +108,7 @@ git:
 	@git add ${SRCS} ${HEADER} Makefile
 
 val:
-	valgrind --track-origins=yes --leak-check=full ./$(NAME) ./map/invalid_map1.cub
+	valgrind --track-origins=yes --leak-check=full ./$(NAME) ./map/valid_map1.cub
 
 run: all
 	./${NAME} ./map/valid_map1.cub
