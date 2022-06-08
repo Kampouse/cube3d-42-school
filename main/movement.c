@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/08 16:33:27 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:52:08 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@ static void	move_left(t_game *game)
 	const double	point_x = game->player->x_pos + dx;
 	const double	point_y = game->player->y_pos + dy;
 
-
-
-		game->player->x_pos = point_x;
-		game->player->y_pos = point_y;
-
-
-/*
-
 	if (is_in_wall(game, (point_x + dx) / game->player->scale,
 			(point_y + dy) / game->player->scale))
 	{
@@ -35,7 +27,7 @@ static void	move_left(t_game *game)
 		game->player->y_pos = point_y;
 
 	}
-	*/
+	
 }
 
 static void	move_right(t_game *game)
@@ -46,11 +38,6 @@ static void	move_right(t_game *game)
 	const double	point_x = game->player->x_pos + dx;
 	const double	point_y = game->player->y_pos + dy;
 
-		game->player->x_pos = point_x;
-		game->player->y_pos = point_y;
-
-
-	/*
 	if (is_in_wall(game, (point_x + dx) / game->player->scale,
 			(point_y + dy) / game->player->scale))
 	{
@@ -58,7 +45,7 @@ static void	move_right(t_game *game)
 		game->player->y_pos = point_y;
 
 	}
-	*/
+	
 }
 
 static void	move_foward(t_game *game)
@@ -68,10 +55,6 @@ static void	move_foward(t_game *game)
 
 	point_x = game->player->x_pos + game->player->dx;
 	point_y = game->player->y_pos + game->player->dy;
-game->player->x_pos = point_x;
-		game->player->y_pos = point_y;
-/*
-
 	if (is_in_wall(game, (point_x + game->player->dx) / game->player->scale,
 			(point_y + game->player->dy) / game->player->scale))
 	{
@@ -79,7 +62,6 @@ game->player->x_pos = point_x;
 		game->player->y_pos = point_y;
 
 	}
-*/
 }
 
 static void	move_backward(t_game *game)
@@ -89,10 +71,6 @@ static void	move_backward(t_game *game)
 
 	point_x = game->player->x_pos - game->player->dx;
 	point_y = game->player->y_pos - game->player->dy;
-		game->player->x_pos = point_x;
-		game->player->y_pos = point_y;
-
-/*
 	if (is_in_wall(game, (point_x - game->player->dx) / game->player->scale,
 			(point_y - game->player->dy) / game->player->scale))
 	{
@@ -100,7 +78,6 @@ static void	move_backward(t_game *game)
 		game->player->y_pos = point_y;
 
 	}
-*/
 }
 
 void	move(t_game *game, char c)
