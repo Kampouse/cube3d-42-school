@@ -6,10 +6,9 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 05:26:04 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/06 14:39:58 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/07 16:57:31 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../Include/cube.h"
 #include "../utils/libft/libft.h"
 
@@ -60,5 +59,5 @@ void	hook_second(void *param)
 	{
 		ft_rotate_left(state);
 		render_map(state);
-	}
+	}	
 }

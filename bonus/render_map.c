@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 05:26:04 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/07 16:29:23 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:47:28 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	render_player(t_game *game, int x, int y)
 	const int	pos_y = y + ((int)game->player->y_pos % game->player->scale);
 
 	mlx_putpixel(game->image.image, pos_x,
-		pos_y, color_to_rgb(0, 255, 255, 255));
+		pos_y, color_to_rgb(255, 255, 255));
 }
 
 static void	render_cadre(t_game *game)
@@ -29,13 +29,13 @@ static void	render_cadre(t_game *game)
 	top = HEIGHT - (game->map_data->height * 13);
 	i = 0;
 	while (i < (game->map_data->width) * 12)
-		mlx_putpixel(game->image.image, i++, top, color_to_rgb(0, 0, 0, 0));
+		mlx_putpixel(game->image.image, i++, top, color_to_rgb(0, 0, 0));
 	while (top < HEIGHT - 1)
-		mlx_putpixel(game->image.image, i, top++, color_to_rgb(0, 0, 0, 0));
+		mlx_putpixel(game->image.image, i, top++, color_to_rgb(0, 0, 0));
 	while (i > 0)
-		mlx_putpixel(game->image.image, i--, top, color_to_rgb(0, 0, 0, 0));
+		mlx_putpixel(game->image.image, i--, top, color_to_rgb(0, 0, 0));
 	while (top > HEIGHT - (game->map_data->height * 13))
-		mlx_putpixel(game->image.image, i, top--, color_to_rgb(0, 0, 0, 0));
+		mlx_putpixel(game->image.image, i, top--, color_to_rgb(0, 0, 0));
 }
 
 void	render_strip(t_game *game, int y, int pos_y, int pos_x)
@@ -46,14 +46,14 @@ void	render_strip(t_game *game, int y, int pos_y, int pos_x)
 	while (pos_x < game->map_data->width)
 	{
 		if (game->map[pos_y][pos_x] && game->map[pos_y][pos_x] == '0')
-			square_shape(&game->image, x, y, color_to_rgb(0, 0, 0, 0));
+			square_shape(&game->image, x, y, color_to_rgb(0, 0, 0));
 		else if (game->map[pos_y][pos_x] && (ft_strchr ("NEWS",
 								game->map[pos_y][pos_x])))
-			square_shape(&game->image, x, y, color_to_rgb(0, 0, 0, 0));
+			square_shape(&game->image, x, y, color_to_rgb(0, 0, 0));
 		else if (game->map[pos_y][pos_x] && game->map[pos_y][pos_x] == '1')
-			square_shape(&game->image, x, y, color_to_rgb(0, 125, 125, 0));
+			square_shape(&game->image, x, y, color_to_rgb(125, 125, 0));
 		else
-			square_shape(&game->image, x, y, color_to_rgb(0, 125, 125, 0));
+			square_shape(&game->image, x, y, color_to_rgb(125, 125, 0));
 			pos_x++;
 			x += 12;
 	}
