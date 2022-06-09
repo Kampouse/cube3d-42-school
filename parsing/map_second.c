@@ -6,7 +6,7 @@
 /*   By: jemartel <jemartel@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:58:33 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/08 15:07:02 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:24:00 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../Include/cube.h"
@@ -26,31 +26,6 @@ int	last_seen_at(char *str, char elem)
 		}
 	}
 	return (-1);
-}
-
-int	any_before_after(char **map, int current_line)
-{
-	int			pos;
-	int			temp;
-	const int	start_at = ft_until_this(map[current_line], "1");
-
-	pos = ft_until_this(map[current_line] + start_at, " ");
-	temp = pos;
-	if (pos < 0)
-		return (0);
-	while (pos > 0 && ft_strlen(map[current_line] + temp) > 0)
-	{
-		if ((map[current_line][temp + 1] != '1') || (
-				map[current_line][temp - 1] != '1'))
-		{
-			if (!(last_seen_at(map[current_line], ' ') > last_seen_at
-					(map[current_line], '1')))
-				return (assert(1, "broken wall\n"));
-		}
-		pos = ft_until_this(map[current_line] + temp, "0");
-		temp += pos;
-	}
-	return (0);
 }
 
 int	only_space(char *str)

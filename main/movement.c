@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/08 23:52:08 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:23:33 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ static void	move_left(t_game *game)
 	{
 		game->player->x_pos = point_x;
 		game->player->y_pos = point_y;
-
 	}
-	
 }
 
 static void	move_right(t_game *game)
@@ -43,9 +41,7 @@ static void	move_right(t_game *game)
 	{
 		game->player->x_pos = point_x;
 		game->player->y_pos = point_y;
-
 	}
-	
 }
 
 static void	move_foward(t_game *game)
@@ -60,7 +56,6 @@ static void	move_foward(t_game *game)
 	{
 		game->player->x_pos = point_x;
 		game->player->y_pos = point_y;
-
 	}
 }
 
@@ -76,7 +71,6 @@ static void	move_backward(t_game *game)
 	{
 		game->player->x_pos = point_x;
 		game->player->y_pos = point_y;
-
 	}
 }
 

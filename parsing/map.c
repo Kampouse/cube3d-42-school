@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/08 15:07:07 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:25:34 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../Include/cube.h" 
@@ -56,8 +56,6 @@ int	parsing(t_game *game, int temp)
 			return (ft_all(game->map[temp - 1], '1'));
 		if (any_one_above_line(game, temp))
 			return (assert(1, "above\n"));
-		if (any_before_after(game->map, temp))
-			return (assert(1, "before or after\n"));
 		if (ft_between(game->map[temp], '1') != 0)
 			return (assert(1, "the wall on the left or right are not '1' \n"));
 		if (any_one_bellow_line(game->map, temp++))
