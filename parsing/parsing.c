@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/08 14:15:28 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:18:47 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	loop_directions(t_game *state)
 	{
 		while (state->map[inc])
 		{
-			ft_poll_texture(skip_empty_line(state->map[inc]), state->map_data);
+			ft_poll_texture(skip_empty_line(state->map[inc]),
+				state->map_data, inc);
 			ft_poll_color(skip_empty_line(state->map[inc]),
 				state->map_data, inc);
 			inc++;

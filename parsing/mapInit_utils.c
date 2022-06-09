@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/06 08:39:22 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/09 16:17:20 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,30 @@ void	ft_poll_color(char *str, t_map *map, int inc)
 	Note : Add ./path validation
 	+ 1
 */
-void	ft_poll_texture(char *str, t_map *map)
+void	ft_poll_texture(char *str, t_map *map, int inc)
 {
 	if (str && map)
 	{
 		if (ft_strncmp(str, "NO", 2) == 0 && ft_strlen(str) > 2)
+		{
 			map->norh_texture = ft_strtrim(str + 2, " \n\t\v");
+			map->iterator = inc;
+		}
 		else if (ft_strncmp(str, "SO", 2) == 0 && ft_strlen(str) > 2)
+		{
 			map->south_texture = ft_strtrim(str + 2, " \n\t\v");
+			map->iterator = inc;
+		}
 		else if (ft_strncmp(str, "WE", 2) == 0 && ft_strlen(str) > 2)
+		{
 			map->west_texture = ft_strtrim(str + 2, " \n\t\v");
+			map->iterator = inc;
+		}
 		else if (ft_strncmp(str, "EA", 2) == 0 && ft_strlen(str) > 2)
+		{
 			map->est_texture = ft_strtrim(str + 2, " \n\t\v");
+			map->iterator = inc;
+		}
 		free(str);
 	}
 }

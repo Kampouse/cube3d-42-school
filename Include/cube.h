@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:33:18 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/08 14:07:44 by jemartel         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:17:58 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ int			look_in_space(int current_line, t_game *game, int pos);
 void		*ft_free(void *content);
 int			*get_color(char *str);
 void		ft_poll_color(char *str, t_map *map, int inc);
-void		ft_poll_texture(char *str, t_map *map);
+void		ft_poll_texture(char *str, t_map *map, int inc);
 int			valid_range(int *numbers);
 void		hook(void *param);
 t_dlist		*ft_lst_lastnode(t_dlist *currlist);
