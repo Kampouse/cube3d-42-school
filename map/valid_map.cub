@@ -8,11 +8,11 @@ SO	 ./assets/Caillou.png
 
 WE	  ./assets/Copper.png
 
-EA	 ./assets/Tile.png
+EA	 ./assets/StoneDark.png
 
-F 255,100,0
+F 0,0,255
 
-C 225,30,0
+C 0,255,0
 
 
 11111111111111111111111111111111
