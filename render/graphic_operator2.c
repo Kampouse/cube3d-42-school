@@ -6,25 +6,20 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 18:00:47 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/08 13:45:21 by jemartel         ###   ########.fr       */
+/*   Updated: 2023/06/10 22:37:45 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Include/cube.h"
+#include "stdio.h"
+
+#include <sys/_types/_u_int16_t.h>
+#include <sys/_types/_u_int64_t.h>
 
 void	paint_in_black(t_game *game)
 {
-	int	x;
-	int	y;
+	 (void)game;
 
-	x = 0;
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-			mlx_putpixel(game->image.image, x, y++, color_to_rgb(0, 0, 0));
-		x++;
-	}
 }
 
 void	initialise_map(t_game *game)
@@ -36,16 +31,17 @@ void	initialise_map(t_game *game)
 	while (x < WIDTH)
 	{
 		y = 0;
-		while (y < HEIGHT / 2)
-			mlx_putpixel(game->image.image, x, y++, color_to_rgb(
-					game->map_data->ceiling_color [0],
-					game->map_data->ceiling_color[1],
-					game->map_data->ceiling_color[2]));
-		while (y < HEIGHT)
-			mlx_putpixel(game->image.image, x, y++, color_to_rgb(
-					game->map_data->floor_color[0],
-					game->map_data->floor_color[1],
-					game->map_data->floor_color[2]));
+		while (y < HEIGHT )
+		{
+
+			
+			mlx_putpixel(game->image.image, x, y, color_to_rgb(
+					 y %  WIDTH / 4,
+					(int)game->player->y_pos  >> 31,
+					game->map_data->ceiling_color[0]));
+					y++;
+		}
+		 
 		x++;
 	}
 }

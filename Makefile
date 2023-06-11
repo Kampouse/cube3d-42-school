@@ -115,7 +115,8 @@ val:
 	valgrind --track-origins=yes --leak-check=full ./$(NAME) ./map/valid_map1.cub
 
 run: all
-	./${NAME} ./map/valid_map1.cub
+	./${NAME} ./map/valid_map.cub
+	@cat   ./map/valid_map.cub
 
 norm:
 	norminette ${SRCS}

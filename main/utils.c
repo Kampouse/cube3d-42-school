@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 17:38:26 by jemartel          #+#    #+#             */
-/*   Updated: 2022/06/08 15:09:44 by jemartel         ###   ########.fr       */
+/*   Updated: 2023/06/10 21:14:38 by jemartel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../Include/cube.h"
@@ -96,8 +96,8 @@ void	init_this(t_game *state)
 	state->player->x_map = (state->player->x_pos / state->player->scale) + 1;
 	state->player->y_map = (state->player->y_pos / state->player->scale) + 1;
 	state->last_step = 'x';
-	state->mlx = mlx_init(800, 600, "./cube3d", 0);
-	image.image = mlx_new_image(state->mlx, 800, 600);
+	state->mlx = mlx_init(1400, 900, "./cube3d", 0);
+	image.image = mlx_new_image(state->mlx, 1400, 900);
 	state->image = image;
 	load_image(state);
 	init_map_size(state);
